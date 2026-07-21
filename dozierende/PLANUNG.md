@@ -9,14 +9,19 @@
 - Frontend-Team: entwickelt Story, Datenvisualisierung und Chart.js-Frontend.
 - Gemeinsames Produkt: Daten werden gesammelt oder importiert, transformiert, in einer Datenbank gespeichert, wieder als JSON ausgeliefert und in einer Story visualisiert.
 - Abschluss: Am letzten Kurstag stellen die Studierenden ihre Projekte an
-  einem Marktstand aus. Das Projekt muss deshalb bereits Ende Tag 7
-  ausstellungsfähig sein.
+  einem Marktstand aus. Die technisch integrierte Fassung muss deshalb am
+  vorletzten Web-/Daten-Tag stehen; der letzte UX-Tag kann noch der
+  gestalterischen Fertigstellung dienen.
 - Datenjournalismus und Storytelling laufen ab dem Kickoff als Begleitspur zur
   technischen Strecke. Recherche und Themenfindung beginnen nicht erst nach
   PHP, Datenbank und ETL.
 - Dieses Repository plant den Web-App-Teil von IM3. Physical Computing ist ein
   zweiter, parallel anschlussfähiger Teil, der später separat ausgearbeitet
   wird.
+- Zwei der zehn Kurstermine sind ausschliesslich für UX reserviert: ein
+  Input-Tag und ein Coaching-Tag. Die fachliche Planung und Durchführung
+  dieser UX-Tage liegt bei einer anderen verantwortlichen Person und ist nicht
+  Teil dieses Dokuments.
 - Sensorboxen aus Physical Computing können Messwerte über eine API liefern
   und sind damit mögliche Datenquellen für den Web-App-/ETL-Teil.
 - Ausgangslage: Dieses Repo enthält Material vom letzten Semester. Es gibt bereits PHP-Cheatsheets, Code-Alongs und ein `etl-boilerplate`, aber noch keine durchgehende Kursstruktur wie im guten Referenzkurs `2026_im2_javascript-main`.
@@ -27,7 +32,8 @@
 IM3 soll wie IM2 eine klare Materialstruktur erhalten:
 
 - `README.md`: Einstieg, Lernziele, Repo-Orientierung, Projektziel.
-- `ABLAUF.md`: Tages-/Wochenplan fuer Dozierende und LBAs.
+- `dozierende/`: interne Planung, Ablauf und Materialinventar.
+- `dozierende/ABLAUF.md`: Tages-/Wochenplan fuer Dozierende und LBAs.
 - `cheatsheets/`: kurze Nachschlagewerke zu Syntax, PHP, DB, ETL, APIs und Chart.js.
 - `code-alongs/`: gemeinsame Unterrichtsprojekte, nicht vollständig selbsterklärend.
 - `uebungen/`: selbständig lösbare Übungen mit klaren Aufgabenstellungen und Lösungen.
@@ -89,7 +95,11 @@ IM3 soll wie IM2 eine klare Materialstruktur erhalten:
 ```txt
 .
 ├── README.md
-├── ABLAUF.md
+├── dozierende/
+│   ├── PLANUNG.md
+│   ├── UMSETZUNGSPLAN.md
+│   ├── ABLAUF.md
+│   └── MATERIAL_INVENTAR.md
 ├── cheatsheets/
 ├── theorie/
 │   ├── A_php_basics/
@@ -330,15 +340,18 @@ Material:
 
 Begleitspur über die Kurstage:
 
-- Tag 1: Beispielprojekte ansehen und zwei mögliche Themenfelder sammeln.
-- Zwischen Tag 1 und 2: sehr kleine Recherche zu möglichen Fragen und Quellen.
-- Tag 2: kurzer Input zu Datenfrage, Quelle und journalistischer Relevanz.
-- Tag 3: Frage und Datenquelle prüfen und festlegen.
-- Tag 4: Grenzen, Lücken und Transformationsbedarf der gewählten Daten notieren.
-- Tag 5: Storyline, Chart-Idee und Datenvertrag ausarbeiten.
-- Tag 6 bis 7: Story, Visualisierung und Quellenhinweise parallel zum Backend
-  entwickeln.
-- Tag 8: Story und Projekt am Marktstand vermitteln.
+- Web-Tag 1: Im Begleitprogramm Beispielprojekte ansehen und mögliche
+  Themenfelder sammeln.
+- Web-Tag 2: kurzer Input zu Datenfrage, Quelle und journalistischer Relevanz.
+- Web-Tag 3: mögliche Fragen und Datenquellen recherchieren.
+- Web-Tag 4: Frage und Datenquelle prüfen und festlegen.
+- UX-Tag 1: ausschliesslich UX-Input; Inhalte durch die UX-Verantwortlichen.
+- Web-Tag 5: Datenlücken, Transformationen, Datenvertrag und Projektgrundlage.
+- Web-Tag 6 (Halbtag): Projektstand prüfen, Blockaden lösen und Umsetzung
+  vorbereiten.
+- Web-Tag 7: Story, Chart und Backend integrieren.
+- UX-Tag 2: ausschliesslich UX-Coaching vor dem Marktstand.
+- Web-Tag 8: Story und Projekt am Marktstand vermitteln.
 
 ## Anschluss an Physical Computing
 
@@ -355,169 +368,220 @@ Anschlussstelle bieten:
 - Für den Marktstand braucht auch ein Sensorprojekt einen gespeicherten
   Datenstand oder eine robuste Offline-Demonstration.
 
-## Vorschlag Ablauf ueber 8 Kurstage
+## Vorschlag: 8 Web-/Daten-Tage und 2 UX-Tage
 
-Die genaue Kalenderplanung kann später ergänzt werden. Dieser Ablauf geht von acht Unterrichtstagen aus, verteilt über mehrere Wochen.
+Der gesamte Kurs umfasst zehn Termine beziehungsweise 9,5 Unterrichtstage.
+Acht Termine gehören zum hier geplanten Web-/Daten-Teil. Zwei Termine sind
+ausschliesslich für UX reserviert und werden von den UX-Verantwortlichen
+geplant: ein Input-Tag und ein Coaching-Tag. Der siebte Kalendertag ist ein
+Halbtag im Web-/Daten-Teil und erhält keinen neuen fachlichen Input.
 
-Das Grundprinzip ist eine gemeinsame technische Lernstrecke an Tag 1 bis 4,
-ein Frontend- und Projektstart an Tag 5 und betreute Projektarbeit an Tag 6 bis
-8. Als roter Faden eignet sich ein kleiner, gut verständlicher Datensatz wie
-Aare.guru. Die Struktur des IM2-Kurses dient als Orientierung, die Themen und
-Übungen werden aber eigenständig für den Datenkontext von IM3 entwickelt.
+Die folgende Verteilung ist ein Arbeitsvorschlag und kann später an den
+definitiven Kalender angepasst werden:
 
-### Tag 1 - Kickoff, Tooling und PHP-Grundlagen
+| Kalendertag | Verantwortung | Schwerpunkt |
+| --- | --- | --- |
+| 1 | Web/Daten | Kickoff, Tooling, Begleitprogramm |
+| 2 | Web/Daten | PHP Basics |
+| 3 | Web/Daten | Bedingungen, Arrays, Schleifen, JSON |
+| 4 | Web/Daten | API, Datenbank, PDO und ERM |
+| 5 | UX | UX-Input |
+| 6 | Web/Daten | ETL-Durchstich und Projektgrundlage |
+| 7, Halbtag | Web/Daten | Projekt-Checkpoint und Support, kein neuer Input |
+| 8 | Web/Daten | Chart.js, Projektwerkstatt und technische Integration |
+| 9 | UX | UX-Coaching und Fertigstellung vor Ausstellung |
+| 10 | Web/Daten | Marktstand und Abgabe |
 
-- Kickoff: Modulziel und fertiges Beispielprojekt zeigen.
-- Marktstand als sichtbares Abschlussformat ankündigen und anhand eines
-  Beispielstands zeigen, worauf der Kurs hinausläuft.
-- Gruppenbildung: Vierergruppen und vorläufige Backend-/Frontend-Zweierteams.
-- Tooling: Serverzugang, PHP-Setup und erste PHP-Datei prüfen.
-- PHP-Basics: Variablen, Ausgabe und einfache Funktionen.
-- Vorhandene Code-Alongs zu Servercheck, Variablen und Funktionen übernehmen
-  und vereinfachen.
-- Datennahe Mini-Übung: aus vorbereiteten Variablen eine kleine
-  Aare-Messmeldung erzeugen.
-- Story-Begleitspur: zwei mögliche Themenfelder oder Beobachtungen sammeln.
-- Abschluss: sehr kurze Repetition und gemeinsames Lesen einer Fehlermeldung.
+Die Web-/Daten-Tage werden unten als Web-Tag 1 bis 8 bezeichnet. Als roter
+Faden eignet sich weiterhin ein kleiner, historischer Datensatz wie
+Aare.guru. Die beiden UX-Tage werden hier bewusst nicht inhaltlich geplant.
+
+### Kapazitätsgrenze
+
+Von den acht Web-/Daten-Terminen sind Web-Tag 1 vollständig für Organisation
+und Tooling, Web-Tag 6 nur ein Halbtag und Web-Tag 8 für den Marktstand
+reserviert. Für PHP, Datenbank, ETL, Chart.js und technische Projektarbeit
+bleiben damit fünfeinhalb Tage. Der Ablauf bleibt dicht und funktioniert nur
+mit bewusst kleinem Projektumfang:
+
+- eine Datenquelle pro Projekt;
+- möglichst ein historischer, sofort verfügbarer Datensatz;
+- ein kleines Datenmodell, idealerweise mit einer zentralen Tabelle;
+- bereitgestelltes ETL-Boilerplate statt freier Architektur;
+- ein zentraler JSON-Endpunkt;
+- mindestens eine, aber keine unnötig komplexe Chart.js-Visualisierung;
+- Projektplanung ab Web-Tag 3 und technische Umsetzung spätestens ab Web-Tag
+  5;
+- klar definierte Übergaben aus UX-Input und UX-Coaching.
+
+Der zusätzliche Halbtag an Web-Tag 6 schafft einen wichtigen Kontrollpunkt,
+aber keinen weiteren vollen Produktionstag. Chart.js, Umsetzung und
+Integration an Web-Tag 7 müssen deshalb weiterhin stark vorbereitet und durch
+Boilerplate unterstützt werden.
+
+### Web-Tag 1 / Kalendertag 1 - Kickoff, Tooling und Begleitprogramm
+
+An diesem Tag gibt es noch keinen PHP-Grundlagenunterricht. Erfahrungsgemäss
+brauchen Kickoff, Zugänge und Einrichtung den ganzen Termin.
+
+- Kickoff: Modulziel, Projektauftrag und fertiges Beispielprojekt zeigen.
+- Marktstand als Abschlussformat ankündigen.
+- Gruppenbildung und organisatorische Fragen klären.
+- Tooling:
+  - prüfen, ob PHP lokal beziehungsweise in der vorgesehenen Umgebung läuft;
+  - Serverzugänge verteilen und testen;
+  - persönlichen Projektordner auf dem Server einrichten;
+  - eine minimale PHP-Testdatei hochladen und im Browser aufrufen;
+  - typische Zugangs-, Pfad- und Rechteprobleme gemeinsam lösen.
+- Begleitprogramm:
+  - Rollenmodell Backend-/Frontend-Zweierteam erklären;
+  - Beispiele für Datenprojekte ansehen;
+  - mögliche Themenfelder und Beobachtungen sammeln;
+  - Ablauf, UX-Tage, Meilensteine und Marktstand einordnen.
 
 Output:
 
-- Jede Person kann eine PHP-Datei ausführen und einfache Werte ausgeben.
-- Die Vierergruppen stehen.
+- Jede Person erreicht den Server und kann eine PHP-Testdatei aufrufen.
+- Die Vierergruppen stehen und kennen den Projektablauf.
+- Jede Gruppe hat erste Themenfelder, aber noch keine erzwungene definitive
+  Datenquelle.
 
-### Tag 2 - Bedingungen, Arrays, Schleifen und JSON
+### Web-Tag 2 / Kalendertag 2 - PHP Basics
 
-- Repetition.
-- Bedingungen, Arrays, assoziative Arrays, Schleifen.
-- Code-Alongs: `03_bedingungen`, `04_arrays`, `05_schleifen`.
-- Ein sehr kleines vorbereitetes Mini-Dataset verwenden, zum Beispiel sieben
-  Aare-Messungen.
-- Aufgaben in Einzelschritten: einen Wert lesen, alle Werte ausgeben, einen
-  Wert filtern, Minimum oder Maximum finden.
-- Dasselbe PHP-Array am Schluss mit `json_encode` als JSON ausgeben.
-- Analoge Übung: einen Datensatz und eine Liste von Datensätzen auf Papier
-  darstellen.
-- Kurzer Story-Input: Was ist eine Datenfrage und woran erkennt man eine
-  brauchbare Datenquelle?
-- Kleine Rechercheaufgabe: pro Gruppe zwei mögliche Fragen und passende
-  bestehende Datensätze suchen.
+- Sehr kurze Einführung: Was macht PHP auf dem Server?
+- Variablen, Datentypen, `echo` und String-Ausgabe.
+- Einfache Funktionen mit Parametern und Rückgabewert.
+- Einfache Bedingungen, soweit es der Tagesumfang erlaubt.
+- Vorhandene Code-Alongs stark vereinfachen.
+- Datennahe Mini-Übungen mit vorbereiteten Messwerten.
+- Begleitprogramm: Was ist eine Datenfrage und was macht eine Quelle
+  interessant?
 
 Output:
 
-- Jede Person kann ein Array von Datensätzen durchlaufen und Werte berechnen/ausgeben.
-- Jede Person hat gesehen, wie aus einem PHP-Array JSON wird.
+- Jede Person kann Werte speichern, ausgeben und durch eine einfache Funktion
+  verarbeiten.
+- Bedingungen wurden mindestens gemeinsam gelesen und verändert.
 
-### Tag 3 - Externe API, Datenbank und PDO
+### Web-Tag 3 / Kalendertag 3 - Datenstrukturen und JSON
 
-- JSON vom Vortag kurz repetieren.
-- Eine kleine Antwort von Aare.guru gemeinsam holen und lesen.
-- Nur die wenigen Felder auswählen, die im Kursbeispiel gebraucht werden.
+- Repetition der PHP Basics.
+- Bedingungen abschliessen.
+- Arrays, assoziative Arrays und Schleifen.
+- Kleines historisches Mini-Dataset durchlaufen und einzelne Werte ausgeben.
+- PHP-Array mit `json_encode` als JSON ausgeben.
+- Optional bei genügend Zeit: eine vorbereitete externe JSON-Antwort lesen.
+- Begleitprogramm: mögliche Datenfragen und historische Quellen recherchieren.
+
+Output:
+
+- Jede Person kann eine Liste kleiner Datensätze durchlaufen.
+- Jede Person versteht die Verbindung zwischen PHP-Array und JSON.
+- Jede Gruppe hat zwei mögliche Datenfragen und Quellen.
+
+### Web-Tag 4 / Kalendertag 4 - API, Datenbank, PDO und ERM
+
+- Eine kleine externe JSON-Antwort, zum Beispiel Aare.guru, gemeinsam holen
+  und lesen.
+- Nur die benötigten Felder auswählen.
 - Datenbank-Grundlagen: Tabelle, Zeile, Spalte und Primärschlüssel.
+- Analoge Übung: für Messwerte ein minimales ERM beziehungsweise eine Tabelle
+  zeichnen.
 - PDO-Verbindung sowie genau ein vorbereitetes `INSERT` und `SELECT`.
-- Analoge Übung: für die Messwerte ein kleines ERM beziehungsweise zunächst
-  eine einzelne Tabelle zeichnen.
-- Einen vorbereiteten Aare-Messwert in die Datenbank schreiben und wieder
-  lesen.
-- Projektgruppen prüfen ihre zwei Ideen auf Relevanz, Datenmenge, Zeitraum,
-  Felder und technische Zugänglichkeit.
-- Bestehende historische Datensätze bevorzugen; Live-APIs und Sensorboxen nur
-  wählen, wenn genügend Daten bis zur Ausstellung gesichert sind.
+- Einen Messwert speichern und wieder lesen.
+- Projektgruppen prüfen Datenfrage und Quelle auf Relevanz, Datenmenge,
+  Zeitraum und technische Zugänglichkeit.
 
 Output:
 
 - Jede Person versteht den Weg von einer JSON-Antwort zu einem PHP-Array.
-- Das Backend kann einen Messwert mit PDO speichern und wieder auslesen.
-- Die Studierenden kennen die Grundidee eines ERM.
-- Jede Gruppe hat eine erste Datenfrage und eine plausible Datenquelle gewählt.
+- Ein Messwert kann mit PDO gespeichert und wieder gelesen werden.
+- Jede Gruppe hat eine plausible Datenfrage und Datenquelle gewählt.
 
-### Tag 4 - Kompletter ETL-Durchstich
+### UX-Tag 1 / Kalendertag 5 - Input
 
-- Was ist ETL? Extract, Transform, Load und Unload als sichtbare Pipeline.
-- Gemeinsamer Durchstich mit demselben Aare-Beispiel:
-  API holen, Felder auswählen/umbenennen, in die Datenbank schreiben und als
-  einfaches JSON wieder ausgeben.
-- Die vier Dateien `extract.php`, `transform.php`, `load.php` und `unload.php`
-  zeigen und klar voneinander abgrenzen.
-- Extract-Strategien kurz demonstrieren: Live-API, statisches JSON, CSV und
-  selbst erhobene Daten beziehungsweise Sensorboxen. Diese Varianten werden
-  nicht alle als grosse Übung implementiert.
-- Jede Gruppe ordnet ihre bereits gewählte Quelle einer Extract-Strategie zu
-  und prüft einen kleinen Rohdaten-Ausschnitt.
-- Story-Begleitspur: Datenlücken, Grenzen und notwendige Transformationen
-  notieren.
+- Ausschliesslich UX-Input.
+- Inhalt und Tagesplanung liegen bei den UX-Verantwortlichen.
+- Für die gemeinsame Projektplanung ist danach ein erster UX-/Interface-Stand
+  hilfreich; die konkrete Form wird mit den UX-Verantwortlichen abgestimmt.
 
-Output:
+### Web-Tag 5 / Kalendertag 6 - ETL-Durchstich und Projektgrundlage
 
-- Jede Person kann den vollständigen ETL-/Unload-Weg erklären.
-- Ein kleines gemeinsames Beispiel läuft vom Extract bis zum JSON-Endpunkt.
-- Jede Gruppe hat die technische Machbarkeit ihrer Datenquelle geprüft.
-
-### Tag 5 - Chart.js, Story und Projektstart
-
-- Sehr kompakter Chart.js-Code-Along mit vorbereiteten Daten.
-- Danach `fetch()` auf einen vorbereiteten JSON-Endpunkt.
-- Story-Frage, Aussage und geeigneten Chart-Typ in einfacher Form behandeln.
-- Datenfrage schärfen und Rollen bestätigen.
-- Gruppe zeichnet das eigene ERM und den ETL-Datenfluss.
-- Backend und Frontend füllen gemeinsam den Datenvertrag aus.
-- Frontend erstellt daraus eine Mock-JSON-Datei und beginnt unabhängig vom
-  Backend mit dem ersten Chart.
+- Extract, Transform, Load und Unload als sichtbare Pipeline erklären.
+- Vollständiger gemeinsamer Durchstich mit dem Referenzdatensatz:
+  Rohdaten lesen, Felder auswählen/umbenennen, in die Datenbank schreiben und
+  als JSON ausgeben.
+- Dateien `extract.php`, `transform.php`, `load.php` und `unload.php` klar
+  voneinander abgrenzen.
+- Extract-Varianten kurz zeigen: API, historisches JSON, CSV, eigene Daten und
+  Sensorbox.
+- Jede Gruppe prüft einen Rohdaten-Ausschnitt ihrer eigenen Quelle.
+- Gruppe erstellt ERM, ETL-Skizze, Transform-Regeln und Datenvertrag.
+- Frontend erhält Mock-JSON; Backend richtet die Projektstruktur ein.
 
 Output:
 
-- Jede Gruppe hat Datenquelle, Story-Frage, ERM, ETL-Skizze und Datenvertrag.
-- Das Frontend hat einen ersten Chart mit Mock-Daten.
+- Jede Person kann den ETL-/Unload-Weg erklären.
+- Jede Gruppe hat eine technisch geprüfte Quelle und eine umsetzbare
+  Projektgrundlage.
+- Backend und Frontend können ab jetzt getrennt arbeiten.
 
-### Tag 6 - Projektwerkstatt: isolierte Teile
+### Web-Tag 6 / Kalendertag 7, Halbtag - Projekt-Checkpoint und Support
 
+An diesem Halbtag gibt es keinen neuen fachlichen Input.
+
+- Kurzer Stand-up pro Gruppe: Was läuft, was fehlt, was blockiert?
+- Backend zeigt Rohdaten, Projektstruktur oder einen ersten Datenbanktest.
+- Frontend zeigt Mock-JSON und den Stand aus dem UX-Input.
+- Datenvertrag, Umfang und Aufgabenverteilung prüfen.
+- Technische und inhaltliche Blockaden mit Dozierenden/LBAs lösen.
+- Verbindliche Aufgaben für Web-Tag 7 festhalten.
+
+Output:
+
+- Jede Gruppe kennt ihren realistischen Weg bis zur technischen Integration.
+- Kritische Blockaden und zu grosser Projektumfang sind erkannt.
+
+### Web-Tag 7 / Kalendertag 8 - Chart.js und Projektwerkstatt
+
+- Kompakter Chart.js-Code-Along mit vorbereitetem Mock-JSON.
+- `fetch()` auf einen vorbereiteten Unload-Endpunkt.
+- Danach betreute Projektarbeit in den Zweierteams.
 - Backend-Team:
-  - Extract implementieren.
-  - Transform-Regeln definieren.
-  - Load in Datenbank und einfachen Unload testen.
+  - eigenen Extract, Transform, Load und Unload fertigstellen;
+  - stabilen Datenstand als Fallback sichern.
 - Frontend-Team:
-  - Story-Frage schärfen.
-  - Chart mit Mock-Daten bauen.
-  - Story-Aufbau skizzieren.
-- Dozierende und LBAs unterstützen beide Zweierteams gezielt.
+  - Chart mit Mock-Daten und danach mit echten Daten verbinden;
+  - Story, Quellen und Limitationen ergänzen;
+  - UX-Ergebnisse in die Darstellung übernehmen.
+- Gesamtgruppe integriert Backend, Frontend und UX-Stand.
+- Ausstellungsfassung technisch testen.
 
 Output:
 
-- Backend-ETL und Frontend-Prototyp funktionieren jeweils isoliert.
+- Backend und Frontend funktionieren zunächst isoliert und danach integriert.
+- Eine technisch ausstellungsfähige Fassung und ein Daten-Fallback stehen.
 
-### Tag 7 - Projektwerkstatt: Integration und Ausstellungsfassung
+### UX-Tag 2 / Kalendertag 9 - Coaching
 
-- Backend:
-  - Unload-Endpunkt finalisieren.
-  - Fehler, Parameter, Limit, Sortierung.
-- Frontend:
-  - `fetch()` auf echten Endpunkt.
-  - Chart mit echten Daten.
-  - Story-Layout und Text.
-- Zwischenkritik: Funktioniert die Aussage mit den Daten?
-- Datenvertrag nur gemeinsam ändern; Mock-Daten und echten Endpunkt danach
-  wieder angleichen.
-- Ausstellungsfassung fertigstellen und auf dem vorgesehenen Gerät testen.
-- Stabilen Datenstand und Fallback vorbereiten, falls Fremd-API, Netzwerk oder
-  Sensorbox am Marktstand nicht verfügbar sind.
-- Stand in einem kurzen Probelauf einer anderen Gruppe zeigen.
+- Ausschliesslich UX-Coaching.
+- Inhalt und Tagesplanung liegen bei den UX-Verantwortlichen.
+- Gemeinsames Ziel ist die gestalterische und kommunikative Fertigstellung für
+  den Marktstand; technische Kernfunktionen müssen bereits vorhanden sein.
 
-Output:
+### Web-Tag 8 / Kalendertag 10 - Marktstand und Abgabe
 
-- Eine integrierte und ausstellungsfähige Fassung läuft Ende Tag.
-
-### Tag 8 - Marktstand und Abgabe
-
-- Kurzer Aufbau, Geräte- und Fallback-Test; keine grossen neuen Features mehr.
+- Kurzer Aufbau sowie Geräte- und Fallback-Test.
+- Keine grossen neuen Features mehr.
 - Projekte am Marktstand ausstellen und Besucherinnen und Besuchern erklären.
 - Story, Visualisierung, Datenquelle und technische Pipeline sichtbar machen.
-- Abgabe von Code, README, Quellen und dokumentierten Limitationen.
-- Kurze gemeinsame Reflexion nach dem Marktstand: Was machen Extract,
-  Transform, Load und Unload?
+- Code, README, Quellen und dokumentierte Limitationen abgeben.
+- Kurze gemeinsame Reflexion zu Extract, Transform, Load und Unload.
 
 Output:
 
 - Projekt wurde öffentlich ausgestellt und ist abgegeben.
-- Studierende können ihren technischen Prozess erklären.
+- Studierende können ihren technischen Prozess und ihre Story erklären.
 
 ## Projekt-Meilensteine
 
@@ -525,50 +589,55 @@ Die Meilensteine sind keine zusätzliche Unterrichtsreihe. Sie sind kurze
 Abnahmepunkte am Ende eines Kurstages. Eine Gruppe zeigt jeweils ein kleines,
 konkretes Ergebnis, bevor sie weiterarbeitet.
 
-### M0 - Gruppe und Rollen (Ende Tag 1)
+### M0 - Tooling, Gruppe und Rollen (Ende Web-Tag 1 / Kalendertag 1)
 
+- Serverzugang und PHP-Test funktionieren.
 - Vierergruppe steht.
 - Backend-/Frontend-Zweierteams sind vorläufig festgelegt.
 
-### M1 - Idee und Datenquelle (Ende Tag 3)
+### M1 - Idee und Datenquelle (Ende Web-Tag 4 / Kalendertag 4)
 
 - Erste Datenfrage ist formuliert.
 - Datenquelle ist plausibel.
 - Der Datensatz enthält bereits genügend Daten für das Projekt oder die Gruppe
   kann nachvollziehbar zeigen, wie bis zum Marktstand genügend Daten entstehen.
 
-### Technischer Quellencheck (Ende Tag 4)
+### M2 - Projektgrundlage und Datenvertrag (Ende Web-Tag 5 / Kalendertag 6)
 
 - Ein kleiner Rohdaten-Ausschnitt konnte gelesen werden.
 - Die Gruppe kennt ihre Extract-Strategie.
 - Risiken wie Rate Limits, fehlende Historie, Hardware- oder
   Netzwerkabhängigkeit sind bekannt.
-
-### M2 - Projektgrundlage und Datenvertrag (Ende Tag 5)
-
 - Backend und Frontend einigen sich auf JSON-Struktur.
 - ERM und ETL-Datenfluss sind skizziert.
 - Beispielantwort liegt als Mock-JSON vor.
 - Frontend kann mit Mock-Daten arbeiten.
 
-### M3 - Teile funktionieren isoliert (Ende Tag 6)
+### Zwischencheck (Web-Tag 6 / Kalendertag 7, Halbtag)
+
+- Backend und Frontend zeigen ihren aktuellen Stand.
+- Blockaden, Umfang und nächste Aufgaben sind geklärt.
+- Es gibt keinen zusätzlichen grossen Abgabe-Meilenstein.
+
+### M3 - Technik integriert (Ende Web-Tag 7 / Kalendertag 8)
 
 - Extract liefert Rohdaten.
 - Transform liefert saubere Projektdaten.
 - Load schreibt in DB.
 - Unload liefert JSON.
-- Der Frontend-Chart funktioniert mit Mock-Daten.
+- Der Frontend-Chart funktioniert zuerst mit Mock-Daten und danach mit dem
+  echten JSON-Endpunkt.
 - Der grobe Story-Aufbau steht.
+- Ein stabiler Datenstand beziehungsweise Fallback ist vorhanden.
 
-### M4 - Integration (Ende Tag 7)
+### M4 - Ausstellungsfassung (Ende UX-Tag 2 / Kalendertag 9)
 
-- Chart.js konsumiert echten JSON-Endpunkt.
 - Story nutzt mindestens eine sinnvolle Visualisierung.
 - Quelle und Limitationen sind sichtbar.
 - Projekt ist am vorgesehenen Gerät ausstellungsfähig.
-- Ein stabiler Datenstand beziehungsweise Fallback ist vorhanden.
+- Die konkrete UX-Abnahme wird mit den UX-Verantwortlichen abgestimmt.
 
-### M5 - Marktstand und Abgabe (Tag 8)
+### M5 - Marktstand und Abgabe (Web-Tag 8 / Kalendertag 10)
 
 - Code läuft auf dem Zielserver.
 - README erklärt Setup und Endpunkte.
@@ -627,7 +696,7 @@ gegen genau dieselbe Mock-Struktur.
   IM2-Referenzkurs kopieren.
 - Aufgaben extrem einfach staffeln: ein neues Konzept pro Schritt, wenige
   vorbereitete Daten und ein direkt sichtbares Resultat.
-- Für Tag 1 bis 4 möglichst denselben kleinen Beispieldatensatz verwenden,
+- Für Web-Tag 2 bis 5 möglichst denselben kleinen Beispieldatensatz verwenden,
   damit nur der technische Schritt neu ist und nicht zusätzlich das Thema.
 - Datenjournalismus nicht als letzten Theorieblock behandeln. Recherche,
   Datenfrage und Quellenprüfung beginnen ab Tag 1 und laufen als kleine
@@ -640,15 +709,21 @@ gegen genau dieselbe Mock-Struktur.
   Projektgrundlage, wenn Transform und Load sinnvoll bleiben.
 - Live-Sammlung nur erlauben, wenn die Daten über Zeit wirklich interessanter
   werden und bis zum Marktstand sicher genügend Daten entstehen.
-- Marktstand früh kommunizieren und die ausstellungsfähige Fassung bis Ende
-  Tag 7 verlangen.
+- Web-Tag 1 enthält noch keinen PHP-Grundlagenunterricht. Kickoff, Tooling,
+  Servereinrichtung und Begleitprogramm erhalten den ganzen Tag.
+- Die beiden UX-Tage enthalten keine Web-/Daten-Inputs. Ihre fachliche Planung
+  liegt bei den UX-Verantwortlichen: ein Input-Tag und ein Coaching-Tag.
+- Kalendertag 7 ist ein halber Web-/Daten-Tag ohne neuen fachlichen Input. Er
+  dient nur dem Projekt-Checkpoint, Support und der Aufgabenplanung.
+- Die technische Fassung muss Ende Kalendertag 8 stehen; UX kann sie an
+  Kalendertag 9 gestalterisch und kommunikativ fertigstellen.
 - Für externe APIs und Sensorboxen immer einen stabilen Daten-Fallback für die
   Ausstellung vorsehen.
 
 ## Nächste Arbeitsschritte
 
 1. `README.md` auf neue Kursstruktur und Projektziel umschreiben.
-2. `ABLAUF.md` nach IM2-Vorbild erstellen.
+2. `dozierende/ABLAUF.md` nach IM2-Vorbild erstellen.
 3. `code-alongs/README.md` als Checkliste neu strukturieren.
 4. `uebungen/README.md` und erste Übungsordner anlegen.
 5. `projekt/` mit Briefing, Rollen, Milestones, Bewertung, Marktstand-Checkliste
