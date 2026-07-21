@@ -76,7 +76,7 @@ IM3 soll wie IM2 eine klare Materialstruktur erhalten:
 - Ein Projektbriefing mit Rollen, Milestones und Definition of Done.
 - Chart.js-Materialien und Frontend-Übungen.
 - Datenjournalismus-/Storytelling-Inputs.
-- Organisation und Briefing der zweistündigen Datenjournalismus-Gastvorlesung.
+- Organisation und Briefing des zweistündigen Inputs von Pascal Alisser.
 - Mehrere Extract-Varianten:
   - Live-API ueber Zeitraum sammeln
   - statisches JSON importieren
@@ -143,7 +143,7 @@ IM3 soll wie IM2 eine klare Materialstruktur erhalten:
 └── etl-boilerplate/
 ```
 
-## Thematische Kursblöcke
+## Theorieblöcke
 
 ### A. PHP Basics
 
@@ -151,6 +151,8 @@ Ziel: Studierende können einfache PHP-Skripte lesen, ändern und schreiben.
 
 Inhalte:
 
+- Tooling und Server: PHP prüfen, Serverzugang einrichten, Projektordner und
+  minimale PHP-Testdatei anlegen
 - Was ist PHP, Server-Kontext, `<?php ?>`, `echo`
 - Variablen und Datentypen
 - Funktionen
@@ -180,7 +182,7 @@ neues Konzept pro Schritt, sichtbares Ergebnis und vorbereitete Daten. Der
 Datenbezug darf am Anfang inszeniert sein; es geht noch nicht um echte
 Datenverarbeitung.
 
-### B. PHP, JSON und einfache APIs
+### B. PHP, JSON / APIs
 
 Ziel: Studierende verstehen PHP als Leser und Lieferant von JSON-Daten. Das
 zentrale Modell ist:
@@ -191,18 +193,21 @@ JSON rein -> PHP-Array -> auswählen oder filtern -> JSON raus
 
 Inhalte:
 
-- Lokale JSON-Datei mit `file_get_contents` lesen.
+- Lokale JSON-Daten mit `file_get_contents` einlesen und ausgeben.
 - JSON mit `json_decode(..., true)` in ein PHP-Array umwandeln.
 - PHP-Arrays mit `json_encode` als JSON ausgeben.
 - HTTP-Header `Content-Type: application/json` setzen.
 - Einen kleinen eigenen JSON-Endpunkt bauen.
-- Eingehende GET-Parameter mit `$_GET` lesen und Daten filtern.
+- Einen Endpunkt mit `$_GET` filtern.
 - Eine externe JSON-API über eine vorbereitete Funktion `fetchJson($url)`
   abrufen.
 - cURL als Technik hinter `fetchJson()` zeigen, aber die einzelnen Optionen in
   diesem Block noch nicht vertiefen.
 - Aus einer grösseren API-Antwort nur wenige benötigte Felder auswählen.
 - Leere Resultate und einfache Fehler als JSON ausgeben.
+- Kommunikation Frontend/Backend: Das Backend liefert eine vereinbarte
+  JSON-Struktur, das Frontend konsumiert sie zuerst als Mock-JSON und später
+  über den echten Endpunkt.
 
 Wichtige Unterscheidung:
 
@@ -252,18 +257,19 @@ cURL wird in Block B damit sichtbar, bleibt aber didaktisch klein. Die
 vollständige Arbeit mit verschiedenen Datenquellen gehört zu Extract in Block
 D.
 
-### C. Datenbanken mit PDO
+### C. Datenbanken / PDO
 
 Ziel: Studierende können Daten aus PHP sicher in MySQL/MariaDB lesen und schreiben.
 
 Inhalte:
 
-- `config.php`
+- Tooling DB: Zugang, `config.php` und Verbindung testen
+- Theorie DB & SQL: Tabellen, Zeilen, Spalten, Schlüssel und Beziehungen
+- Planung Tabellen als ERM Light
 - PDO-Verbindung
-- SELECT und INSERT
+- `SELECT`, `INSERT`, `UPDATE` und `DELETE`
 - Prepared Statements
 - einfache Fehlerbehandlung
-- Tabellenstruktur verstehen
 
 Material:
 
@@ -275,19 +281,41 @@ Mögliche Übungen:
 
 - `a_users_read`: SELECT als HTML und JSON.
 - `b_insert_measurement`: Messwert speichern.
-- `c_search_endpoint`: gefilterter API-Endpunkt.
+- `c_update_measurement`: Einen vorbereiteten Messwert aktualisieren.
+- `d_delete_measurement`: Einen Testdatensatz löschen.
+- `e_search_endpoint`: gefilterter API-Endpunkt.
 
-### D. ETL Basics
+### D. ETL Pipeline
 
-Ziel: Studierende können einen kleinen ETL-Prozess erklären und auf ihr Projekt anwenden.
+Ziel: Studierende können einen kleinen ETL-Prozess erklären, auf ihr Projekt
+anwenden und die gespeicherten Daten über `unload.php` wieder als JSON für das
+Frontend bereitstellen.
 
 Inhalte:
 
-- Extract: Datenquelle holen oder einlesen.
+- Extract mit cURL oder Dateizugriff: Datenquelle holen oder einlesen.
 - Transform: Rohdaten säubern, reduzieren, normalisieren, neue Felder ableiten.
 - Load: transformierte Daten in DB speichern.
 - Unload: Daten wieder als JSON fuer Frontend bereitstellen.
 - Unterschied zwischen Live-Daten sammeln und statischem Dataset importieren.
+
+Die vollständige Kurspipeline lautet:
+
+```text
+Datenquelle
+-> extract.php
+-> transform.php
+-> load.php
+-> Datenbank
+-> unload.php
+-> JSON-Endpunkt
+-> Chart.js
+```
+
+`Unload` ist nicht Teil des üblichen Begriffs ETL. Im Kurs bezeichnet Unload
+den notwendigen Schritt nach dem Laden: Die Projektdaten werden wieder aus der
+Datenbank gelesen und in der mit dem Frontend vereinbarten JSON-Struktur
+ausgegeben.
 
 Extract-Varianten:
 
@@ -303,6 +331,52 @@ Extract-Varianten:
   Die Box wird in diesem Kurs gezeigt, aber nicht selbst programmiert.
 - Eigenes Dataset: manuell erhobene Daten oder ein Export aus einer Tabelle,
   die trotzdem durch Transform und Load laufen.
+
+Technische Umsetzung der Extract-Varianten:
+
+| Datenquelle | Zugriff in PHP | Umsetzung in Block D |
+| --- | --- | --- |
+| externe JSON-/Live-API | cURL + `json_decode` | `fetchJson($url)` praktisch in `extract.php` verwenden |
+| API mit historischen Daten | cURL + `json_decode` | wie Live-API, aber vorhandenen Zeitraum abrufen |
+| Sensor-API | cURL + `json_decode` | technisch derselbe `fetchJson()`-Weg |
+| statische JSON-Datei | `file_get_contents` + `json_decode` | eigene Extract-Funktion verwenden |
+| CSV / Google-Sheets-Export | `fopen` + `fgetcsv` | Header lesen und Zeilen in Arrays umwandeln |
+| eigenes Dataset | JSON- oder CSV-Variante | eines der vorhandenen Extract-Muster verwenden |
+
+Der vorbereitete Helper `fetchJson($url)` wird in Block B erstmals gezeigt
+und in Block D innerhalb von `extract.php` praktisch eingesetzt. Die
+Studierenden müssen den cURL-Boilerplate-Code nicht auswendig schreiben. Sie
+sollen URL und Parameter anpassen, die Antwort mit `json_decode(..., true)` in
+ein PHP-Array umwandeln, Fehler erkennen und den zurückgegebenen Array-Inhalt
+prüfen können.
+
+Alle Extract-Varianten enden mit demselben Vertrag:
+
+```text
+API / Sensor-API / JSON / CSV -> PHP-Array mit Rohdatensätzen
+```
+
+Erst `transform.php` bringt die unterschiedlichen Rohdaten in die gemeinsame,
+für das Projekt vereinbarte Struktur.
+
+Technische Umsetzung von Unload:
+
+- `unload.php` verbindet sich über PDO mit der Projektdatenbank.
+- Ein `SELECT` liest nur die Felder, die das Frontend tatsächlich benötigt.
+- Optionale Filter wie Ort, Kategorie oder Zeitraum kommen über `$_GET`.
+- Werte für SQL-Filter werden mit Prepared Statements gebunden.
+- Sortierung und sinnvolle Begrenzung werden im Query festgelegt.
+- Datenbankzeilen werden in die vereinbarte JSON-Struktur gebracht.
+- Der Header `Content-Type: application/json` wird gesetzt.
+- `json_encode` gibt die Daten als stabilen Endpunkt aus.
+- Leere Resultate und Fehler liefern eine verständliche JSON-Antwort.
+- Der Endpunkt enthält keine HTML-Ausgabe und keine Debug-Ausgaben wie
+  `var_dump`.
+
+Der Datenvertrag aus Block B gilt damit auch für `unload.php`: Feldnamen,
+Datentypen und Struktur müssen zum Mock-JSON des Frontends passen. Das
+Frontend soll später nur die URL von der Mock-Datei zum echten Endpunkt ändern
+müssen.
 
 Priorität bei der Projektwahl:
 
@@ -320,26 +394,33 @@ abhängen.
 Material:
 
 - `etl-boilerplate/` als finaler Starter.
+- `cheatsheets/15__curl.md` als Referenz für `fetchJson()`.
+- `cheatsheets/550_unload.md` als Referenz für den JSON-Endpunkt.
 - neues `code-alongs/12_full_mini_project/` als geführter Durchstich.
 - `projekt/datenquellen.md` mit Kriterien fuer gute Datenquellen.
 
 Mögliche Übungen:
 
-- `a_extract_live_api`: Daten mit cURL holen und als PHP-Array zurückgeben.
-- `b_extract_static_json`: JSON-Datei lesen und dekodieren.
-- `c_extract_csv`: CSV lesen und Header/Felder mappen.
-- `d_transform_weather`: Einheiten, Labels, Rundung, Feldnamen.
-- `e_load_measurements`: INSERT mit Prepared Statement.
-- `f_unload_for_chart`: JSON für Chart.js vorbereiten.
+- `a_extract_live_api`: Mit `fetchJson()` eine externe JSON-/Live-API abrufen,
+  dekodieren und als PHP-Array zurückgeben.
+- `b_extract_sensor_api`: Mit demselben Helper Daten einer Sensor-API abrufen.
+- `c_extract_static_json`: JSON-Datei lesen und dekodieren.
+- `d_extract_csv`: CSV lesen und Header/Felder mappen.
+- `e_transform_weather`: Einheiten, Labels, Rundung, Feldnamen.
+- `f_load_measurements`: INSERT mit Prepared Statement.
+- `g_unload_for_chart`: Daten mit PDO aus der Datenbank lesen und passend zum
+  Datenvertrag als JSON für Chart.js ausgeben.
+- `h_unload_filter`: `unload.php` über einen `$_GET`-Parameter filtern und bei
+  leeren Resultaten eine saubere JSON-Antwort liefern.
 
-### E. Chart.js und Datenfrontend
+### E. Chart.js
 
 Ziel: Das Frontend-Team kann Daten vom Backend laden und sinnvoll visualisieren.
 
 Inhalte:
 
-- Chart.js Setup
-- Chart-Typen und Datenformate
+- Implementierung Chart.js: Setup, Datenstruktur und erster Chart
+- Diagrammtypen und ihre Eignung für unterschiedliche Aussagen
 - `fetch()` auf PHP-Unload-Endpunkt
 - Daten für Labels und Datasets mappen
 - einfache Interaktion: Filter, Zeitraum, Kategorie
@@ -358,7 +439,7 @@ Mögliche Übungen:
 - `c_filter_chart`: Dropdown/Buttons filtern Daten.
 - `d_story_chart`: Chart mit Titel, Quelle und Kernaussage.
 
-### F. Datenjournalismus und Story als Begleitspur
+### F. Datenjournalismus
 
 Ziel: Die Story-Gruppe entwickelt keine beliebige Visualisierung, sondern eine klare Fragestellung.
 
@@ -381,13 +462,13 @@ Material:
 
 - später ausarbeiten
 - vorerst `projekt/brief.md`, `projekt/milestones.md`, `stift-und-papier/03_story_angle`
-- zweistündige Gastvorlesung eines Datenjournalisten an Tag 2
+- zweistündiger Input von Pascal Alisser an Tag 2
 
 Begleitspur über die Kurstage:
 
 - Tag 1: Im Begleitprogramm Beispielprojekte ansehen und mögliche
   Themenfelder sammeln.
-- Tag 2: zweistündige Gastvorlesung eines Datenjournalisten mit Fragen der
+- Tag 2: zweistündiger Input von Pascal Alisser mit Fragen der
   Studierenden und kurzem Transfer auf mögliche Projektthemen.
 - Tag 3: mögliche Fragen und Datenquellen recherchieren.
 - Tag 4: Frage und Datenquelle prüfen und festlegen.
@@ -418,7 +499,7 @@ den Gesamtkalender verteilt.
 | Tag | Schwerpunkt |
 | --- | --- |
 | 1 | Kickoff, Tooling und Begleitprogramm |
-| 2 | PHP Basics und zweistündige Gastvorlesung Datenjournalismus |
+| 2 | PHP Basics und zweistündiger Input Pascal Alisser |
 | 3 | Bedingungen, Arrays, Schleifen und JSON |
 | 4 | API, Datenbank, PDO und ERM |
 | 5 | ETL-Durchstich und Projektgrundlage |
@@ -458,13 +539,13 @@ Output:
 - Jede Gruppe hat erste Themenfelder, aber noch keine erzwungene definitive
   Datenquelle.
 
-### Tag 2 - PHP Basics und Gastvorlesung Datenjournalismus
+### Tag 2 - PHP Basics und Input Pascal Alisser
 
 - Sehr kurze Einführung: Was macht PHP auf dem Server?
 - Variablen, Datentypen, `echo` und String-Ausgabe.
 - Einfache Funktionen mit Parametern und Rückgabewert.
 - Datennahe Mini-Übungen mit vorbereiteten Messwerten.
-- Zweistündige Gastvorlesung eines Datenjournalisten:
+- Zweistündiger Input von Pascal Alisser:
   - Wie entsteht eine datenjournalistische Frage?
   - Wie werden Datenquellen gefunden und geprüft?
   - Wie wird aus Daten eine verständliche Story?
@@ -504,15 +585,20 @@ Output:
 - Datenbank-Grundlagen: Tabelle, Zeile, Spalte und Primärschlüssel.
 - Analoge Übung: für Messwerte ein minimales ERM beziehungsweise eine Tabelle
   zeichnen.
-- PDO-Verbindung sowie genau ein vorbereitetes `INSERT` und `SELECT`.
-- Einen Messwert speichern und wieder lesen.
+- PDO-Verbindung sowie ein vorbereitetes `SELECT` und `INSERT` praktisch
+  anwenden.
+- `UPDATE` und `DELETE` gemeinsam zeigen und bei genügend Zeit in einer
+  kleinen Übung verändern lassen.
+- Einen Messwert speichern, lesen, aktualisieren und einen Testdatensatz
+  löschen.
 - Projektgruppen prüfen Datenfrage und Quelle auf Relevanz, Datenmenge,
   Zeitraum und technische Zugänglichkeit.
 
 Output:
 
 - Jede Person versteht den Weg von einer JSON-Antwort zu einem PHP-Array.
-- Ein Messwert kann mit PDO gespeichert und wieder gelesen werden.
+- Ein Messwert kann mit PDO gespeichert und wieder gelesen werden; `UPDATE`
+  und `DELETE` sind als weitere Operationen bekannt.
 - Jede Gruppe hat eine plausible Datenfrage und Datenquelle gewählt.
 
 ### Tag 5 - ETL-Durchstich und Projektgrundlage
@@ -727,4 +813,4 @@ gegen genau dieselbe Mock-Struktur.
 8. Chart.js-Cheatsheet und erste Chart.js-Übungen ergänzen.
 9. Kuratierte Liste historischer Datensätze sowie Kriterien für Live- und
    Sensor-API-Projekte erstellen.
-10. Gastvorlesung Datenjournalismus anfragen und inhaltlich briefen.
+10. Input mit Pascal Alisser terminieren und inhaltlich briefen.

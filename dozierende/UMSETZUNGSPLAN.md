@@ -30,7 +30,7 @@ weitere Arbeiten steht in `../AGENTS.md`.
   neuen fachlichen Input.
 - Die ausstellungsfähige Projektfassung muss Ende Tag 7 stehen. Tag 8 gehört
   dem Marktstand und der Abgabe.
-- An Tag 2 eine zweistündige Gastvorlesung eines Datenjournalisten einplanen.
+- An Tag 2 einen zweistündigen Input von Pascal Alisser einplanen.
 
 ## Übersicht
 
@@ -41,7 +41,7 @@ weitere Arbeiten steht in `../AGENTS.md`.
 | 3. Referenzprojekt | Vollständiger Datenweg an einem kleinen Beispiel | Offen |
 | 4. Lernmaterial Tag 1-5 | Tooling, Code-Alongs, Mini-Übungen und Lösungen | Offen |
 | 5. Projektpaket | Briefing, Rollen, Vorlagen, Meilensteine und Marktstand | Offen |
-| 6. Chart.js und Story | Material für Tag 6, Gastvorlesung und Story-Begleitspur | Offen |
+| 6. Chart.js und Story | Material für Tag 6, Input Pascal Alisser und Story-Begleitspur | Offen |
 | 7. Probelauf | Technischer und zeitlicher Test des gesamten Kurses | Offen |
 
 ## Phase 1: Kursgerüst erstellen
@@ -60,7 +60,7 @@ passieren muss und was bei Zeitmangel entfallen kann.
 - [ ] Inhalte als `Muss`, `Soll` oder `Optional` markieren.
 - [ ] Tag 1 vollständig für Kickoff, Tooling und Begleitprogramm
   reservieren.
-- [ ] An Tag 2 zwei Stunden für die Gastvorlesung Datenjournalismus reservieren.
+- [ ] An Tag 2 zwei Stunden für den Input von Pascal Alisser reservieren.
 - [ ] Tag 3 bis 6 besonders streng auf Überladung prüfen.
 - [ ] Tag 7 als Halbtag ohne neuen fachlichen Input planen.
 - [ ] Ende Tag 7 als Feature-Freeze und Ausstellungsfassung festlegen.
@@ -160,7 +160,8 @@ historische Aare-Daten
 ### Reihenfolge
 
 1. Tag 1 als Tooling- und Organisationspaket vollständig erstellen.
-2. Tag 2 mit den eigentlichen PHP Basics beginnen und Gastvorlesung einplanen.
+2. Tag 2 mit den eigentlichen PHP Basics beginnen und Input Pascal Alisser
+   einplanen.
 3. Tag 3 auf derselben Datenwelt mit Arrays und JSON aufbauen.
 4. Tag 4 mit API, PDO und ERM bewusst klein halten.
 5. Tag 5 als gemeinsamen ETL-/Unload-Durchstich erstellen.
@@ -181,7 +182,7 @@ Jede selbständige Übung enthält:
 ### Geplante Tagespakete
 
 - [ ] Tag 1: Kickoff, PHP-Check, Servereinrichtung und Begleitprogramm.
-- [ ] Tag 2: Variablen, Ausgabe, Funktionen und Gastvorlesung.
+- [ ] Tag 2: Variablen, Ausgabe, Funktionen und Input Pascal Alisser.
 - [ ] Tag 3: Bedingungen, Arrays, Schleifen und erste JSON-Ausgabe.
 - [ ] Tag 4: externe JSON-Daten, minimale PDO-Nutzung und analoges ERM.
 - [ ] Tag 5: vollständige ETL-/Unload-Pipeline, Extract-Varianten und
@@ -239,7 +240,7 @@ Zweierteams tun müssen.
 ### Story-Begleitspur
 
 - [ ] Tag 1: Themenfelder und Beobachtungen im Begleitprogramm sammeln.
-- [ ] Tag 2: zweistündige Gastvorlesung Datenjournalismus durchführen.
+- [ ] Tag 2: zweistündigen Input von Pascal Alisser durchführen.
 - [ ] Tag 3: mögliche Fragen und Datenquellen recherchieren.
 - [ ] Tag 4: Frage und Datenquelle festlegen.
 - [ ] Tag 5: Datenlücken, Story-Grundlage und Datenvertrag ausarbeiten.
@@ -299,7 +300,7 @@ Detailproduktion geklärt werden:
 - genaue Unterrichtszeiten, Pausen und Abstand zwischen den Kurstagen;
 - PHP-Version, Zielserver und Datenbankumgebung;
 - verfügbare Sensor-APIs und Boxen für die Demonstration;
-- Gastdozent, Termin und Briefing für die Datenjournalismus-Gastvorlesung;
+- Termin und Briefing für den Input von Pascal Alisser;
 - definitive Bewertungskriterien;
 - organisatorischer Rahmen und Dauer des Marktstands;
 - erlaubte Hilfsmittel und Umgang mit KI während Übungen und Projekt.

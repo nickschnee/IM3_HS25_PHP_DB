@@ -20,8 +20,8 @@ Chart.js-Grundlagen und entwickeln danach ein datenjournalistisches Projekt.
 Der Kurs wird in dieser Planung als Folge von acht Kurstagen behandelt. Tag 7
 ist ein Halbtag, Tag 8 der Marktstand und die Abgabe. Tag 1 enthaelt nur
 Kickoff, Tooling, Servereinrichtung und Begleitprogramm, noch keine PHP-
-Grundlagen. An Tag 2 ist eine zweistuendige Gastvorlesung eines
-Datenjournalisten eingeplant. Die ausstellungsfaehige Fassung muss Ende Tag 7
+Grundlagen. An Tag 2 ist ein zweistuendiger Input von Pascal Alisser zum
+Datenjournalismus eingeplant. Die ausstellungsfaehige Fassung muss Ende Tag 7
 stehen.
 
 ## Projekt- und Rollenmodell
@@ -40,6 +40,10 @@ Der technische Datenfluss ist:
 ```text
 Datenquelle -> Extract -> Transform -> Load -> Datenbank -> Unload/JSON -> Chart.js/Story
 ```
+
+`Unload` ist die Kursbezeichnung fuer den Schritt nach ETL: `unload.php` liest
+die gespeicherten Daten per PDO aus der Datenbank, formt sie nach dem
+vereinbarten Datenvertrag und liefert sie als JSON-Endpunkt fuer Chart.js aus.
 
 ## Datenquellen
 
@@ -72,7 +76,7 @@ Sensorik und Programmierung der Box sind nicht Inhalt dieses Kurses.
 1. Tag 1: Kickoff, Tooling, PHP-Check, Servereinrichtung, Gruppenbildung und
    Begleitprogramm. Keine PHP Basics.
 2. Tag 2: PHP Basics mit Variablen, Ausgabe und Funktionen sowie zwei Stunden
-   Gastvorlesung Datenjournalismus.
+   Input von Pascal Alisser.
 3. Tag 3: Bedingungen, Arrays, Schleifen und erste JSON-Ausgabe.
 4. Tag 4: externe JSON- beziehungsweise Sensor-API, Datenbankgrundlagen, PDO,
    analoges ERM sowie Wahl von Datenfrage und Datenquelle.
@@ -134,8 +138,8 @@ Sensorik und Programmierung der Box sind nicht Inhalt dieses Kurses.
   Support und Ausstellungstest.
 - Tag 8 nicht als regulaeren Produktionstag planen. Die ausstellungsfaehige
   Fassung muss Ende Tag 7 stehen und einen Offline-/Daten-Fallback besitzen.
-- Die Gastvorlesung an Tag 2 als Teil der Story-Begleitspur behandeln und zwei
-  Stunden inklusive Fragen einplanen.
+- Den Input von Pascal Alisser an Tag 2 als Teil der Story-Begleitspur
+  behandeln und zwei Stunden inklusive Fragen einplanen.
 
 ## Angestrebte Repository-Struktur
 
