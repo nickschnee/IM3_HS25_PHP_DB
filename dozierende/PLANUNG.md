@@ -76,10 +76,12 @@ IM3 soll wie IM2 eine klare Materialstruktur erhalten:
 - Ein Projektbriefing mit Rollen, Milestones und Definition of Done.
 - Chart.js-Materialien und Frontend-Übungen.
 - Datenjournalismus-/Storytelling-Inputs.
+- Organisation und Briefing der zweistündigen Datenjournalismus-Gastvorlesung.
 - Mehrere Extract-Varianten:
   - Live-API ueber Zeitraum sammeln
   - statisches JSON importieren
   - CSV importieren
+  - Daten aus einer Sensor-API konsumieren
   - eigenes Dataset vorbereiten
 - Gemeinsame Schnittstellenvereinbarung zwischen Backend- und Frontend-Team.
 
@@ -180,27 +182,75 @@ Datenverarbeitung.
 
 ### B. PHP, JSON und einfache APIs
 
-Ziel: Studierende verstehen PHP als Lieferant von JSON-Daten.
+Ziel: Studierende verstehen PHP als Leser und Lieferant von JSON-Daten. Das
+zentrale Modell ist:
+
+```text
+JSON rein -> PHP-Array -> auswählen oder filtern -> JSON raus
+```
 
 Inhalte:
 
-- Arrays zu JSON mit `json_encode`
-- JSON lesen mit `json_decode`
-- HTTP-Header `Content-Type: application/json`
-- GET-Parameter mit `$_GET`
-- kleine API-Endpunkte
+- Lokale JSON-Datei mit `file_get_contents` lesen.
+- JSON mit `json_decode(..., true)` in ein PHP-Array umwandeln.
+- PHP-Arrays mit `json_encode` als JSON ausgeben.
+- HTTP-Header `Content-Type: application/json` setzen.
+- Einen kleinen eigenen JSON-Endpunkt bauen.
+- Eingehende GET-Parameter mit `$_GET` lesen und Daten filtern.
+- Eine externe JSON-API über eine vorbereitete Funktion `fetchJson($url)`
+  abrufen.
+- cURL als Technik hinter `fetchJson()` zeigen, aber die einzelnen Optionen in
+  diesem Block noch nicht vertiefen.
+- Aus einer grösseren API-Antwort nur wenige benötigte Felder auswählen.
+- Leere Resultate und einfache Fehler als JSON ausgeben.
+
+Wichtige Unterscheidung:
+
+```text
+Frontend -> $_GET -> unser PHP-Endpunkt
+unser PHP-Skript -> cURL GET -> externe API
+```
+
+`$_GET` verarbeitet also Parameter, die unser PHP-Skript erhält. cURL führt
+einen ausgehenden HTTP-GET-Request an eine fremde API aus.
+
+Abgrenzung der Datenquellen in diesem Block:
+
+| Datenquelle | Zugriff | Behandlung in Block B |
+| --- | --- | --- |
+| lokale JSON-Datei | `file_get_contents` + `json_decode` | praktisch umsetzen |
+| externe JSON-/Live-API | cURL + `json_decode` | mit vorbereitetem Helper zeigen |
+| Sensor-API | technisch wie externe JSON-API | einordnen, Umsetzung in Block D |
+| CSV-Datei | `fopen` / `fgetcsv` | nur einordnen, Umsetzung in Block D |
+| Google Sheets | als CSV exportieren oder herunterladen | nur einordnen, Umsetzung in Block D |
+| eigenes Dataset | als JSON oder CSV bereitstellen | nur einordnen, Umsetzung in Block D |
+
+Die Studierenden implementieren in Block B nicht alle Datenquellen. Sie sollen
+verstehen, dass alle Extract-Varianten am Ende ein PHP-Array von Datensätzen
+liefern. CSV, Google Sheets, eigene Daten und Sensor-API werden im ETL-/Extract-
+Block D praktisch behandelt.
 
 Material:
 
 - `cheatsheets/08_array2json.md`
+- `cheatsheets/15__curl.md` als Hintergrund, nicht als vollständiger
+  Lernstoff dieses Blocks
 - Code-Along `06_json_endpoint`
+- kurze API-Demo mit vorbereiteter Funktion `fetchJson($url)`
 - Übungsblock `uebungen/02_arrays_json/`
 
 Mögliche Übungen:
 
-- `a_team_json`: Teamdaten als JSON ausgeben.
-- `b_filter_by_city`: GET-Parameter auswerten.
-- `c_error_response`: Fehler und leere Resultate sauber als JSON zurückgeben.
+- `a_json_laden`: Eine vorbereitete lokale JSON-Datei einlesen.
+- `b_json_endpoint`: Ausgewählte Felder als JSON ausgeben.
+- `c_filter_endpoint`: Mit `$_GET` nach Ort oder Kategorie filtern.
+- `d_api_abrufen`: Über `fetchJson()` eine vorbereitete JSON-API laden.
+- `e_felder_auswaehlen`: Aus der API-Antwort nur drei Felder übernehmen.
+- `f_error_response`: Leere Resultate und einfache Fehler als JSON ausgeben.
+
+cURL wird in Block B damit sichtbar, bleibt aber didaktisch klein. Die
+vollständige Arbeit mit verschiedenen Datenquellen gehört zu Extract in Block
+D.
 
 ### C. Datenbanken mit PDO
 

@@ -22,28 +22,26 @@ weitere Arbeiten steht in `../AGENTS.md`.
   verwenden.
 - Datenjournalismus, Recherche und Story ab Tag 1 parallel zur technischen
   Strecke führen.
-- Web-Tag 1 ausschliesslich für Kickoff, Tooling, Servereinrichtung und
+- Tag 1 ausschliesslich für Kickoff, Tooling, Servereinrichtung und
   Begleitprogramm reservieren; noch keine PHP-Grundlagen unterrichten.
-- Zwei Kurstermine ausschliesslich für UX freihalten: einen Input-Tag und einen
-  Coaching-Tag. Die UX-Inhalte werden von den UX-Verantwortlichen geplant.
-- Historische Datensätze bevorzugen. Live-Daten und Sensorboxen nur einsetzen,
-  wenn bis zur Ausstellung genügend Daten verfügbar sind.
-- Kalendertag 7 ist ein halber Web-/Daten-Tag für Projekt-Checkpoint und
-  Support, ohne neuen fachlichen Input.
-- Die technisch ausstellungsfähige Projektfassung muss Ende Kalendertag 8
-  stehen. Kalendertag 9 gehört UX, Kalendertag 10 dem Marktstand und der
-  Abgabe.
+- Historische Datensätze bevorzugen. Live- und Sensor-APIs nur einsetzen, wenn
+  genügend Daten verfügbar sind oder ein stabiler Datenstand gesichert wird.
+- Tag 7 ist ein Halbtag für Fertigstellung, Support und Ausstellungstest, ohne
+  neuen fachlichen Input.
+- Die ausstellungsfähige Projektfassung muss Ende Tag 7 stehen. Tag 8 gehört
+  dem Marktstand und der Abgabe.
+- An Tag 2 eine zweistündige Gastvorlesung eines Datenjournalisten einplanen.
 
 ## Übersicht
 
 | Phase | Ergebnis | Status |
 | --- | --- | --- |
-| 1. Kursgerüst | `ABLAUF.md` mit 8 Web-/Daten- und 2 UX-Terminen | Offen |
+| 1. Kursgerüst | `ABLAUF.md` mit acht Kurstagen | Offen |
 | 2. Materialinventar | Zuordnung und Beurteilung aller bestehenden Materialien | Offen |
 | 3. Referenzprojekt | Vollständiger Datenweg an einem kleinen Beispiel | Offen |
-| 4. Lernmaterial Web-Tag 1-5 | Tooling, Code-Alongs, Mini-Übungen und Lösungen | Offen |
+| 4. Lernmaterial Tag 1-5 | Tooling, Code-Alongs, Mini-Übungen und Lösungen | Offen |
 | 5. Projektpaket | Briefing, Rollen, Vorlagen, Meilensteine und Marktstand | Offen |
-| 6. Chart.js und Story | Material für Web-Tag 7 und die Story-Begleitspur | Offen |
+| 6. Chart.js und Story | Material für Tag 6, Gastvorlesung und Story-Begleitspur | Offen |
 | 7. Probelauf | Technischer und zeitlicher Test des gesamten Kurses | Offen |
 
 ## Phase 1: Kursgerüst erstellen
@@ -55,21 +53,18 @@ passieren muss und was bei Zeitmangel entfallen kann.
 
 ### Aufgaben
 
-- [ ] Acht Web-/Daten-Termine und zwei UX-Tage im Gesamtablauf ausweisen.
-- [ ] Für Web-Tag 1 bis 8 Lernziel, Inputs, Übungen und Ergebnisse festhalten.
-- [ ] UX-Tage als ausschliessliche UX-Blöcke markieren, ohne deren Inhalte zu
-  planen.
+- [ ] Für Tag 1 bis 8 Lernziel, Inputs, Übungen und Ergebnisse festhalten.
 - [ ] Pro Tag die Story-/Recherche-Begleitspur ergänzen.
 - [ ] Pro Tag ein überprüfbares Tagesergebnis definieren.
 - [ ] Meilensteine direkt den Kurstagen zuordnen.
 - [ ] Inhalte als `Muss`, `Soll` oder `Optional` markieren.
-- [ ] Web-Tag 1 vollständig für Kickoff, Tooling und Begleitprogramm
+- [ ] Tag 1 vollständig für Kickoff, Tooling und Begleitprogramm
   reservieren.
-- [ ] Web-Tag 3 bis 7 besonders streng auf Überladung prüfen.
-- [ ] Kalendertag 7 als halben Web-/Daten-Tag nur für Projekt-Checkpoint und
-  Support markieren.
-- [ ] Ende Kalendertag 8 als technischen Feature-Freeze festlegen.
-- [ ] Kalendertag 10 mit Aufbau, Marktstand, Abgabe und Reflexion planen.
+- [ ] An Tag 2 zwei Stunden für die Gastvorlesung Datenjournalismus reservieren.
+- [ ] Tag 3 bis 6 besonders streng auf Überladung prüfen.
+- [ ] Tag 7 als Halbtag ohne neuen fachlichen Input planen.
+- [ ] Ende Tag 7 als Feature-Freeze und Ausstellungsfassung festlegen.
+- [ ] Tag 8 mit Aufbau, Marktstand, Abgabe und Reflexion planen.
 - [ ] Genaue Zeitblöcke ergänzen, sobald Unterrichtszeiten und Pausen bekannt
   sind.
 
@@ -160,15 +155,15 @@ historische Aare-Daten
   zurückgeführt werden kann.
 - Das Beispiel auch ohne erreichbare Fremd-API demonstrierbar bleibt.
 
-## Phase 4: Lernmaterial für Web-Tag 1 bis 5 entwickeln
+## Phase 4: Lernmaterial für Tag 1 bis 5 entwickeln
 
 ### Reihenfolge
 
-1. Web-Tag 1 als Tooling- und Organisationspaket vollständig erstellen.
-2. Web-Tag 2 mit den eigentlichen PHP Basics beginnen.
-3. Web-Tag 3 auf derselben Datenwelt mit Arrays und JSON aufbauen.
-4. Web-Tag 4 mit API, PDO und ERM bewusst klein halten.
-5. Web-Tag 5 als gemeinsamen ETL-/Unload-Durchstich erstellen.
+1. Tag 1 als Tooling- und Organisationspaket vollständig erstellen.
+2. Tag 2 mit den eigentlichen PHP Basics beginnen und Gastvorlesung einplanen.
+3. Tag 3 auf derselben Datenwelt mit Arrays und JSON aufbauen.
+4. Tag 4 mit API, PDO und ERM bewusst klein halten.
+5. Tag 5 als gemeinsamen ETL-/Unload-Durchstich erstellen.
 
 ### Standard für eine Übung
 
@@ -185,11 +180,11 @@ Jede selbständige Übung enthält:
 
 ### Geplante Tagespakete
 
-- [ ] Web-Tag 1: Kickoff, PHP-Check, Servereinrichtung und Begleitprogramm.
-- [ ] Web-Tag 2: Variablen, Ausgabe, Funktionen und einfache Bedingungen.
-- [ ] Web-Tag 3: Bedingungen, Arrays, Schleifen und erste JSON-Ausgabe.
-- [ ] Web-Tag 4: externe JSON-Daten, minimale PDO-Nutzung und analoges ERM.
-- [ ] Web-Tag 5: vollständige ETL-/Unload-Pipeline, Extract-Varianten und
+- [ ] Tag 1: Kickoff, PHP-Check, Servereinrichtung und Begleitprogramm.
+- [ ] Tag 2: Variablen, Ausgabe, Funktionen und Gastvorlesung.
+- [ ] Tag 3: Bedingungen, Arrays, Schleifen und erste JSON-Ausgabe.
+- [ ] Tag 4: externe JSON-Daten, minimale PDO-Nutzung und analoges ERM.
+- [ ] Tag 5: vollständige ETL-/Unload-Pipeline, Extract-Varianten und
   Datenvertrag.
 
 ### Fertig, wenn
@@ -211,8 +206,8 @@ Zweierteams tun müssen.
 - [ ] `projekt/README.md`: Orientierung und Projektablauf.
 - [ ] `projekt/brief.md`: Auftrag, Ziel und Rahmenbedingungen.
 - [ ] `projekt/rollen.md`: Backend-, Frontend- und gemeinsame Aufgaben.
-- [ ] `projekt/datenquellen.md`: historische Daten, APIs, CSV/JSON, eigene
-  Daten und Sensorboxen.
+- [ ] `projekt/datenquellen.md`: historische Daten, Live-APIs, CSV/JSON und
+  Sensor-APIs.
 - [ ] `projekt/datenquellen-check.md`: Relevanz, Datenmenge, Zeitraum,
   Zugänglichkeit und Risiken prüfen.
 - [ ] `projekt/erm-template.md`: einfache Vorlage für das Datenmodell.
@@ -227,14 +222,14 @@ Zweierteams tun müssen.
 - Jede Gruppe ihre nächste Aufgabe ohne Interpretation aus dem Briefing
   ableiten kann.
 - Backend und Frontend mit Mock-JSON unabhängig arbeiten können.
-- Live- und Sensorprojekte einen überprüften Daten-Fallback besitzen.
+- Live- und Sensor-API-Projekte einen überprüften Daten-Fallback besitzen.
 - Die Anforderungen für Marktstand und Abgabe klar sind.
 
 ## Phase 6: Chart.js und Story ausarbeiten
 
 ### Chart.js
 
-- [ ] Chart.js kompakt an Web-Tag 7 einführen.
+- [ ] Chart.js kompakt an Tag 6 einführen.
 - [ ] Einen statischen Chart aus vorbereiteten Daten bauen.
 - [ ] Dieselben Daten über `fetch()` laden.
 - [ ] Labels und Werte aus dem vereinbarten JSON ableiten.
@@ -243,21 +238,19 @@ Zweierteams tun müssen.
 
 ### Story-Begleitspur
 
-- [ ] Web-Tag 1: Themenfelder und Beobachtungen im Begleitprogramm sammeln.
-- [ ] Web-Tag 2: Datenfrage und Quellenqualität behandeln.
-- [ ] Web-Tag 3: mögliche Fragen und Datenquellen recherchieren.
-- [ ] Web-Tag 4: Frage und Datenquelle festlegen.
-- [ ] Web-Tag 5: Datenlücken, Story-Grundlage und Datenvertrag ausarbeiten.
-- [ ] Web-Tag 6: am Halbtag Projektstand prüfen und Blockaden lösen.
-- [ ] Web-Tag 7: Story, Visualisierung und Backend integrieren.
-- [ ] Web-Tag 8: Projekt am Marktstand verständlich vermitteln.
-- [ ] Übergaben zu UX-Input und UX-Coaching mit den UX-Verantwortlichen klären,
-  ohne deren Inhalte vorzugeben.
+- [ ] Tag 1: Themenfelder und Beobachtungen im Begleitprogramm sammeln.
+- [ ] Tag 2: zweistündige Gastvorlesung Datenjournalismus durchführen.
+- [ ] Tag 3: mögliche Fragen und Datenquellen recherchieren.
+- [ ] Tag 4: Frage und Datenquelle festlegen.
+- [ ] Tag 5: Datenlücken, Story-Grundlage und Datenvertrag ausarbeiten.
+- [ ] Tag 6: Story, Visualisierung und Backend aufbauen und integrieren.
+- [ ] Tag 7: Aussage, Quellen und Ausstellungsfassung prüfen.
+- [ ] Tag 8: Projekt am Marktstand verständlich vermitteln.
 
 ### Fertig, wenn
 
 - Chart.js mit dem Datenvertrag und dem Referenzprojekt zusammenpasst.
-- Die Story-Arbeit sichtbar vor Web-Tag 5 beginnt.
+- Die Story-Arbeit sichtbar vor Tag 5 beginnt.
 - Die Visualisierung eine Datenfrage beantwortet und nicht nur Daten zeigt.
 
 ## Phase 7: Probelauf und Qualitätssicherung
@@ -273,8 +266,8 @@ Zweierteams tun müssen.
 ### Didaktischer Test
 
 - [ ] Zeitbedarf pro Input, Code-Along und Übung messen.
-- [ ] Web-Tag 3, 4, 5 und 7 mit realistischen Pausen durchspielen.
-- [ ] Für den Halbtag an Web-Tag 6 einen realistischen Checkpoint-Ablauf
+- [ ] Tag 2 bis 6 mit realistischen Pausen durchspielen.
+- [ ] Für den Halbtag an Tag 7 einen realistischen Fertigstellungsablauf
   testen.
 - [ ] Aufgaben aus Sicht einer unerfahrenen Person lesen lassen.
 - [ ] Unklare Begriffe, versteckte Voraussetzungen und zu grosse Schritte
@@ -285,7 +278,7 @@ Zweierteams tun müssen.
 
 - [ ] Projekt auf dem tatsächlich vorgesehenen Gerät öffnen.
 - [ ] Darstellung, Interaktion und Lesbarkeit prüfen.
-- [ ] Fallback ohne Fremd-API oder Sensorbox testen.
+- [ ] Fallback ohne Fremd- oder Sensor-API testen.
 - [ ] Kurze Erklärung von Story, Datenquelle und ETL-Prozess erproben.
 
 ## Unmittelbar nächstes Arbeitspaket
@@ -296,7 +289,7 @@ Die nächsten Schritte werden in dieser Reihenfolge bearbeitet:
 2. `MATERIAL_INVENTAR.md` erstellen und bestehende Dateien zuordnen.
 3. Ablauf und Materialentscheidungen gemeinsam prüfen.
 4. Das historische Aare-Referenzprojekt spezifizieren und umsetzen.
-5. Danach Web-Tag 1 als vollständiges Kickoff-/Tooling-Paket ausarbeiten.
+5. Danach Tag 1 als vollständiges Kickoff-/Tooling-Paket ausarbeiten.
 
 ## Noch offene Entscheidungen
 
@@ -304,11 +297,9 @@ Diese Punkte blockieren die ersten beiden Phasen nicht, müssen aber vor der
 Detailproduktion geklärt werden:
 
 - genaue Unterrichtszeiten, Pausen und Abstand zwischen den Kurstagen;
-- definitive Platzierung der beiden UX-Tage; aktuell sind Kalendertag 5 als
-  Input und Kalendertag 9 als Coaching gesetzt;
-- erwartete Übergaben zwischen Web-/Daten- und UX-Verantwortlichen;
 - PHP-Version, Zielserver und Datenbankumgebung;
-- verfügbare Physical-Computing-Sensorboxen und deren Schnittstellen;
+- verfügbare Sensor-APIs und Boxen für die Demonstration;
+- Gastdozent, Termin und Briefing für die Datenjournalismus-Gastvorlesung;
 - definitive Bewertungskriterien;
 - organisatorischer Rahmen und Dauer des Marktstands;
 - erlaubte Hilfsmittel und Umgang mit KI während Übungen und Projekt.
