@@ -26,22 +26,21 @@ weitere Arbeiten steht in `../AGENTS.md`.
   Begleitprogramm reservieren; noch keine PHP-Grundlagen unterrichten.
 - Historische Datensätze bevorzugen. Live- und Sensor-APIs nur einsetzen, wenn
   genügend Daten verfügbar sind oder ein stabiler Datenstand gesichert wird.
-- Tag 7 ist ein Halbtag für Fertigstellung, Support und Ausstellungstest, ohne
-  neuen fachlichen Input.
-- Die ausstellungsfähige Projektfassung muss Ende Tag 7 stehen. Tag 8 gehört
-  dem Marktstand und der Abgabe.
-- An Tag 2 einen zweistündigen Input von Pascal Alisser einplanen.
+- Der Kurs umfasst zehn vollwertige Kurstage, kein Halbtag mehr. Die
+  ausstellungsfähige Projektfassung sollte bis Ende Tag 9 stehen. Tag 10
+  gehört dem Marktstand und der Abgabe.
+- An Tag 4 einen zweistündigen Input von Pascal Alisser einplanen.
 
 ## Übersicht
 
 | Phase | Ergebnis | Status |
 | --- | --- | --- |
-| 1. Kursgerüst | `ABLAUF.md` mit acht Kurstagen | Offen |
+| 1. Kursgerüst | `ABLAUF.md` mit zehn Kurstagen | Offen |
 | 2. Materialinventar | Zuordnung und Beurteilung aller bestehenden Materialien | Offen |
 | 3. Referenzprojekt | Vollständiger Datenweg an einem kleinen Beispiel | Offen |
-| 4. Lernmaterial Tag 1-5 | Tooling, Code-Alongs, Mini-Übungen und Lösungen | Offen |
+| 4. Lernmaterial Tag 1-6 | Tooling, Code-Alongs, Mini-Übungen und Lösungen | Offen |
 | 5. Projektpaket | Briefing, Rollen, Vorlagen, Meilensteine und Marktstand | Offen |
-| 6. Chart.js und Story | Material für Tag 6, Input Pascal Alisser und Story-Begleitspur | Offen |
+| 6. Chart.js und Story | Material für Tag 7, Input Pascal Alisser (Tag 4) und Story-Begleitspur | Offen |
 | 7. Probelauf | Technischer und zeitlicher Test des gesamten Kurses | Offen |
 
 ## Phase 1: Kursgerüst erstellen
@@ -53,18 +52,19 @@ passieren muss und was bei Zeitmangel entfallen kann.
 
 ### Aufgaben
 
-- [ ] Für Tag 1 bis 8 Lernziel, Inputs, Übungen und Ergebnisse festhalten.
+- [ ] Für Tag 1 bis 10 Lernziel, Inputs, Übungen und Ergebnisse festhalten.
 - [ ] Pro Tag die Story-/Recherche-Begleitspur ergänzen.
 - [ ] Pro Tag ein überprüfbares Tagesergebnis definieren.
 - [ ] Meilensteine direkt den Kurstagen zuordnen.
 - [ ] Inhalte als `Muss`, `Soll` oder `Optional` markieren.
 - [ ] Tag 1 vollständig für Kickoff, Tooling und Begleitprogramm
   reservieren.
-- [ ] An Tag 2 zwei Stunden für den Input von Pascal Alisser reservieren.
-- [ ] Tag 3 bis 6 besonders streng auf Überladung prüfen.
-- [ ] Tag 7 als Halbtag ohne neuen fachlichen Input planen.
-- [ ] Ende Tag 7 als Feature-Freeze und Ausstellungsfassung festlegen.
-- [ ] Tag 8 mit Aufbau, Marktstand, Abgabe und Reflexion planen.
+- [ ] An Tag 4 zwei Stunden für den Input von Pascal Alisser reservieren.
+- [ ] Tag 2 bis 7 besonders streng auf Überladung prüfen.
+- [ ] Endgültige Platzierung des flexiblen UX-Blocks (Tag 8/9 im Plan)
+  festlegen.
+- [ ] Ende Tag 9 als Feature-Freeze und Ausstellungsfassung festlegen.
+- [ ] Tag 10 mit Aufbau, Marktstand, Abgabe und Reflexion planen.
 - [ ] Genaue Zeitblöcke ergänzen, sobald Unterrichtszeiten und Pausen bekannt
   sind.
 
@@ -155,16 +155,16 @@ historische Aare-Daten
   zurückgeführt werden kann.
 - Das Beispiel auch ohne erreichbare Fremd-API demonstrierbar bleibt.
 
-## Phase 4: Lernmaterial für Tag 1 bis 5 entwickeln
+## Phase 4: Lernmaterial für Tag 1 bis 6 entwickeln
 
 ### Reihenfolge
 
 1. Tag 1 als Tooling- und Organisationspaket vollständig erstellen.
-2. Tag 2 mit den eigentlichen PHP Basics beginnen und Input Pascal Alisser
-   einplanen.
+2. Tag 2 mit den eigentlichen PHP Basics beginnen.
 3. Tag 3 auf derselben Datenwelt mit Arrays und JSON aufbauen.
-4. Tag 4 mit API, PDO und ERM bewusst klein halten.
-5. Tag 5 als gemeinsamen ETL-/Unload-Durchstich erstellen.
+4. Tag 4 mit DB-Tooling, ERM und Input Pascal Alisser bewusst klein halten.
+5. Tag 5 mit PDO und CRUD abschliessen.
+6. Tag 6 als Extract-/Transform-/Load-Durchstich erstellen.
 
 ### Standard für eine Übung
 
@@ -182,11 +182,12 @@ Jede selbständige Übung enthält:
 ### Geplante Tagespakete
 
 - [ ] Tag 1: Kickoff, PHP-Check, Servereinrichtung und Begleitprogramm.
-- [ ] Tag 2: Variablen, Ausgabe, Funktionen und Input Pascal Alisser.
-- [ ] Tag 3: Bedingungen, Arrays, Schleifen und erste JSON-Ausgabe.
-- [ ] Tag 4: externe JSON-Daten, minimale PDO-Nutzung und analoges ERM.
-- [ ] Tag 5: vollständige ETL-/Unload-Pipeline, Extract-Varianten und
-  Datenvertrag.
+- [ ] Tag 2: Variablen, Datentypen, Funktionen und Bedingungen.
+- [ ] Tag 3: Arrays, Schleifen, lokale JSON-Ausgabe und `$_GET`-Filter.
+- [ ] Tag 4: Tooling DB, Theorie DB & SQL, ERM Light und Input Pascal Alisser.
+- [ ] Tag 5: PDO und CRUD.
+- [ ] Tag 6: Extract-, Transform- und Load-Pipeline mit Extract-Varianten und
+  erstem Datenvertrag.
 
 ### Fertig, wenn
 
@@ -214,7 +215,7 @@ Zweierteams tun müssen.
 - [ ] `projekt/erm-template.md`: einfache Vorlage für das Datenmodell.
 - [ ] `projekt/etl-template.md`: Vorlage für den Datenfluss.
 - [ ] `projekt/api-contract-template.md`: gemeinsamer Datenvertrag.
-- [ ] `projekt/milestones.md`: Tagesabnahmen M0 bis M5.
+- [ ] `projekt/milestones.md`: Tagesabnahmen M1 bis M5.
 - [ ] `projekt/marktstand.md`: Aufbau, Technik, Fallback und Vermittlung.
 - [ ] `projekt/bewertung.md`: transparente Bewertungskriterien.
 
@@ -230,7 +231,7 @@ Zweierteams tun müssen.
 
 ### Chart.js
 
-- [ ] Chart.js kompakt an Tag 6 einführen.
+- [ ] Chart.js kompakt an Tag 7 einführen.
 - [ ] Einen statischen Chart aus vorbereiteten Daten bauen.
 - [ ] Dieselben Daten über `fetch()` laden.
 - [ ] Labels und Werte aus dem vereinbarten JSON ableiten.
@@ -240,13 +241,17 @@ Zweierteams tun müssen.
 ### Story-Begleitspur
 
 - [ ] Tag 1: Themenfelder und Beobachtungen im Begleitprogramm sammeln.
-- [ ] Tag 2: zweistündigen Input von Pascal Alisser durchführen.
-- [ ] Tag 3: mögliche Fragen und Datenquellen recherchieren.
-- [ ] Tag 4: Frage und Datenquelle festlegen.
-- [ ] Tag 5: Datenlücken, Story-Grundlage und Datenvertrag ausarbeiten.
-- [ ] Tag 6: Story, Visualisierung und Backend aufbauen und integrieren.
-- [ ] Tag 7: Aussage, Quellen und Ausstellungsfassung prüfen.
-- [ ] Tag 8: Projekt am Marktstand verständlich vermitteln.
+- [ ] Tag 2: erste eigene Datenfrage formulieren.
+- [ ] Tag 3: Datenquellen recherchieren und passenden Datensatz finden.
+- [ ] Tag 4: zweistündigen Input von Pascal Alisser durchführen; Frage und
+  Datenquelle festlegen.
+- [ ] Tag 5: Projektgrundlage und Datenvertrags-Entwurf vorbereiten.
+- [ ] Tag 6: Datenlücken, Transformationen und Datenvertrag konkretisieren.
+- [ ] Tag 7: Story, Visualisierung und Backend aufbauen und integrieren.
+- [ ] Tag 8/9: Aussage, Quellen und Ausstellungsfassung prüfen (UX-Slot,
+  Platzierung flexibel).
+- [ ] Tag 9: Integration testen, Ausstellungsfassung vorbereiten.
+- [ ] Tag 10: Projekt am Marktstand verständlich vermitteln.
 
 ### Fertig, wenn
 
@@ -267,9 +272,9 @@ Zweierteams tun müssen.
 ### Didaktischer Test
 
 - [ ] Zeitbedarf pro Input, Code-Along und Übung messen.
-- [ ] Tag 2 bis 6 mit realistischen Pausen durchspielen.
-- [ ] Für den Halbtag an Tag 7 einen realistischen Fertigstellungsablauf
-  testen.
+- [ ] Tag 2 bis 7 mit realistischen Pausen durchspielen.
+- [ ] Für Tag 9 (Fertigstellung/Ausstellungstest, kein separater Halbtag
+  mehr) einen realistischen Ablauf testen.
 - [ ] Aufgaben aus Sicht einer unerfahrenen Person lesen lassen.
 - [ ] Unklare Begriffe, versteckte Voraussetzungen und zu grosse Schritte
   entfernen.

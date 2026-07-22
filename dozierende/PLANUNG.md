@@ -8,9 +8,12 @@
 - Backend-Team: baut mit PHP einen einfachen ETL-Prozess auf einem PHP-Server.
 - Frontend-Team: entwickelt Story, Datenvisualisierung und Chart.js-Frontend.
 - Gemeinsames Produkt: Daten werden gesammelt oder importiert, transformiert, in einer Datenbank gespeichert, wieder als JSON ausgeliefert und in einer Story visualisiert.
-- Abschluss: Am letzten Kurstag stellen die Studierenden ihre Projekte an
-  einem Marktstand aus. Die ausstellungsfähige Fassung muss deshalb am Ende
-  von Tag 7 stehen.
+- Abschluss: Am letzten Kurstag (Tag 10) stellen die Studierenden ihre
+  Projekte an einem Marktstand aus. Die ausstellungsfähige Fassung sollte
+  deshalb bis Ende Tag 9 stehen. Der neue 10-Tage-Ablauf sieht keinen
+  separaten Halbtag mehr für Fertigstellung/Ausstellungstest vor; das muss bei
+  Bedarf in Tag 9 oder in einem der flexiblen UX-Slots (Tag 8/9) eingeplant
+  werden.
 - Datenjournalismus und Storytelling laufen ab dem Kickoff als Begleitspur zur
   technischen Strecke. Recherche und Themenfindung beginnen nicht erst nach
   PHP, Datenbank und ETL.
@@ -267,7 +270,7 @@ Inhalte:
 - Theorie DB & SQL: Tabellen, Zeilen, Spalten, Schlüssel und Beziehungen
 - Planung Tabellen als ERM Light
 - PDO-Verbindung
-- `SELECT`, `INSERT`, `UPDATE` und `DELETE`
+- CRUD: `SELECT`, `INSERT`, `UPDATE` und `DELETE`
 - Prepared Statements
 - einfache Fehlerbehandlung
 
@@ -462,20 +465,33 @@ Material:
 
 - später ausarbeiten
 - vorerst `projekt/brief.md`, `projekt/milestones.md`, `stift-und-papier/03_story_angle`
-- zweistündiger Input von Pascal Alisser an Tag 2
+- zweistündiger Input von Pascal Alisser an Tag 4
 
-Begleitspur über die Kurstage:
+Begleitspur über die Kurstage (Stand Miro-Ablauf, 10 Kurstage):
 
 - Tag 1: Im Begleitprogramm Beispielprojekte ansehen und mögliche
   Themenfelder sammeln.
-- Tag 2: zweistündiger Input von Pascal Alisser mit Fragen der
-  Studierenden und kurzem Transfer auf mögliche Projektthemen.
-- Tag 3: mögliche Fragen und Datenquellen recherchieren.
-- Tag 4: Frage und Datenquelle prüfen und festlegen.
-- Tag 5: Datenlücken, Transformationen, Datenvertrag und Projektgrundlage.
-- Tag 6: Story, Chart und Backend aufbauen und integrieren.
-- Tag 7: Aussage, Quellen und Limitationen prüfen; Ausstellungsfassung testen.
-- Tag 8: Story und Projekt am Marktstand vermitteln.
+- Tag 2: erste eigene Datenfrage formulieren (Milestone „Datenfrage
+  formulieren"), unabhängig vom späteren Pascal-Alisser-Input.
+- Tag 3: Datenquellen recherchieren und einen passenden Datensatz finden
+  (Milestone „Datensatz gefunden").
+- Tag 4: zweistündiger Input von Pascal Alisser mit Fragen der Studierenden
+  und kurzem Transfer auf mögliche Projektthemen; Frage und Datenquelle
+  anschliessend prüfen und festlegen.
+- Tag 5: Projektgrundlage und ersten Datenvertrags-Entwurf vorbereiten.
+- Tag 6: Datenlücken, Transformationen und Datenvertrag anhand von Extract/
+  Transform/Load konkretisieren.
+- Tag 7: Story, Chart und Backend aufbauen und integrieren.
+- Tag 8/9: Aussage, Quellen und Limitationen prüfen (UX-Slot, Platzierung
+  flexibel).
+- Tag 9: Integration testen, Ausstellungsfassung vorbereiten (Milestone
+  „Erste Integration steht").
+- Tag 10: Story und Projekt am Marktstand vermitteln.
+
+Hinweis: Das Miro-Board zeigt für den Story-Strang nur den Pascal-Alisser-
+Input als fixe Karte (Tag 4). Die übrige Tag-für-Tag-Zuordnung oben ist eine
+Ableitung aus dem technischen Ablauf und sollte mit der Story-/
+Datenjournalismus-Verantwortlichen Person gegengeprüft werden.
 
 ## Sensor-API als Datenquelle
 
@@ -490,173 +506,189 @@ JSON und CSV:
   Kurses.
 - Für den Marktstand wird ein gespeicherter Datenstand als Fallback verwendet.
 
-## Vorschlag Ablauf über 8 Kurstage
+## Vorschlag Ablauf über 10 Kurstage
 
-Der Kurs wird hier als eigenständige Folge von acht Kurstagen geplant. Tag 7
-ist ein Halbtag. Andere Fachanteile werden später ausserhalb dieses Plans in
-den Gesamtkalender verteilt.
+Der Kurs wird hier als eigenständige Folge von zehn Kurstagen geplant (Stand
+Miro-Ablauf-Board, aktualisiert 2026-07-22). Der bisherige Halbtag an Tag 7
+entfällt; alle zehn Tage sind vollwertige Kurstage. Andere Fachanteile werden
+später ausserhalb dieses Plans in den Gesamtkalender verteilt.
 
 | Tag | Schwerpunkt |
 | --- | --- |
-| 1 | Kickoff, Tooling und Begleitprogramm |
-| 2 | PHP Basics und zweistündiger Input Pascal Alisser |
-| 3 | Bedingungen, Arrays, Schleifen und JSON |
-| 4 | API, Datenbank, PDO und ERM |
-| 5 | ETL-Durchstich und Projektgrundlage |
-| 6 | Chart.js, Projektwerkstatt und erste Integration |
-| 7, Halbtag | Projekt-Checkpoint, Fertigstellung und Ausstellungstest |
-| 8 | Marktstand und Abgabe |
+| 1 | Kickoff, Gruppenbildung, Tooling und Server |
+| 2 | PHP Basics: Variablen, Datentypen, Funktionen, Bedingungen |
+| 3 | Arrays, Schleifen, lokale JSON-Ausgabe und $_GET-Filter |
+| 4 | Tooling DB, Theorie DB & SQL, ERM Light und Input Pascal Alisser |
+| 5 | PDO und CRUD |
+| 6 | Extract (cURL), Transform und Load |
+| 7 | Unload und Chart.js-Implementierung |
+| 8 | UX (flexibel platzierbar) |
+| 9 | UX (flexibel platzierbar) und erste Integration |
+| 10 | Marktstand und Abgabe |
 
-Als roter Faden eignet sich ein kleiner, historischer Datensatz wie
-Aare.guru. Der Ablauf bleibt dicht und setzt einen bewusst kleinen
-Projektumfang voraus: eine Datenquelle, ein kleines Datenmodell, ein zentraler
-JSON-Endpunkt und mindestens eine einfache Chart.js-Visualisierung.
+Als roter Faden eignet sich weiterhin ein kleiner, historischer Datensatz wie
+Aare.guru. Der Ablauf setzt einen bewusst kleinen Projektumfang voraus: eine
+Datenquelle, ein kleines Datenmodell, ein zentraler JSON-Endpunkt und
+mindestens eine einfache Chart.js-Visualisierung.
 
-### Tag 1 - Kickoff, Tooling und Begleitprogramm
+Hinweis: Das Miro-Board markiert den UX-Block an Tag 8/9 ausdrücklich als
+„kann irgendwo im Kurs platziert werden" — die Platzierung an genau diesen
+beiden Tagen ist ein Platzhalter, kein fixer Entscheid. Ebenso sieht das Board
+keinen dedizierten Fertigstellungs-/Ausstellungstest-Tag mehr vor (anders als
+der bisherige Halbtag 7); das muss bei der Detailplanung von Tag 9 bewusst
+mitgedacht werden.
+
+### Tag 1 - Kickoff, Gruppenbildung, Tooling und Server
 
 An diesem Tag gibt es noch keinen PHP-Grundlagenunterricht. Erfahrungsgemäss
 brauchen Kickoff, Zugänge und Einrichtung den ganzen Termin.
 
 - Kickoff: Modulziel, Projektauftrag und fertiges Beispielprojekt zeigen.
-- Marktstand als Abschlussformat ankündigen.
-- Gruppenbildung und organisatorische Fragen klären.
-- Tooling:
+- Marktstand (Tag 10) als Abschlussformat ankündigen.
+- Gruppenbildung mit Aufteilung in Backend-/Frontend-Zweierteams.
+- Tooling und Server:
   - prüfen, ob PHP lokal beziehungsweise in der vorgesehenen Umgebung läuft;
   - Serverzugänge verteilen und testen;
-  - persönlichen Projektordner auf dem Server einrichten;
+  - persönlichen Projektordner auf dem Server einrichten, minimales PHP-Setup;
   - eine minimale PHP-Testdatei hochladen und im Browser aufrufen;
   - typische Zugangs-, Pfad- und Rechteprobleme gemeinsam lösen.
 - Begleitprogramm:
   - Rollenmodell Backend-/Frontend-Zweierteam erklären;
   - Beispiele für Datenprojekte ansehen;
-  - mögliche Themenfelder und Beobachtungen sammeln;
-  - Ablauf, Meilensteine und Marktstand einordnen.
+  - mögliche Themenfelder und Beobachtungen sammeln.
 
 Output:
 
 - Jede Person erreicht den Server und kann eine PHP-Testdatei aufrufen.
 - Die Vierergruppen stehen und kennen den Projektablauf.
-- Jede Gruppe hat erste Themenfelder, aber noch keine erzwungene definitive
-  Datenquelle.
 
-### Tag 2 - PHP Basics und Input Pascal Alisser
+Milestone: Gruppen gebildet.
+
+### Tag 2 - PHP Basics: Variablen, Datentypen, Funktionen, Bedingungen
 
 - Sehr kurze Einführung: Was macht PHP auf dem Server?
 - Variablen, Datentypen, `echo` und String-Ausgabe.
 - Einfache Funktionen mit Parametern und Rückgabewert.
+- Bedingungen.
 - Datennahe Mini-Übungen mit vorbereiteten Messwerten.
+- Begleitprogramm: jede Gruppe formuliert eine erste eigene Datenfrage.
+
+Output:
+
+- Jede Person kann Werte speichern, ausgeben und durch eine einfache Funktion
+  und Bedingung verarbeiten.
+
+Milestone: Datenfrage formuliert.
+
+### Tag 3 - Arrays, Schleifen und JSON-Ausgabe
+
+- Arrays, assoziative Arrays und Schleifen.
+- Kleines historisches Mini-Dataset durchlaufen und einzelne Werte ausgeben.
+- Lokale JSON-Daten mit `file_get_contents` einlesen und ausgeben.
+- Einen eigenen JSON-Endpunkt bauen und mit `$_GET` filtern.
+- Begleitprogramm: mögliche Datenquellen recherchieren und einen passenden
+  Datensatz finden.
+
+Output:
+
+- Jede Person kann eine Liste kleiner Datensätze durchlaufen und als JSON
+  ausgeben.
+- Ein eigener, per `$_GET` filterbarer JSON-Endpunkt funktioniert.
+
+Milestone: Datensatz gefunden.
+
+### Tag 4 - Tooling DB, Theorie DB & SQL, ERM Light und Input Pascal Alisser
+
+- Tooling DB: Zugang, `config.php` und Verbindung testen.
+- Theorie DB & SQL: Tabellen, Zeilen, Spalten, Schlüssel und Beziehungen.
+- Analoge Übung: Planung Tabellen als ERM Light für die eigenen Messwerte.
 - Zweistündiger Input von Pascal Alisser:
   - Wie entsteht eine datenjournalistische Frage?
   - Wie werden Datenquellen gefunden und geprüft?
   - Wie wird aus Daten eine verständliche Story?
   - Welche Grenzen, Fehler und ethischen Fragen sind wichtig?
   - Zeit für Fragen der Studierenden.
-- Kurzer Transfer: Jede Gruppe notiert zwei Gedanken für mögliche
-  Projektthemen oder Datenfragen.
-
-Output:
-
-- Jede Person kann Werte speichern, ausgeben und durch eine einfache Funktion
-  verarbeiten.
-- Jede Gruppe hält erste journalistische Fragen oder Rechercheansätze fest.
-
-### Tag 3 - Bedingungen, Datenstrukturen und JSON
-
-- Repetition der PHP Basics.
-- Einfache Bedingungen.
-- Arrays, assoziative Arrays und Schleifen.
-- Kleines historisches Mini-Dataset durchlaufen und einzelne Werte ausgeben.
-- PHP-Array mit `json_encode` als JSON ausgeben.
-- Optional bei genügend Zeit: eine vorbereitete externe JSON-Antwort lesen.
-- Begleitprogramm: mögliche Datenfragen und historische Quellen recherchieren.
-
-Output:
-
-- Jede Person kann eine Liste kleiner Datensätze durchlaufen.
-- Jede Person versteht die Verbindung zwischen PHP-Array und JSON.
-- Jede Gruppe hat zwei mögliche Datenfragen und Quellen.
-
-### Tag 4 - API, Datenbank, PDO und ERM
-
-- Eine kleine externe JSON-Antwort, zum Beispiel Aare.guru, gemeinsam holen
-  und lesen.
-- Die Sensor-API als gleichwertige alternative Datenquelle zeigen.
-- Nur die benötigten Felder auswählen.
-- Datenbank-Grundlagen: Tabelle, Zeile, Spalte und Primärschlüssel.
-- Analoge Übung: für Messwerte ein minimales ERM beziehungsweise eine Tabelle
-  zeichnen.
-- PDO-Verbindung sowie ein vorbereitetes `SELECT` und `INSERT` praktisch
-  anwenden.
-- `UPDATE` und `DELETE` gemeinsam zeigen und bei genügend Zeit in einer
-  kleinen Übung verändern lassen.
-- Einen Messwert speichern, lesen, aktualisieren und einen Testdatensatz
-  löschen.
-- Projektgruppen prüfen Datenfrage und Quelle auf Relevanz, Datenmenge,
+- Projektgruppen prüfen ihre Datenfrage und Quelle auf Relevanz, Datenmenge,
   Zeitraum und technische Zugänglichkeit.
 
 Output:
 
-- Jede Person versteht den Weg von einer JSON-Antwort zu einem PHP-Array.
-- Ein Messwert kann mit PDO gespeichert und wieder gelesen werden; `UPDATE`
-  und `DELETE` sind als weitere Operationen bekannt.
+- Jede Person versteht Tabelle, Zeile, Spalte und Primärschlüssel.
+- Ein ERM Light für die eigenen Messwerte liegt vor.
+- Jede Gruppe hält Erkenntnisse aus dem Input für die eigene Projektidee fest.
+
+### Tag 5 - PDO und CRUD
+
+- PDO-Verbindung aufbauen.
+- CRUD praktisch anwenden: `SELECT`, `INSERT`, `UPDATE` und `DELETE`.
+- Prepared Statements und einfache Fehlerbehandlung.
+- Einen Messwert speichern, lesen, aktualisieren und einen Testdatensatz
+  löschen.
+
+Output:
+
+- Ein Messwert kann mit PDO gespeichert, gelesen, aktualisiert und gelöscht
+  werden.
 - Jede Gruppe hat eine plausible Datenfrage und Datenquelle gewählt.
 
-### Tag 5 - ETL-Durchstich und Projektgrundlage
+### Tag 6 - Extract, Transform und Load
 
-- Extract, Transform, Load und Unload als sichtbare Pipeline erklären.
-- Vollständiger gemeinsamer Durchstich mit dem Referenzdatensatz:
-  Rohdaten lesen, Felder auswählen/umbenennen, in die Datenbank schreiben und
-  als JSON ausgeben.
-- Dateien `extract.php`, `transform.php`, `load.php` und `unload.php` klar
-  voneinander abgrenzen.
-- Extract-Varianten zeigen: Live-API, statisches JSON, CSV und Sensor-API.
-- Jede Gruppe prüft einen Rohdaten-Ausschnitt ihrer eigenen Quelle.
-- Gruppe erstellt ERM, ETL-Skizze, Transform-Regeln und Datenvertrag.
+- Extract mit cURL beziehungsweise Dateizugriff: Live-API, JSON-Dataset,
+  CSV-Dataset, eigenes Dataset oder Sensorbox.
+- Transform: Rohdaten säubern, reduzieren, normalisieren, neue Felder
+  ableiten.
+- Load: transformierte Daten in die Datenbank schreiben.
+- Dateien `extract.php`, `transform.php` und `load.php` klar voneinander
+  abgrenzen.
+- Jede Gruppe prüft einen Rohdaten-Ausschnitt ihrer eigenen Quelle und
+  erstellt ETL-Skizze, Transform-Regeln und einen ersten Datenvertrag.
 - Frontend erhält Mock-JSON; Backend richtet die Projektstruktur ein.
 
 Output:
 
-- Jede Person kann den ETL-/Unload-Weg erklären.
-- Jede Gruppe hat eine technisch geprüfte Quelle und eine umsetzbare
-  Projektgrundlage.
+- Jede Person kann Extract, Transform und Load an einem eigenen Beispiel
+  erklären.
+- Jede Gruppe hat eine technisch geprüfte Quelle bis zur Datenbank gebracht.
 - Backend und Frontend können ab jetzt getrennt arbeiten.
 
-### Tag 6 - Chart.js, Projektwerkstatt und erste Integration
+### Tag 7 - Unload und Chart.js-Implementierung
 
-- Kompakter Chart.js-Code-Along mit vorbereitetem Mock-JSON.
-- `fetch()` auf einen vorbereiteten Unload-Endpunkt.
-- Danach betreute Projektarbeit in den Zweierteams.
-- Backend-Team:
-  - eigenen Extract, Transform, Load und Unload umsetzen;
-  - stabilen Datenstand als Fallback sichern.
-- Frontend-Team:
-  - Chart mit Mock-Daten und danach mit echten Daten verbinden;
-  - Story, Quellen und Limitationen ergänzen.
-- Gesamtgruppe beginnt die Integration.
+- Unload: gespeicherte Daten per PDO auslesen und als vereinbarte
+  JSON-Struktur ausgeben.
+- Implementierung Chart.js: Setup, Datenstruktur und erster Chart.
+- Diagrammtypen und ihre Eignung für unterschiedliche Aussagen.
+- `fetch()` auf den eigenen oder einen vorbereiteten Unload-Endpunkt.
 
 Output:
 
-- Backend und Frontend funktionieren mindestens isoliert.
-- Eine erste Integration ist sichtbar.
+- Der eigene `unload.php`-Endpunkt liefert eine stabile JSON-Antwort.
+- Ein erster Chart konsumiert Mock- oder echte Daten.
 
-### Tag 7 - Halbtag: Fertigstellung und Ausstellungstest
+### Tag 8 - UX (flexibel platzierbar)
 
-An diesem Halbtag gibt es keinen neuen fachlichen Input.
+- UX-Block gemäss Miro-Board; die genaue inhaltliche Platzierung im Kurs ist
+  noch offen und muss vor der Detailplanung festgelegt werden.
+- Ergänzend betreute Projektarbeit in den Zweierteams.
 
-- Kurzer Stand-up pro Gruppe: Was läuft, was fehlt, was blockiert?
-- Backend-Endpunkt und Chart.js-Integration fertigstellen.
-- Datenvertrag und Projektumfang nur noch bei Bedarf korrigieren.
+Output:
+
+- Abhängig von der endgültigen UX-Themenwahl.
+
+### Tag 9 - UX (flexibel platzierbar) und erste Integration
+
+- UX-Block gemäss Miro-Board (Platzhalter, siehe Tag 8).
+- Projektwerkstatt: Backend und Frontend integrieren.
 - Story, Quellen und Limitationen prüfen.
 - Stabilen Daten-Fallback testen.
-- Ausstellungsfassung auf dem vorgesehenen Gerät prüfen.
-- Kurzer Probelauf mit einer anderen Gruppe.
 
 Output:
 
-- Eine integrierte und ausstellungsfähige Fassung steht.
-- Kritische Blockaden für den Marktstand sind gelöst.
+- Backend und Frontend funktionieren integriert mindestens mit Mock- oder
+  echten Daten.
 
-### Tag 8 - Marktstand und Abgabe
+Milestone: Erste Integration steht.
+
+### Tag 10 - Marktstand und Abgabe
 
 - Kurzer Aufbau sowie Geräte- und Fallback-Test.
 - Keine grossen neuen Features mehr.
@@ -673,57 +705,49 @@ Output:
 ## Projekt-Meilensteine
 
 Die Meilensteine sind keine zusätzliche Unterrichtsreihe. Sie sind kurze
-Abnahmepunkte am Ende eines Kurstages. Eine Gruppe zeigt jeweils ein kleines,
-konkretes Ergebnis, bevor sie weiterarbeitet.
+Abnahmepunkte, die im Miro-Ablauf-Board direkt bestimmten Kurstagen zugeordnet
+sind. Eine Gruppe zeigt jeweils ein kleines, konkretes Ergebnis, bevor sie
+weiterarbeitet.
 
-### M0 - Tooling, Gruppe und Rollen (Ende Tag 1)
+### M1 - Gruppen gebildet (Ende Tag 1)
 
 - Serverzugang und PHP-Test funktionieren.
 - Vierergruppe steht.
-- Backend-/Frontend-Zweierteams sind vorläufig festgelegt.
+- Backend-/Frontend-Zweierteams sind festgelegt.
 
-### M1 - Idee und Datenquelle (Ende Tag 4)
+### M2 - Datenfrage formuliert (Ende Tag 2)
 
-- Erste Datenfrage ist formuliert.
-- Datenquelle ist plausibel.
-- Der Datensatz enthält bereits genügend Daten für das Projekt oder die Gruppe
-  kann nachvollziehbar zeigen, wie bis zum Marktstand genügend Daten entstehen.
+- Jede Gruppe hat eine erste eigene Datenfrage formuliert.
 
-### M2 - Projektgrundlage und Datenvertrag (Ende Tag 5)
+### M3 - Datensatz gefunden (Ende Tag 3)
 
-- Ein kleiner Rohdaten-Ausschnitt konnte gelesen werden.
-- Die Gruppe kennt ihre Extract-Strategie.
-- Risiken wie Rate Limits, fehlende Historie, Hardware- oder
-  Netzwerkabhängigkeit sind bekannt.
-- Backend und Frontend einigen sich auf JSON-Struktur.
-- ERM und ETL-Datenfluss sind skizziert.
-- Beispielantwort liegt als Mock-JSON vor.
-- Frontend kann mit Mock-Daten arbeiten.
+- Ein passender Datensatz beziehungsweise eine passende Datenquelle ist
+  gefunden.
+- Der Datensatz enthält bereits genügend Daten für das Projekt oder die
+  Gruppe kann nachvollziehbar zeigen, wie bis zum Marktstand genügend Daten
+  entstehen.
 
-### M3 - Teile funktionieren und erste Integration steht (Ende Tag 6)
+### M4 - Erste Integration steht (Ende Tag 9)
 
-- Extract liefert Rohdaten.
-- Transform liefert saubere Projektdaten.
-- Load schreibt in DB.
-- Unload liefert JSON.
-- Der Frontend-Chart funktioniert mindestens mit Mock-Daten.
-- Der grobe Story-Aufbau steht.
+- Extract, Transform, Load und Unload liefern Daten bis zum Frontend.
+- Der Frontend-Chart funktioniert mindestens mit Mock- oder echten Daten.
+- Backend und Frontend sind erstmals integriert.
 - Ein stabiler Datenstand beziehungsweise Fallback ist vorhanden.
 
-### M4 - Ausstellungsfassung (Ende Tag 7, Halbtag)
-
-- Chart.js konsumiert den echten JSON-Endpunkt.
-- Story nutzt mindestens eine sinnvolle Visualisierung.
-- Quelle und Limitationen sind sichtbar.
-- Projekt ist am vorgesehenen Gerät ausstellungsfähig.
-
-### M5 - Marktstand und Abgabe (Tag 8)
+### M5 - Marktstand und Abgabe (Tag 10)
 
 - Code läuft auf dem Zielserver.
 - README erklärt Setup und Endpunkte.
 - Datenquelle ist dokumentiert.
 - Gruppe kann ETL-Prozess und Story-Entscheid erklären.
 - Projekt wird am Marktstand präsentiert.
+
+Hinweis: M1–M3 und M4 stammen direkt aus dem Miro-Board; M5 wurde sinnvoll
+ergänzt, da das Board Tag 10 als Marktstand ausweist, aber keine eigene
+Meilenstein-Karte dafür zeigt. Anders als in der bisherigen M0–M5-Liste fehlt
+im Board ein expliziter Zwischen-Meilenstein für „Projektgrundlage/
+Datenvertrag" und für eine geprüfte Ausstellungsfassung vor dem Marktstand —
+das sollte bei Bedarf ergänzt werden.
 
 ## Beispiel fuer einen Datenvertrag
 
@@ -776,7 +800,7 @@ gegen genau dieselbe Mock-Struktur.
   IM2-Referenzkurs kopieren.
 - Aufgaben extrem einfach staffeln: ein neues Konzept pro Schritt, wenige
   vorbereitete Daten und ein direkt sichtbares Resultat.
-- Für Tag 2 bis 5 möglichst denselben kleinen Beispieldatensatz verwenden,
+- Für Tag 2 bis 7 möglichst denselben kleinen Beispieldatensatz verwenden,
   damit nur der technische Schritt neu ist und nicht zusätzlich das Thema.
 - Datenjournalismus nicht als letzten Theorieblock behandeln. Recherche,
   Datenfrage und Quellenprüfung beginnen ab Tag 1 und laufen als kleine
@@ -791,9 +815,14 @@ gegen genau dieselbe Mock-Struktur.
   werden und bis zum Marktstand sicher genügend Daten entstehen.
 - Tag 1 enthält noch keinen PHP-Grundlagenunterricht. Kickoff, Tooling,
   Servereinrichtung und Begleitprogramm erhalten den ganzen Tag.
-- Tag 7 ist ein Halbtag ohne neuen fachlichen Input. Er dient der
-  Fertigstellung, dem Support und dem Ausstellungstest.
-- Die ausstellungsfähige Fassung muss Ende Tag 7 stehen.
+- Der Kurs umfasst zehn vollwertige Kurstage; es gibt keinen Halbtag mehr.
+  Tag 9 (erste Integration) sollte trotzdem bewusst Zeit für Fertigstellung
+  und Ausstellungstest freihalten, da das Board dafür keinen eigenen Tag
+  ausweist.
+- Die ausstellungsfähige Fassung sollte bis Ende Tag 9 stehen, spätestens vor
+  dem Marktstand an Tag 10.
+- Die UX-Inhalte (Tag 8/9 im Board) sind laut Miro-Board flexibel im Kurs
+  platzierbar; ihre definitive Platzierung ist noch offen.
 - Für externe Live- und Sensor-APIs immer einen stabilen Daten-Fallback für die
   Ausstellung vorsehen.
 

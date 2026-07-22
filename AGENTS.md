@@ -17,12 +17,14 @@ Code-Alongs und Uebungsstruktur.
 
 Die Studierenden lernen die notwendigen PHP-, Datenbank-, ETL- und
 Chart.js-Grundlagen und entwickeln danach ein datenjournalistisches Projekt.
-Der Kurs wird in dieser Planung als Folge von acht Kurstagen behandelt. Tag 7
-ist ein Halbtag, Tag 8 der Marktstand und die Abgabe. Tag 1 enthaelt nur
-Kickoff, Tooling, Servereinrichtung und Begleitprogramm, noch keine PHP-
-Grundlagen. An Tag 2 ist ein zweistuendiger Input von Pascal Alisser zum
-Datenjournalismus eingeplant. Die ausstellungsfaehige Fassung muss Ende Tag 7
-stehen.
+Der Kurs wird in dieser Planung als Folge von zehn Kurstagen behandelt, alle
+als vollwertige Kurstage (kein Halbtag). Tag 10 ist der Marktstand und die
+Abgabe. Tag 1 enthaelt nur Kickoff, Tooling, Servereinrichtung und
+Begleitprogramm, noch keine PHP-Grundlagen. An Tag 4 ist ein zweistuendiger
+Input von Pascal Alisser zum Datenjournalismus eingeplant. Die
+ausstellungsfaehige Fassung sollte bis Ende Tag 9 stehen, spaetestens vor dem
+Marktstand an Tag 10. Details und die genaue Tageszuordnung stehen in
+`dozierende/PLANUNG.md`.
 
 ## Projekt- und Rollenmodell
 
@@ -73,19 +75,18 @@ Sensorik und Programmierung der Box sind nicht Inhalt dieses Kurses.
 
 ## Geplanter Lernpfad
 
-1. Tag 1: Kickoff, Tooling, PHP-Check, Servereinrichtung, Gruppenbildung und
-   Begleitprogramm. Keine PHP Basics.
-2. Tag 2: PHP Basics mit Variablen, Ausgabe und Funktionen sowie zwei Stunden
-   Input von Pascal Alisser.
-3. Tag 3: Bedingungen, Arrays, Schleifen und erste JSON-Ausgabe.
-4. Tag 4: externe JSON- beziehungsweise Sensor-API, Datenbankgrundlagen, PDO,
-   analoges ERM sowie Wahl von Datenfrage und Datenquelle.
-5. Tag 5: kompletter ETL-/Unload-Durchstich, Extract-Varianten, Datenvertrag
-   und Projektgrundlage.
-6. Tag 6: Chart.js, Projektwerkstatt und erste Integration.
-7. Tag 7: Halbtag fuer Fertigstellung, Support und Ausstellungstest, ohne
-   neuen fachlichen Input.
-8. Tag 8: Aufbau, Marktstand, Abgabe und Reflexion.
+1. Tag 1: Kickoff, Gruppenbildung, Tooling, PHP-Check und Servereinrichtung.
+   Keine PHP Basics.
+2. Tag 2: PHP Basics mit Variablen, Datentypen, Funktionen und Bedingungen.
+3. Tag 3: Arrays, Schleifen, lokale JSON-Ausgabe und `$_GET`-Filter.
+4. Tag 4: Tooling DB, Theorie DB & SQL, ERM Light sowie zwei Stunden Input
+   von Pascal Alisser.
+5. Tag 5: PDO und CRUD (`SELECT`, `INSERT`, `UPDATE`, `DELETE`).
+6. Tag 6: Extract mit cURL, Transform und Load.
+7. Tag 7: Unload und Chart.js-Implementierung.
+8. Tag 8: UX-Block (im Kurs flexibel platzierbar).
+9. Tag 9: UX-Block (flexibel platzierbar) und erste Integration.
+10. Tag 10: Aufbau, Marktstand, Abgabe und Reflexion.
 
 ## Didaktische Leitplanken
 
@@ -120,25 +121,25 @@ Sensorik und Programmierung der Box sind nicht Inhalt dieses Kurses.
   technischen Strecke.
 - Der IM2-Kurs ist eine strukturelle Referenz, keine thematische Vorlage.
   Uebungen fuer IM3 eigenstaendig und kreativ im Datenkontext entwickeln.
-- Fuer Tag 2 bis 5 nach Moeglichkeit denselben kleinen Datensatz als roten
+- Fuer Tag 2 bis 7 nach Moeglichkeit denselben kleinen Datensatz als roten
   Faden verwenden, zum Beispiel Aare.guru. So aendert sich pro Schritt die
   Technik, nicht gleichzeitig auch das Thema.
 - Meilensteine als kurze Abnahmepunkte in die Kurstage integrieren:
-  Tooling/Gruppe Ende Tag 1, Idee/Datenquelle Ende Tag 4,
-  Datenvertrag/Projektgrundlage Ende Tag 5, erste Integration Ende Tag 6,
-  Ausstellungsfassung Ende des halben Tags 7 sowie Marktstand und Abgabe an
-  Tag 8.
+  Gruppen gebildet Ende Tag 1, Datenfrage formuliert Ende Tag 2, Datensatz
+  gefunden Ende Tag 3, erste Integration Ende Tag 9 sowie Marktstand und
+  Abgabe an Tag 10.
 - Historische Datensaetze im Projektbriefing bevorzugen. Reine Live-Sammlung
   nur zulassen, wenn Datenmenge und Aussage bis zum Marktstand gesichert sind.
-- Der Acht-Tage-Plan ist dicht: Tag 1 ist Tooling, Tag 7 nur ein Halbtag und
-  Tag 8 der Marktstand. Projekte deshalb auf eine Datenquelle, ein kleines
+- Der Zehn-Tage-Plan ist dicht: Tag 1 ist Tooling, Tag 10 der Marktstand, kein
+  Halbtag mehr vorgesehen. Projekte deshalb auf eine Datenquelle, ein kleines
   Datenmodell, einen zentralen JSON-Endpunkt und mindestens eine einfache
   Chart.js-Visualisierung begrenzen. ETL-Boilerplate bereitstellen.
-- Tag 7 ist ein Halbtag ohne neuen fachlichen Input. Er dient Fertigstellung,
-  Support und Ausstellungstest.
-- Tag 8 nicht als regulaeren Produktionstag planen. Die ausstellungsfaehige
-  Fassung muss Ende Tag 7 stehen und einen Offline-/Daten-Fallback besitzen.
-- Den Input von Pascal Alisser an Tag 2 als Teil der Story-Begleitspur
+- Der UX-Block (Tag 8/9 im Plan) ist laut Miro-Board flexibel im Kurs
+  platzierbar; die endgueltige Platzierung ist noch offen.
+- Es gibt keinen eigenen Fertigstellungs-/Ausstellungstest-Halbtag mehr. Die
+  ausstellungsfaehige Fassung sollte bis Ende Tag 9 stehen und einen
+  Offline-/Daten-Fallback besitzen.
+- Den Input von Pascal Alisser an Tag 4 als Teil der Story-Begleitspur
   behandeln und zwei Stunden inklusive Fragen einplanen.
 
 ## Angestrebte Repository-Struktur
