@@ -10,10 +10,11 @@
 ## Schritte
 
 1. Den Ordner `00_hallo_php` lokal öffnen.
-2. Die Datei `index.php` unverändert in den persönlichen Serverordner laden.
-3. Die entsprechende URL im Browser aufrufen.
-4. Prüfen, ob `Hallo PHP` erscheint.
-5. Falls nichts erscheint, gemeinsam URL, Pfad, Dateiname und Upload-Ziel
+2. Die Datei `index.php` so verändern, dass "Hallo PHP" ausgegeben wird.
+3. Die Datei auf den Server hochladen.
+4. Die entsprechende URL im Browser aufrufen.
+5. Prüfen, ob `Hallo PHP` erscheint.
+6. Falls nichts erscheint, gemeinsam URL, Pfad, Dateiname und Upload-Ziel
    prüfen.
 
 ## Abnahme
