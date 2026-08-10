@@ -3,7 +3,7 @@
  * Code-Along 04: Arrays
  *
  * Zuerst speichern wir mehrere Temperaturen, danach einen strukturierten
- * Messwert mit benannten Feldern.
+ * Messwert und schliesslich mehrere Orte mit ihren Temperaturen.
  */
 
 // 1. Indexiertes Array mit 18.9, 19.4 und 20.1 anlegen.
@@ -21,7 +21,22 @@ $measurement = [];
 // 5. Ort und Temperatur über ihre Schlüssel ausgeben.
 
 
+// 6. Mehrere Orte mit ihrer Wassertemperatur in einem assoziativen Array
+//    speichern. Der Schlüssel ist der Ort, der Wert die Temperatur.
+$stations = [];
+
+// 7. Einen einzelnen Ort gezielt über seinen Schlüssel ausgeben.
+
+
+// 8. Einen weiteren Ort ergänzen (z. B. Interlaken mit 17.5).
+
+
+// 9. Mit einer Bedingung prüfen, ob das Wasser in Bern angenehm warm ist
+//    (>= 18 °C: "angenehm", sonst "eher frisch").
+
+
+// 10. Das ganze assoziative Array mit print_r untersuchen.
 echo '<h2>Debugging</h2>';
 echo '<pre>';
-print_r($measurement);
+print_r($stations);
 echo '</pre>';

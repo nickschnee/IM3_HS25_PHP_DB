@@ -18,7 +18,7 @@ Ort + Temperatur + Zeitpunkt -> formatMeasurement() -> lesbare Meldung
 4. Die Funktion mit den Berner Werten aufrufen und das Resultat in
    `$bernMessage` speichern.
 5. Die Meldung im vorbereiteten HTML ausgeben.
-6. Dieselbe Funktion mit Basler Werten aufrufen.
+6. Dieselbe Funktion mit Brienzer Werten aufrufen.
 
 ## Gesprächspunkte
 
