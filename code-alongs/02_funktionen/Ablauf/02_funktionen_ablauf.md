@@ -1,7 +1,7 @@
 # Ablauf `02_funktionen`
 
 > **Ziel:** Eine Funktion mit Parametern deklarieren, einen Wert mit `return`
-> zurückgeben und die Funktion mehrmals aufrufen. Richtwert: 30 Minuten.
+> zurückgeben und die Funktion mehrmals aufrufen. Richtwert: 20 Minuten.
 
 ## Planung vor dem Tippen
 

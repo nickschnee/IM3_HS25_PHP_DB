@@ -1,10 +1,7 @@
 # Ablauf `03_bedingungen`
 
 > **Ziel:** Einen Zahlenwert mit `if`, `elseif` und `else` in einen von drei
-> Fällen einordnen. Richtwert: 30 Minuten.
-
-Die Kategorien sind eine didaktische Vereinfachung und keine offizielle
-Badewarnung.
+> Fällen einordnen. Richtwert: 20 Minuten.
 
 ## Regel zuerst in Alltagssprache
 

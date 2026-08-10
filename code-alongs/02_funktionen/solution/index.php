@@ -5,7 +5,7 @@ function formatMeasurement($location, $temperatureC, $measuredAt)
 }
 
 $bernMessage = formatMeasurement('Bern', 19.4, '10:00');
-$baselMessage = formatMeasurement('Basel', 18.7, '10:00');
+$brienzMessage = formatMeasurement('Brienz', 16.8, '10:00');
 ?>
 <!doctype html>
 <html lang="de">
@@ -17,6 +17,6 @@ $baselMessage = formatMeasurement('Basel', 18.7, '10:00');
 <body>
   <h1>Messwertmeldungen</h1>
   <p><?php echo $bernMessage; ?></p>
-  <p><?php echo $baselMessage; ?></p>
+  <p><?php echo $brienzMessage; ?></p>
 </body>
 </html>

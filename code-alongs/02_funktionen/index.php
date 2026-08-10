@@ -12,8 +12,8 @@
 // 3. Funktion für Bern aufrufen und Rückgabewert speichern.
 $bernMessage = '';
 
-// 4. Funktion ein zweites Mal für Basel aufrufen.
-$baselMessage = '';
+// 4. Funktion ein zweites Mal für Brienz aufrufen.
+$brienzMessage = '';
 
 ?>
 <!doctype html>
@@ -26,6 +26,6 @@ $baselMessage = '';
 <body>
   <h1>Messwertmeldungen</h1>
   <p><?php echo $bernMessage; ?></p>
-  <p><?php echo $baselMessage; ?></p>
+  <p><?php echo $brienzMessage; ?></p>
 </body>
 </html>
