@@ -1,7 +1,7 @@
 # Ablauf `01_variablen`
 
 > **Ziel:** Werte als Variablen speichern, einfache Datentypen erkennen und
-> eine sichtbare Meldung ausgeben. Richtwert: 25 Minuten.
+> eine sichtbare Meldung ausgeben. Richtwert: 15 Minuten.
 
 ## Schritte
 

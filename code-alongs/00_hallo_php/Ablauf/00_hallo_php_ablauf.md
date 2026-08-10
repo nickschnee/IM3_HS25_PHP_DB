@@ -1,7 +1,7 @@
 # Ablauf `00_hallo_php`
 
 > **Ziel:** Der technische Weg vom lokalen Kursordner über den Server bis in
-> den Browser funktioniert. PHP-Syntax ist an Tag 1 noch kein Lerninhalt.
+> den Browser funktioniert.
 
 ## Vorbereitung
 
