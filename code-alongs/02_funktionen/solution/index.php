@@ -1,31 +1,22 @@
 <?php
-
-/**
- * 02_funktionen/index.php 
- * Ziel: Funktionsdefinition, Parameter mit Defaultwert, Rückgabewert.
- * 
- * Aufgabe:
- * Lege Variablen für einen kleinen Warenkorb an und berechne den Totalbetrag inkl. MWST. Gib am Ende eine formattierte Quittung aus.
- */
-
-// ------------------------------------------
-
-// 1. Funktion add_mwst($netto, $satz) anlegen.
-function add_mwst($netto, $satz = 0.081)
+function formatMeasurement($location, $temperatureC, $measuredAt)
 {
-  // 2. Den MwSt-Betrag berechnen (Netto + MWST). Defaultwert für $satz = 0.081 (8.1%).
-  $mwst_betrag = $netto * $satz;
-  // 3. Gib den Totalbetrag zurück (return).
-  return $netto + $mwst_betrag;
+    return "Aare in $location: $temperatureC °C um $measuredAt Uhr.";
 }
 
-// 4. Funktion kassenbon($name, $betrag) anlegen, die eine formatierte Zeile zurückgibt (Kunde: Name | Total: Betrag).
-function kassenbon($name, $betrag)
-{
-  // 5. Nutze number_format($zahl, 2) für schöne Ausgabe.
-  return "Kunde: $name | Total: " . number_format($betrag, 2);
-}
-
-// 6. Rufe die Funktionen mit Beispielwerten auf und gib das Resultat aus
-$brutto = add_mwst(9.99);
-echo kassenbon("Lea", $brutto) . "<br>";
+$bernMessage = formatMeasurement('Bern', 19.4, '10:00');
+$baselMessage = formatMeasurement('Basel', 18.7, '10:00');
+?>
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Messwertmeldungen</title>
+</head>
+<body>
+  <h1>Messwertmeldungen</h1>
+  <p><?php echo $bernMessage; ?></p>
+  <p><?php echo $baselMessage; ?></p>
+</body>
+</html>

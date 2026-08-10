@@ -1,54 +1,43 @@
 <?php
-
 /**
- * 05_schleifen/index.php
- * Ziel: foreach, for, while, do-while
- * 
- * 
+ * Code-Along 05: Schleifen
+ *
+ * Die Daten sind vorbereitet. Wir schreiben die Tabellenzeile nur einmal
+ * und lassen foreach sie für jede Messung wiederholen.
  */
 
-// Arrays für Schleifen
-$wg = ["Barbie", "Ken", "Allan", "President Barbie", "Anja"];
-
-$person = [
-  "name" => "Barbie",
-  "alter" => 21,
-  "beruf" => "Model",
-  "verheiratet" => false,
-  "hobbies" => ["Reiten", "Autos", "Mode"]
+$measurements = [
+    ['time' => '08:00', 'temperature_c' => 18.9],
+    ['time' => '10:00', 'temperature_c' => 19.4],
+    ['time' => '12:00', 'temperature_c' => 20.1],
+    ['time' => '14:00', 'temperature_c' => 20.3],
 ];
+?>
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aare-Messungen</title>
+  <style>
+    body { max-width: 42rem; margin: 3rem auto; padding: 0 1rem; font-family: sans-serif; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: .8rem; border-bottom: 1px solid #bbb; text-align: left; }
+  </style>
+</head>
+<body>
+  <h1>Aare-Messungen in Bern</h1>
+  <table>
+    <thead>
+      <tr><th>Zeit</th><th>Temperatur</th></tr>
+    </thead>
+    <tbody>
+      <!-- 1. foreach-Schleife öffnen. -->
 
+        <!-- 2. Eine Tabellenzeile mit Zeit und Temperatur ausgeben. -->
 
-// -- FOREACH ($wg) -------------------------------------------------------------
-
-echo  "<hr><br/><br/>";
-
-// mit Index ($wg) -----------------------------------------------------
-
-echo  "<hr><br/><br/>";
-
-// assoziatives Array ($person) -----------------------------------------------------
-// ACHTUNG: boolsche Werte können nicht einfach als String ausgegeben werden
-// ACHTUNG: Arrays können nicht einfach als String ausgegeben werden
-
-echo  "<hr><br/><br/>";
-
-
-// -- FOR ($wg) -------------------------------------------------------------
-
-echo  "<hr><br/><br/>";
-
-
-
-
-
-
-
-// -- WHILE ($wg) (sehr selten verwendet, nicht in diesem Semester) -------------------------------------------------------------
-
-echo  "<hr><br/><br/>";
-
-
-// -- DO-WHILE ($wg) (sehr selten verwendet, nicht in diesem Semester) -------------------------------------------------------------
-
-echo  "<hr><br/><br/>";
+      <!-- 3. foreach-Schleife schliessen. -->
+    </tbody>
+  </table>
+</body>
+</html>

@@ -107,7 +107,7 @@ IM3 soll wie IM2 eine klare Materialstruktur erhalten:
 │   ├── E_chartjs/
 │   └── F_datenstory/
 ├── code-alongs/
-│   ├── 00_server_check/
+│   ├── 00_hallo_php/
 │   ├── 01_variablen/
 │   ├── 02_funktionen/
 │   ├── 03_bedingungen/

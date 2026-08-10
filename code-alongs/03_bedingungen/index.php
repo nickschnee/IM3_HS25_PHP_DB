@@ -1,40 +1,35 @@
 <?php
-
 /**
- * 03_bedingungen/index.php
- * Ziel: if / elseif / else
- * 
- * Aufgabe:
- * Schreibe eine Funktion bewerteTemperatur(float $c): string, die folgende Labels zurückgibt:
- * 
- * HINWEISE:
- * 1. Erstelle eine Funktion um eine Temperatur zu bewerten
- * 2. Nutze if / elseif / else um die Temperatur zu bewerten
- *    - "eiskalt" für Temperaturen unter -4 Grad
- *    - "kalt" für Temperaturen von -4 bis 3.5 Grad
- *    - "mild" für Temperaturen von 3.5 bis 12 Grad
- *    - "warm" für Temperaturen über 12 Grad
- * 3. Teste die Funktion mit verschiedenen Temperaturen
- * 4. Nutze den strikten Vergleich (===) um den Unterschied zum 
- * 5. normalen Vergleich (==) zu sehen
- * 6. Nutze den ternären Operator (condition ? if true : if false)
- * 
+ * Code-Along 03: Bedingungen
+ *
+ * Eine einfache, bewusst subjektive Regel bewertet die Wassertemperatur.
  */
 
+function classifyTemperature($temperatureC)
+{
+    // 1. Unter 16 °C: "kalt"
 
-// 1. 
+    // 2. Unter 20 °C: "frisch"
 
-// 3. 
+    // 3. Ab 20 °C: "warm"
 
+}
 
-// strikter Vergleich === vs. ==
-// === vergleicht auch den Typ, == nur den Wert
-// 4. 
+$temperatureC = 19.4;
+$label = '';
 
-// 5. 
+// 4. Funktion aufrufen und Resultat in $label speichern.
 
-
-
-// Ternärer Operator
-// 6. 
-// condition ? if condition true : if condition false 
+?>
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Temperaturbewertung</title>
+</head>
+<body>
+  <h1><?php echo $temperatureC; ?> °C</h1>
+  <p>Unsere vereinfachte Bewertung: <?php echo $label; ?></p>
+</body>
+</html>

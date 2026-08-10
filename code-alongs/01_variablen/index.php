@@ -1,36 +1,33 @@
 <?php
-
 /**
- * 01_variablen/index.php 
- * Ziel: Variablen deklarieren, Typen mischen, Werte ausgeben (echo, print_r, var_dump).
- * 
- * Aufgabe:
- * Lege Variablen für einen kleinen Warenkorb an und berechne den Totalbetrag inkl. MWST. Gib am Ende eine formattierte Quittung aus.
- * 
- * HINWEISE:
- * 1. Variablen für zwei Artikel (Name, Preis) anlegen. Beispiel: $item1, $price1, $item2, $price2.
- * 2. Variable für MWST-Satz anlegen (z.B. 0.8 für 8%).
- * 3. Zwischensumme berechnen (Summe der Artikelpreise).
- * 4. MWST-Betrag berechnen (Zwischensumme * MWST-Satz).
- * 5. Total berechnen (Zwischensumme + MWST-Betrag).
- * 6. Ausgabe formatiert: "Brot: 2.90 | Banane: 1.20 | MWST: ... | Total: ..."
- * BONUS (optional):
- * 7. Nutze number_format($zahl, 2) für schöne Ausgabe.
+ * Code-Along 01: Variablen
+ *
+ * Wir speichern einen Aare-Messwert und bauen daraus eine sichtbare Meldung.
  */
 
-// ------------------------------------------
+// 1. Ort als Text speichern.
 
-//1.
+// 2. Temperatur als Kommazahl speichern.
 
-//2.
+// 3. Zeitpunkt als Text speichern.
 
-//3.
+// 4. Festhalten, ob die Messung offiziell ist: true oder false.
 
-//4.
+// 5. Aus den Variablen eine Meldung zusammensetzen.
+$message = '';
 
-//5.
+// 6. Eine Variable mit var_dump untersuchen.
 
-//6.
-
-
-//7.
+?>
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aare-Messwert</title>
+</head>
+<body>
+  <h1>Aare-Messwert</h1>
+  <p><?php echo $message; ?></p>
+</body>
+</html>

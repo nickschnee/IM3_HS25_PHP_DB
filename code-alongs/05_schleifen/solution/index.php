@@ -1,77 +1,37 @@
 <?php
-
-/**
- * 05_schleifen/index.php
- * Ziel: foreach, for, while, do-while
- * 
- * 
- */
-
-// Arrays für Schleifen
-$wg = ["Barbie", "Ken", "Allan", "President Barbie", "Anja"];
-
-$person = [
-  "name" => "Barbie",
-  "alter" => 21,
-  "beruf" => "Model",
-  "verheiratet" => false,
-  "hobbies" => ["Reiten", "Autos", "Mode"]
+$measurements = [
+    ['time' => '08:00', 'temperature_c' => 18.9],
+    ['time' => '10:00', 'temperature_c' => 19.4],
+    ['time' => '12:00', 'temperature_c' => 20.1],
+    ['time' => '14:00', 'temperature_c' => 20.3],
 ];
-
-
-// -- FOREACH ($wg) -------------------------------------------------------------
-foreach ($wg as $mitglied) {
-  echo "- " . $mitglied . "<br/>";
-}
-echo  "<hr><br/><br/>";
-
-// mit Index ($wg) -----------------------------------------------------
-foreach ($wg as $index => $mitglied) {
-  echo ($index + 1) . ". " . $mitglied . "<br/>";
-}
-echo  "<hr><br/><br/>";
-
-// assoziatives Array ($person) -----------------------------------------------------
-
-foreach ($person as $key => $value) {
-  if (is_array($value)) {
-    $value = implode(", ", $value);
-  } elseif (is_bool($value)) {
-    $value = $value ? "ja" : "nein";
-  }
-  echo ucfirst($key) . ": " . $value . "<br/>";
-}
-echo  "<hr><br/><br/>";
-
-
-// -- FOR ($wg) -------------------------------------------------------------
-echo "WG-Mitglieder (for-Schleife):<br/>";
-for ($i = 0; $i < count($wg); $i++) {
-  echo ($i + 1) . ". " . $wg[$i] . "<br/>";
-}
-echo  "<hr><br/><br/>";
-
-
-
-
-
-
-
-// -- WHILE ($wg) (sehr selten verwendet, nicht in diesem Semester) -------------------------------------------------------------
-echo "WG-Mitglieder (while-Schleife):<br/>";
-$i = 0;
-while ($i < count($wg)) {
-  echo ($i + 1) . ". " . $wg[$i] . "<br/>";
-  $i++;
-}
-echo  "<hr><br/><br/>";
-
-
-// -- DO-WHILE ($wg) (sehr selten verwendet, nicht in diesem Semester) -------------------------------------------------------------
-echo "WG-Mitglieder (do-while-Schleife):<br/>";
-$i = 0;
-do {
-  echo ($i + 1) . ". " . $wg[$i] . "<br/>";
-  $i++;
-} while ($i < count($wg));
-echo  "<hr><br/><br/>";
+?>
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aare-Messungen</title>
+  <style>
+    body { max-width: 42rem; margin: 3rem auto; padding: 0 1rem; font-family: sans-serif; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: .8rem; border-bottom: 1px solid #bbb; text-align: left; }
+  </style>
+</head>
+<body>
+  <h1>Aare-Messungen in Bern</h1>
+  <table>
+    <thead>
+      <tr><th>Zeit</th><th>Temperatur</th></tr>
+    </thead>
+    <tbody>
+      <?php foreach ($measurements as $measurement) { ?>
+        <tr>
+          <td><?php echo $measurement['time']; ?></td>
+          <td><?php echo $measurement['temperature_c']; ?> °C</td>
+        </tr>
+      <?php } ?>
+    </tbody>
+  </table>
+</body>
+</html>

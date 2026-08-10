@@ -2,21 +2,17 @@
 $location = 'Bern';
 $temperatureC = 19.4;
 $measuredAt = '10:00';
-$isOfficial = true;
 
 $message = "Aare in $location: $temperatureC °C um $measuredAt Uhr.";
-
-var_dump($temperatureC);
 ?>
 <!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Aare-Messwert</title>
+  <title>Messwert</title>
 </head>
 <body>
-  <h1>Aare-Messwert</h1>
+  <h1>Messwert</h1>
   <p><?php echo $message; ?></p>
 </body>
 </html>
