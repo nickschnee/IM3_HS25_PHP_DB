@@ -56,11 +56,12 @@ Optionale Übungen (Block A)
 > Aus Datenlisten wird ein JSON-Endpunkt.
 
 1. `💻` Digitale Übung: [01 Daten finden & herunterladen](uebungen/B_php_json_api/01_daten_finden) `45'`
-2. `📕` Array → JSON (`json_encode`, `application/json`) `30'`
-3. `🧑‍🏫` Eigenen JSON-Endpunkt bauen `35'`
-4. `🧑‍🏫` Endpunkt mit `$_GET` nach Ort filtern `30'`
-5. `🔎` Datenquellen recherchieren & prüfen (inkl. Fallback) `60'`
-6. `✅` **M3: Datensatz gefunden**
+2. `📕` Theorie B `20'`
+3. `🧑‍🏫` Code-Along: [06 JSON lesen](code-alongs/B_php_json_api/06_json_lesen) `30'`
+4. `🧑‍🏫` Code-Along: [07 Eigener JSON-Endpunkt](code-alongs/B_php_json_api/07_json_endpoint) `35'`
+5. `🧑‍🏫` Code-Along: [08 Endpunkt filtern (`$_GET`)](code-alongs/B_php_json_api/08_json_filter) `30'`
+6. `🔎` Datenquellen recherchieren & prüfen `60'`
+7. `✅` **M3: Datensatz gefunden**
 
 <!--
 

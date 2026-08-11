@@ -17,5 +17,19 @@ liegt direkt im jeweiligen Ordner, die fertige Fassung in `solution/`.
 Die sechs PHP-Code-Alongs bauen auf derselben kleinen Aare-Datenwelt auf. So
 ändert sich jeweils das Programmierkonzept, nicht gleichzeitig auch das Thema.
 
+## Block B – PHP, JSON & APIs
+
+Thema: **Hitzesommer** – Höchsttemperaturen in Bern, Zürich und Chur
+(Open-Meteo). Modell: `JSON rein → PHP-Array → auswählen → JSON raus`.
+
+| Reihenfolge | Code-Along                                          | Kurstag |
+| ----------- | --------------------------------------------------- | ------- |
+| 6           | [JSON lesen](B_php_json_api/06_json_lesen/)              | Tag 3   |
+| 7           | [Eigener JSON-Endpunkt](B_php_json_api/07_json_endpoint/) | Tag 3   |
+| 8           | [Endpunkt filtern (`$_GET`)](B_php_json_api/08_json_filter/) | Tag 3   |
+
+Jeder Block-B-Code-Along hat einen eigenen `data/`-Ordner mit den drei
+JSON-Dateien, damit man auch ohne den vorherigen Schritt sofort arbeiten kann.
+
 Weitere vorhandene Code-Alongs werden beim Aufbau der späteren Blöcke geprüft,
-überarbeitet und ebenfalls in Block-Ordner (`B_…`, `C_…` usw.) einsortiert.
+überarbeitet und ebenfalls in Block-Ordner (`C_…`, `D_…` usw.) einsortiert.
