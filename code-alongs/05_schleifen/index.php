@@ -2,42 +2,30 @@
 /**
  * Code-Along 05: Schleifen
  *
- * Die Daten sind vorbereitet. Wir schreiben die Tabellenzeile nur einmal
- * und lassen foreach sie für jede Messung wiederholen.
+ * Die Daten sind vorbereitet. Wir schreiben die Ausgabe nur einmal und lassen
+ * foreach sie für jede Messung wiederholen. Kein HTML: PHP liefert hier nur
+ * Daten, wir prüfen sie mit echo und var_dump.
  */
 
+// PHP dient hier als Datenlieferant, nicht als Webseite. Mit diesem Header
+// zeigt der Browser die Ausgabe als reinen Text, die Zeilenumbrüche bleiben.
+header('Content-Type: text/plain; charset=utf-8');
+
+// 1. Vorbereitete Liste strukturierter Messungen.
 $measurements = [
     ['time' => '08:00', 'temperature_c' => 18.9],
     ['time' => '10:00', 'temperature_c' => 19.4],
     ['time' => '12:00', 'temperature_c' => 20.1],
     ['time' => '14:00', 'temperature_c' => 20.3],
 ];
-?>
-<!doctype html>
-<html lang="de">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Aare-Messungen</title>
-  <style>
-    body { max-width: 42rem; margin: 3rem auto; padding: 0 1rem; font-family: sans-serif; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: .8rem; border-bottom: 1px solid #bbb; text-align: left; }
-  </style>
-</head>
-<body>
-  <h1>Aare-Messungen in Bern</h1>
-  <table>
-    <thead>
-      <tr><th>Zeit</th><th>Temperatur</th></tr>
-    </thead>
-    <tbody>
-      <!-- 1. foreach-Schleife öffnen. -->
 
-        <!-- 2. Eine Tabellenzeile mit Zeit und Temperatur ausgeben. -->
+// 2. Einen fünften Datensatz ergänzen. Die foreach-Ausgabe unten soll dafür
+//    NICHT angepasst werden müssen.
 
-      <!-- 3. foreach-Schleife schliessen. -->
-    </tbody>
-  </table>
-</body>
-</html>
+
+// 3. Mit foreach jede Messung durchlaufen und pro Messung eine Zeile mit
+//    time und temperature_c ausgeben (echo).
+
+
+// 4. Zur Kontrolle die ganze Struktur mit var_dump untersuchen.
+

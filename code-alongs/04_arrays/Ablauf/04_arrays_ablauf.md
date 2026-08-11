@@ -2,7 +2,7 @@
 
 > **Ziel:** Ein indexiertes und ein assoziatives Array erstellen, einzelne
 > Werte gezielt auslesen und mehrere Orte mit ihren Temperaturen in einem
-> assoziativen Array ablegen. Richtwert: 45 Minuten.
+> assoziativen Array ablegen. Richtwert: 30 Minuten.
 
 ## Schritte
 
