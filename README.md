@@ -14,6 +14,11 @@ JSON-Schnittstelle.
 4. Einen kleinen ETL+U-Prozess aufbauen.
 5. Daten mit Chart.js sichtbar und als Story verständlich machen.
 
+## Ablauf
+
+Der ganze Kursablauf nach Tagen steht im
+[Ablauf für Studierende](ablauf_studierende.md).
+
 ## Kursmaterial
 
 | Bereich                               | Verwendung                                      |
