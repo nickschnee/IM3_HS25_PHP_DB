@@ -11,6 +11,10 @@ Datenquelle -> Extract -> Transform -> Load -> Datenbank
              -> Unload/JSON -> Chart.js -> Datenstory
 ```
 
+> **Tagesablauf für Studierende:**
+> [`ablauf_studierende.md`](ablauf_studierende.md) – was an jedem der zehn
+> Kurstage passiert.
+
 ## Lernpfad
 
 1. PHP-Skripte lesen, ändern und schreiben.
@@ -38,11 +42,12 @@ Abgabe werden im Ordner `projekt/` ergänzt.
 Theorieblock A ist als erste unterrichtbare Fassung vorhanden:
 
 - Tag 1: `Hallo PHP` und Setup;
-- Tag 2: Variablen, Datentypen, Funktionen und Bedingungen;
-- Tag 3: Arrays, Schleifen und die Brücke zu JSON.
+- Tag 2: PHP-Basics von Variablen bis Schleifen (Code-Alongs 01–05);
+- Tag 3: Brücke zu JSON (`json_encode`, `$_GET`-Filter).
 
-Der interne Zehn-Tage-Plan steht in
-[`dozierende/ABLAUF.md`](dozierende/ABLAUF.md).
+Der Tagesablauf für Studierende steht in
+[`ablauf_studierende.md`](ablauf_studierende.md), der interne Zehn-Tage-Plan
+für Dozierende in [`dozierende/ABLAUF.md`](dozierende/ABLAUF.md).
 
 ## Arbeitsweise im Kurs
 
