@@ -50,20 +50,19 @@ Optionale Übungen (Block A)
 - `💻` [04 Messstation](uebungen/A_PHP_Basics/04_messstation)
 - `💻` [05 Aare-Woche](uebungen/A_PHP_Basics/05_aare_woche)
 
-> _Tag 3–10 folgen, sobald die Inhalte zu Block B–F stehen. Entwurf unten
-> auskommentiert._
+### Tag 3 – Block B: JSON & Datenquellen
 
-<!--
-
-### Tag 3 – Brücke zu Block B: JSON
-
+> Thema ab hier: **Hitzesommer** – Höchsttemperaturen in Chur, Bern und Zürich.
 > Aus Datenlisten wird ein JSON-Endpunkt.
 
-1. `📕` Array → JSON (`json_encode`, `application/json`) `30'`
-2. `🧑‍🏫` Eigenen JSON-Endpunkt bauen `35'`
-3. `🧑‍🏫` Endpunkt mit `$_GET` nach Ort filtern `30'`
-4. `🔎` Datenquellen recherchieren & prüfen (inkl. Fallback) `60'`
-5. `✅` **M3: Datensatz gefunden**
+1. `💻` Digitale Übung: [01 Daten finden & herunterladen](uebungen/B_php_json_api/01_daten_finden) `45'`
+2. `📕` Array → JSON (`json_encode`, `application/json`) `30'`
+3. `🧑‍🏫` Eigenen JSON-Endpunkt bauen `35'`
+4. `🧑‍🏫` Endpunkt mit `$_GET` nach Ort filtern `30'`
+5. `🔎` Datenquellen recherchieren & prüfen (inkl. Fallback) `60'`
+6. `✅` **M3: Datensatz gefunden**
+
+<!--
 
 ### Tag 4 – Block C: Datenbanken & Datenjournalismus
 

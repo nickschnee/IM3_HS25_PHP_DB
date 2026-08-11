@@ -15,3 +15,7 @@ Die Übungen sind selbständig lösbar. Jeder Ordner enthält:
 4. [04 Messstation](A_PHP_Basics/04_messstation/): assoziatives Array
 5. [05 Aare-Woche](A_PHP_Basics/05_aare_woche/): Liste und `foreach`
 6. [06 Städtevergleich](A_PHP_Basics/06_staedtevergleich/): alles kombiniert (offene Capstone)
+
+## Block B – PHP, JSON & APIs
+
+1. [01 Daten finden & herunterladen](B_php_json_api/01_daten_finden/): offene Datenquelle (Open-Meteo) finden und als JSON speichern
