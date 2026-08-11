@@ -1,7 +1,7 @@
-# a – Messwert
+# 01 – Messwert
 
 **Lernziel:** Du kannst Werte in Variablen speichern und in einem Satz
-ausgeben.
+ausgeben. PHP dient dabei nur als kleine API: reine Textausgabe, kein HTML.
 
 **Richtwert:** 20 Minuten
 
@@ -12,7 +12,8 @@ ausgeben.
 1. Speichere den Ort `Bern` in `$location`.
 2. Speichere die Temperatur `19.4` in `$temperatureC`.
 3. Speichere die Uhrzeit `10:00` in `$measuredAt`.
-4. Setze aus den drei Variablen die Meldung zusammen.
+4. Setze aus den drei Variablen die Meldung zusammen und gib sie mit `echo`
+   aus.
 
 ## Erwartetes Resultat
 
@@ -25,6 +26,8 @@ Aare in Bern: 19.4 °C um 10:00 Uhr.
 - PHP-Variablen beginnen mit `$`.
 - Text braucht Anführungszeichen, Zahlen nicht.
 - Jede Zuweisung endet mit `;`.
+- Damit der Browser reinen Text zeigt, gehört ganz oben:
+  `header('Content-Type: text/plain; charset=utf-8');`
 
 ## Freiwillige Zusatzaufgabe
 

@@ -9,8 +9,9 @@ Die Übungen sind selbständig lösbar. Jeder Ordner enthält:
 
 ## Block A – PHP Basics
 
-1. [a Messwert](01_php_basics/a_messwert/): Variablen und Ausgabe
-2. [b Badewetter](01_php_basics/b_badewetter/): Funktion und Rückgabewert
-3. [c Warnstufe](01_php_basics/c_warnstufe/): Bedingungen
-4. [d Messstation](01_php_basics/d_messstation/): assoziatives Array
-5. [e Aare-Woche](01_php_basics/e_aare_woche/): Liste und `foreach`
+1. [01 Messwert](A_PHP_Basics/01_messwert/): Variablen und Ausgabe
+2. [02 Badewetter](A_PHP_Basics/02_badewetter/): Funktion und Rückgabewert
+3. [03 Warnstufe](A_PHP_Basics/03_warnstufe/): Bedingungen
+4. [04 Messstation](A_PHP_Basics/04_messstation/): assoziatives Array
+5. [05 Aare-Woche](A_PHP_Basics/05_aare_woche/): Liste und `foreach`
+6. [06 Städtevergleich](A_PHP_Basics/06_staedtevergleich/): alles kombiniert (offene Capstone)

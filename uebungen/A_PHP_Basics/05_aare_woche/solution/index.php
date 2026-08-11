@@ -1,4 +1,7 @@
 <?php
+// PHP als kleine API: reine Textausgabe, kein HTML.
+header('Content-Type: text/plain; charset=utf-8');
+
 $measurements = [
     ['day' => 'Montag', 'temperature_c' => 18.9],
     ['day' => 'Dienstag', 'temperature_c' => 19.1],
@@ -8,21 +11,8 @@ $measurements = [
     ['day' => 'Samstag', 'temperature_c' => 20.3],
     ['day' => 'Sonntag', 'temperature_c' => 20.0],
 ];
-?>
-<!doctype html>
-<html lang="de">
-<head>
-  <meta charset="utf-8">
-  <title>Aare-Woche</title>
-</head>
-<body>
-  <h1>Aare-Woche</h1>
-  <ul>
-    <!-- 1. foreach öffnen. -->
 
-      <!-- 2. Eine Zeile mit Tag und Temperatur ausgeben. -->
-
-    <!-- 3. foreach schliessen. -->
-  </ul>
-</body>
-</html>
+// Jede Messung durchlaufen und eine Zeile ausgeben.
+foreach ($measurements as $measurement) {
+    echo $measurement['day'] . ': ' . $measurement['temperature_c'] . " °C\n";
+}

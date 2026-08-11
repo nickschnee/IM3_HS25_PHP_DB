@@ -59,7 +59,7 @@ PHP-Grundlagenunterricht.
 | Muss | Rahmen | Kursziel, Datenfluss und Marktstand zeigen | 30' | Fertiges Beispielprojekt oder Demo |
 | Muss | Rahmen | Vierergruppen bilden; Backend- und Frontend-Zweierteam festlegen | 45' | Gruppenliste |
 | Muss | Tooling | Zugänge verteilen, lokalen PHP-Check durchführen, Serverordner einrichten | 90' | Zugang pro Person |
-| Muss | `🧑‍🏫` | Dreizeiliges [Hallo PHP](../code-alongs/00_hallo_php) hochladen und im Browser öffnen | 30' | Ausgabe `Hallo PHP` |
+| Muss | `🧑‍🏫` | Dreizeiliges [Hallo PHP](../code-alongs/A_PHP_Basics/00_hallo_php) hochladen und im Browser öffnen | 30' | Ausgabe `Hallo PHP` |
 | Soll | Tooling | Häufige Probleme gemeinsam lösen: Pfad, Dateiname, Rechte, Cache | 45' | Fehlerliste für Dozierende |
 | Soll | `🔎` | Datenprojekte ansehen und interessante Themenfelder sammeln | 45' | Themen-Post-its pro Gruppe |
 | Muss | `✅` | `Hallo PHP` und Gruppeneinteilung abnehmen | 15' | **M1: Gruppen gebildet** |
@@ -75,15 +75,15 @@ Funktion verarbeiten und mit einer Bedingung bewerten.
 | Prio | Form | Inhalt | Richtwert | Material oder Ergebnis |
 | --- | --- | --- | ---: | --- |
 | Muss | Repetition | Browser, Server und PHP in die richtige Reihenfolge bringen | 15' | Mündliche Skizze |
-| Muss | `📕` | Theorie A, Teil 1: Server, Variablen, Datentypen und Debugging | 40' | [Theorie A](../theorie/A_php_basics) |
-| Muss | `🧑‍🏫` | [01 Variablen](../code-alongs/01_variablen) | 25' | Kleine Datenmeldung |
-| Muss | `💻` | [a Messwert](../uebungen/01_php_basics/a_messwert) | 20' | Eigene Messwertmeldung |
-| Muss | `📕` | Theorie A, Teil 2: Funktionen und Rückgabewerte | 20' | [Theorie A](../theorie/A_php_basics) |
-| Muss | `🧑‍🏫` | [02 Funktionen](../code-alongs/02_funktionen) | 30' | Wiederverwendbare Meldung |
-| Soll | `💻` | [b Badewetter](../uebungen/01_php_basics/b_badewetter) | 25' | Funktion mit Rückgabewert |
-| Muss | `📕` | Theorie A, Teil 3: Vergleiche und Bedingungen | 20' | [Theorie A](../theorie/A_php_basics) |
-| Muss | `🧑‍🏫` | [03 Bedingungen](../code-alongs/03_bedingungen) | 30' | Temperaturbewertung |
-| Muss | `💻` | [c Warnstufe](../uebungen/01_php_basics/c_warnstufe) | 25' | Drei einfache Fälle |
+| Muss | `📕` | Theorie A, Teil 1: Server, Variablen, Datentypen und Debugging | 40' | [Theorie A](../theorie/A_PHP_Basics) |
+| Muss | `🧑‍🏫` | [01 Variablen](../code-alongs/A_PHP_Basics/01_variablen) | 25' | Kleine Datenmeldung |
+| Muss | `💻` | [01 Messwert](../uebungen/A_PHP_Basics/01_messwert) | 20' | Eigene Messwertmeldung |
+| Muss | `📕` | Theorie A, Teil 2: Funktionen und Rückgabewerte | 20' | [Theorie A](../theorie/A_PHP_Basics) |
+| Muss | `🧑‍🏫` | [02 Funktionen](../code-alongs/A_PHP_Basics/02_funktionen) | 30' | Wiederverwendbare Meldung |
+| Soll | `💻` | [02 Badewetter](../uebungen/A_PHP_Basics/02_badewetter) | 25' | Funktion mit Rückgabewert |
+| Muss | `📕` | Theorie A, Teil 3: Vergleiche und Bedingungen | 20' | [Theorie A](../theorie/A_PHP_Basics) |
+| Muss | `🧑‍🏫` | [03 Bedingungen](../code-alongs/A_PHP_Basics/03_bedingungen) | 30' | Temperaturbewertung |
+| Muss | `💻` | [03 Warnstufe](../uebungen/A_PHP_Basics/03_warnstufe) | 25' | Drei einfache Fälle |
 | Soll | `📝` | Messwertmaschine, Runde 1: Werte, Funktion und Entscheid | 30' | [Analoge Übung](../stift-und-papier/01_messwertmaschine) |
 | Muss | `🔎` | Eine offene Datenfrage pro Gruppe formulieren | 30' | Satz nach Vorlage |
 | Muss | `✅` | Code und Datenfrage zeigen | 15' | **M2: Datenfrage formuliert** |
@@ -96,12 +96,12 @@ durchlaufen. Danach wird die Liste als JSON ausgegeben und einfach gefiltert.
 | Prio | Form | Inhalt | Richtwert | Material oder Ergebnis |
 | --- | --- | --- | ---: | --- |
 | Muss | Repetition | Fehler in drei kurzen PHP-Beispielen finden | 15' | Debugging im Plenum |
-| Muss | `📕` | Theorie A, Teil 4: Arrays, assoziative Arrays und Schleifen | 35' | [Theorie A](../theorie/A_php_basics) |
-| Muss | `🧑‍🏫` | [04 Arrays](../code-alongs/04_arrays) | 30' | Strukturierter Messwert |
-| Muss | `💻` | [d Messstation](../uebungen/01_php_basics/d_messstation) | 25' | Assoziatives Array |
-| Muss | `🧑‍🏫` | [05 Schleifen](../code-alongs/05_schleifen) | 35' | Messwertliste als Tabelle |
+| Muss | `📕` | Theorie A, Teil 4: Arrays, assoziative Arrays und Schleifen | 35' | [Theorie A](../theorie/A_PHP_Basics) |
+| Muss | `🧑‍🏫` | [04 Arrays](../code-alongs/A_PHP_Basics/04_arrays) | 30' | Strukturierter Messwert |
+| Muss | `💻` | [04 Messstation](../uebungen/A_PHP_Basics/04_messstation) | 25' | Assoziatives Array |
+| Muss | `🧑‍🏫` | [05 Schleifen](../code-alongs/A_PHP_Basics/05_schleifen) | 35' | Messwertliste als Textausgabe |
 | Muss | `📝` | Messwertmaschine, Runde 2: Liste wiederholt verarbeiten | 30' | [Analoge Übung](../stift-und-papier/01_messwertmaschine) |
-| Muss | `💻` | [e Aare-Woche](../uebungen/01_php_basics/e_aare_woche) | 35' | Sieben sichtbare Werte |
+| Muss | `💻` | [05 Aare-Woche](../uebungen/A_PHP_Basics/05_aare_woche) | 35' | Sieben sichtbare Werte |
 | Muss | `📕` + `🧑‍🏫` | Brücke zu Block B: Array als JSON ausgeben | 35' | Eigener JSON-Endpunkt |
 | Muss | `🧑‍🏫` | Endpunkt über `$_GET` nach Ort filtern | 30' | Filterbare Antwort |
 | Muss | `🔎` | Datenquellen suchen und anhand von vier Kriterien prüfen | 60' | Kandidat plus Fallback |

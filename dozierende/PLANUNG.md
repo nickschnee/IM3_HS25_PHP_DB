@@ -100,19 +100,14 @@ IM3 soll wie IM2 eine klare Materialstruktur erhalten:
 │   └── MATERIAL_INVENTAR.md
 ├── cheatsheets/
 ├── theorie/
-│   ├── A_php_basics/
+│   ├── A_PHP_Basics/
 │   ├── B_php_json_api/
 │   ├── C_datenbanken_pdo/
 │   ├── D_etl/
 │   ├── E_chartjs/
 │   └── F_datenstory/
 ├── code-alongs/
-│   ├── 00_hallo_php/
-│   ├── 01_variablen/
-│   ├── 02_funktionen/
-│   ├── 03_bedingungen/
-│   ├── 04_arrays/
-│   ├── 05_schleifen/
+│   ├── A_PHP_Basics/         # 00_hallo_php … 05_schleifen (spätere Blöcke: B_…, C_… usw.)
 │   ├── 06_json_endpoint/
 │   ├── 07_extract_api/
 │   ├── 08_transform_clean/
@@ -121,7 +116,7 @@ IM3 soll wie IM2 eine klare Materialstruktur erhalten:
 │   ├── 11_chartjs_first_chart/
 │   └── 12_full_mini_project/
 ├── uebungen/
-│   ├── 01_php_basics/
+│   ├── A_PHP_Basics/
 │   ├── 02_arrays_json/
 │   ├── 03_extract/
 │   ├── 04_transform/
@@ -168,7 +163,7 @@ Material:
 
 - vorhandene Cheatsheets weiterverwenden
 - vorhandene Code-Alongs weiterverwenden
-- `uebungen/01_php_basics/` neu aufbauen
+- `uebungen/A_PHP_Basics/` neu aufbauen
 
 Mögliche Übungen:
 

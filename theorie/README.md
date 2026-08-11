@@ -6,7 +6,7 @@ kurzen Cheatsheets nicht.
 
 | Block | Thema | Status |
 | --- | --- | --- |
-| [A](A_php_basics/) | PHP Basics | Erste unterrichtbare Fassung |
+| [A](A_PHP_Basics/) | PHP Basics | Erste unterrichtbare Fassung |
 | B | PHP, JSON und APIs | Offen |
 | C | Datenbanken und PDO | Offen |
 | D | ETL+U-Pipeline | Offen |
