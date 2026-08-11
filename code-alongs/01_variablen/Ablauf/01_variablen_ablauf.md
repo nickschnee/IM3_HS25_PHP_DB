@@ -1,29 +1,37 @@
 # Ablauf `01_variablen`
 
 > **Ziel:** Werte als Variablen speichern, einfache Datentypen erkennen und
-> eine sichtbare Meldung ausgeben. Richtwert: 15 Minuten.
+> eine lesbare Meldung ausgeben. Richtwert: 15 Minuten.
+
+> **Hinweis:** PHP nutzen wir nur als kleine API - keine HTML-Ausgabe, nur
+> `echo`/`var_dump`. Der Header `Content-Type: text/plain` sorgt für reine
+> Textausgabe. Aus dieser Text-API wird in Block B eine JSON-API
+> (`json_encode` + `application/json`).
 
 ## Schritte
 
-1. Den vorbereiteten HTML-Teil kurz zeigen. Er bleibt in diesem Code-Along
-   unverändert.
-2. `$location` als String mit dem Wert `Bern` anlegen.
-3. `$temperatureC` als Float mit dem Wert `19.4` anlegen.
-4. `$measuredAt` als String mit dem Wert `10:00` anlegen.
-5. `$isOfficial` als Boolean mit dem Wert `true` anlegen.
-6. In `$message` einen Satz mit den drei sichtbaren Werten zusammensetzen.
-7. Die Seite im Browser laden und die Meldung prüfen.
-8. Mit `var_dump($temperatureC)` Typ und Wert untersuchen.
+1. `$location` als String mit dem Wert `Bern` anlegen.
+2. `$temperatureC` als Float mit dem Wert `19.4` anlegen.
+3. `$measuredAt` als String mit dem Wert `10:00` anlegen.
+4. `$isOfficial` als Boolean mit dem Wert `true` anlegen.
+5. In `$message` einen Satz mit den drei Werten zusammensetzen und mit `echo`
+   ausgeben.
+6. Im Browser (oder mit `curl`) laden und die Meldung prüfen.
+7. Mit `var_dump($temperatureC)` und `var_dump($isOfficial)` Typ und Wert
+   untersuchen.
 
 ## Gesprächspunkte
 
 - Warum ist `19.4` kein String?
-- Was verändert sich im Browser, wenn nur eine Variable geändert wird?
-- `var_dump` ist eine temporäre Hilfe und keine Ausgabe für das fertige
-  Produkt.
+- Was verändert sich in der Ausgabe, wenn nur eine Variable geändert wird?
+- `echo` schreibt den Wert; `var_dump` zeigt zusätzlich den Typ - ideal zum
+  Debuggen.
+- Wir brauchen kein HTML: PHP liefert hier nur Daten.
 
 ## Erwartetes Resultat
 
 ```text
 Aare in Bern: 19.4 °C um 10:00 Uhr.
+float(19.4)
+bool(true)
 ```

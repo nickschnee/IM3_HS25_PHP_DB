@@ -4,12 +4,18 @@
  *
  * Zuerst speichern wir mehrere Temperaturen, danach einen strukturierten
  * Messwert und schliesslich mehrere Orte mit ihren Temperaturen.
+ * PHP nutzen wir nur als API: keine HTML-Ausgabe, nur echo/var_dump.
  */
+
+// PHP dient hier als Datenlieferant, nicht als Webseite. Der Header sorgt für
+// reine Textausgabe im Browser. (In Block B wird daraus eine JSON-API:
+// json_encode + application/json.)
+header('Content-Type: text/plain; charset=utf-8');
 
 // 1. Indexiertes Array mit 18.9, 19.4 und 20.1 anlegen.
 $temperatures = [];
 
-// 2. Den zweiten Wert ausgeben. Achtung: Der erste Index ist 0.
+// 2. Den zweiten Wert mit echo ausgeben. Achtung: Der erste Index ist 0.
 
 
 // 3. Einen weiteren Wert 20.3 am Ende ergänzen.
@@ -35,8 +41,5 @@ $stations = [];
 //    (>= 18 °C: "angenehm", sonst "eher frisch").
 
 
-// 10. Das ganze assoziative Array mit print_r untersuchen.
-echo '<h2>Debugging</h2>';
-echo '<pre>';
-print_r($stations);
-echo '</pre>';
+// 10. Das ganze assoziative Array mit var_dump untersuchen.
+var_dump($stations);

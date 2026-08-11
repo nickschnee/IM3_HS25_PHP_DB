@@ -3,7 +3,13 @@
  * Code-Along 03: Bedingungen
  *
  * Eine einfache, bewusst subjektive Regel bewertet die Wassertemperatur.
+ * PHP nutzen wir nur als API: keine HTML-Ausgabe, nur echo/var_dump.
  */
+
+// PHP dient hier als Datenlieferant, nicht als Webseite. Der Header sorgt für
+// reine Textausgabe im Browser. (In Block B wird daraus eine JSON-API:
+// json_encode + application/json.)
+header('Content-Type: text/plain; charset=utf-8');
 
 function classifyTemperature($temperatureC)
 {
@@ -20,16 +26,5 @@ $label = '';
 
 // 4. Funktion aufrufen und Resultat in $label speichern.
 
-?>
-<!doctype html>
-<html lang="de">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Temperaturbewertung</title>
-</head>
-<body>
-  <h1><?php echo $temperatureC; ?> °C</h1>
-  <p>Unsere vereinfachte Bewertung: <?php echo $label; ?></p>
-</body>
-</html>
+
+// 5. Temperatur und Bewertung mit echo ausgeben.

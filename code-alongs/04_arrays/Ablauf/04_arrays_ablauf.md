@@ -4,10 +4,15 @@
 > Werte gezielt auslesen und mehrere Orte mit ihren Temperaturen in einem
 > assoziativen Array ablegen. Richtwert: 30 Minuten.
 
+> **Hinweis:** PHP nutzen wir nur als kleine API - keine HTML-Ausgabe, nur
+> `echo`/`var_dump`. Aus dieser Text-API wird in Block B eine JSON-API
+> (`json_encode` + `application/json`).
+
 ## Schritte
 
 1. In `$temperatures` drei vorbereitete Kommazahlen speichern.
-2. Den Wert am Index `1` ausgeben und die Indexierung ab `0` erklären.
+2. Den Wert am Index `1` mit `echo` ausgeben und die Indexierung ab `0`
+   erklären.
 3. Mit `$temperatures[] = 20.3` einen vierten Wert ergänzen.
 4. In `$measurement` einen Datensatz mit den Schlüsseln `location`,
    `temperature_c` und `measured_at` anlegen.
@@ -20,7 +25,7 @@
    Unterschied zum indexierten `[]` aus Schritt 3 besprechen.
 9. Mit einer Bedingung (`if`/`else`) prüfen, ob das Wasser in Bern
    `>= 18` °C ist, und eine passende Meldung ausgeben.
-10. Das ganze assoziative Array mit `print_r` untersuchen.
+10. Das ganze assoziative Array mit `var_dump` untersuchen.
 
 ## Bewusste Begrenzung
 
@@ -38,4 +43,4 @@ Schritt 9 knüpft an `03_bedingungen` an.
 - Ort und Temperatur des strukturierten Messwerts erscheinen.
 - Ein einzelner Ort aus `$stations` erscheint über seinen Schlüssel.
 - Die Bedingung gibt für Bern eine passende Meldung aus.
-- `print_r` zeigt alle Orte inklusive des ergänzten Eintrags.
+- `var_dump` zeigt alle Orte inklusive des ergänzten Eintrags.

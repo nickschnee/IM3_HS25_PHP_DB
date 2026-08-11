@@ -3,6 +3,10 @@
 > **Ziel:** Eine Funktion mit Parametern deklarieren, einen Wert mit `return`
 > zurückgeben und die Funktion mehrmals aufrufen. Richtwert: 20 Minuten.
 
+> **Hinweis:** PHP nutzen wir nur als kleine API - keine HTML-Ausgabe, nur
+> `echo`/`var_dump`. Aus dieser Text-API wird in Block B eine JSON-API
+> (`json_encode` + `application/json`).
+
 ## Planung vor dem Tippen
 
 ```text
@@ -17,8 +21,8 @@ Ort + Temperatur + Zeitpunkt -> formatMeasurement() -> lesbare Meldung
 3. Mit `return` den formatierten Satz zurückgeben.
 4. Die Funktion mit den Berner Werten aufrufen und das Resultat in
    `$bernMessage` speichern.
-5. Die Meldung im vorbereiteten HTML ausgeben.
-6. Dieselbe Funktion mit Brienzer Werten aufrufen.
+5. Die Meldung mit `echo` ausgeben.
+6. Dieselbe Funktion mit Brienzer Werten aufrufen und ausgeben.
 
 ## Gesprächspunkte
 
