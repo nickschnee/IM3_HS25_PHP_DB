@@ -6,10 +6,9 @@
  * PHP nutzen wir nur als API: keine HTML-Ausgabe, nur echo/var_dump.
  */
 
-// PHP dient hier als Datenlieferant, nicht als Webseite. Der Header sorgt für
-// reine Textausgabe im Browser. (In Block B wird daraus eine JSON-API:
-// json_encode + application/json.)
-header('Content-Type: text/plain; charset=utf-8');
+// Diese Datei ist keine Webseite, sondern eine kleine API: Sie soll reinen
+// Text ausgeben, kein HTML. Überlege, wie du dem Browser sagst, dass die
+// Antwort Text ist (Stichwort: Content-Type-Header) - und setze ihn hier.
 
 function classifyTemperature($temperatureC)
 {

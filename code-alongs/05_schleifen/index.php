@@ -7,9 +7,9 @@
  * Daten, wir prüfen sie mit echo und var_dump.
  */
 
-// PHP dient hier als Datenlieferant, nicht als Webseite. Mit diesem Header
-// zeigt der Browser die Ausgabe als reinen Text, die Zeilenumbrüche bleiben.
-header('Content-Type: text/plain; charset=utf-8');
+// Diese Datei ist keine Webseite, sondern eine kleine API: Sie soll reinen
+// Text ausgeben, kein HTML. Überlege, wie du dem Browser sagst, dass die
+// Antwort Text ist (Stichwort: Content-Type-Header) - und setze ihn hier.
 
 // 1. Vorbereitete Liste strukturierter Messungen.
 $measurements = [
