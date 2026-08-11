@@ -22,6 +22,11 @@
 4. `🧑‍🏫` Code-Along: [00 Hallo PHP](code-alongs/A_PHP_Basics/00_hallo_php) `30'`
 5. `✅` M1: Gruppen gebildet
 
+#### Zusatzmaterial (Tag 1)
+
+- `🛠️` [00 Lokaler PHP-Server](theorie/00_lokaler_php_server) – eigenen Server
+  auf Mac/Windows starten
+
 ### Tag 2 – Block A: PHP Basics
 
 1. `📕` Theorie A `60'`
@@ -35,7 +40,9 @@
 9. `🔎` Eigene Datenfrage formulieren `60'`
 10. `✅` M2: Datenfrage formuliert
 
-#### Backup – optionale Übungen (Block A)
+#### Zusatzmaterial
+
+Optionale Übungen (Block A)
 
 - `💻` [01 Messwert](uebungen/A_PHP_Basics/01_messwert)
 - `💻` [02 Badewetter](uebungen/A_PHP_Basics/02_badewetter)
