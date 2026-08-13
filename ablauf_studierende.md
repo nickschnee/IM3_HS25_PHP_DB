@@ -34,9 +34,8 @@ Kurstage erstrecken. Die Story- und Recherchespur (`🔎`) läuft parallel mit.
 7. `🧑‍🏫` Code-Along: [04 Arrays](code-alongs/A_PHP_Basics/04_arrays) `25'`
 8. `🧑‍🏫` Code-Along: [05 Schleifen](code-alongs/A_PHP_Basics/05_schleifen) `25'`
 9. `💻` Digitale Übung: [06 Städtevergleich](uebungen/A_PHP_Basics/06_staedtevergleich) `45'`
-10. `📝` Analoge Übung: [Messwertmaschine](stift-und-papier/01_messwertmaschine) `35'`
-11. `🔎` Eigene Datenfrage formulieren `60'`
-12. `✅` M2: Datenfrage formuliert
+10. `🔎` Eigene Datenfrage formulieren `60'`
+11. `✅` M2: Datenfrage formuliert
 
 #### Zusatzmaterial (Block A)
 
@@ -53,10 +52,11 @@ Kurstage erstrecken. Die Story- und Recherchespur (`🔎`) läuft parallel mit.
 2. `📕` Theorie B: [Extract](theorie/B_extract) `20'`
 3. `🧑‍🏫` Code-Along: [06 JSON lesen](code-alongs/B_extract/06_json_lesen) _(statische Datei)_ `30'`
 4. `🧑‍🏫` Code-Along: [07 API lesen](code-alongs/B_extract/07_api_lesen) _(Live-API)_ `30'`
-5. `🧑‍🏫` Code-Along: [08 CSV lesen](code-alongs/B_extract/08_csv_lesen) _(CSV-Datei)_ `30'`
-6. `🧑‍🏫` Code-Along: [09 Sensor lesen](code-alongs/B_extract/09_sensor_lesen) _(Sensor-API)_ `30'`
-7. `🔎` Datenquellen recherchieren & prüfen `60'`
-8. `✅` **M3: Datensatz gefunden**
+5. `📝` Analoge Übung: [Fetch-Helper entschlüsseln](stift-und-papier/03_fetch_helper/) `40'`
+6. `🧑‍🏫` Code-Along: [08 CSV lesen](code-alongs/B_extract/08_csv_lesen) _(CSV-Datei)_ `30'`
+7. `🧑‍🏫` Code-Along: [09 Sensor lesen](code-alongs/B_extract/09_sensor_lesen) _(Sensor-API)_ `30'`
+8. `🔎` Datenquellen recherchieren & prüfen `60'`
+9. `✅` **M3: Datensatz gefunden**
 
 ### Block C – Transform
 

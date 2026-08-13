@@ -8,6 +8,12 @@ wird. Die Gruppen arbeiten zuerst ohne Editor und ohne KI-Tool.
 - [Messwertmaschine](01_messwertmaschine/): Eine kleine Liste von
   Aare-Messungen von Hand durch Funktion, Bedingung und Schleife führen.
 
+## Block B – Extract
+
+- [Fetch-Helfer entschlüsseln](03_fetch_helper/): Den vorbereiteten
+  `fetchJson()`-Helfer Zeile für Zeile lesen und erklären, wie aus einer URL
+  ein PHP-Array wird.
+
 ## Block C – Transform
 
 - [Transform-Entscheidungen](02_transform_entscheidungen/): Eine Datenfrage in

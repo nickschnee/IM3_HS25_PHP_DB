@@ -126,6 +126,7 @@ PHP-Array) bleibt gleich.
 | Muss | `📕` | Extract-Varianten: Datei, Live-API, CSV → immer ein PHP-Array | 20' | [Theorie B](../theorie/B_extract/) |
 | Muss | `🧑‍🏫` | [06 JSON lesen](../code-alongs/B_extract/06_json_lesen) (`file_get_contents` + `json_decode`) | 30' | PHP-Array aus Datei |
 | Muss | `🧑‍🏫` | [07 API lesen](../code-alongs/B_extract/07_api_lesen) (`fetchJson`) | 30' | PHP-Array aus API |
+| Soll | `📝` | [Fetch-Helfer entschlüsseln](../stift-und-papier/03_fetch_helper/) ohne Editor und KI | 40' | Helfer Zeile für Zeile erklärt |
 | Muss | `🧑‍🏫` | [08 CSV lesen](../code-alongs/B_extract/08_csv_lesen) (`fgetcsv`, Shark-Attack-Dataset) | 30' | PHP-Array aus CSV |
 | Muss | Projekt | Eigene Quelle technisch als PHP-Array einlesen | 60' | Rohdaten der Gruppe |
 | Soll | `✅` | Rohdaten aus der eigenen Quelle zeigen | 15' | Tagesabnahme |

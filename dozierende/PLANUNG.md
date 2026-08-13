@@ -244,6 +244,7 @@ Material:
 - Übung `uebungen/B_extract/01_daten_finden` (Daten finden & herunterladen)
 - Code-Alongs `code-alongs/B_extract/` (JSON lesen, Live lesen, CSV lesen)
 - vorbereiteter Helfer `fetchJson($url)`
+- `stift-und-papier/03_fetch_helper` (den Helfer auf Papier entschlüsseln)
 - `cheatsheets/15__curl.md` als Hintergrund
 
 Code-Alongs (je: lesen → PHP-Array, ohne Endpunkt):
