@@ -1,4 +1,4 @@
-# Ablauf `03_fetch_helper`
+# Ablauf `01_fetch_helper`
 
 > Die Übung öffnet die Blackbox `fetchJson()`. Ziel ist nicht cURL-Wissen,
 > sondern der Unterschied zwischen einem Text und einem Array – und das

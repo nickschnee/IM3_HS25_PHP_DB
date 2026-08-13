@@ -244,7 +244,7 @@ Material:
 - Übung `uebungen/B_extract/01_daten_finden` (Daten finden & herunterladen)
 - Code-Alongs `code-alongs/B_extract/` (JSON lesen, Live lesen, CSV lesen)
 - vorbereiteter Helfer `fetchJson($url)`
-- `stift-und-papier/03_fetch_helper` (den Helfer auf Papier entschlüsseln)
+- `stift-und-papier/01_fetch_helper` (den Helfer auf Papier entschlüsseln)
 - `cheatsheets/15__curl.md` als Hintergrund
 
 Code-Alongs (je: lesen → PHP-Array, ohne Endpunkt):
@@ -302,7 +302,6 @@ Material:
 - `code-alongs/C_transform/09_hitzesommer_transformieren`
 - `code-alongs/C_transform/10_sharkdaten_transformieren` inklusive
   `KI_PROMPT.md`
-- `stift-und-papier/02_transform_entscheidungen`
 - `uebungen/C_transform/01_eigener_transform`
 - `cheatsheets/230_transform.md`
 

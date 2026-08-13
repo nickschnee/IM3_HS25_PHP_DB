@@ -95,7 +95,6 @@ und mit einer Bedingung bewerten.
 | Muss | `🧑‍🏫` | [02 Funktionen](../code-alongs/A_PHP_Basics/02_funktionen) | 30' | Wiederverwendbare Meldung |
 | Muss | `🧑‍🏫` | [03 Bedingungen](../code-alongs/A_PHP_Basics/03_bedingungen) | 30' | Temperaturbewertung |
 | Soll | `💻` | Übungen [01–03](../uebungen/A_PHP_Basics) | 45' | Eigene Meldungen |
-| Soll | `📝` | [Messwertmaschine](../stift-und-papier/01_messwertmaschine) | 30' | Analoge Übung |
 | Muss | `🔎` | Eine offene Datenfrage pro Gruppe formulieren | 30' | Satz nach Vorlage |
 | Muss | `✅` | Code und Datenfrage zeigen | 15' | **M2: Datenfrage formuliert** |
 
@@ -126,7 +125,7 @@ PHP-Array) bleibt gleich.
 | Muss | `📕` | Extract-Varianten: Datei, Live-API, CSV → immer ein PHP-Array | 20' | [Theorie B](../theorie/B_extract/) |
 | Muss | `🧑‍🏫` | [06 JSON lesen](../code-alongs/B_extract/06_json_lesen) (`file_get_contents` + `json_decode`) | 30' | PHP-Array aus Datei |
 | Muss | `🧑‍🏫` | [07 API lesen](../code-alongs/B_extract/07_api_lesen) (`fetchJson`) | 30' | PHP-Array aus API |
-| Soll | `📝` | [Fetch-Helfer entschlüsseln](../stift-und-papier/03_fetch_helper/) ohne Editor und KI | 40' | Helfer Zeile für Zeile erklärt |
+| Soll | `📝` | [Fetch-Helfer entschlüsseln](../stift-und-papier/01_fetch_helper/) ohne Editor und KI | 40' | Helfer Zeile für Zeile erklärt |
 | Muss | `🧑‍🏫` | [08 CSV lesen](../code-alongs/B_extract/08_csv_lesen) (`fgetcsv`, Shark-Attack-Dataset) | 30' | PHP-Array aus CSV |
 | Muss | Projekt | Eigene Quelle technisch als PHP-Array einlesen | 60' | Rohdaten der Gruppe |
 | Soll | `✅` | Rohdaten aus der eigenen Quelle zeigen | 15' | Tagesabnahme |
@@ -140,7 +139,6 @@ PHP-Array) bleibt gleich.
 | --- | --- | --- | ---: | --- |
 | Muss | Repetition | Rohdaten der drei Quellen vergleichen | 15' | Gemeinsame Felder erkennen |
 | Muss | `📕` | Datenfrage → Untersuchungseinheit → Regeln → Datenvertrag → Audit | 30' | [Theorie C](../theorie/C_transform/) |
-| Muss | `📝` | [Transform-Entscheidungen](../stift-und-papier/02_transform_entscheidungen/) vor Code und KI | 35' | Begründete Regeln und Beispiel-JSON |
 | Muss | `🧑‍🏫` | [09 Hitzesommer](../code-alongs/C_transform/09_hitzesommer_transformieren/): filtern, ableiten, aggregieren, Teiljahre erkennen | 45' | Stadt-Jahr-Datensätze plus Audit |
 | Muss | `🧑‍🏫` | [10 Shark-Daten](../code-alongs/C_transform/10_sharkdaten_transformieren/): komplexe Mappings mit KI-Spezifikation entwickeln und prüfen | 60' | Zwei Rankings plus Abdeckungs-Audit |
 | Muss | Projekt | [Eigene Transform-Regeln](../uebungen/C_transform/01_eigener_transform/) festlegen, mit KI implementieren und im Viererteam abnehmen | 60' | `TRANSFORM.md`, Transform und Audit |

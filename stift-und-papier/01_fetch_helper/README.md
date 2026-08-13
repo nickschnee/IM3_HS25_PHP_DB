@@ -1,4 +1,4 @@
-# 03 – Den fetch-Helfer entschlüsseln
+# 01 – Den fetch-Helfer entschlüsseln
 
 > **Ziel:** Die Gruppe nimmt den vorbereiteten Helfer `fetchJson($url)` Zeile
 > für Zeile auseinander und erklärt in eigenen Worten, wie aus einer URL ein
@@ -38,4 +38,4 @@ später über jeden Zugriff wie `$data['hourly']['time']`.
 | 5 | Zusatz für schnelle Gruppen | – |
 
 Die vollständige Moderation steht in
-[`Ablauf/03_fetch_helper_ablauf.md`](Ablauf/03_fetch_helper_ablauf.md).
+[`Ablauf/01_fetch_helper_ablauf.md`](Ablauf/01_fetch_helper_ablauf.md).
