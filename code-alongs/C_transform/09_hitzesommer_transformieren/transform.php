@@ -30,14 +30,6 @@ $audit = [
 
 $byCityAndYear = [];
 
-// TODO 1: Durchlaufe alle Orte.
-// TODO 2: Prüfe, ob time und temperature_2m_max gleich lang sind.
-// TODO 3: Behalte nur Juni, Juli und August.
-// TODO 4: Gruppiere nach Stadt und Jahr.
-// TODO 5: Zähle Mess- und Hitzetage und merke das Maximum.
-// TODO 6: Entferne unvollständige Sommer.
-// TODO 7: Sortiere nach Jahr und Stadt.
-
 $transformedRows = [];
 $audit['output_rows'] = count($transformedRows);
 
