@@ -52,7 +52,7 @@ Kurstage erstrecken. Die Story- und Recherchespur (`🔎`) läuft parallel mit.
 2. `📕` Theorie B: [Extract](theorie/B_extract) `20'`
 3. `🧑‍🏫` Code-Along: [06 JSON lesen](code-alongs/B_extract/06_json_lesen) _(statische Datei)_ `30'`
 4. `🧑‍🏫` Code-Along: [07 API lesen](code-alongs/B_extract/07_api_lesen) _(Live-API)_ `30'`
-5. `📝` Analoge Übung: [Fetch-Helfer entschlüsseln](stift-und-papier/01_fetch_helper/) `40'`
+5. `📝` Analoge Übung: [01 Fetch Helper](stift-und-papier/01_fetch_helper/) `40'`
 6. `🧑‍🏫` Code-Along: [08 CSV lesen](code-alongs/B_extract/08_csv_lesen) _(CSV-Datei)_ `30'`
 7. `🧑‍🏫` Code-Along: [09 Sensor lesen](code-alongs/B_extract/09_sensor_lesen) _(Sensor-API)_ `30'`
 8. `🔎` Datenquellen recherchieren & prüfen `60'`
@@ -61,10 +61,11 @@ Kurstage erstrecken. Die Story- und Recherchespur (`🔎`) läuft parallel mit.
 ### Block C – Transform
 
 1. `📕` [Theorie C: Eine Frage wird zu Regeln](theorie/C_transform/) `30'`
-2. `🧑‍🏫` Code-Along: [09 Hitzesommer transformieren](code-alongs/C_transform/09_hitzesommer_transformieren/) `45'`
-3. `🧑‍🏫` Code-Along: [10 Shark-Daten mit KI transformieren](code-alongs/C_transform/10_sharkdaten_transformieren/) `60'`
-4. `💻` [Eigene Transform-Regeln und Implementation](uebungen/C_transform/01_eigener_transform/) `60'`
-5. `✅` Datenfrage, Datenvertrag, Audit und ein transformierter Datensatz zeigen
+2. `📝` Analoge Übung: [02 Wetterdaten transformieren](stift-und-papier/02_transform_weather/) `35'`
+3. `🧑‍🏫` Code-Along: [09 Hitzesommer transformieren](code-alongs/C_transform/09_hitzesommer_transformieren/) `45'`
+4. `🧑‍🏫` Code-Along: [10 Shark-Daten mit KI transformieren](code-alongs/C_transform/10_sharkdaten_transformieren/) `60'`
+5. `💻` [Eigene Transform-Regeln und Implementation](uebungen/C_transform/01_eigener_transform/) `60'`
+6. `✅` Datenfrage, Datenvertrag, Audit und ein transformierter Datensatz zeigen
 
 <!--
 

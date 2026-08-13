@@ -8,3 +8,9 @@ wird. Die Gruppen arbeiten ohne Editor und ohne KI-Tool.
 - [Fetch-Helfer entschlüsseln](01_fetch_helper/): Den vorbereiteten
   `fetchJson()`-Helfer Zeile für Zeile lesen und erklären, wie aus einer URL
   ein PHP-Array wird.
+
+## Block C – Transform
+
+- [Wetterdaten transformieren](02_transform_weather/): In einer schmutzigen
+  Wettertabelle die Transformationsbedarfe finden, benennen und als Regeln
+  formulieren.

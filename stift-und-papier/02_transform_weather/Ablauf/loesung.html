@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Lösung – Wetterdaten transformieren</title>
+<style>
+  /* ---------------------------------------------------------------------
+     LÖSUNGSBLATT – Wetterdaten transformieren
+     Zwei Seiten A4 quer. Im Browser öffnen, Cmd+P, Hintergrundgrafiken AN.
+     Nicht vor der Arbeitsphase austeilen.
+     --------------------------------------------------------------------- */
+
+  :root {
+    --petrol: #4b93a4;
+    --petrol-dark: #35707f;
+    --petrol-bg: #eef5f7;
+    --oliv: #8b8a6e;
+    --text: #575757;
+    --muted: #9a9a92;
+    --line: #1a1a1a;
+    --box-bg: #f6f6f3;
+    --box-border: #e4e3da;
+    --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono: "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  @page { size: A4 landscape; margin: 10mm; }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 10mm;
+    background: #fff;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 10pt;
+    line-height: 1.4;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .blatt { width: 257mm; margin: 0 auto; }
+
+  @media print {
+    body { padding: 0; }
+    .blatt { width: auto; }
+    .seite + .seite { break-before: page; }
+  }
+
+  .seite + .seite { margin-top: 14mm; }
+
+  /* --- Kopf ----------------------------------------------------------- */
+
+  header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10mm;
+    border-bottom: 2px solid var(--petrol);
+    padding-bottom: 2.5mm;
+    margin-bottom: 4mm;
+  }
+
+  h1 { margin: 0; color: var(--oliv); font-size: 14pt; font-weight: 700; }
+
+  .meta { color: var(--muted); font-size: 9pt; white-space: nowrap; }
+
+  h2 {
+    margin: 0 0 2.5mm;
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: var(--oliv);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .frage {
+    border-left: 3px solid var(--petrol);
+    background: var(--petrol-bg);
+    padding: 2.5mm 4mm;
+    margin: 0 0 4mm;
+    color: var(--petrol-dark);
+    font-size: 11pt;
+    font-weight: 600;
+  }
+
+  /* --- Tabellen ------------------------------------------------------- */
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+    margin-bottom: 4mm;
+  }
+
+  th, td {
+    border: 1.2px solid var(--line);
+    padding: 2.2mm 3mm;
+    text-align: left;
+    color: #1a1a1a;
+  }
+
+  th { font-weight: 700; }
+
+  .treffer { background: var(--petrol-bg); }
+
+  .nr {
+    display: inline-block;
+    min-width: 4.2mm;
+    margin-left: 1.5mm;
+    padding: 0 0.8mm;
+    border-radius: 2mm;
+    background: var(--petrol);
+    color: #fff;
+    font-size: 7.5pt;
+    font-weight: 700;
+    line-height: 1.5;
+    text-align: center;
+    vertical-align: 0.6mm;
+  }
+
+  code, .mono { font-family: var(--mono); font-size: 9pt; }
+
+  .null { color: var(--muted); font-style: italic; }
+
+  /* --- Fundliste ------------------------------------------------------ */
+
+  .funde {
+    column-count: 2;
+    column-gap: 8mm;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .funde li {
+    break-inside: avoid;
+    display: flex;
+    gap: 1.8mm;
+    margin-bottom: 2mm;
+    font-size: 9.5pt;
+  }
+
+  .funde .nr { margin-left: 0; flex: none; align-self: flex-start; }
+
+  .funde b { color: var(--petrol-dark); }
+
+  /* --- Boxen ---------------------------------------------------------- */
+
+  .spalten { display: flex; gap: 6mm; align-items: flex-start; }
+
+  .box {
+    flex: 1;
+    background: var(--box-bg);
+    border: 1px solid var(--box-border);
+    padding: 3mm 4mm;
+    font-size: 9.5pt;
+  }
+
+  .box p { margin: 0 0 1.5mm; }
+  .box p:last-child { margin-bottom: 0; }
+  .box ul { margin: 0; padding-left: 4.5mm; }
+  .box li { margin-bottom: 1mm; }
+
+  .regel {
+    font-family: var(--mono);
+    font-size: 9pt;
+    white-space: pre;
+    margin: 0;
+    color: #4a4a4a;
+  }
+
+  .warnung {
+    border-left: 3px solid var(--oliv);
+    background: #fff;
+    padding-left: 4mm;
+    font-size: 9.5pt;
+  }
+
+  .audit td, .audit th { padding: 1.6mm 3mm; }
+  .audit .zahl { text-align: right; font-family: var(--mono); }
+
+  @media screen {
+    body { background: #eceae4; }
+    .blatt { background: #fff; padding: 12mm; box-shadow: 0 2px 12px rgba(0,0,0,0.12); }
+    .seite + .seite { border-top: 1px dashed #ccc; padding-top: 10mm; }
+  }
+</style>
+</head>
+<body>
+<div class="blatt">
+
+<!-- ================================ SEITE 1 ============================ -->
+<section class="seite">
+
+  <header>
+    <h1>Wetterdaten transformieren – Lösung</h1>
+    <div class="meta">1/2 · Was steckt in der Tabelle?</div>
+  </header>
+
+  <div class="frage">
+    Wir wollen eine Data-Story über das Wetter in 2023 erstellen.
+    Welche Transformationen müssen wir vornehmen?
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Cloud Cover</th>
+        <th>Rain (mm) <span class="nr">5</span></th>
+        <th>Temperature (°C)</th>
+        <th>Weather Condition <span class="nr">10</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="treffer">2023/02/10 <span class="nr">1</span></td>
+        <td>10</td><td>0</td><td>22</td><td></td>
+      </tr>
+      <tr>
+        <td class="treffer">2023-02-11 <span class="nr">3</span></td>
+        <td>75</td><td>0</td><td>16</td><td></td>
+      </tr>
+      <tr>
+        <td class="treffer">2023-02-11 <span class="nr">3</span></td>
+        <td>75</td><td>0</td><td>16</td><td></td>
+      </tr>
+      <tr>
+        <td class="treffer">13/04/2023 <span class="nr">2</span></td>
+        <td>100</td><td>35</td>
+        <td class="treffer">"11" <span class="nr">6</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>2023-04-14</td>
+        <td class="treffer">-50 <span class="nr">8</span></td>
+        <td>0</td>
+        <td class="treffer">18C <span class="nr">7</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="treffer">2024-04-15 <span class="nr">4</span></td>
+        <td>0</td>
+        <td class="treffer">N/A <span class="nr">9</span></td>
+        <td>25</td><td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Die zehn Funde</h2>
+  <ol class="funde">
+    <li><span class="nr">1</span><span><b>normalisieren</b> –
+      <code>2023/02/10</code> hat ein anderes Trennzeichen. Alle Daten nach
+      <code>JJJJ-MM-TT</code>.</span></li>
+    <li><span class="nr">2</span><span><b>normalisieren</b> –
+      <code>13/04/2023</code> ist Tag-zuerst. Ohne Regel wird daraus
+      versehentlich der 4. Dezember.</span></li>
+    <li><span class="nr">3</span><span><b>deduplizieren</b> – dieselbe
+      Beobachtung steht zweimal drin. Pro Datum nur eine Zeile behalten.</span></li>
+    <li><span class="nr">4</span><span><b>filtern</b> – die Zeile gehört nicht
+      ins Jahr 2023 und fällt weg.</span></li>
+    <li><span class="nr">5</span><span><b>umbenennen</b> – im Datenvertrag
+      heisst das Feld <code>Precipitation (mm)</code>, weil auch Schnee
+      zählt.</span></li>
+    <li><span class="nr">6</span><span><b>bereinigen</b> – <code>"11"</code> ist
+      Text. In PHP ist <code>"11"</code> nicht dasselbe wie
+      <code>11</code>.</span></li>
+    <li><span class="nr">7</span><span><b>bereinigen</b> – bei <code>18C</code>
+      klebt die Einheit am Wert. Einheit gehört in den Spaltennamen.</span></li>
+    <li><span class="nr">8</span><span><b>bereinigen</b> – <code>-50</code> ist
+      unmöglich, Bewölkung liegt zwischen 0 und 100. Wert wird
+      <code>null</code>.</span></li>
+    <li><span class="nr">9</span><span><b>bereinigen</b> – <code>N/A</code>
+      heisst «wir wissen es nicht», nicht «0 mm». Fehlend ist
+      <code>null</code>.</span></li>
+    <li><span class="nr">10</span><span><b>aggregieren</b> – die Spalte ist leer
+      und wird aus Bewölkung und Niederschlag abgeleitet.</span></li>
+  </ol>
+
+</section>
+
+<!-- ================================ SEITE 2 ============================ -->
+<section class="seite">
+
+  <header>
+    <h1>Wetterdaten transformieren – Lösung</h1>
+    <div class="meta">2/2 · Ergebnis, Regel und Audit</div>
+  </header>
+
+  <div class="spalten" style="margin-bottom: 4mm;">
+    <div class="box" style="flex: 1.1;">
+      <h2>Regel für «Weather Condition»</h2>
+      <p class="regel">Precipitation &gt; 0    -&gt; "regnerisch"
+Cloud Cover  &gt;= 60  -&gt; "bewölkt"
+sonst                -&gt; "sonnig"
+Cloud Cover  = null  -&gt; null</p>
+    </div>
+    <div class="box warnung" style="flex: 1.4;">
+      <h2>Diese Regel ist eine Behauptung</h2>
+      <p>Wer die Schwelle bei 80 statt 60 setzt, bekommt weniger bewölkte Tage
+        und erzählt eine andere Story.</p>
+      <p>Die Regel ist nicht falsch, aber sie muss begründet und in
+        <code>TRANSFORM.md</code> aufgeschrieben sein.</p>
+    </div>
+  </div>
+
+  <h2>Ergebnis nach dem Transform</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>date <span class="mono">(DATE)</span></th>
+        <th>cloud_cover <span class="mono">(INT 0–100)</span></th>
+        <th>precipitation_mm <span class="mono">(FLOAT)</span></th>
+        <th>temperature_c <span class="mono">(FLOAT)</span></th>
+        <th>weather_condition <span class="mono">(TEXT)</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>2023-02-10</td><td>10</td><td>0</td><td>22</td><td>sonnig</td></tr>
+      <tr><td>2023-02-11</td><td>75</td><td>0</td><td>16</td><td>bewölkt</td></tr>
+      <tr><td>2023-04-13</td><td>100</td><td>35</td><td>11</td><td>regnerisch</td></tr>
+      <tr><td>2023-04-14</td><td class="null">null</td><td>0</td><td>18</td><td class="null">null</td></tr>
+    </tbody>
+  </table>
+
+  <div class="spalten">
+
+    <div class="box" style="flex: 1;">
+      <h2>Audit</h2>
+      <table class="audit" style="margin: 0; font-size: 9.5pt;">
+        <tr><td>Zeilen roh</td><td class="zahl">6</td></tr>
+        <tr><td>nicht 2023, gefiltert</td><td class="zahl">1</td></tr>
+        <tr><td>Duplikate entfernt</td><td class="zahl">1</td></tr>
+        <tr><td><b>Zeilen im Resultat</b></td><td class="zahl"><b>4</b></td></tr>
+        <tr><td>Datumsformate vereinheitlicht</td><td class="zahl">2</td></tr>
+        <tr><td>Datentypen korrigiert</td><td class="zahl">2</td></tr>
+        <tr><td>Werte auf <code>null</code> gesetzt</td><td class="zahl">1</td></tr>
+      </table>
+    </div>
+
+    <div class="box" style="flex: 1.6;">
+      <h2>Drei Punkte für die Besprechung</h2>
+      <ul>
+        <li><b>Die Reihenfolge zählt.</b> Das <code>N/A</code> steht ausgerechnet
+          in der Zeile aus 2024. Wer zuerst filtert, muss es gar nie behandeln –
+          wer zuerst rechnet, hat einen Wert zu viel im Durchschnitt. Im echten
+          Datensatz stehen fehlende Werte auch in 2023-Zeilen, die Regel braucht
+          es also trotzdem.</li>
+        <li><b>Fehlend ist nicht null Millimeter.</b> Wer <code>N/A</code> zu
+          <code>0</code> macht, verwandelt «unbekannt» in «kein Regen». Der
+          Fehler ist unsichtbar, weil das Resultat plausibel aussieht.</li>
+        <li><b>Aggregieren kostet Information.</b> Nach
+          <code>weather_condition</code> lässt sich nicht mehr fragen, wie stark
+          es geregnet hat. Deshalb die Rohspalten behalten.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <p style="margin-top: 4mm; font-size: 9.5pt;">
+    <b>Alternative bei Fund 8:</b> Statt <code>cloud_cover = null</code> kann die
+    ganze Zeile ausgeschlossen werden. Dann bleiben drei Zeilen, und ein
+    gültiger Temperaturwert geht mit verloren. Beide Wege sind vertretbar – nur
+    muss die Entscheidung im Audit stehen.
+  </p>
+
+</section>
+
+</div>
+</body>
+</html>
