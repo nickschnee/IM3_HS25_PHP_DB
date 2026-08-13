@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IM3 Block B – Extract</title>
+
+  <!-- Reveal.js core -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- FHGR Foliendesign (gemeinsam fuer alle Foliensaetze) -->
+  <link rel="stylesheet" href="../_foliendesign/fhgr-slides.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ============ 1 Titel ============ -->
+      <section id="title" class="title-slide" data-state="is-title">
+        <h1>Extract</h1>
+        <div class="rule"></div>
+        <p>Interaktive Medien 3</p>
+        <p class="sub">nick.schneeberger@fhgr.ch</p>
+      </section>
+
+      <!-- ============ 2 Inhalt ============ -->
+      <section id="inhalt">
+        <h2>Inhalt</h2>
+        <div class="content">
+          <ul class="text-xl">
+            <li>Was heisst Extract?</li>
+            <li>Datei oder Live-API?</li>
+            <li>JSON, API, CSV und Sensorbox lesen</li>
+            <li>Die eigene Quelle prüfen</li>
+          </ul>
+          <p class="text-sm text-muted mt-2">Danach folgen vier Code-Alongs – eines pro Quelle.</p>
+          <p class="text-sm text-muted">Am Ende des Tages solltet ihr eure eigene Datenquelle ausgewählt
+            haben.</p>
+        </div>
+        <aside class="notes">Richtwert 20 Minuten. Die Übung „01 Daten finden" ist an dieser Stelle
+          schon gemacht: Die Studierenden haben ihre JSON-Dateien bereits heruntergeladen. Diese Folien
+          ordnen ein, was sie dort von Hand gemacht haben, und zeigen, wie PHP dasselbe tut.</aside>
+      </section>
+
+      <!-- ============ 3 ============ -->
+      <section id="roter-faden">
+        <h2>Wo wir stehen</h2>
+        <div class="content">
+          <div class="flow">
+            <div class="flow-step is-active"><span class="flow-title">Extract</span><span class="flow-sub">Daten hereinholen</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Transform</span><span class="flow-sub">säubern · umbenennen</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Load</span><span class="flow-sub">in die Datenbank</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Unload</span><span class="flow-sub">JSON-Endpunkt</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Chart.js</span><span class="flow-sub">Story</span></div>
+          </div>
+        </div>
+        <aside class="notes">Diese Kette taucht in jedem Foliensatz wieder auf. Sie ist der rote Faden
+          des Kurses – hier wird der erste Kasten aktiv.</aside>
+      </section>
+
+      <!-- ============ 4 ============ -->
+      <section id="was-ist-extract">
+        <h2>Was heisst Extract?</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <p class="list-intro"><strong>Extract heisst lesen</strong> – die Daten kommen von aussen
+                in dein PHP-Programm.</p>
+              <ul class="list-tight">
+                <li>Ziel: Quelle → <strong>PHP-Array</strong></li>
+                <li>Nicht dazu gehört: umbenennen und filtern</li>
+                <li>Nicht dazu gehört: speichern</li>
+                <li>Nicht dazu gehört: einen eigenen Endpunkt bauen</li>
+              </ul>
+            </div>
+            <div>
+              <div class="flow" style="flex-direction: column; align-items: stretch;">
+                <div class="flow-step"><span class="flow-title">Quelle</span><span class="flow-sub">Datei · API · CSV · Sensor</span></div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step is-active"><span class="flow-title">PHP liest</span></div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step"><span class="flow-title">PHP-Array</span><span class="flow-sub">damit arbeiten wir weiter</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="callout callout-green" style="margin-top: auto;">
+            <p>Am Ende jedes Code-Alongs steht dieselbe Kontrollfrage: Habe ich ein PHP-Array?</p>
+          </div>
+        </div>
+        <aside class="notes">Wichtig für die Erwartungshaltung: Heute wird nichts schön. Die Daten sehen
+          nach dem Extract genauso unordentlich aus wie vorher – nur sind sie jetzt in PHP.</aside>
+      </section>
+
+      <!-- ============ 5 ============ -->
+      <section id="vier-quellen">
+        <h2>Vier Quellen, ein Ergebnis</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px 40px; align-items: start;">
+            <div class="box">
+              <h3>JSON-Datei</h3>
+              <p class="text-sm mb-0">Einmal heruntergeladen und liegt bei euch im Ordner.</p>
+            </div>
+            <div class="box">
+              <h3>Live-API</h3>
+              <p class="text-sm mb-0">Wird bei jedem Aufruf frisch aus dem Internet geholt.</p>
+            </div>
+            <div class="box">
+              <h3>CSV-Datei</h3>
+              <p class="text-sm mb-0">Eine Tabelle als Text, meist aus einem offenen Datenportal.</p>
+            </div>
+            <div class="box">
+              <h3>Sensorbox</h3>
+              <p class="text-sm mb-0">Eine kleine eigene API, die im Kursraum steht und misst.</p>
+            </div>
+          </div>
+          <div class="callout callout-gray mt-1">
+            <p>Ein Google Sheet lässt sich als CSV veröffentlichen und wird damit zur letzten Variante.</p>
+          </div>
+        </div>
+        <aside class="notes">Kurz durchgehen, nicht vertiefen – jede Quelle bekommt gleich ihr eigenes
+          Code-Along. Frage in die Klasse: Welche dieser vier passt zu eurer Datenfrage?</aside>
+      </section>
+
+      <!-- ============ 6 Trenner ============ -->
+      <section id="divider-woher" class="section-divider" data-state="is-section-divider">
+        <h1>Woher kommen<br>die Daten?</h1>
+        <p>Herunterladen oder live abrufen</p>
+      </section>
+
+      <!-- ============ 7 Split ============ -->
+      <section id="live-oder-datei" class="split-slide">
+        <div class="split-half split-bad">
+          <h2>Live abrufen und sammeln</h2>
+          <p class="text-sm list-intro">Das Programm holt die Daten bei jedem Aufruf neu.</p>
+          <ul class="list-tight text-sm">
+            <li>Immer aktuell</li>
+            <li>Nötig, wenn ihr über die Zeit sammelt</li>
+            <li>Ohne Internet keine Daten</li>
+            <li>Die Quelle kann sich ändern oder ausfallen</li>
+            <li>Am Anfang habt ihr sehr wenige Daten</li>
+          </ul>
+        </div>
+        <div class="split-half split-good">
+          <h2>Einmal herunterladen</h2>
+          <p class="text-sm list-intro">Der Datensatz liegt als Datei bei euch im Projekt.</p>
+          <ul class="list-tight text-sm">
+            <li>Funktioniert immer und überall</li>
+            <li>Grosse Datenmengen</li>
+            <li>Ihr könnt die Daten jederzeit ansehen</li>
+            <li>Datensatz veraltet mit der Zeit</li>
+          </ul>
+        </div>
+        <aside class="notes">Häufiges Missverständnis: „Live" klingt anspruchsvoller und ist deshalb
+          besser. Stimmt nicht – historische Daten geben meist die stärkere Story. Live ist dann sinnvoll,
+          wenn das Sammeln über Zeit selbst die Aussage ist.</aside>
+      </section>
+
+      <!-- ============ 8 ============ -->
+      <section id="hitzesommer">
+        <h2>Unser Beispiel: Hitzesommer</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1.15fr; gap: 40px; align-items: start;">
+            <ul class="list-tight">
+              <li>Drei Städte: <strong>Bern</strong>, <strong>Zürich</strong>, <strong>Chur</strong></li>
+              <li>Tägliche Höchsttemperatur seit <strong>1940</strong></li>
+              <li>Über <strong>31'000</strong> Tage pro Stadt</li>
+              <li>Quelle ist die Archiv-API von Open-Meteo</li>
+              <li>Die Antwort habt ihr als Datei gespeichert</li>
+            </ul>
+            <div>
+              <span class="code-label">data/bern.json</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-json">
+{
+  "latitude": 46.95,
+  "daily": {
+    "time":               ["1940-01-01", "1940-01-02"],
+    "temperature_2m_max": [-0.7, 2.1]
+  }
+}
+              </code></pre>
+            </div>
+          </div>
+          <p class="text-sm text-muted mt-1">Dieselbe API liefert auf einem anderen Endpunkt auch die
+            aktuellen Werte von heute.</p>
+        </div>
+        <div class="footnote">Quelle: Open-Meteo (open-meteo.com), freie Nutzung ohne API-Key.</div>
+        <aside class="notes">Rückbezug auf die Übung: Genau diese Datei haben sie eben von Hand
+          heruntergeladen. Der Browser hat dabei nichts anderes gemacht als gleich unser PHP-Skript.</aside>
+      </section>
+
+      <!-- ============ 9 Trenner ============ -->
+      <section id="divider-lesen" class="section-divider" data-state="is-section-divider">
+        <h1>Von der Quelle<br>ins PHP-Array</h1>
+        <p>Vier Techniken, dasselbe Ziel</p>
+      </section>
+
+      <!-- ============ 10 ============ -->
+      <section id="json-lesen">
+        <h2>Eine JSON-Datei lesen</h2>
+        <div class="content">
+          <pre><code data-trim data-noescape class="language-php">
+&lt;?php
+header('Content-Type: text/plain; charset=utf-8');
+
+$json = file_get_contents('data/bern.json');   // Datei als Text
+$data = json_decode($json, true);              // Text als PHP-Array
+
+echo count($data['daily']['time']);
+          </code></pre>
+          <ul class="list-tight">
+            <li><code>file_get_contents</code> liest die ganze Datei als <strong>String</strong></li>
+            <li><code>json_decode</code> macht daraus ein <strong>PHP-Array</strong></li>
+            <li>Der Pfad gilt relativ zur PHP-Datei, die gerade läuft</li>
+          </ul>
+          <div class="callout callout-orange">
+            <p>Das <code>true</code> in <code>json_decode</code> ist kein Detail.</p>
+            <p>Ohne dieses Argument bekommst du Objekte (<code>$data-&gt;daily</code>) statt Arrays
+              (<code>$data['daily']</code>).</p>
+          </div>
+        </div>
+        <aside class="notes">Der Header ist derselbe wie in den PHP-Basics: PHP ist hier Datenleser,
+          nicht Webseiten-Bauer. Ohne ihn frisst der Browser die Zeilenumbrüche.</aside>
+      </section>
+
+      <!-- ============ 11 ============ -->
+      <section id="parallele-listen">
+        <h2>Zwei Listen, die zusammengehören</h2>
+        <div class="content">
+          <p class="list-intro">Open-Meteo liefert keine Liste von Datensätzen, sondern <strong>zwei gleich
+            lange Listen</strong>.</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: stretch;">
+            <div style="display: flex; flex-direction: column;">
+              <span class="code-label">so kommen die Daten an</span>
+              <pre class="code-sm" style="flex: 1;"><code data-trim data-noescape class="language-json" style="height: 100%; box-sizing: border-box;">
+"time":               ["1940-01-01", "1940-01-02"]
+"temperature_2m_max": [-0.7,         2.1]
+              </code></pre>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+              <span class="code-label">so lesen wir sie</span>
+              <pre class="code-sm" style="flex: 1;"><code data-trim data-noescape class="language-php" style="height: 100%; box-sizing: border-box;">
+$dates = $data['daily']['time'];
+$temps = $data['daily']['temperature_2m_max'];
+
+for ($i = 0; $i &lt; 5; $i++) {
+    echo $dates[$i] . ': ' . $temps[$i] . " °C\n";
+}
+              </code></pre>
+            </div>
+          </div>
+          <ul class="list-tight text-sm mt-1">
+            <li><code>time[0]</code> gehört zu <code>temperature_2m_max[0]</code></li>
+            <li>Weil beide Listen denselben Index brauchen, passt hier <code>for</code> besser als <code>foreach</code></li>
+            <li>In unsere eigene Struktur bringen wir das erst im nächsten Schritt</li>
+          </ul>
+        </div>
+        <aside class="notes">Das ist die inhaltlich wichtigste Folie zu JSON. An der Tafel die beiden
+          Listen untereinander schreiben und den gemeinsamen Index einzeichnen.</aside>
+      </section>
+
+      <!-- ============ 12 ============ -->
+      <section id="api-lesen">
+        <h2>Eine Live-API lesen</h2>
+        <div class="content">
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+// Vorbereiteter Helfer: holt eine URL und gibt die Antwort als PHP-Array zurück.
+function fetchJson(string $url): array {
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    $response = curl_exec($ch);
+    return json_decode($response, true);
+}
+
+$url  = 'https://api.open-meteo.com/v1/forecast?latitude=46.948&amp;longitude=7.447'
+      . '&amp;hourly=temperature_2m&amp;forecast_days=1&amp;timezone=Europe/Zurich';
+$data = fetchJson($url);
+          </code></pre>
+          <ul class="list-tight text-sm">
+            <li>Den cURL-Code musst du nicht auswendig können – nur benutzen</li>
+            <li>Das Ergebnis ist wieder ein PHP-Array mit zwei parallelen Listen</li>
+          </ul>
+          <div class="callout callout-blue">
+            <p>cURL ist ein <strong>ausgehender</strong> Aufruf von unserem Server an eine fremde API.</p>
+          </div>
+        </div>
+        <aside class="notes">Die Richtung des Aufrufs an der Tafel zeigen: ein Pfeil vom Browser auf unseren
+          Server, ein zweiter von unserem Server weg zur fremden API. Später in Block E kommt mit $_GET die
+          Gegenrichtung dazu – erfahrungsgemäss wird das jedes Jahr verwechselt.</aside>
+      </section>
+
+      <!-- ============ 13 ============ -->
+      <section id="csv-lesen">
+        <h2>Eine CSV-Datei lesen</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1.35fr 1fr; gap: 36px; align-items: start;">
+            <div>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$handle = fopen('data/attacks.csv', 'r');
+
+// Kopfzeile = Spaltennamen
+$header = array_map('trim', fgetcsv($handle, null, ',', '"', ''));
+
+$attacks = [];
+while (($row = fgetcsv($handle, null, ',', '"', '')) !== false) {
+    if ($row[0] === '') {
+        continue;                 // leere Zeile überspringen
+    }
+    $attacks[] = array_combine($header, $row);
+}
+fclose($handle);
+              </code></pre>
+            </div>
+            <ul class="list-tight text-sm">
+              <li>CSV ist eine <strong>Tabelle als Text</strong></li>
+              <li>Die erste Zeile enthält die Spaltennamen</li>
+              <li><code>fgetcsv</code> liest genau <strong>eine</strong> Zeile</li>
+              <li><code>array_combine</code> verbindet Spaltennamen und Werte</li>
+              <li>So entsteht ein Datensatz pro Zeile</li>
+            </ul>
+          </div>
+          <p class="text-sm text-muted mt-1">Die Argumente <code>',' '"' ''</code> sind die Standardwerte
+            und stehen nur da, damit neuere PHP-Versionen nicht warnen.</p>
+        </div>
+        <aside class="notes">Kurz zeigen, was array_combine macht: oben die Namen, unten die Werte,
+          Reissverschluss. Danach hat man dieselbe Struktur wie bei JSON.</aside>
+      </section>
+
+      <!-- ============ 14 ============ -->
+      <section id="echte-daten">
+        <h2>Echte Daten sind unordentlich</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <h3>Was im Shark-Datensatz steckt</h3>
+              <ul class="list-tight text-sm">
+                <li>Rund <strong>25'000</strong> Zeilen</li>
+                <li>Davon etwa <strong>8'700</strong> echte Vorfälle</li>
+                <li>Der Rest sind leere Zeilen</li>
+                <li>Spaltennamen mit Leerzeichen wie <code>"Species "</code></li>
+                <li>Teils doppelte Spalten</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Was wir dagegen tun</h3>
+              <ul class="list-tight text-sm">
+                <li><code>trim()</code> räumt die Spaltennamen auf</li>
+                <li><code>continue</code> überspringt leere Zeilen</li>
+                <li>Sonst nichts</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-orange mt-1">
+            <p>Hier räumen wir nur so weit auf, dass das <strong>Einlesen</strong> funktioniert.</p>
+            <p>Datumsformate, fehlende Werte und Kategorien kommen im nächsten Schritt dran: Transform.</p>
+          </div>
+        </div>
+        <div class="footnote">Global Shark Attack File (GSAF), via Kaggle.</div>
+        <aside class="notes">Guter Moment für Erwartungsmanagement im Projekt: Wer eine echte Quelle
+          nimmt, verbringt mehr Zeit mit Aufräumen als mit Programmieren.</aside>
+      </section>
+
+      <!-- ============ 15 ============ -->
+      <section id="sensor">
+        <h2>Die Sensorbox im Raum</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: start;">
+            <ul class="list-tight">
+              <li>Die Box misst laufend, zum Beispiel Temperatur, Luftfeuchtigkeit und CO₂</li>
+              <li>Sie stellt ihre Werte über HTTP als JSON bereit</li>
+              <li>Technisch ist sie damit einfach eine kleine <strong>eigene API</strong></li>
+              <li>Wir holen die Daten mit demselben <code>fetchJson()</code>-Helfer</li>
+            </ul>
+            <div class="callout callout-green">
+              <p>Die anderen drei Quellen liefern <strong>fremde</strong> Daten.</p>
+              <p>Hier messt ihr <strong>selber</strong> – der Unterschied ist inhaltlich gross und technisch
+                klein.</p>
+            </div>
+          </div>
+          <ul class="list-tight text-sm mt-1">
+            <li>Wer selber misst, besitzt die Quelle und kann die Datenfrage frei stellen</li>
+            <li>Wer selber misst, muss früh anfangen zu sammeln</li>
+            <li>Hardware und Programmierung der Box sind nicht Inhalt dieses Kurses</li>
+          </ul>
+        </div>
+        <aside class="notes">Box im Raum herzeigen und die Endpunkt-URL einmal im Browser öffnen. Ausblick:
+          Solche Boxen können in einem späteren Kurs selbst gebaut werden.</aside>
+      </section>
+
+      <!-- ============ 16 ============ -->
+      <section id="zusammenfassung-quellen">
+        <h2>Der Extract ändert sich, das Ergebnis nicht</h2>
+        <div class="content">
+          <table>
+            <tr>
+              <th style="width: 26%;">Quelle</th>
+              <th style="width: 46%;">Technik in PHP</th>
+              <th>Ergebnis</th>
+            </tr>
+            <tr><td>JSON-Datei</td><td><code>file_get_contents</code> + <code>json_decode</code></td><td>PHP-Array</td></tr>
+            <tr><td>Live-API</td><td><code>fetchJson</code> (cURL)</td><td>PHP-Array</td></tr>
+            <tr><td>CSV-Datei</td><td><code>fopen</code> + <code>fgetcsv</code></td><td>PHP-Array</td></tr>
+            <tr><td>Sensor-API</td><td><code>fetchJson</code> (cURL)</td><td>PHP-Array</td></tr>
+          </table>
+          <div class="callout callout-blue mt-1">
+            <p>Ab dem PHP-Array ist der weitere Weg für alle Projekte derselbe.</p>
+          </div>
+        </div>
+        <aside class="notes">Kernbotschaft des ganzen Inputs. Wer das verstanden hat, kann jede neue
+          Quelle selbst einordnen.</aside>
+      </section>
+
+      <!-- ============ 17 Trenner ============ -->
+      <section id="divider-quelle" class="section-divider" data-state="is-section-divider">
+        <h1>Die eigene<br>Quelle prüfen</h1>
+        <p>Bevor ihr euch festlegt</p>
+      </section>
+
+      <!-- ============ 18 ============ -->
+      <section id="kriterien">
+        <h2>Woran ihr eine brauchbare Quelle erkennt</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <ul class="list-tight text-sm">
+              <li><strong>Zugang:</strong> ohne Anmeldung und ohne API-Key erreichbar</li>
+              <li><strong>Format:</strong> JSON oder CSV, nicht PDF und nicht Bild</li>
+              <li><strong>Menge:</strong> genug Datensätze für eine Aussage</li>
+              <li><strong>Zeitraum:</strong> passt zu eurer Datenfrage</li>
+            </ul>
+            <ul class="list-tight text-sm">
+              <li><strong>Felder:</strong> dokumentiert oder selbsterklärend benannt</li>
+              <li><strong>Herkunft:</strong> Wer hat gemessen, wann und wie?</li>
+              <li><strong>Lizenz:</strong> Weiterverwendung ist erlaubt</li>
+              <li><strong>Grenzen:</strong> Was fehlt in diesen Daten?</li>
+            </ul>
+          </div>
+          <div class="callout callout-orange mt-1">
+            <p>Prüft die Quelle, indem ihr sie einmal im Browser öffnet und wirklich hineinschaut.</p>
+            <p>Eine schöne Projektseite sagt nichts darüber aus, ob die Daten brauchbar sind.</p>
+          </div>
+        </div>
+        <aside class="notes">Diese Liste ist gleichzeitig die Abnahmegrundlage für den Meilenstein am
+          Ende des Tages. Gruppen sollen zu jedem Punkt eine Antwort geben können.</aside>
+      </section>
+
+      <!-- ============ 19 ============ -->
+      <section id="fehler">
+        <h2>Häufige Fehler</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <ul class="list-tight text-sm">
+              <li><strong>Datei nicht gefunden:</strong> der Pfad gilt relativ zur laufenden PHP-Datei</li>
+              <li><strong>Objekte statt Arrays:</strong> das <code>true</code> bei <code>json_decode</code> vergessen</li>
+              <li><strong>Alles auf einer Zeile:</strong> der <code>Content-Type</code>-Header fehlt</li>
+              <li><strong>Leere Antwort von der API:</strong> zuerst die URL im Browser aufrufen</li>
+            </ul>
+            <ul class="list-tight text-sm">
+              <li><strong>Undefined key:</strong> Schlüssel falsch geschrieben oder eine Ebene übersprungen</li>
+              <li><strong>Verschobene Werte:</strong> die Kopfzeile der CSV mitgezählt</li>
+              <li><strong>Spalte existiert nicht:</strong> Leerzeichen im Spaltennamen</li>
+              <li><strong>Nichts passiert:</strong> die Datei per Doppelklick statt über <code>http://</code> geöffnet</li>
+            </ul>
+          </div>
+          <div class="callout callout-blue mt-1">
+            <p>Erster Griff bei jedem Problem: <code>var_dump</code> oder <code>print_r</code> auf die
+              Variable, statt zu raten.</p>
+          </div>
+        </div>
+        <aside class="notes">Bei „Undefined key" immer zuerst array_keys() auf die Ebene darüber – das
+          löst gefühlt die Hälfte aller Fälle.</aside>
+      </section>
+
+      <!-- ============ 20 ============ -->
+      <section id="was-kommt">
+        <h2>Was jetzt kommt</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <h3>Code-Alongs</h3>
+              <ul class="list-tight text-sm">
+                <li><code>06_json_lesen</code> – statische Datei</li>
+                <li><code>07_api_lesen</code> – Live-API</li>
+                <li><code>08_csv_lesen</code> – CSV-Datei</li>
+                <li><code>09_sensor_lesen</code> – Sensorbox</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Danach im Projekt</h3>
+              <ul class="list-tight text-sm">
+                <li>Datenquellen recherchieren und prüfen</li>
+                <li>Eigene Quelle als PHP-Array einlesen</li>
+                <li>Fallback festlegen</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-green" style="margin-top: auto;">
+            <p><strong>Meilenstein M3:</strong> Am Ende des Tages steht euer Datensatz.</p>
+          </div>
+        </div>
+        <aside class="notes">Jede Gruppe zeigt zum Abschluss ihre Rohdaten als PHP-Array – das reicht,
+          es muss noch nichts sauber sein.</aside>
+      </section>
+
+      <!-- ============ 21 Schluss ============ -->
+      <section id="schluss">
+        <h2>Zum Mitnehmen</h2>
+        <div class="content" style="justify-content: center;">
+          <p class="big-statement">Egal woher die Daten kommen –<br>am Ende steht ein PHP-Array.</p>
+          <p class="text-xl mt-2">Extract holt die Daten nur herein: lesen, prüfen, weitergeben.</p>
+          <p class="mt-2"><span class="next-step">Nächster Schritt: Code-Along 06 – JSON lesen</span></p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      width: 1280,
+      height: 720,
+      margin: 0,
+      controls: true,
+      progress: true,
+      slideNumber: 'c',
+      hash: true,
+      transition: 'slide',
+      center: false,
+      plugins: [ RevealHighlight, RevealNotes ]
+    });
+  </script>
+</body>
+</html>

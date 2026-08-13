@@ -50,11 +50,11 @@ Kurstage erstrecken. Die Story- und Recherchespur (`🔎`) läuft parallel mit.
 ### Block B – Extract
 
 1. `💻` Digitale Übung: [01 Daten finden & herunterladen](uebungen/B_extract/01_daten_finden) `45'`
-2. `📕` Theorie B `20'`
+2. `📕` Theorie B: [Extract](theorie/B_extract) `20'`
 3. `🧑‍🏫` Code-Along: [06 JSON lesen](code-alongs/B_extract/06_json_lesen) _(statische Datei)_ `30'`
 4. `🧑‍🏫` Code-Along: [07 API lesen](code-alongs/B_extract/07_api_lesen) _(Live-API)_ `30'`
 5. `🧑‍🏫` Code-Along: [08 CSV lesen](code-alongs/B_extract/08_csv_lesen) _(CSV-Datei)_ `30'`
-6. `🧑‍🏫` Code-Along: [08 Sensor lesen](code-alongs/B_extract/09_sensor_lesen) _(Live-API)_ `30'`
+6. `🧑‍🏫` Code-Along: [09 Sensor lesen](code-alongs/B_extract/09_sensor_lesen) _(Sensor-API)_ `30'`
 7. `🔎` Datenquellen recherchieren & prüfen `60'`
 8. `✅` **M3: Datensatz gefunden**
 
