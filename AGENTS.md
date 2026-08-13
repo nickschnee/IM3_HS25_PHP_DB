@@ -165,12 +165,64 @@ Bereiche klar trennen:
 - `dozierende/`: interne Planung, Ablauf und Materialinventar.
 - `dozierende/ABLAUF.md`: Tagesplan fuer Dozierende und LBAs.
 - `cheatsheets/`: kurze Nachschlagewerke.
-- `theorie/`: Inputs nach Themenblock.
+- `theorie/`: Inputs nach Themenblock, je ein Ordner pro Foliensatz.
+- `theorie/_foliendesign/`: gemeinsames Foliendesign, Vorlage und
+  Schreibregeln fuer alle Foliensaetze.
 - `code-alongs/`: gemeinsam entwickelte Beispiele.
 - `uebungen/`: eigenstaendige Aufgaben mit Loesungen.
 - `stift-und-papier/`: Planung von ETL, Datenmodell, Story und Schnittstelle.
 - `projekt/`: Briefing, Rollen, Meilensteine, Bewertung und Templates.
 - `etl-boilerplate/`: Starterkit fuer die Projektteams.
+
+## Foliensaetze erstellen und aendern
+
+Die Theorie-Inputs sind reveal.js-Praesentationen als einzelne HTML-Datei
+ohne Build-Schritt. Design, Vorlage und Schreibregeln liegen zentral in
+`theorie/_foliendesign/`.
+
+**Vor jeder Arbeit an Folien diese drei Dateien lesen:**
+
+- `theorie/_foliendesign/README.md`: Farben, Bausteine (Callouts, Ablauf,
+  Split-Folien, Code-Bloecke), Anleitung fuer einen neuen Foliensatz.
+- `theorie/_foliendesign/SCHREIBREGELN.md`: was auf eine Folie kommt und wie
+  es formuliert wird. Wichtigste Regeln: ein Absatz enthaelt genau einen
+  Satz, ein Aufzaehlungspunkt genau einen Gedanken, und die Blocknamen des
+  Kurses (`Block A`, `Block C`) erscheinen nicht auf den Folien, sondern nur
+  in `ablauf_studierende.md` und in den Sprechernotizen.
+- `theorie/A_PHP_Basics/index.html`: fertiges Referenzbeispiel.
+
+Regeln beim Arbeiten:
+
+- Das gemeinsame Stylesheet `fhgr-slides.css` wird **verlinkt, nicht
+  kopiert**. Deck-spezifische Sonderregeln kommen in ein eigenes
+  `styles.css` im Ordner des Foliensatzes.
+- Ein neuer Foliensatz startet als Kopie von
+  `theorie/_foliendesign/vorlage.html`.
+- Code auf den Folien muss zum zugehoerigen Code-Along passen: gleiche
+  Variablennamen, gleiche Schreibweise, gleicher Datensatz.
+- Didaktische Hinweise, Fragen an die Klasse und Zeitangaben gehoeren in
+  `<aside class="notes">`, nicht auf die Folie.
+
+Nach jeder Aenderung pruefen:
+
+```bash
+python3 theorie/_foliendesign/pruefe-folien.py theorie/<ordner>/index.html
+node ~/.claude/skills/revealjs-1.0.0/scripts/check-overflow.js theorie/<ordner>/index.html
+```
+
+Der erste Befehl prueft die Schreibregeln, der zweite findet ueberlaufende
+Folien. Zusaetzlich die geaenderten Folien als Screenshot ansehen: sich
+ueberlappende Elemente innerhalb einer Folie findet der Overflow-Check
+nicht.
+
+```bash
+npx decktape reveal theorie/<ordner>/index.html out.pdf \
+  --screenshots --screenshots-directory shots --size 1280x720
+```
+
+Neue Erkenntnisse zu Design oder Formulierung nicht in einem einzelnen
+Foliensatz verstecken, sondern in `theorie/_foliendesign/` ergaenzen. Die
+Schreibregeln sind ausdruecklich als wachsendes Dokument gedacht.
 
 ## Hinweise fuer weitere Arbeiten
 

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Titel des Foliensatzes</title>
+
+  <!-- Reveal.js core -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+
+  <!-- Font Awesome fuer Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- FHGR Foliendesign.
+       ACHTUNG beim Kopieren: liegt der Foliensatz in einem eigenen Ordner
+       (z. B. theorie/B_extract/), lautet der Pfad "../_foliendesign/fhgr-slides.css". -->
+  <link rel="stylesheet" href="fhgr-slides.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ===== Titelfolie: braucht data-state="is-title" (blendet die Foliennummer aus) ===== -->
+      <section id="title" class="title-slide" data-state="is-title">
+        <h1>Titel</h1>
+        <div class="rule"></div>
+        <p>Block X · Interaktive Medien 3</p>
+        <p class="sub">nick.schneeberger@fhgr.ch</p>
+      </section>
+
+      <!-- ===== Inhaltsuebersicht ===== -->
+      <section id="inhalt">
+        <h2>Inhalt</h2>
+        <div class="content">
+          <ul class="text-xl">
+            <li>Erstes Kapitel</li>
+            <li>Zweites Kapitel</li>
+          </ul>
+        </div>
+        <aside class="notes">Sprechernotizen erscheinen in der Referentenansicht (Taste S).</aside>
+      </section>
+
+      <!-- ===== Kapiteltrenner: braucht data-state="is-section-divider" (Petrol-Hintergrund) ===== -->
+      <section id="divider-1" class="section-divider" data-state="is-section-divider">
+        <h1>Kapitel</h1>
+        <p>Optionaler Untertitel</p>
+      </section>
+
+      <!-- ===== Standardfolie: Text links, Code rechts ===== -->
+      <section id="standard">
+        <h2>Titel der Folie</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px; align-items: start;">
+            <ul>
+              <li>Kurzer Punkt mit <strong>Hervorhebung</strong></li>
+              <li>Inline-Code sieht so aus: <code>$variable</code></li>
+              <li>
+                Unterpunkte werden automatisch kleiner:
+                <ul>
+                  <li>Detail eins</li>
+                  <li>Detail zwei</li>
+                </ul>
+              </li>
+            </ul>
+            <div>
+              <span class="code-label">datei.php</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+&lt;?php
+$message = "Hallo";
+echo $message;
+              </code></pre>
+              <span class="code-label mt-1">Ausgabe</span>
+              <div class="output">Hallo</div>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Fussnote für Quellenangaben.</div>
+      </section>
+
+      <!-- ===== Code gross + Hinweisbox ===== -->
+      <section id="code-callout">
+        <h2>Code mit Hinweis</h2>
+        <div class="content">
+          <pre><code data-trim data-noescape class="language-php">
+&lt;?php
+// Spitze Klammern und &lt; im Code als &amp;lt; schreiben,
+// zusammen mit data-noescape am code-Element.
+foreach ($items as $item) {
+    echo $item;
+}
+          </code></pre>
+          <div class="callout callout-orange">
+            <p>Varianten: <code>callout-blue</code> (Hinweis), <code>callout-orange</code> (Achtung),
+              <code>callout-green</code> (Bestätigung), <code>callout-gray</code> (Nebenbemerkung).</p>
+            <p>Mehrere Absätze in einer Box bekommen automatisch Abstand.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Ablauf / Pipeline ===== -->
+      <section id="ablauf">
+        <h2>Ablauf zeigen</h2>
+        <div class="content">
+          <div class="flow">
+            <div class="flow-step">
+              <span class="flow-title">Schritt 1</span>
+              <span class="flow-sub">kurze Erklärung</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step is-active">
+              <span class="flow-title">Schritt 2</span>
+              <span class="flow-sub">der aktuelle Schritt</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <span class="flow-title">Schritt 3</span>
+              <span class="flow-sub">kurze Erklärung</span>
+            </div>
+          </div>
+          <table class="mt-2">
+            <tr><th style="width: 30%;"></th><th>Links</th><th>Rechts</th></tr>
+            <tr><td>Zeile</td><td>Wert</td><td>Wert</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== Gegenüberstellung: zwei vollflächige Hälften ===== -->
+      <section id="gegenueber" class="split-slide">
+        <div class="split-half split-bad">
+          <h2>So nicht</h2>
+          <p class="text-sm">Kurze Begründung.</p>
+        </div>
+        <div class="split-half split-good">
+          <h2>So besser</h2>
+          <p class="text-sm">Kurze Begründung.</p>
+        </div>
+      </section>
+
+      <!-- ===== Schlussfolie ===== -->
+      <section id="schluss">
+        <h2>Zum Mitnehmen</h2>
+        <div class="content" style="justify-content: center;">
+          <p class="big-statement">Die eine Kernaussage.</p>
+          <p class="mt-2"><span class="next-step">Nächster Schritt: …</span></p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      width: 1280,
+      height: 720,
+      margin: 0,
+      controls: true,
+      progress: true,
+      slideNumber: 'c',
+      hash: true,
+      transition: 'slide',
+      center: false,
+      plugins: [ RevealHighlight, RevealNotes ]
+    });
+  </script>
+</body>
+</html>

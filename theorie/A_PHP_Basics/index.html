@@ -12,8 +12,8 @@
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Custom styles -->
-  <link rel="stylesheet" href="styles.css">
+  <!-- FHGR Foliendesign (gemeinsam fuer alle Foliensaetze) -->
+  <link rel="stylesheet" href="../_foliendesign/fhgr-slides.css">
 </head>
 <body>
   <div class="reveal">
@@ -23,8 +23,8 @@
       <section id="title" class="title-slide" data-state="is-title">
         <h1>PHP Basics</h1>
         <div class="rule"></div>
-        <p>Block A · Interaktive Medien 3</p>
-        <p class="sub">nick.schneeberger@hslu.ch</p>
+        <p>Interaktive Medien 3</p>
+        <p class="sub">nick.schneeberger@fhgr.ch</p>
       </section>
 
       <!-- ============ 2 Inhalt ============ -->
@@ -39,8 +39,9 @@
             <li>Arrays</li>
             <li>Schleifen</li>
           </ul>
-          <p class="text-sm text-muted mt-2">Nach jedem Kapitel folgt ein Code-Along. Zum Nachschlagen gibt es
-            zu jedem Thema ein Cheatsheet im Ordner <code>cheatsheets/</code>.</p>
+          <p class="text-sm text-muted mt-2">Nach jedem Kapitel folgt ein Code-Along.</p>
+          <p class="text-sm text-muted">Zum Nachschlagen gibt es zu jedem Thema ein Cheatsheet im Ordner
+            <code>cheatsheets/</code>.</p>
         </div>
         <aside class="notes">Ziel des Blocks: Am Ende könnt ihr einen Messwert speichern, formatieren,
           bewerten, in einer Liste ablegen und diese Liste durchlaufen. Das ist genau das, was ETL später braucht.</aside>
@@ -137,8 +138,8 @@ echo $message;
             </tr>
             <tr>
               <td>Datenbank</td>
-              <td>nur über eine API</td>
-              <td>direkt</td>
+              <td>nein</td>
+              <td>ja</td>
             </tr>
             <tr>
               <td>Variablen</td>
@@ -152,7 +153,8 @@ echo $message;
             </tr>
           </table>
           <p class="text-sm text-muted mt-1">Vieles kennst du schon: Variablen, Funktionen, Bedingungen,
-            Arrays und Schleifen gibt es in beiden Sprachen. Vor allem die Schreibweise ist neu.</p>
+            Arrays und Schleifen gibt es in beiden Sprachen.</p>
+          <p class="text-sm text-muted">Vor allem die Schreibweise ist neu.</p>
         </div>
       </section>
 
@@ -178,8 +180,8 @@ echo $message;
             </ul>
           </div>
           <div class="callout callout-gray">
-            <p>PHP und HTML lassen sich mischen. In diesem Kurs machen wir das bewusst <strong>nicht</strong> –
-              siehe nächste Folie.</p>
+            <p>PHP und HTML lassen sich mischen.</p>
+            <p>In diesem Kurs machen wir das bewusst <strong>nicht</strong> – siehe nächste Folie.</p>
           </div>
         </div>
         <aside class="notes">Verweis auf Code-Along 00_hallo_php: dort ging es nur darum, dass der Weg
@@ -190,30 +192,15 @@ echo $message;
       <section id="php-als-api">
         <h2>PHP als Datenlieferant</h2>
         <div class="content">
-          <p class="text-lg">In Block A bauen wir keine Webseite. PHP liefert nur <strong>Daten</strong> –
-            wir kontrollieren sie mit <code>echo</code> und <code>var_dump</code>.</p>
-          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+          <p class="text-lg">In diesem Kurs bauen wir keine Webseite mit PHP.</p>
+          <p class="text-lg">PHP liefert nur <strong>Daten</strong> – wir kontrollieren sie mit
+            <code>echo</code> und <code>var_dump</code>.</p>
+          <pre><code data-trim data-noescape class="language-php">
 &lt;?php
 header('Content-Type: text/plain; charset=utf-8');   // reine Textausgabe
 
 echo "Aare in Bern: 19.4 °C\n";
           </code></pre>
-          <div class="flow mt-1">
-            <div class="flow-step is-active">
-              <span class="flow-title">Block A</span>
-              <span class="flow-sub">Text-API · text/plain</span>
-            </div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-step">
-              <span class="flow-title">Block B–E</span>
-              <span class="flow-sub">JSON-API · json_encode + application/json</span>
-            </div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-step">
-              <span class="flow-title">Block F</span>
-              <span class="flow-sub">Chart.js liest das JSON</span>
-            </div>
-          </div>
         </div>
         <aside class="notes">Der Header ist kein Selbstzweck: ohne ihn interpretiert der Browser die Ausgabe
           als HTML und schluckt die Zeilenumbrüche.</aside>
@@ -232,7 +219,8 @@ echo "Aare in Bern: 19.4 °C\n";
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
             <ul class="list-tight">
               <li>Beginnen immer mit <code>$</code></li>
-              <li>Erlaubt: Buchstaben, Zahlen, <code>_</code> – aber nie mit einer Zahl beginnen</li>
+              <li>Erlaubt: Buchstaben, Zahlen, <code>_</code></li>
+              <li>Aber nie mit einer Zahl beginnen</li>
               <li>Gross-/Kleinschreibung zählt: <code>$name</code> ≠ <code>$Name</code></li>
               <li>Zuweisung mit <code>=</code></li>
               <li><strong>Dynamisch typisiert:</strong> der Typ ergibt sich aus dem Wert</li>
@@ -246,7 +234,8 @@ $isOfficial   = true;
               </code></pre>
               <div class="callout callout-blue">
                 <p class="text-sm">Sprechende Namen in <strong>camelCase</strong>: <code>$temperatureC</code>
-                  statt <code>$t</code>. Das zahlt sich im Projekt aus.</p>
+                  statt <code>$t</code>.</p>
+                <p class="text-sm">Das zahlt sich im Projekt aus.</p>
               </div>
             </div>
           </div>
@@ -257,20 +246,20 @@ $isOfficial   = true;
       <section id="datentypen">
         <h2>Datentypen</h2>
         <div class="content">
-          <pre><code data-trim data-noescape class="language-php">
-$integer = 42;                    // int    – Ganzzahl
-$float   = 19.4;                  // float  – Kommazahl
-$string  = "Aare in Bern";        // string – Text
-$boolean = true;                  // bool   – true oder false
-$nothing = null;                  // null   – kein Wert (nicht dasselbe wie 0!)
-$array   = [18.9, 19.4, 20.1];    // array  – mehrere Werte
-          </code></pre>
-          <div class="callout callout-orange">
-            <p>Kommazahlen immer mit <strong>Punkt</strong>: <code>19.4</code>, nicht <code>19,4</code>.
-              Und <code>19.4</code> ist eine Zahl, <code>"19.4"</code> ist Text – der Unterschied wird
-              beim Rechnen und beim Vergleichen wichtig.</p>
+          <!-- Der Kasten selbst ist Fragment 0, damit die Folie zuerst leer ist.
+               Die Zeilen belegen ihren Platz von Anfang an - nichts springt. -->
+          <div class="code-lines code-lg fragment" data-fragment-index="0">
+            <div class="line fragment" data-fragment-index="0">$integer = <span class="n">42</span>;                    <span class="c">// int    – Ganzzahl</span></div>
+            <div class="line fragment" data-fragment-index="1">$float   = <span class="n">19.4</span>;                  <span class="c">// float  – Kommazahl</span></div>
+            <div class="line fragment" data-fragment-index="2">$string  = <span class="s">"Aare in Bern"</span>;        <span class="c">// string – Text</span></div>
+            <div class="line fragment" data-fragment-index="3">$boolean = <span class="n">true</span>;                  <span class="c">// bool   – true oder false</span></div>
+            <div class="line fragment" data-fragment-index="4">$nothing = <span class="n">null</span>;                  <span class="c">// null   – kein Wert</span></div>
+            <div class="line fragment" data-fragment-index="5">$array   = [<span class="n">18.9</span>, <span class="n">19.4</span>, <span class="n">20.1</span>];    <span class="c">// array  – mehrere Werte</span></div>
           </div>
         </div>
+        <aside class="notes">Zuerst nur der Titel: Welche Datentypen kennt ihr schon? Sammeln lassen,
+          dann pro Nennung eine Zeile einblenden (Leertaste). Falls ein Typ nicht genannt wird, selbst
+          ergänzen.</aside>
       </section>
 
       <!-- ============ 12 ============ -->
@@ -325,8 +314,8 @@ echo "Aare in $location: $temperatureC °C";
 echo 'Aare in ' . $location . ': ' . $temperatureC . ' °C';
           </code></pre>
           <div class="callout callout-blue">
-            <p><strong>Doppelte</strong> Anführungszeichen setzen Variablen ein.
-              <strong>Einfache</strong> nicht: <code>'Hallo $name'</code> gibt wörtlich
+            <p><strong>Doppelte</strong> Anführungszeichen setzen Variablen ein.</p>
+            <p><strong>Einfache</strong> nicht: <code>'Hallo $name'</code> gibt wörtlich
               <code>Hallo $name</code> aus.</p>
           </div>
           <p class="text-sm text-muted"><code>\n</code> erzeugt einen Zeilenumbruch – funktioniert nur in
@@ -410,8 +399,8 @@ echo $msg;
             </div>
           </div>
           <div class="callout callout-blue mt-1">
-            <p><code>return</code> liefert einen Wert zurück und <strong>beendet</strong> die Funktion sofort.
-              Wer nur <code>echo</code> nutzt, kann das Ergebnis später nicht weiterverarbeiten – und genau das
+            <p><code>return</code> liefert einen Wert zurück und <strong>beendet</strong> die Funktion sofort.</p>
+            <p>Wer nur <code>echo</code> nutzt, kann das Ergebnis später nicht weiterverarbeiten – und genau das
               brauchen wir in ETL.</p>
           </div>
         </div>
@@ -457,7 +446,8 @@ var_dump($x &gt;= $y);   // false
       <section id="lose-strikt" class="split-slide">
         <div class="split-half split-bad">
           <h2><code>==</code> lose</h2>
-          <p class="text-sm">Vergleicht nur den <strong>Wert</strong>. PHP wandelt Typen automatisch um.</p>
+          <p class="text-sm">Vergleicht nur den <strong>Wert</strong>.</p>
+          <p class="text-sm">PHP wandelt Typen automatisch um.</p>
           <pre class="code-sm"><code data-trim data-noescape class="language-php">
 var_dump(5 == "5");      // true
 var_dump(0 == false);    // true
@@ -468,7 +458,8 @@ var_dump(null == false); // true
         </div>
         <div class="split-half split-good">
           <h2><code>===</code> strikt</h2>
-          <p class="text-sm">Vergleicht <strong>Wert und Typ</strong>. Keine automatische Umwandlung.</p>
+          <p class="text-sm">Vergleicht <strong>Wert und Typ</strong>.</p>
+          <p class="text-sm">Keine automatische Umwandlung.</p>
           <pre class="code-sm"><code data-trim data-noescape class="language-php">
 var_dump(5 === "5");      // false
 var_dump(0 === false);    // false
@@ -514,7 +505,7 @@ var_dump($temperatureC &gt; 25 || $isOfficial === true);   // true
                   <li>ab 20 °C → <strong>warm</strong></li>
                 </ul>
               </div>
-              <p class="text-sm text-muted">Erst die Regel, dann der Code. Immer.</p>
+              <p class="text-sm text-muted">Erst die Regel, dann der Code – immer.</p>
             </div>
             <pre class="code-sm"><code data-trim data-noescape class="language-php">
 function classifyTemperature($temperatureC)
@@ -529,8 +520,9 @@ function classifyTemperature($temperatureC)
 }
             </code></pre>
           </div>
-          <p class="text-sm text-muted">Die Bedingungen werden <strong>von oben nach unten</strong> geprüft.
-            Deshalb braucht der mittlere Fall kein zusätzliches <code>&gt;= 16</code>.</p>
+          <p class="text-sm text-muted">Die Bedingungen werden <strong>von oben nach unten</strong> geprüft.</p>
+          <p class="text-sm text-muted">Deshalb braucht der mittlere Fall kein zusätzliches
+            <code>&gt;= 16</code>.</p>
         </div>
         <aside class="notes">Grenzwerte gemeinsam testen: 15.9, 16, 19.9, 20. Und: fachliche Schwellenwerte
           müssen im Projekt begründet und mit Quelle dokumentiert werden.</aside>
@@ -561,8 +553,8 @@ echo $temperatureC &gt;= 20
     ? 'warm'
     : 'nicht warm';
               </code></pre>
-              <p class="text-sm text-muted mt-1">Praktisch, aber schnell unleserlich.
-                Im Zweifel <code>if</code> schreiben.</p>
+              <p class="text-sm text-muted mt-1">Praktisch, aber schnell unleserlich.</p>
+              <p class="text-sm text-muted">Im Zweifel <code>if</code> schreiben.</p>
             </div>
           </div>
           <p class="text-sm text-muted mt-1">Beides ist <strong>Referenzwissen</strong> – im Cheatsheet
@@ -580,8 +572,8 @@ echo $temperatureC &gt;= 20
       <section id="was-ist-array">
         <h2>Was ist ein Array?</h2>
         <div class="content">
-          <p class="text-lg">Bisher: eine Variable, ein Wert. Für Daten brauchen wir
-            <strong>eine Variable, viele Werte</strong>.</p>
+          <p class="text-lg">Bisher: eine Variable, ein Wert.</p>
+          <p class="text-lg">Für Daten brauchen wir <strong>eine Variable, viele Werte</strong>.</p>
           <pre><code data-trim data-noescape class="language-php">
 // mühsam
 $temperature1 = 18.9;
@@ -592,8 +584,9 @@ $temperature3 = 20.1;
 $temperatures = [18.9, 19.4, 20.1];
           </code></pre>
           <div class="callout callout-blue">
-            <p>Jeder Datensatz, den ihr im Projekt aus einer API oder CSV-Datei ladet, kommt als Array in PHP an.
-              Arrays sind deshalb der wichtigste Datentyp des Kurses.</p>
+            <p>Jeder Datensatz, den ihr im Projekt aus einer API oder CSV-Datei ladet, kommt als Array in
+              PHP an.</p>
+            <p>Arrays sind deshalb der wichtigste Datentyp des Kurses.</p>
           </div>
         </div>
       </section>
@@ -627,7 +620,9 @@ echo $measurement['location'];   // Bern
             </div>
           </div>
           <p class="text-sm text-muted mt-1">Faustregel: <strong>Liste</strong> von gleichartigen Dingen →
-            indexiert. <strong>Ein Ding</strong> mit benannten Eigenschaften → assoziativ.</p>
+            indexiert.</p>
+          <p class="text-sm text-muted"><strong>Ein Ding</strong> mit benannten Eigenschaften →
+            assoziativ.</p>
         </div>
       </section>
 
@@ -646,8 +641,9 @@ $measurements = [
 echo $measurements[1]['temperature_c'];   // 19.4
           </code></pre>
           <div class="callout callout-green">
-            <p>Genau so sehen JSON aus einer API, Zeilen aus einer CSV-Datei und Zeilen aus der Datenbank aus.
-              Wer diese Struktur lesen kann, kann alle drei lesen.</p>
+            <p>Genau so sehen JSON aus einer API, Zeilen aus einer CSV-Datei und Zeilen aus der Datenbank
+              aus.</p>
+            <p>Wer diese Struktur lesen kann, kann alle drei lesen.</p>
           </div>
         </div>
         <aside class="notes">Hier lohnt sich eine Minute an der Wandtafel: aussen die Liste, innen der einzelne
@@ -668,7 +664,8 @@ var_dump($stations);                 // ganze Struktur prüfen
           <div class="callout callout-gray">
             <p><strong>Bewusste Begrenzung:</strong> <code>array_map</code>, <code>array_filter</code>,
               <code>array_reduce</code> und <code>sort</code> stehen im Cheatsheet
-              <code>04_arrays.md</code>. Zuerst müssen Liste, Index, Schlüssel und Wert sicher sitzen.</p>
+              <code>04_arrays.md</code>.</p>
+            <p>Zuerst müssen Liste, Index, Schlüssel und Wert sicher sitzen.</p>
           </div>
         </div>
       </section>
@@ -683,8 +680,9 @@ var_dump($stations);                 // ganze Struktur prüfen
       <section id="warum-schleifen">
         <h2>Warum Schleifen?</h2>
         <div class="content">
-          <p class="text-lg">Fünf Messungen von Hand ausgeben ist mühsam. Bei einem Jahr Stundenwerten sind es
-            <strong>8760</strong> – von Hand unmöglich.</p>
+          <p class="text-lg">Fünf Messungen von Hand ausgeben ist mühsam.</p>
+          <p class="text-lg">Bei einem Jahr Stundenwerten sind es <strong>8760</strong> – von Hand
+            unmöglich.</p>
           <div class="flow mt-1">
             <div class="flow-step">
               <span class="flow-title">Liste</span>
@@ -793,7 +791,7 @@ while ($i &lt; 10) {
             <div class="flow-arrow">→</div>
             <div class="flow-step"><span class="flow-title">Chart.js</span><span class="flow-sub">Story</span></div>
           </div>
-          <p class="mt-2">In <strong>jedem</strong> dieser Schritte steckt Block A:</p>
+          <p class="mt-2">In <strong>jedem</strong> dieser Schritte steckt, was du heute gelernt hast:</p>
           <ul class="list-tight text-sm">
             <li><strong>Arrays</strong> – jede Datenquelle wird zu einem Array</li>
             <li><strong>foreach</strong> – jeder Datensatz wird einzeln verarbeitet</li>

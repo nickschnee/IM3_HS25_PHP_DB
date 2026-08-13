@@ -38,6 +38,10 @@ eine Internetverbindung.
 | 29–32 | Schleifen |
 | 33–37 | Zusammenspiel mit ETL, häufige Fehler, Ausblick |
 
+**Folie 11 „Datentypen" ist interaktiv gedacht:** Sie startet leer, nur mit dem
+Titel. Zuerst die Klasse fragen, welche Datentypen sie kennt, dann pro Nennung
+mit der Leertaste eine Zeile einblenden.
+
 Alle Code-Beispiele nutzen denselben roten Faden wie die Code-Alongs: einen
 Aare-Messwert (Ort, Temperatur, Zeitpunkt). Die Folien zeigen dieselbe
 Schreibweise wie die Lösungen in `code-alongs/A_PHP_Basics/`.
@@ -50,11 +54,12 @@ Schreibweise wie die Lösungen in `code-alongs/A_PHP_Basics/`.
 - Übungen: `uebungen/A_PHP_Basics/`
 - Lokaler Server (optional): `theorie/00_lokaler_php_server/`
 
-## Design anpassen
+## Design
 
-Alle Farben, Schriftgrössen und Abstände stehen als CSS-Variablen zuoberst in
-`styles.css`. Das Farbschema folgt dem HSLU-Foliendesign: weisser Hintergrund,
-olivfarbene Titel, petrolfarbene Kapiteltrenner.
+Der Foliensatz nutzt das gemeinsame **FHGR Foliendesign** aus
+`theorie/_foliendesign/`. Farben, Schriftgrössen und alle Bausteine sind dort
+dokumentiert. Änderungen am Design gehören in `fhgr-slides.css`, nicht in
+diesen Ordner.
 
 ## PDF exportieren
 

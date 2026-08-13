@@ -1,6 +1,13 @@
-/* IM3 - Block A: PHP Basics
- * Design nach dem HSLU-Foliendesign (weiss / oliv / petrol).
- * Alle Schriftgroessen in pt.
+/* FHGR Foliendesign - gemeinsames Stylesheet fuer alle IM3-Foliensaetze.
+ *
+ * Verwendung in einem Foliensatz (z. B. theorie/A_PHP_Basics/index.html):
+ *   <link rel="stylesheet" href="../_foliendesign/fhgr-slides.css">
+ *
+ * Diese Datei nicht pro Foliensatz kopieren. Braucht ein Deck eine Sonderregel,
+ * kommt sie in ein eigenes styles.css, das NACH dieser Datei eingebunden wird.
+ *
+ * Alle Schriftgroessen in pt. Farben und Abstaende stehen als CSS-Variablen
+ * direkt unten - das ist der einzige Ort, an dem das Design angepasst wird.
  */
 
 :root {
@@ -126,6 +133,9 @@
   font-size: inherit;
 }
 
+/* Aufeinanderfolgende Absaetze sichtbar trennen */
+.reveal p + p { margin-top: 14px; }
+
 .reveal strong { color: #3f3f3f; font-weight: 600; }
 .reveal a { color: var(--primary-color); text-decoration: underline; }
 
@@ -154,9 +164,10 @@
   min-height: 0;
 }
 
+/* Sitzt ueber der Foliennummer, damit sich beide unten links nicht ueberlagern */
 .reveal .slides section > .footnote {
   position: absolute;
-  bottom: 22px;
+  bottom: 56px;
   left: var(--slide-padding);
   right: 120px;
   font-size: var(--footnote-size);
@@ -372,6 +383,31 @@
 .reveal .hljs-attr,
 .reveal .hljs-template-variable { color: #4a4a4a; }
 
+/* Code-Zeilen zum schrittweisen Einblenden.
+ * Wie ein Code-Block, aber jede Zeile kann ein eigenes .fragment sein.
+ * Reveal haelt den Platz der noch unsichtbaren Zeilen frei - die Box
+ * springt beim Einblenden also nicht. Token-Klassen: k = Schluesselwort,
+ * s = String, n = Zahl/Literal, c = Kommentar. */
+.code-lines {
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: var(--box-radius);
+  padding: 18px 22px;
+  font-family: var(--mono-font);
+  font-size: 13pt;
+  line-height: 1.6;
+  color: var(--code-text);
+  margin: 10px 0;
+}
+
+.code-lines .line { white-space: pre; }
+.code-lines .k { color: var(--code-keyword); }
+.code-lines .s { color: var(--code-string); }
+.code-lines .n { color: var(--code-number); }
+.code-lines .c { color: var(--code-comment); font-style: italic; }
+
+.code-lines.code-lg { font-size: 15pt; }
+
 /* Ausgabe-Block (Terminal / Browser) */
 .output {
   background: #ffffff;
@@ -436,6 +472,9 @@
 
 .callout p:first-child,
 .box p:first-child { margin-top: 0; }
+
+.callout p + p,
+.box p + p { margin-top: 14px; }
 
 /* ===========================================
    SPLIT-FOLIE (zwei Haelften, vollflaechig)
