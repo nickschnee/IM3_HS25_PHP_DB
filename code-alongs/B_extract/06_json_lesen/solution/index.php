@@ -1,6 +1,6 @@
 <?php
 /**
- * Code-Along 06: JSON lesen (Lösung)
+ * Code-Along 06: JSON lesen (Extract) – Lösung
  *
  * Wir öffnen eine heruntergeladene JSON-Datei (Höchsttemperaturen Bern seit
  * 1940), verwandeln sie in ein PHP-Array und schauen uns die Struktur an.

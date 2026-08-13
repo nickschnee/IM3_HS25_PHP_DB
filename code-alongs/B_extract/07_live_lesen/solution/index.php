@@ -1,6 +1,6 @@
 <?php
 /**
- * Code-Along 09: Daten aus einer Live-API holen (Lösung)
+ * Code-Along 07: Daten aus einer Live-API holen (Extract) – Lösung
  *
  *   unser PHP-Skript  ->  HTTP-GET (cURL)  ->  externe API
  *

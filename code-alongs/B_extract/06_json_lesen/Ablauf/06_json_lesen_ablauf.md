@@ -27,15 +27,15 @@ Im Ordner `data/` liegen die drei Dateien `bern.json`, `zuerich.json` und
 
 ## Gesprächspunkte
 
-- **JSON rein → PHP-Array:** Das ist der erste Teil des Block-B-Modells
-  `JSON rein → PHP-Array → auswählen → JSON raus`. Heute nur „rein".
+- **Extract = lesen:** Block B holt Daten nur herein – Quelle → PHP-Array. Das
+  Umformen kommt später in Transform (Block C), der Endpunkt in Unload (Block E).
 - **Parallele Arrays:** Open-Meteo liefert **nicht** eine Liste von Objekten,
   sondern zwei gleich lange Listen. `time[0]` gehört zu
-  `temperature_2m_max[0]`. Diese Form formen wir im nächsten Code-Along in
-  unsere eigene Struktur um.
+  `temperature_2m_max[0]`. Diese Form bringen wir erst im Transform-Block (C) in
+  unsere eigene Struktur.
 - **`true` bei `json_decode`:** entscheidet zwischen Array (`$data['daily']`)
   und Objekt (`$data->daily`). Im Kurs arbeiten wir mit Arrays.
 - **Index vs. `foreach`:** Weil zwei Listen zusammengehören, brauchen wir den
   gemeinsamen Index `$i` – deshalb hier `for` statt `foreach`.
-- **Grosse Datenmenge:** über 31'000 Tage. Genau darum geben wir sie später
-  nicht roh aus, sondern wählen aus und filtern.
+- **Grosse Datenmenge:** über 31'000 Tage. Genau darum reduzieren und filtern
+  wir sie später (Transform und Unload) – hier lesen wir sie nur ein.

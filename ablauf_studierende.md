@@ -47,23 +47,19 @@ Kurstage erstrecken. Die Story- und Recherchespur (`🔎`) läuft parallel mit.
 - `💻` [04 Messstation](uebungen/A_PHP_Basics/04_messstation)
 - `💻` [05 Aare-Woche](uebungen/A_PHP_Basics/05_aare_woche)
 
-### Block B – JSON & Datenquellen
+### Block B – Extract
 
-> Thema ab hier: **Hitzesommer** – Höchsttemperaturen in Chur, Bern und Zürich.
-> Immer dasselbe Muster **lesen → Endpunkt → filtern**, mit drei Datenquellen:
-> statische Datei, Live-API und CSV. Der Extract ändert sich, der Rest bleibt.
+> Nur der **Extract-Schritt**: dieselben Daten aus drei Quellen lesen, jeweils
+> bis zu einem PHP-Array. Nur die Lese-Technik ändert sich. Umformen kommt in
+> Transform (C), der Endpunkt in Unload (E). Thema: Hitzesommer + Shark Attacks.
 
-1. `💻` Digitale Übung: [01 Daten finden & herunterladen](uebungen/B_php_json_api/01_daten_finden) `45'`
-2. `📕` Theorie B `20'`
-3. `🧑‍🏫` Code-Along: [06 JSON lesen](code-alongs/B_php_json_api/06_json_lesen) _(Datei)_ `30'`
-4. `🧑‍🏫` Code-Along: [07 Eigener JSON-Endpunkt](code-alongs/B_php_json_api/07_json_endpoint) _(Datei)_ `35'`
-5. `🧑‍🏫` Code-Along: [08 Endpunkt filtern (`$_GET`)](code-alongs/B_php_json_api/08_json_filter) _(Datei)_ `30'`
-6. `🧑‍🏫` Code-Along: [09 Live-Daten holen](code-alongs/B_php_json_api/09_live_lesen) _(Live-API)_ `30'`
-7. `🧑‍🏫` Code-Along: [10 Live-Endpunkt](code-alongs/B_php_json_api/10_live_endpoint) _(Live-API)_ `35'`
-8. `🧑‍🏫` Code-Along: [11 Live-Endpunkt filtern](code-alongs/B_php_json_api/11_live_filter) _(Live-API)_ `30'`
-9. `🧑‍🏫` Code-Alongs 12–14 _(CSV, Shark Attacks – in Arbeit)_
-10. `🔎` Datenquellen recherchieren & prüfen `60'`
-11. `✅` **M3: Datensatz gefunden**
+1. `💻` Digitale Übung: [01 Daten finden & herunterladen](uebungen/B_extract/01_daten_finden) `45'`
+2. `📕` Theorie B: Extract-Varianten (Datei, API, CSV) → PHP-Array `20'`
+3. `🧑‍🏫` Code-Along: [06 JSON lesen](code-alongs/B_extract/06_json_lesen) _(statische Datei)_ `30'`
+4. `🧑‍🏫` Code-Along: [07 Live-Daten holen](code-alongs/B_extract/07_live_lesen) _(Live-API)_ `30'`
+5. `🧑‍🏫` Code-Along: [08 CSV lesen](code-alongs/B_extract/08_csv_lesen) _(CSV-Datei)_ `30'`
+6. `🔎` Datenquellen recherchieren & prüfen `60'`
+7. `✅` **M3: Datensatz gefunden**
 
 > _Blöcke C–F folgen, sobald die Inhalte stehen. Entwurf unten (noch nach Tagen
 > skizziert)._

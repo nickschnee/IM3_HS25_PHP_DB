@@ -241,16 +241,16 @@ Datenquellen in diesem Block (roter Faden: Hitzesommer + Shark Attacks):
 
 Material:
 
-- Übung `uebungen/B_php_json_api/01_daten_finden` (Daten finden & herunterladen)
-- Code-Alongs `code-alongs/B_php_json_api/` (JSON lesen, Live lesen, CSV lesen)
+- Übung `uebungen/B_extract/01_daten_finden` (Daten finden & herunterladen)
+- Code-Alongs `code-alongs/B_extract/` (JSON lesen, Live lesen, CSV lesen)
 - vorbereiteter Helfer `fetchJson($url)`
 - `cheatsheets/15__curl.md` als Hintergrund
 
 Code-Alongs (je: lesen → PHP-Array, ohne Endpunkt):
 
 - `06_json_lesen`: statische JSON-Datei lesen und Struktur verstehen.
-- `09_live_lesen`: Live-API mit `fetchJson()` abrufen.
-- CSV lesen: Shark-Attack-CSV mit `fgetcsv` in Arrays umwandeln.
+- `07_live_lesen`: Live-API mit `fetchJson()` abrufen.
+- `08_csv_lesen`: Shark-Attack-CSV mit `fgetcsv` in Arrays umwandeln.
 
 Sensor-API, Google Sheets und eigene Datasets werden nur eingeordnet; sie folgen
 technisch demselben Muster (Quelle → PHP-Array).
