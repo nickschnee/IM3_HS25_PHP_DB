@@ -54,8 +54,9 @@ Kurstage erstrecken. Die Story- und Recherchespur (`🔎`) läuft parallel mit.
 3. `🧑‍🏫` Code-Along: [06 JSON lesen](code-alongs/B_extract/06_json_lesen) _(statische Datei)_ `30'`
 4. `🧑‍🏫` Code-Along: [07 API lesen](code-alongs/B_extract/07_api_lesen) _(Live-API)_ `30'`
 5. `🧑‍🏫` Code-Along: [08 CSV lesen](code-alongs/B_extract/08_csv_lesen) _(CSV-Datei)_ `30'`
-6. `🔎` Datenquellen recherchieren & prüfen `60'`
-7. `✅` **M3: Datensatz gefunden**
+6. `🧑‍🏫` Code-Along: [08 Sensor lesen](code-alongs/B_extract/09_sensor_lesen) _(Live-API)_ `30'`
+7. `🔎` Datenquellen recherchieren & prüfen `60'`
+8. `✅` **M3: Datensatz gefunden**
 
 ### Block C – Transform
 
