@@ -19,9 +19,30 @@
 | `🔎` | Datenjournalismus- und Recherche-Begleitspur |
 | `✅` | Kurze Abnahme eines Ergebnisses |
 
-Die Theorieblöcke und die Kurstage sind nicht identisch. Ein Theorieblock kann
-sich über mehrere Tage erstrecken. Insbesondere läuft Datenjournalismus ab
-Tag 1 als kurze Begleitspur parallel zur technischen Strecke.
+## Blöcke als roter Faden
+
+Der Kurs folgt der ETL+U-Kette:
+
+```text
+Extract → Transform → Load → Datenbank → Unload → Chart.js
+```
+
+| Block | Fokus | Kern |
+| --- | --- | --- |
+| A – PHP Basics | Sprache | Variablen, Funktionen, Bedingungen, Arrays, Schleifen |
+| B – Extract | Daten **lesen** | statische JSON-Datei, Live-API (`fetchJson`), CSV (`fgetcsv`) → PHP-Array |
+| C – Transform | Rohdaten **umformen** | säubern, reduzieren, umbenennen, normalisieren → Datenvertrag |
+| D – Load | in DB **schreiben** | DB-Tooling, ERM Light, PDO, `INSERT` |
+| E – Unload | wieder **rausgeben** | PDO `SELECT` → JSON-Endpunkt + `$_GET`-Filter |
+| F – Visualisierung | Chart.js | `fetch()` auf den Unload-Endpunkt |
+
+Theorieblöcke und Kurstage sind **nicht** identisch: Ein Block kann sich über
+mehrere Tage erstrecken.
+
+Die **Datenjournalismus-/Story-Spur** (`🔎`) läuft parallel ab Tag 1. Der
+zweistündige Input von **Pascal Alisser** ist ein fixer Story-Input, der
+**neben** den technischen Blöcken schwebt und flexibel platziert wird (Richtwert
+um Tag 4–5). Siehe Abschnitt [Story-Spur](#story-spur-und-pascal-alisser).
 
 ## Wiederkehrende Tagesstruktur
 
@@ -35,154 +56,138 @@ Tag 1 als kurze Begleitspur parallel zur technischen Strecke.
 
 ## Übersicht über zehn Kurstage
 
-| Tag | Technischer Schwerpunkt | Projekt- und Storyspur | Tagesergebnis |
+| Tag | Block / Schwerpunkt | Story-Spur | Tagesergebnis |
 | --- | --- | --- | --- |
-| 1 | Kickoff, Tooling und Server | Gruppen und Themenfelder | `Hallo PHP` funktioniert; Gruppen stehen. |
-| 2 | Variablen, Datentypen, Funktionen, Bedingungen | Erste Datenfrage | Ein Messwert wird gespeichert, verarbeitet und bewertet. |
-| 3 | Arrays, Schleifen, lokales JSON und `$_GET` | Datenquelle suchen | Liste wird verarbeitet; JSON-Endpunkt funktioniert. |
-| 4 | DB-Tooling, SQL und ERM Light | Input Pascal Alisser; Frage und Quelle prüfen | DB-Zugang und kleines Datenmodell stehen. |
-| 5 | PDO und CRUD | Projektgrundlage und Datenvertrag | Ein Datensatz kann gelesen und verändert werden. |
-| 6 | Extract, Transform und Load | Eigene Quelle technisch prüfen | Daten gelangen von der Quelle in die Datenbank. |
-| 7 | Unload und Chart.js | Backend und Frontend verbinden | JSON-Endpunkt und erster Chart funktionieren. |
-| 8 | UX-Slot und Projektwerkstatt | Story und Nutzung testen | Abhängig von der definitiven UX-Platzierung. |
-| 9 | UX-Slot, Integration und Feature-Freeze | Aussage, Quellen und Fallback prüfen | Ausstellungsfähige Fassung steht. |
-| 10 | Marktstand und Abgabe | Vermittlung und Reflexion | Projekt ist ausgestellt und abgegeben. |
+| 1 | Kickoff, Tooling und Server | Gruppen und Themenfelder | `Hallo PHP` läuft; Gruppen stehen. |
+| 2 | A – PHP Basics I | Erste Datenfrage | Wert speichern, verarbeiten, bewerten. |
+| 3 | A – PHP Basics II (Arrays, Schleifen) | Datenquelle suchen | Liste mit `foreach` verarbeiten. |
+| 4 | B – Extract (JSON, API, CSV) | Quelle prüfen | Rohdaten aus drei Quellen als PHP-Array. |
+| 5 | C – Transform | Datenvertrag entwerfen | Saubere, einheitliche Datensätze. |
+| 6 | D – Load (DB, PDO, INSERT) | Datenmodell schärfen | Daten liegen in der Datenbank. |
+| 7 | E – Unload (SELECT → JSON) | Backend und Frontend verbinden | Stabiler JSON-Endpunkt mit Filter. |
+| 8 | F – Chart.js + UX-Slot | Story und Nutzung testen | Erster Chart aus dem Endpunkt. |
+| 9 | Integration und Feature-Freeze (UX) | Aussage, Quellen, Fallback | Ausstellungsfähige Fassung. |
+| 10 | Marktstand und Abgabe | Vermittlung und Reflexion | Projekt ausgestellt und abgegeben. |
 
 ## Tag 1 – Kickoff, Gruppenbildung, Tooling und Server
 
 **Ziel:** Alle verstehen das Kursprojekt, erreichen den Server und arbeiten in
-einer Vierergruppe mit klaren Zweierteams. Es gibt noch keinen
-PHP-Grundlagenunterricht.
+einer Vierergruppe mit klaren Zweierteams. Noch kein PHP-Grundlagenunterricht.
 
 | Prio | Form | Inhalt | Richtwert | Material oder Ergebnis |
 | --- | --- | --- | ---: | --- |
-| Muss | Rahmen | Kursziel, Datenfluss und Marktstand zeigen | 30' | Fertiges Beispielprojekt oder Demo |
+| Muss | Rahmen | Kursziel, ETL+U-Datenfluss und Marktstand zeigen | 30' | Fertiges Beispielprojekt oder Demo |
 | Muss | Rahmen | Vierergruppen bilden; Backend- und Frontend-Zweierteam festlegen | 45' | Gruppenliste |
-| Muss | Tooling | Zugänge verteilen, lokalen PHP-Check durchführen, Serverordner einrichten | 90' | Zugang pro Person |
-| Muss | `🧑‍🏫` | Dreizeiliges [Hallo PHP](../code-alongs/A_PHP_Basics/00_hallo_php) hochladen und im Browser öffnen | 30' | Ausgabe `Hallo PHP` |
-| Soll | Tooling | Häufige Probleme gemeinsam lösen: Pfad, Dateiname, Rechte, Cache | 45' | Fehlerliste für Dozierende |
-| Soll | `🔎` | Datenprojekte ansehen und interessante Themenfelder sammeln | 45' | Themen-Post-its pro Gruppe |
+| Muss | Tooling | Zugänge verteilen, lokalen PHP-Check, Serverordner einrichten | 90' | Zugang pro Person |
+| Muss | `🧑‍🏫` | [00 Hallo PHP](../code-alongs/A_PHP_Basics/00_hallo_php) hochladen und im Browser öffnen | 30' | Ausgabe `Hallo PHP` |
+| Soll | `🔎` | Datenprojekte ansehen und Themenfelder sammeln | 45' | Themen-Post-its pro Gruppe |
 | Muss | `✅` | `Hallo PHP` und Gruppeneinteilung abnehmen | 15' | **M1: Gruppen gebildet** |
 
-**Nicht an Tag 1:** Variablen, Funktionen oder andere PHP-Syntax erklären. Die
-Testdatei wird nur verwendet, um den technischen Weg zu prüfen.
+## Tag 2 – Block A: PHP Basics I
 
-## Tag 2 – PHP Basics I
-
-**Ziel:** Alle können einzelne Werte in PHP speichern, ausgeben, mit einer
-Funktion verarbeiten und mit einer Bedingung bewerten.
+**Ziel:** Alle können Werte speichern, ausgeben, mit einer Funktion verarbeiten
+und mit einer Bedingung bewerten.
 
 | Prio | Form | Inhalt | Richtwert | Material oder Ergebnis |
 | --- | --- | --- | ---: | --- |
-| Muss | Repetition | Browser, Server und PHP in die richtige Reihenfolge bringen | 15' | Mündliche Skizze |
-| Muss | `📕` | Theorie A, Teil 1: Server, Variablen, Datentypen und Debugging | 40' | [Theorie A](../theorie/A_PHP_Basics) |
+| Muss | `📕` | Server, Variablen, Datentypen, Debugging | 40' | Theorie A |
 | Muss | `🧑‍🏫` | [01 Variablen](../code-alongs/A_PHP_Basics/01_variablen) | 25' | Kleine Datenmeldung |
-| Muss | `💻` | [01 Messwert](../uebungen/A_PHP_Basics/01_messwert) | 20' | Eigene Messwertmeldung |
-| Muss | `📕` | Theorie A, Teil 2: Funktionen und Rückgabewerte | 20' | [Theorie A](../theorie/A_PHP_Basics) |
 | Muss | `🧑‍🏫` | [02 Funktionen](../code-alongs/A_PHP_Basics/02_funktionen) | 30' | Wiederverwendbare Meldung |
-| Soll | `💻` | [02 Badewetter](../uebungen/A_PHP_Basics/02_badewetter) | 25' | Funktion mit Rückgabewert |
-| Muss | `📕` | Theorie A, Teil 3: Vergleiche und Bedingungen | 20' | [Theorie A](../theorie/A_PHP_Basics) |
 | Muss | `🧑‍🏫` | [03 Bedingungen](../code-alongs/A_PHP_Basics/03_bedingungen) | 30' | Temperaturbewertung |
-| Muss | `💻` | [03 Warnstufe](../uebungen/A_PHP_Basics/03_warnstufe) | 25' | Drei einfache Fälle |
-| Soll | `📝` | Messwertmaschine, Runde 1: Werte, Funktion und Entscheid | 30' | [Analoge Übung](../stift-und-papier/01_messwertmaschine) |
+| Soll | `💻` | Übungen [01–03](../uebungen/A_PHP_Basics) | 45' | Eigene Meldungen |
+| Soll | `📝` | [Messwertmaschine](../stift-und-papier/01_messwertmaschine) | 30' | Analoge Übung |
 | Muss | `🔎` | Eine offene Datenfrage pro Gruppe formulieren | 30' | Satz nach Vorlage |
 | Muss | `✅` | Code und Datenfrage zeigen | 15' | **M2: Datenfrage formuliert** |
 
-## Tag 3 – PHP Basics II und Brücke zu JSON
+## Tag 3 – Block A: PHP Basics II (Arrays und Schleifen)
 
-**Ziel:** Alle können eine Liste strukturierter Messungen mit `foreach`
-durchlaufen. Danach wird die Liste als JSON ausgegeben und einfach gefiltert.
+**Ziel:** Alle können eine Liste strukturierter Datensätze mit `foreach`
+durchlaufen. Parallel finden die Gruppen ihre Datenquelle.
 
 | Prio | Form | Inhalt | Richtwert | Material oder Ergebnis |
 | --- | --- | --- | ---: | --- |
-| Muss | Repetition | Fehler in drei kurzen PHP-Beispielen finden | 15' | Debugging im Plenum |
-| Muss | `📕` | Theorie A, Teil 4: Arrays, assoziative Arrays und Schleifen | 35' | [Theorie A](../theorie/A_PHP_Basics) |
-| Muss | `🧑‍🏫` | [04 Arrays](../code-alongs/A_PHP_Basics/04_arrays) | 30' | Strukturierter Messwert |
-| Muss | `💻` | [04 Messstation](../uebungen/A_PHP_Basics/04_messstation) | 25' | Assoziatives Array |
-| Muss | `🧑‍🏫` | [05 Schleifen](../code-alongs/A_PHP_Basics/05_schleifen) | 35' | Messwertliste als Textausgabe |
-| Muss | `📝` | Messwertmaschine, Runde 2: Liste wiederholt verarbeiten | 30' | [Analoge Übung](../stift-und-papier/01_messwertmaschine) |
-| Muss | `💻` | [05 Aare-Woche](../uebungen/A_PHP_Basics/05_aare_woche) | 35' | Sieben sichtbare Werte |
-| Muss | `📕` + `🧑‍🏫` | Brücke zu Block B: Array als JSON ausgeben | 35' | Eigener JSON-Endpunkt |
-| Muss | `🧑‍🏫` | Endpunkt über `$_GET` nach Ort filtern | 30' | Filterbare Antwort |
-| Muss | `🔎` | Datenquellen suchen und anhand von vier Kriterien prüfen | 60' | Kandidat plus Fallback |
-| Optional | Vertiefung | Minimum, Maximum oder Durchschnitt der Woche berechnen | 25' | Zusätzliche Kennzahl |
-| Muss | `✅` | Datenquelle und funktionierenden Endpunkt zeigen | 15' | **M3: Datensatz gefunden** |
+| Muss | Repetition | Fehler in kurzen PHP-Beispielen finden | 15' | Debugging im Plenum |
+| Muss | `📕` | Arrays, assoziative Arrays und Schleifen | 35' | Theorie A |
+| Muss | `🧑‍🏫` | [04 Arrays](../code-alongs/A_PHP_Basics/04_arrays) | 30' | Strukturierter Datensatz |
+| Muss | `🧑‍🏫` | [05 Schleifen](../code-alongs/A_PHP_Basics/05_schleifen) | 35' | Liste als Textausgabe |
+| Soll | `💻` | Übungen [04–06](../uebungen/A_PHP_Basics) | 40' | Eigene Listen |
+| Muss | `🔎` | Datenquellen suchen und anhand von Kriterien prüfen | 60' | Kandidat plus Fallback |
+| Muss | `✅` | Datenquelle zeigen | 15' | **M3: Datensatz gefunden** |
 
-## Tag 4 – Datenbanken, SQL und Datenjournalismus
+## Tag 4 – Block B: Extract
 
-**Ziel:** Alle verstehen das kleine relationale Datenmodell und können die
-Verbindung zur Kursdatenbank testen. Die Gruppen schärfen Frage und Quelle.
+**Ziel:** Alle können dieselben Rohdaten aus **drei Quellen** lesen und als
+PHP-Array bereitstellen. Kernidee: Der Extract ändert sich, das Ergebnis (ein
+PHP-Array) bleibt gleich.
+
+| Prio | Form | Inhalt | Richtwert | Material oder Ergebnis |
+| --- | --- | --- | ---: | --- |
+| Muss | `💻` | [01 Daten finden & herunterladen](../uebungen/B_php_json_api/01_daten_finden) | 45' | JSON-Dateien im `data/` |
+| Muss | `📕` | Extract-Varianten: Datei, Live-API, CSV → immer ein PHP-Array | 20' | Übersicht |
+| Muss | `🧑‍🏫` | [06 JSON lesen](../code-alongs/B_php_json_api/06_json_lesen) (`file_get_contents` + `json_decode`) | 30' | PHP-Array aus Datei |
+| Muss | `🧑‍🏫` | [09 Live-Daten holen](../code-alongs/B_php_json_api/09_live_lesen) (`fetchJson`) | 30' | PHP-Array aus API |
+| Muss | `🧑‍🏫` | CSV lesen (`fgetcsv`, Shark-Attack-Dataset) | 30' | PHP-Array aus CSV |
+| Muss | Projekt | Eigene Quelle technisch als PHP-Array einlesen | 60' | Rohdaten der Gruppe |
+| Soll | `✅` | Rohdaten aus der eigenen Quelle zeigen | 15' | Tagesabnahme |
+
+## Tag 5 – Block C: Transform
+
+**Ziel:** Rohdaten werden gesäubert, reduziert und in die vereinbarte Struktur
+(Datenvertrag) gebracht.
+
+| Prio | Form | Inhalt | Richtwert | Material oder Ergebnis |
+| --- | --- | --- | ---: | --- |
+| Muss | Repetition | Rohdaten der drei Quellen vergleichen | 15' | Gemeinsame Felder erkennen |
+| Muss | `📕` + `🧑‍🏫` | Felder auswählen, umbenennen, Einheiten/Typen normalisieren | 60' | Saubere Datensätze |
+| Muss | `🧑‍🏫` | Reduzieren/ableiten (z. B. Jahres-Höchstwert; `Y/N` → `true/false`) | 45' | Aussagekräftige Struktur |
+| Muss | `📝` | Datenvertrag entwerfen (Felder, Typen, Beispiel-JSON) | 45' | Mock-JSON |
+| Muss | Projekt | Eigene Transform-Regeln festlegen und anwenden | 60' | Transformierte Daten |
+| Soll | `✅` | Rohdaten → saubere Struktur zeigen | 15' | Tagesabnahme |
+
+## Tag 6 – Block D: Load (Datenbank und PDO)
+
+**Ziel:** Die transformierten Daten werden über PDO in die Datenbank
+geschrieben.
 
 | Prio | Form | Inhalt | Richtwert | Ergebnis |
 | --- | --- | --- | ---: | --- |
-| Muss | Repetition | Datenfluss von Quelle bis JSON ordnen | 15' | Gemeinsame Pipeline |
-| Muss | Tooling | DB-Zugang, `config.php` und Verbindung testen | 60' | Verbindung pro Person |
-| Muss | `📕` | Tabelle, Zeile, Spalte, Datentyp, Primärschlüssel, Beziehung | 45' | Begriffe am Beispieldatensatz |
-| Muss | `📝` | Messwerte als ERM Light planen | 45' | Eine kleine Tabelle |
-| Muss | `🔎` | Input Pascal Alisser inklusive Fragen | 120' | Notizen für eigene Idee |
-| Muss | Projekt | Datenfrage und Quelle auf Relevanz, Menge, Zeitraum und Zugang prüfen | 45' | Begründete Projektgrundlage |
-| Soll | `✅` | DB-Verbindung, ERM und Projektgrundlage zeigen | 15' | Kurze Abnahme |
+| Muss | Tooling | DB-Zugang, `config.php`, Verbindung testen | 45' | Verbindung pro Person |
+| Muss | `📕` | Tabelle, Zeile, Spalte, Datentyp, Primärschlüssel, Beziehung | 40' | Begriffe am Beispiel |
+| Muss | `📝` | Daten als ERM Light planen | 35' | Kleine Tabelle |
+| Muss | `📕` + `🧑‍🏫` | PDO-Verbindung und `INSERT` mit Prepared Statements | 70' | Neue Zeilen in der DB |
+| Muss | Projekt | Eigene transformierte Daten laden | 60' | Daten der Gruppe in der DB |
+| Optional | Vertiefung | `UPDATE`/`DELETE`, einfache Fehlerbehandlung | 30' | CRUD ergänzt |
+| Muss | `✅` | Daten in der Datenbank zeigen | 15' | Tagesabnahme |
 
-## Tag 5 – PDO und CRUD
+## Tag 7 – Block E: Unload
 
-**Ziel:** Ein vorbereiteter Messwert kann mit PDO gelesen, eingefügt,
-aktualisiert und gelöscht werden.
-
-| Prio | Form | Inhalt | Richtwert | Ergebnis |
-| --- | --- | --- | ---: | --- |
-| Muss | Repetition | SQL-Befehle den vier CRUD-Aktionen zuordnen | 15' | Zuordnung im Plenum |
-| Muss | `📕` + `🧑‍🏫` | PDO-Verbindung und `SELECT` | 60' | Messwerte aus DB |
-| Muss | `💻` | Einen vorbereiteten Datensatz lesen | 30' | Sichtbare Ausgabe |
-| Muss | `📕` + `🧑‍🏫` | `INSERT` und Prepared Statements | 60' | Neuer Messwert |
-| Soll | `🧑‍🏫` | `UPDATE` und `DELETE` an Testdaten | 60' | CRUD vollständig |
-| Muss | Projekt | Erstes kleines Datenmodell und Datenvertrags-Entwurf | 60' | Feldliste und Mock-JSON |
-| Optional | Vertiefung | Einfache Fehlerbehandlung | 30' | Verständliche Meldung |
-| Muss | `✅` | CRUD-Durchstich zeigen | 15' | Tagesabnahme |
-
-## Tag 6 – Extract, Transform und Load
-
-**Ziel:** Daten aus einer vorbereiteten Quelle werden in eine vereinbarte Form
-gebracht und in die Datenbank geladen.
+**Ziel:** Der vereinbarte JSON-Endpunkt liest die Daten per PDO aus der Datenbank
+und liefert sie gefiltert aus.
 
 | Prio | Form | Inhalt | Richtwert | Ergebnis |
 | --- | --- | --- | ---: | --- |
-| Muss | Repetition | Extract, Transform und Load an Beispielen unterscheiden | 15' | ETL-Zuordnung |
-| Muss | `📕` + `🧑‍🏫` | Extract mit `fetchJson()` oder Dateizugriff | 60' | PHP-Array mit Rohdaten |
-| Muss | `📝` | Eigene ETL-Pipeline und Risiken skizzieren | 35' | ETL-Plan |
-| Muss | `🧑‍🏫` + `💻` | Rohdaten auswählen, umbenennen und normalisieren | 60' | Saubere Datensätze |
-| Muss | `🧑‍🏫` + `💻` | Transformierte Daten mit PDO laden | 60' | Daten in DB |
-| Muss | Projekt | Eigene Quelle technisch testen; Mock-JSON vereinbaren | 90' | Backend- und Frontend-Arbeit entkoppelt |
-| Optional | Vertiefung | Zweite Extract-Variante vergleichen | 30' | Transfer |
-| Muss | `✅` | Quelle bis Datenbank zeigen | 15' | Tagesabnahme |
+| Muss | Repetition | Datenvertrag gegen Beispiel-JSON prüfen | 15' | Fehler erkennen |
+| Muss | `📕` + `🧑‍🏫` | `unload.php`: PDO `SELECT`, Struktur, Header, `json_encode` | 70' | Stabiler Endpunkt |
+| Muss | `🧑‍🏫` | Endpunkt mit `$_GET` filtern; leere Resultate sauber beantworten | 50' | Filterbare API-Antwort |
+| Muss | Projekt | Eigenen `unload.php`-Endpunkt bauen | 60' | Endpunkt der Gruppe |
+| Muss | `✅` | Endpunkt (mit und ohne Filter) zeigen | 15' | Tagesabnahme |
 
-## Tag 7 – Unload und Chart.js
+## Tag 8 – Block F: Chart.js und UX-Slot
 
-**Ziel:** Der vereinbarte JSON-Endpunkt liest Daten aus der Datenbank; ein
-erster Chart stellt dieselbe Struktur dar.
+**Ziel:** Das Frontend lädt den Unload-Endpunkt und zeigt einen ersten Chart.
+Der UX-Slot ist laut Miro-Board flexibel und kann auch früher stattfinden.
 
 | Prio | Form | Inhalt | Richtwert | Ergebnis |
 | --- | --- | --- | ---: | --- |
-| Muss | Repetition | Datenvertrag gegen drei JSON-Antworten prüfen | 15' | Fehler erkennen |
-| Muss | `📕` + `🧑‍🏫` | `unload.php`: `SELECT`, Struktur, Header und JSON | 70' | Stabiler Endpunkt |
-| Muss | `💻` | Endpunkt filtern und leere Resultate behandeln | 40' | Saubere API-Antwort |
-| Muss | `📕` | Diagrammtypen passend zur Aussage auswählen | 35' | Begründeter Diagrammtyp |
-| Muss | `🧑‍🏫` | Erster Chart.js-Chart mit Mock-Daten | 50' | Sichtbarer Chart |
-| Muss | Projekt | `fetch()` auf Mock-Datei oder echten Endpunkt | 90' | Erste technische Verbindung |
-| Soll | `✅` | Endpunkt und Chart zeigen | 15' | Tagesabnahme |
-
-## Tag 8 – Flexibler UX-Slot und Projektwerkstatt
-
-Der UX-Block ist laut Plan flexibel und kann auch früher im Kurs stattfinden.
-Solange die definitive Platzierung offen ist, bleibt Tag 8 als reservierter
-Slot bestehen.
-
-**Muss-Ergebnis unabhängig von der Platzierung:** Jede Gruppe nutzt den freien
-Projektblock, um Datenweg, Story oder Integration sichtbar weiterzubringen.
+| Muss | `📕` | Diagrammtypen passend zur Aussage auswählen | 30' | Begründeter Diagrammtyp |
+| Muss | `🧑‍🏫` | Chart.js-Setup, `fetch()` auf Endpunkt, Labels/Datasets mappen | 70' | Sichtbarer Chart |
+| Soll | `💻` | Einfache Interaktion: Filter/Zeitraum/Kategorie | 45' | Interaktiver Chart |
+| Soll | UX | UX-Input oder betreute Projektarbeit | 60' | Bessere Nutzung |
+| Soll | `✅` | Chart aus echten Daten zeigen | 15' | Tagesabnahme |
 
 ## Tag 9 – Integration, Fallback und Feature-Freeze
 
-**Ziel:** Am Ende des Tages steht die ausstellungsfähige Fassung. Neue Features
-werden danach nur noch begonnen, wenn sie die Stabilität nicht gefährden.
+**Ziel:** Am Ende des Tages steht die ausstellungsfähige Fassung.
 
 | Prio | Form | Inhalt | Richtwert | Ergebnis |
 | --- | --- | --- | ---: | --- |
@@ -190,7 +195,6 @@ werden danach nur noch begonnen, wenn sie die Stabilität nicht gefährden.
 | Muss | Test | Ladefehler, leere Daten, Serverpfade und Browser testen | 60' | Fehlerliste abgearbeitet |
 | Muss | Test | Gespeicherten JSON-/CSV-/DB-Fallback aktiv testen | 45' | Offline-/Daten-Fallback |
 | Muss | Story | Titel, Kernaussage, Quelle und Limitationen prüfen | 45' | Verständliche Story |
-| Muss | Marktstand | Bedienung und Erklärung mit einer fremden Person testen | 45' | Kurzer Vermittlungstest |
 | Soll | UX | Noch offener UX-Input oder Feinschliff | 45' | Bessere Nutzung |
 | Muss | `✅` | Ausstellungsfassung abnehmen und einfrieren | 20' | **M4: Erste Integration steht** |
 
@@ -207,13 +211,32 @@ vollständig abgegeben.
 | Soll | Reflexion | ETL+U, Zusammenarbeit und Story-Entscheide besprechen | Gesicherte Learnings |
 | Muss | `✅` | Schlussabnahme | **M5: Marktstand und Abgabe** |
 
+## Story-Spur und Pascal Alisser
+
+Die Datenjournalismus-Spur ist kein eigener technischer Block, sondern läuft
+parallel ab Tag 1:
+
+- Tag 1: Beispielprojekte ansehen, Themenfelder sammeln.
+- Tag 2: erste Datenfrage formulieren (**M2**).
+- Tag 3: Datenquelle recherchieren und finden (**M3**).
+- Tag 4–5: Frage und Quelle auf Relevanz, Menge, Zeitraum und Zugang prüfen.
+- Tag 7–9: Aussage, Quellen und Limitationen für die Ausstellung schärfen.
+- Tag 10: Story am Marktstand vermitteln.
+
+**Input Pascal Alisser (2 Stunden, `🔎`):** fixer Story-Input, der neben den
+technischen Blöcken schwebt. Er ist **nicht** an einen technischen Block
+gebunden und wird flexibel platziert (Richtwert um Tag 4–5, sobald die Gruppen
+eine erste Datenfrage und Quelle haben). Inhalte: datenjournalistische Frage,
+Quellensuche und -prüfung, aus Daten eine Story machen, Grenzen und Ethik, Zeit
+für Fragen.
+
 ## Entscheidungen, die noch offen bleiben
 
 - Genaue Unterrichtszeiten und Pausen; erst danach werden Richtwerte in einen
   definitiven Stundenplan übersetzt.
-- Inhalt und definitive Position der beiden UX-Slots.
+- Inhalt und definitive Position der UX-Slots.
+- Genaue Platzierung des Pascal-Alisser-Inputs.
 - Bewertungskriterien und Gewichtung.
 - Detailorganisation des Marktstands.
-- Konkretes Briefing des Pascal-Alisser-Inputs.
 
 Diese Punkte blockieren die Produktion der technischen Lernmaterialien nicht.

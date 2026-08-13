@@ -20,8 +20,9 @@ Chart.js-Grundlagen und entwickeln danach ein datenjournalistisches Projekt.
 Der Kurs wird in dieser Planung als Folge von zehn Kurstagen behandelt, alle
 als vollwertige Kurstage (kein Halbtag). Tag 10 ist der Marktstand und die
 Abgabe. Tag 1 enthaelt nur Kickoff, Tooling, Servereinrichtung und
-Begleitprogramm, noch keine PHP-Grundlagen. An Tag 4 ist ein zweistuendiger
-Input von Pascal Alisser zum Datenjournalismus eingeplant. Die
+Begleitprogramm, noch keine PHP-Grundlagen. Ein zweistuendiger Input von Pascal
+Alisser zum Datenjournalismus schwebt als Story-Input neben den technischen
+Bloecken und wird flexibel platziert (Richtwert um Tag 4-5). Die
 ausstellungsfaehige Fassung sollte bis Ende Tag 9 stehen, spaetestens vor dem
 Marktstand an Tag 10. Details und die genaue Tageszuordnung stehen in
 `dozierende/PLANUNG.md`.
@@ -75,18 +76,28 @@ Sensorik und Programmierung der Box sind nicht Inhalt dieses Kurses.
 
 ## Geplanter Lernpfad
 
+Das Rueckgrat des Kurses ist die ETL+U-Kette:
+`Extract -> Transform -> Load -> Datenbank -> Unload -> Chart.js`. Jeder
+technische Block ist ein Schritt darin.
+
 1. Tag 1: Kickoff, Gruppenbildung, Tooling, PHP-Check und Servereinrichtung.
    Keine PHP Basics.
-2. Tag 2: PHP Basics mit Variablen, Datentypen, Funktionen und Bedingungen.
-3. Tag 3: Arrays, Schleifen, lokale JSON-Ausgabe und `$_GET`-Filter.
-4. Tag 4: Tooling DB, Theorie DB & SQL, ERM Light sowie zwei Stunden Input
-   von Pascal Alisser.
-5. Tag 5: PDO und CRUD (`SELECT`, `INSERT`, `UPDATE`, `DELETE`).
-6. Tag 6: Extract mit cURL, Transform und Load.
-7. Tag 7: Unload und Chart.js-Implementierung.
-8. Tag 8: UX-Block (im Kurs flexibel platzierbar).
-9. Tag 9: UX-Block (flexibel platzierbar) und erste Integration.
+2. Tag 2: Block A - PHP Basics I: Variablen, Datentypen, Funktionen, Bedingungen.
+3. Tag 3: Block A - PHP Basics II: Arrays und Schleifen.
+4. Tag 4: Block B - Extract: dieselben Daten aus JSON-Datei, Live-API und CSV
+   als PHP-Array lesen.
+5. Tag 5: Block C - Transform: Rohdaten saeubern, reduzieren, umbenennen und
+   normalisieren (Datenvertrag).
+6. Tag 6: Block D - Load: DB-Tooling, ERM Light, PDO und `INSERT`.
+7. Tag 7: Block E - Unload: PDO `SELECT` -> JSON-Endpunkt bauen und mit `$_GET`
+   filtern.
+8. Tag 8: Block F - Chart.js und UX-Slot (flexibel platzierbar).
+9. Tag 9: Integration, Feature-Freeze und UX-Slot.
 10. Tag 10: Aufbau, Marktstand, Abgabe und Reflexion.
+
+Datenbanken/PDO sind kein eigener Block, sondern werden dort eingefuehrt, wo man
+sie braucht: `INSERT` in Load (D), `SELECT` in Unload (E). Datenjournalismus ist
+eine Begleitspur (kein nummerierter Block).
 
 ## Didaktische Leitplanken
 
@@ -107,11 +118,12 @@ Sensorik und Programmierung der Box sind nicht Inhalt dieses Kurses.
   API-Vertrag auf Papier planen.
 - PHP-Grundlagen nicht als isolierten Sprachkurs behandeln, sondern frueh auf
   JSON, Daten und den spaeteren ETL-Prozess beziehen.
-- Block B auf JSON als Ein- und Ausgabe konzentrieren: lokale JSON-Datei
-  praktisch lesen, eigenen JSON-Endpunkt bauen, `$_GET` von einem ausgehenden
-  cURL-GET unterscheiden und eine externe API nur ueber einen vorbereiteten
-  `fetchJson()`-Helper abrufen. CSV, Google Sheets und Sensor-API erst im
-  ETL-/Extract-Block praktisch umsetzen.
+- Block B (Extract) auf das Lesen von Daten konzentrieren: dieselben Daten aus
+  drei Quellen als PHP-Array einlesen (statische JSON-Datei mit
+  `file_get_contents`, Live-API ueber den vorbereiteten `fetchJson()`-Helper,
+  CSV mit `fgetcsv`). Den eigenen JSON-Endpunkt bauen und mit `$_GET` filtern
+  gehoert nicht hierher, sondern nach Unload (Block E). Sensor-API und Google
+  Sheets nur einordnen.
 - Live-APIs sind kein Selbstzweck. Statische Daten sind eine valide und oft
   robustere Projektgrundlage.
 - Das Endprodukt und die Zusammenarbeit zwischen Backend und Frontend sind der
@@ -121,9 +133,10 @@ Sensorik und Programmierung der Box sind nicht Inhalt dieses Kurses.
   technischen Strecke.
 - Der IM2-Kurs ist eine strukturelle Referenz, keine thematische Vorlage.
   Uebungen fuer IM3 eigenstaendig und kreativ im Datenkontext entwickeln.
-- Fuer Tag 2 bis 7 nach Moeglichkeit denselben kleinen Datensatz als roten
-  Faden verwenden, zum Beispiel Aare.guru. So aendert sich pro Schritt die
-  Technik, nicht gleichzeitig auch das Thema.
+- Fuer die technischen Bloecke nach Moeglichkeit denselben kleinen Datensatz als
+  roten Faden verwenden, z. B. die Hitzesommer-Daten von Open-Meteo (Block B
+  nutzt zusaetzlich ein CSV mit Shark-Attack-Daten). So aendert sich pro Schritt
+  die Technik, nicht gleichzeitig auch das Thema.
 - Meilensteine als kurze Abnahmepunkte in die Kurstage integrieren:
   Gruppen gebildet Ende Tag 1, Datenfrage formuliert Ende Tag 2, Datensatz
   gefunden Ende Tag 3, erste Integration Ende Tag 9 sowie Marktstand und
@@ -139,8 +152,9 @@ Sensorik und Programmierung der Box sind nicht Inhalt dieses Kurses.
 - Es gibt keinen eigenen Fertigstellungs-/Ausstellungstest-Halbtag mehr. Die
   ausstellungsfaehige Fassung sollte bis Ende Tag 9 stehen und einen
   Offline-/Daten-Fallback besitzen.
-- Den Input von Pascal Alisser an Tag 4 als Teil der Story-Begleitspur
-  behandeln und zwei Stunden inklusive Fragen einplanen.
+- Den Input von Pascal Alisser als Teil der Story-Begleitspur behandeln: er
+  schwebt neben den technischen Bloecken, ist flexibel platzierbar (Richtwert um
+  Tag 4-5) und dauert zwei Stunden inklusive Fragen.
 
 ## Angestrebte Repository-Struktur
 

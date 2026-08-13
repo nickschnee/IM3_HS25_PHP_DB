@@ -12,56 +12,61 @@
 `📝` Analoge Übung `🛠️` Tooling / Projektarbeit `🔎` Story & Recherche
 `✅` Meilenstein
 
-## Ablauf nach Tagen
+## Ablauf nach Blöcken
 
-### Tag 1 – Kickoff, Gruppen & Setup
+Der Kurs ist in Themenblöcke gegliedert. Ein Block kann sich über mehrere
+Kurstage erstrecken. Die Story- und Recherchespur (`🔎`) läuft parallel mit.
+
+### Kickoff & Setup
 
 1. `📕` Kickoff `45'`
 2. `🔎` Gruppen bilden `45'`
-3. `🛠️` Tooling & Server `60'`
-4. `🧑‍🏫` Code-Along: [00 Hallo PHP](code-alongs/A_PHP_Basics/00_hallo_php) `30'`
-5. `✅` M1: Gruppen gebildet
+3. `✅` M1: Gruppen gebildet
 
-#### Zusatzmaterial (Tag 1)
+### Block A – PHP Basics
 
-- `🛠️` [00 Lokaler PHP-Server](theorie/00_lokaler_php_server) – eigenen Server
-  auf Mac/Windows starten
+1. `🛠️` Tooling & Server `60'`
+2. `🧑‍🏫` Code-Along: [00 Hallo PHP](code-alongs/A_PHP_Basics/00_hallo_php) `30'`
+3. `📕` Theorie A `60'`
+4. `🧑‍🏫` Code-Along: [01 Variablen](code-alongs/A_PHP_Basics/01_variablen) `25'`
+5. `🧑‍🏫` Code-Along: [02 Funktionen](code-alongs/A_PHP_Basics/02_funktionen) `25'`
+6. `🧑‍🏫` Code-Along: [03 Bedingungen](code-alongs/A_PHP_Basics/03_bedingungen) `25'`
+7. `🧑‍🏫` Code-Along: [04 Arrays](code-alongs/A_PHP_Basics/04_arrays) `25'`
+8. `🧑‍🏫` Code-Along: [05 Schleifen](code-alongs/A_PHP_Basics/05_schleifen) `25'`
+9. `💻` Digitale Übung: [06 Städtevergleich](uebungen/A_PHP_Basics/06_staedtevergleich) `45'`
+10. `📝` Analoge Übung: [Messwertmaschine](stift-und-papier/01_messwertmaschine) `35'`
+11. `🔎` Eigene Datenfrage formulieren `60'`
+12. `✅` M2: Datenfrage formuliert
 
-### Tag 2 – Block A: PHP Basics
+#### Zusatzmaterial (Block A)
 
-1. `📕` Theorie A `60'`
-2. `🧑‍🏫` Code-Along: [01 Variablen](code-alongs/A_PHP_Basics/01_variablen) `25'`
-3. `🧑‍🏫` Code-Along: [02 Funktionen](code-alongs/A_PHP_Basics/02_funktionen) `25'`
-4. `🧑‍🏫` Code-Along: [03 Bedingungen](code-alongs/A_PHP_Basics/03_bedingungen) `25'`
-5. `🧑‍🏫` Code-Along: [04 Arrays](code-alongs/A_PHP_Basics/04_arrays) `25'`
-6. `🧑‍🏫` Code-Along: [05 Schleifen](code-alongs/A_PHP_Basics/05_schleifen) `25'`
-7. `💻` Digitale Übung: [06 Städtevergleich](uebungen/A_PHP_Basics/06_staedtevergleich) `45'`
-8. `📝` Analoge Übung: [Messwertmaschine](stift-und-papier/01_messwertmaschine) `35'`
-9. `🔎` Eigene Datenfrage formulieren `60'`
-10. `✅` M2: Datenfrage formuliert
-
-#### Zusatzmaterial
-
-Optionale Übungen (Block A)
-
+- `🛠️` [00 Lokaler PHP-Server](theorie/00_lokaler_php_server)
 - `💻` [01 Messwert](uebungen/A_PHP_Basics/01_messwert)
 - `💻` [02 Badewetter](uebungen/A_PHP_Basics/02_badewetter)
 - `💻` [03 Warnstufe](uebungen/A_PHP_Basics/03_warnstufe)
 - `💻` [04 Messstation](uebungen/A_PHP_Basics/04_messstation)
 - `💻` [05 Aare-Woche](uebungen/A_PHP_Basics/05_aare_woche)
 
-### Tag 3 – Block B: JSON & Datenquellen
+### Block B – JSON & Datenquellen
 
 > Thema ab hier: **Hitzesommer** – Höchsttemperaturen in Chur, Bern und Zürich.
-> Aus Datenlisten wird ein JSON-Endpunkt.
+> Immer dasselbe Muster **lesen → Endpunkt → filtern**, mit drei Datenquellen:
+> statische Datei, Live-API und CSV. Der Extract ändert sich, der Rest bleibt.
 
 1. `💻` Digitale Übung: [01 Daten finden & herunterladen](uebungen/B_php_json_api/01_daten_finden) `45'`
 2. `📕` Theorie B `20'`
-3. `🧑‍🏫` Code-Along: [06 JSON lesen](code-alongs/B_php_json_api/06_json_lesen) `30'`
-4. `🧑‍🏫` Code-Along: [07 Eigener JSON-Endpunkt](code-alongs/B_php_json_api/07_json_endpoint) `35'`
-5. `🧑‍🏫` Code-Along: [08 Endpunkt filtern (`$_GET`)](code-alongs/B_php_json_api/08_json_filter) `30'`
-6. `🔎` Datenquellen recherchieren & prüfen `60'`
-7. `✅` **M3: Datensatz gefunden**
+3. `🧑‍🏫` Code-Along: [06 JSON lesen](code-alongs/B_php_json_api/06_json_lesen) _(Datei)_ `30'`
+4. `🧑‍🏫` Code-Along: [07 Eigener JSON-Endpunkt](code-alongs/B_php_json_api/07_json_endpoint) _(Datei)_ `35'`
+5. `🧑‍🏫` Code-Along: [08 Endpunkt filtern (`$_GET`)](code-alongs/B_php_json_api/08_json_filter) _(Datei)_ `30'`
+6. `🧑‍🏫` Code-Along: [09 Live-Daten holen](code-alongs/B_php_json_api/09_live_lesen) _(Live-API)_ `30'`
+7. `🧑‍🏫` Code-Along: [10 Live-Endpunkt](code-alongs/B_php_json_api/10_live_endpoint) _(Live-API)_ `35'`
+8. `🧑‍🏫` Code-Along: [11 Live-Endpunkt filtern](code-alongs/B_php_json_api/11_live_filter) _(Live-API)_ `30'`
+9. `🧑‍🏫` Code-Alongs 12–14 _(CSV, Shark Attacks – in Arbeit)_
+10. `🔎` Datenquellen recherchieren & prüfen `60'`
+11. `✅` **M3: Datensatz gefunden**
+
+> _Blöcke C–F folgen, sobald die Inhalte stehen. Entwurf unten (noch nach Tagen
+> skizziert)._
 
 <!--
 
