@@ -215,6 +215,7 @@
 .reveal ol li { margin-bottom: 12px; }
 
 .list-tight li { margin-bottom: 7px; }
+.list-intro { margin-bottom: 14px !important; }
 
 /* ===========================================
    TITELFOLIE

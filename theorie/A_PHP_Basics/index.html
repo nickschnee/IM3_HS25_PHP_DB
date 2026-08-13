@@ -419,7 +419,7 @@ echo $msg;
         <h2>Vergleichen</h2>
         <div class="content">
           <p>Ein Vergleich ergibt immer <code>true</code> oder <code>false</code>.</p>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch;">
             <table class="fragment" data-fragment-index="0">
               <tr><th style="width: 34%;">Operator</th><th>Bedeutung</th></tr>
               <tr><td><code>===</code></td><td>ist gleich</td></tr>
@@ -429,8 +429,8 @@ echo $msg;
               <tr><td><code>&gt;</code></td><td>ist grösser als</td></tr>
               <tr><td><code>&gt;=</code></td><td>ist grösser oder gleich</td></tr>
             </table>
-            <div>
-              <pre class="code-sm fragment" data-fragment-index="0"><code data-trim data-noescape class="language-php">
+            <div style="display: flex; flex-direction: column;">
+              <pre class="code-sm fragment" data-fragment-index="0" style="flex: 1; margin: 6px 0;"><code data-trim data-noescape class="language-php" style="height: 100%; box-sizing: border-box;">
 $x = 1;
 $y = 2;
 
@@ -490,7 +490,6 @@ var_dump($temperatureC &gt; 25 || $isOfficial === true);   // true
           </code></pre>
           <ul class="list-tight">
             <li><code>&amp;&amp;</code> = <strong>und</strong> · <code>||</code> = <strong>oder</strong></li>
-            <li>Bei Unklarheit Klammern setzen – das ist keine Schwäche, sondern lesbar</li>
           </ul>
         </div>
       </section>
@@ -601,20 +600,16 @@ $temperatures = [18.9, 19.4, 20.1];
       <section id="array-arten">
         <h2>Indexiert oder assoziativ</h2>
         <div class="content">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
-            <div>
-              <h3>Indexiert – Reihenfolge zählt</h3>
-              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; row-gap: 8px; align-items: stretch;">
+            <h3>Indexiert – Reihenfolge zählt</h3>
+            <h3>Assoziativ – Schlüssel zählt</h3>
+            <pre class="code-sm" style="margin: 6px 0;"><code data-trim data-noescape class="language-php" style="height: 100%; box-sizing: border-box;">
 $temperatures = [18.9, 19.4, 20.1];
 
 echo $temperatures[0];   // 18.9
 echo $temperatures[1];   // 19.4
-              </code></pre>
-              <p class="text-sm text-muted">Die Zählung beginnt bei <strong>0</strong>.</p>
-            </div>
-            <div>
-              <h3>Assoziativ – Schlüssel zählt</h3>
-              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+            </code></pre>
+            <pre class="code-sm" style="margin: 6px 0;"><code data-trim data-noescape class="language-php" style="height: 100%; box-sizing: border-box;">
 $measurement = [
     'location'      =&gt; 'Bern',
     'temperature_c' =&gt; 19.4,
@@ -622,8 +617,8 @@ $measurement = [
 ];
 
 echo $measurement['location'];   // Bern
-              </code></pre>
-            </div>
+            </code></pre>
+            <p class="text-sm text-muted" style="grid-column: 1;">Die Zählung beginnt bei <strong>0</strong>.</p>
           </div>
           <p class="text-sm text-muted mt-1">Faustregel: <strong>Liste</strong> von gleichartigen Dingen →
             indexiert.</p>
@@ -634,7 +629,7 @@ echo $measurement['location'];   // Bern
 
       <!-- ============ 27 ============ -->
       <section id="datensaetze">
-        <h2>Die Form, die alle Daten haben</h2>
+        <h2>Die Form, die viele Daten haben</h2>
         <div class="content">
           <p>Eine <strong>Liste</strong> (indexiert) von <strong>Datensätzen</strong> (assoziativ):</p>
           <pre class="code-sm"><code data-trim data-noescape class="language-php">
@@ -667,29 +662,146 @@ $stations['Interlaken'] = 17.5;      // Eintrag mit Schlüssel ergänzen
 echo count($temperatures);           // Anzahl Einträge
 var_dump($stations);                 // ganze Struktur prüfen
           </code></pre>
-          <div class="callout callout-gray">
-            <p><strong>Bewusste Begrenzung:</strong> <code>array_map</code>, <code>array_filter</code>,
-              <code>array_reduce</code> und <code>sort</code> stehen im Cheatsheet
-              <code>04_arrays.md</code>.</p>
-            <p>Zuerst müssen Liste, Index, Schlüssel und Wert sicher sitzen.</p>
+          <div class="callout callout-blue">
+            <p>Als Nächstes folgen vier wichtige Funktionen zum Umformen, Filtern, Zusammenfassen und
+              Sortieren.</p>
           </div>
         </div>
       </section>
 
-      <!-- ============ 29 Trenner ============ -->
+      <!-- ============ 29 ============ -->
+      <section id="array-map">
+        <h2><code>array_map</code> – jeden Wert umformen</h2>
+        <div class="content">
+          <p><code>array_map</code> wendet dieselbe Funktion auf jeden Wert an.</p>
+          <div style="display: grid; grid-template-columns: 1.45fr 1fr; gap: 36px; align-items: stretch;">
+            <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$temperatures = [18.9, 19.4, 20.1];
+
+function formatTemperature($temperatureC) {
+    return "$temperatureC °C";
+}
+
+$labels = array_map('formatTemperature', $temperatures);
+
+print_r($labels);
+            </code></pre>
+            <div>
+              <span class="code-label">Ergebnis</span>
+              <div class="output">Array
+(
+    [0] =&gt; 18.9 °C
+    [1] =&gt; 19.4 °C
+    [2] =&gt; 20.1 °C
+)</div>
+            </div>
+          </div>
+          <div class="callout callout-green">
+            <p>Die Anzahl Einträge bleibt gleich – nur die Werte ändern sich.</p>
+          </div>
+        </div>
+        <aside class="notes">Die benannte Funktion zuerst laut lesen: Nimm eine Temperatur und gib ein
+          beschriftetes Ergebnis zurück. Danach zeigen, dass array_map diese Funktion für jeden Wert
+          aufruft.</aside>
+      </section>
+
+      <!-- ============ 30 ============ -->
+      <section id="array-filter">
+        <h2><code>array_filter</code> – passende Werte auswählen</h2>
+        <div class="content">
+          <p><code>array_filter</code> behält nur Werte, welche die Bedingung erfüllen.</p>
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$temperatures = [18.9, 19.4, 20.1];
+
+function isWarm($temperatureC) { return $temperatureC &gt;= 19.4; }
+
+$warmTemperatures = array_filter($temperatures, 'isWarm');
+
+print_r($warmTemperatures);
+          </code></pre>
+          <div class="output">Array
+(
+    [1] =&gt; 19.4
+    [2] =&gt; 20.1
+)</div>
+          <div class="callout callout-orange">
+            <p><code>array_filter</code> behält die ursprünglichen Schlüssel.</p>
+          </div>
+        </div>
+        <aside class="notes">Auf die Schlüssel 1 und 2 hinweisen. Falls eine neue lückenlose Liste nötig
+          ist, kann später array_values verwendet werden.</aside>
+      </section>
+
+      <!-- ============ 31 ============ -->
+      <section id="array-reduce">
+        <h2><code>array_reduce</code> – viele Werte zusammenfassen</h2>
+        <div class="content">
+          <p><code>array_reduce</code> macht aus einer Liste einen einzelnen Wert.</p>
+          <div style="display: grid; grid-template-columns: 1.5fr 0.8fr; gap: 36px; align-items: stretch;">
+            <pre class="code-sm"><code data-trim data-noescape class="language-php" style="height: 100%; box-sizing: border-box;">
+$temperatures = [18.9, 19.4, 20.1];
+
+function addTemperature($sum, $temperatureC) {
+    return $sum + $temperatureC;
+}
+
+$total = array_reduce($temperatures, 'addTemperature', 0);
+
+echo $total;
+            </code></pre>
+            <div class="output" style="box-sizing: border-box;"><span class="label">Ergebnis</span>58.4</div>
+          </div>
+          <div class="callout callout-blue">
+            <p><code>$sum</code> trägt das bisherige Ergebnis zum nächsten Wert weiter.</p>
+          </div>
+        </div>
+        <aside class="notes">Die 0 ist der Startwert. Die drei Rechenschritte bei Bedarf an der Tafel
+          notieren: 0 + 18.9, danach + 19.4, danach + 20.1.</aside>
+      </section>
+
+      <!-- ============ 32 ============ -->
+      <section id="array-sort">
+        <h2><code>sort</code> – Werte aufsteigend ordnen</h2>
+        <div class="content">
+          <p><code>sort</code> sortiert die Werte vom kleinsten zum grössten.</p>
+          <div style="display: grid; grid-template-columns: 1.25fr 1fr; gap: 36px; align-items: stretch;">
+            <pre class="code-sm"><code data-trim data-noescape class="language-php" style="height: 100%; box-sizing: border-box;">
+$temperatures = [20.1, 18.9, 19.4];
+
+$sortedTemperatures = $temperatures;
+sort($sortedTemperatures);
+
+print_r($sortedTemperatures);
+            </code></pre>
+            <div class="output" style="box-sizing: border-box;"><span class="label">Ausgabe</span>Array
+(
+    [0] =&gt; 18.9
+    [1] =&gt; 19.4
+    [2] =&gt; 20.1
+)</div>
+          </div>
+          <div class="callout callout-orange">
+            <p><code>sort</code> verändert das übergebene Array – deshalb kopieren wir die Liste zuerst.</p>
+          </div>
+        </div>
+        <aside class="notes">sort liefert nur true oder false zurück. Deshalb zuerst eine Kopie erstellen,
+          danach diese sortieren und ausgeben.</aside>
+      </section>
+
+      <!-- ============ 33 Trenner ============ -->
       <section id="divider-schleifen" class="section-divider" data-state="is-section-divider">
         <h1>Schleifen</h1>
         <p>Eine Anweisung, beliebig viele Daten</p>
       </section>
 
-      <!-- ============ 30 ============ -->
+      <!-- ============ 34 ============ -->
       <section id="warum-schleifen">
         <h2>Warum Schleifen?</h2>
         <div class="content">
-          <p class="text-lg">Fünf Messungen von Hand ausgeben ist mühsam.</p>
-          <p class="text-lg">Bei einem Jahr Stundenwerten sind es <strong>8760</strong> – von Hand
-            unmöglich.</p>
-          <div class="flow mt-1">
+          <p class="text-lg" style="margin-bottom: 22px;">Fünf Messungen von Hand ausgeben ist mühsam.</p>
+          <p class="text-lg" style="margin-bottom: 22px;">Ein Jahr mit einem Messwert pro Stunde ergibt <strong>8760 Werte</strong> – von
+            Hand auszugeben ist unmöglich.</p>
+          <div class="flow" style="margin: 22px 0;">
             <div class="flow-step">
               <span class="flow-title">Liste</span>
               <span class="flow-sub">beliebig viele Datensätze</span>
@@ -705,84 +817,72 @@ var_dump($stations);                 // ganze Struktur prüfen
               <span class="flow-sub">eine Zeile pro Datensatz</span>
             </div>
           </div>
-          <div class="callout callout-blue mt-2">
+          <div class="callout callout-blue" style="margin-top: 30px;">
             <p>Eine Schleife ist erst dann korrekt, wenn sie mit <strong>null</strong>, <strong>einem</strong>
               und <strong>vielen</strong> Datensätzen sinnvoll läuft.</p>
           </div>
         </div>
       </section>
 
-      <!-- ============ 31 ============ -->
+      <!-- ============ 35 ============ -->
       <section id="foreach">
         <h2><code>foreach</code> – die wichtigste Schleife</h2>
         <div class="content">
-          <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 36px; align-items: start;">
-            <div>
-              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+          <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 36px; align-items: stretch;">
+              <pre class="code-sm"><code data-trim data-noescape class="language-php" style="height: 100%; box-sizing: border-box;">
 foreach ($measurements as $measurement) {
     echo $measurement['time'] . ': '
        . $measurement['temperature_c'] . " °C\n";
 }
               </code></pre>
-              <ul class="list-tight text-sm mt-1">
-                <li><code>$measurements</code> ist die <strong>ganze Liste</strong> (Plural)</li>
-                <li><code>$measurement</code> ist <strong>ein Datensatz</strong> (Singular)</li>
-                <li>Kommt ein Datensatz dazu, musst du <strong>nichts</strong> ändern</li>
-              </ul>
-            </div>
-            <div>
-              <span class="code-label">Ausgabe</span>
-              <div class="output">08:00: 18.9 °C
+              <div class="output" style="box-sizing: border-box;"><span class="label">Ausgabe</span>08:00: 18.9 °C
 10:00: 19.4 °C
 12:00: 20.1 °C
 14:00: 20.3 °C
 16:00: 20.0 °C</div>
-            </div>
+              <ul class="list-tight text-sm" style="grid-column: 1; margin-top: 0;">
+                <li><code>$measurements</code> ist die <strong>ganze Liste</strong> (Plural)</li>
+                <li><code>$measurement</code> ist <strong>ein Datensatz</strong> (Singular)</li>
+                <li>Kommt ein Datensatz dazu, musst du <strong>nichts</strong> ändern</li>
+              </ul>
           </div>
         </div>
         <aside class="notes">Die Plural/Singular-Konvention konsequent durchziehen – das macht Schleifen
           fast selbsterklärend.</aside>
       </section>
 
-      <!-- ============ 32 ============ -->
+      <!-- ============ 36 ============ -->
       <section id="andere-schleifen">
         <h2>Die anderen Schleifen</h2>
         <div class="content">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start;">
-            <div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: stretch;">
               <h3><code>for</code> – wenn du zählst</h3>
-              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+              <h3><code>while</code> – solange etwas gilt</h3>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php" style="height: 100%; box-sizing: border-box;">
 for ($i = 0; $i &lt; 10; $i++) {
     echo $i;
 }
               </code></pre>
-              <p class="text-sm text-muted">Startwert · Abbruchbedingung · Schrittweite</p>
-            </div>
-            <div>
-              <h3><code>while</code> – solange etwas gilt</h3>
-              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+              <pre class="code-sm"><code data-trim data-noescape class="language-php" style="height: 100%; box-sizing: border-box;">
 $i = 0;
 while ($i &lt; 10) {
     echo $i;
     $i++;
 }
               </code></pre>
+              <p class="text-sm text-muted">Startwert · Abbruchbedingung · Schrittweite</p>
               <p class="text-sm text-muted">Wird die Bedingung nie <code>false</code>, läuft die Schleife ewig.</p>
-            </div>
           </div>
-          <p class="text-sm text-muted mt-1">Für diesen Lernpfad reicht <code>foreach</code>.
-            <code>for</code>, <code>while</code>, <code>do while</code>, <code>break</code> und
-            <code>continue</code> bleiben Referenzwissen im Cheatsheet <code>05_schleifen.md</code>.</p>
         </div>
       </section>
 
-      <!-- ============ 33 Trenner ============ -->
+      <!-- ============ 37 Trenner ============ -->
       <section id="divider-ausblick" class="section-divider" data-state="is-section-divider">
         <h1>Zusammenspiel<br>&amp; Ausblick</h1>
         <p>Wozu das alles gut ist</p>
       </section>
 
-      <!-- ============ 34 ============ -->
+      <!-- ============ 38 ============ -->
       <section id="roter-faden">
         <h2>Der rote Faden</h2>
         <div class="content">
@@ -797,7 +897,7 @@ while ($i &lt; 10) {
             <div class="flow-arrow">→</div>
             <div class="flow-step"><span class="flow-title">Chart.js</span><span class="flow-sub">Story</span></div>
           </div>
-          <p class="mt-2">In <strong>jedem</strong> dieser Schritte steckt, was du heute gelernt hast:</p>
+          <p class="mt-2 list-intro">In <strong>jedem</strong> dieser Schritte steckt, was du heute gelernt hast:</p>
           <ul class="list-tight text-sm">
             <li><strong>Arrays</strong> – jede Datenquelle wird zu einem Array</li>
             <li><strong>foreach</strong> – jeder Datensatz wird einzeln verarbeitet</li>
@@ -808,7 +908,7 @@ while ($i &lt; 10) {
         </div>
       </section>
 
-      <!-- ============ 35 ============ -->
+      <!-- ============ 39 ============ -->
       <section id="fehler">
         <h2>Häufige Fehler</h2>
         <div class="content">
@@ -833,7 +933,7 @@ while ($i &lt; 10) {
         </div>
       </section>
 
-      <!-- ============ 36 ============ -->
+      <!-- ============ 40 ============ -->
       <section id="was-kommt">
         <h2>Was jetzt kommt</h2>
         <div class="content">
@@ -864,13 +964,13 @@ while ($i &lt; 10) {
         </div>
       </section>
 
-      <!-- ============ 37 Schluss ============ -->
+      <!-- ============ 41 Schluss ============ -->
       <section id="schluss">
         <h2>Zum Mitnehmen</h2>
         <div class="content" style="justify-content: center;">
           <p class="big-statement">PHP läuft auf dem Server<br>und liefert Daten.</p>
-          <p class="text-xl mt-2">Variablen, Funktionen, Bedingungen, Arrays und <code>foreach</code> –
-            mehr Sprache brauchst du für den ganzen ETL-Prozess nicht.</p>
+          <p class="text-xl mt-2">Variablen, Funktionen, Bedingungen, Arrays und Schleifen –
+            mehr PHP brauchst du für den ganzen ETL-Prozess nicht.</p>
           <p class="mt-2"><span class="next-step">Nächster Schritt: Code-Along 01 – Variablen</span></p>
         </div>
       </section>

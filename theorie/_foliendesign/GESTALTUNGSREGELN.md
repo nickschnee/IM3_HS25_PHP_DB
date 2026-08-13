@@ -117,3 +117,26 @@ Flächige Rot-/Grün-Codierungen werden nicht verwendet.
 
 Die Gegenüberstellung entsteht durch Überschriften, Inhalt und die mittige
 Trennlinie.
+
+## 13. Boxen nebeneinander
+
+Boxen, die nebeneinander stehen und direkt verglichen werden, erhalten dieselbe
+Höhe.
+
+Ober- und Unterkante der Boxen liegen auf derselben Linie. Für Code-Boxen wird
+die gemeinsame Höhe mit einem Grid oder Flex-Layout hergestellt.
+
+## 14. Einfache PHP-Syntax bevorzugen
+
+Theorie-Folien verwenden nach Möglichkeit benannte Funktionen statt Arrow
+Functions mit `fn`.
+
+Arrow Functions erscheinen nur, wenn sie selbst Lernziel sind oder eine
+benannte Funktion die Erklärung deutlich komplizierter machen würde.
+
+## 15. Abstand vor Aufzählungen
+
+Ein kurzer Einleitungssatz vor einer Aufzählung erhält immer denselben Abstand
+zu den ersten Aufzählungspunkten.
+
+Dafür wird die Klasse `list-intro` verwendet.
