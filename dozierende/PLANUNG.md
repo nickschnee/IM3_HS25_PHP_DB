@@ -257,37 +257,58 @@ technisch demselben Muster (Quelle → PHP-Array).
 
 ### C. Transform
 
-Ziel: Studierende können die Rohdaten aus Block B säubern, reduzieren und in die
-vereinbarte Zielstruktur (Datenvertrag) bringen.
+Ziel: Studierende übersetzen ihre Datenfrage in begründete Transform-Regeln,
+bringen die Rohdaten aus Block B in die vereinbarte Zielstruktur und können
+zeigen, welche Daten dabei ausgeschlossen, zusammengefasst oder als unbekannt
+behandelt wurden. Komplexer Code darf mit KI-Unterstützung entstehen; der Fokus
+liegt auf fachlichen Entscheidungen, Datenvertrag und Audit.
 
 Inhalte:
 
-- Nur die benötigten Felder auswählen.
-- Felder umbenennen: API-/CSV-Namen → eigene, klare Feldnamen.
-- Werte normalisieren: Einheiten, Datentypen, Datums- und Zahlformate.
-- Werte ableiten und reduzieren, z. B. aus vielen Tageswerten den
-  Jahres-Höchstwert.
-- Kategorien vereinheitlichen, z. B. `"Y"`/`"N"` → `true`/`false`.
-- Fehlende Werte (`null`) erkennen und behandeln.
-- Ergebnis: eine Liste gleich aufgebauter Datensätze nach Datenvertrag –
-  unabhängig davon, aus welcher Quelle sie stammen.
+- Datenfrage präzisieren und zu starke Aussagen erkennen (Häufigkeit ist nicht
+  automatisch Risiko oder Ursache).
+- Untersuchungseinheit festlegen: Was beschreibt eine Zeile nach Transform?
+- Filtern und auswählen: nur Datensätze und Felder behalten, die zur Frage
+  gehören.
+- Felder umbenennen und Werte normalisieren: Einheiten, Datentypen, Datums- und
+  Zahlformate.
+- Kategorien über dokumentierte Mappings vereinheitlichen; Reihenfolge und
+  Grenzfälle bewusst prüfen.
+- Werte ableiten und aggregieren, z. B. Hitzetage pro Stadt und Sommer.
+- Fehlende oder unklare Werte als `null` behandeln, nicht raten.
+- Datenverluste auditieren: Eingabe, Ausschlüsse pro Grund, Ausgabe, unbekannte
+  Werte und Stichproben.
+- KI mit einer Spezifikation aus Frage, Regeln, Beispielen, Datenvertrag und
+  Audit beauftragen; Annahmen und Mappings anschliessend am Rohdatensatz prüfen.
+- Ergebnis: eine Liste gleich aufgebauter Datensätze nach projektspezifischem
+  Datenvertrag. Verschiedene Quellen innerhalb desselben Projekts müssen nach
+  Transform denselben Vertrag erfüllen; Hitzesommer- und Shark-Projekt brauchen
+  nicht dieselbe Struktur.
 
-Nach Transform sehen die Datensätze aller drei Quellen gleich strukturiert aus.
-Der Datenvertrag verbindet Backend und Frontend (Beispiel weiter unten).
+Die beiden Kursbeispiele zeigen bewusst unterschiedliche Fälle:
+
+1. **Hitzesommer:** Für die Frage nach Hitzetagen pro Sommer nur Juni–August
+   behalten, Hitzetag als Tagesmaximum ≥ 30 °C definieren, pro Stadt/Jahr
+   aggregieren und unvollständige Sommer ausschliessen.
+2. **Shark Attacks:** Die Fragen auf erfasste Vorfälle begrenzen, Zeitraum und
+   Vorfalltyp festlegen, freie Art- und Aktivitätsangaben vorsichtig mappen und
+   die Klassifikationsabdeckung sichtbar machen. Die Resultate sind keine
+   Aussage über das Risiko einer Aktivität.
 
 Material:
 
-- Rohdaten-Arrays aus Block B
-- `stift-und-papier/` für Datenvertrag und Datenmodell
+- `theorie/C_transform/README.md`
+- `code-alongs/C_transform/09_hitzesommer_transformieren`
+- `code-alongs/C_transform/10_sharkdaten_transformieren` inklusive
+  `KI_PROMPT.md`
+- `stift-und-papier/02_transform_entscheidungen`
+- `uebungen/C_transform/01_eigener_transform`
 - `cheatsheets/230_transform.md`
 
-Mögliche Übungen:
-
-- `a_felder_auswaehlen`: Aus einem Roh-Array nur die nötigen Felder übernehmen.
-- `b_umbenennen`: Quell-Feldnamen in eigene Feldnamen mappen.
-- `c_normalisieren`: Einheiten/Typen vereinheitlichen (Rundung, `bool`).
-- `d_reduzieren`: Aus Tageswerten den Jahres-Höchstwert bilden.
-- `e_datenvertrag`: Ein komplettes Roh-Array in die Zielstruktur bringen.
+Projektabgabe des Blocks: Jede Gruppe führt eine `TRANSFORM.md` mit Datenfrage,
+Untersuchungseinheit, Regeln, Datenvertrag, Audit, bekannten Grenzen und einer
+kurzen Dokumentation des KI-Einsatzes. Backend und Frontend nehmen den
+Beispieldatensatz gemeinsam ab.
 
 ### D. Load
 

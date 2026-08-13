@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IM3 Block A – PHP Basics</title>
+
+  <!-- Reveal.js core -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ============ 1 Titel ============ -->
+      <section id="title" class="title-slide" data-state="is-title">
+        <h1>PHP Basics</h1>
+        <div class="rule"></div>
+        <p>Block A · Interaktive Medien 3</p>
+        <p class="sub">nick.schneeberger@hslu.ch</p>
+      </section>
+
+      <!-- ============ 2 Inhalt ============ -->
+      <section id="inhalt">
+        <h2>Inhalt</h2>
+        <div class="content">
+          <ul class="text-xl">
+            <li>Was ist PHP?</li>
+            <li>Variablen &amp; Datentypen</li>
+            <li>Funktionen</li>
+            <li>Bedingungen</li>
+            <li>Arrays</li>
+            <li>Schleifen</li>
+          </ul>
+          <p class="text-sm text-muted mt-2">Nach jedem Kapitel folgt ein Code-Along. Zum Nachschlagen gibt es
+            zu jedem Thema ein Cheatsheet im Ordner <code>cheatsheets/</code>.</p>
+        </div>
+        <aside class="notes">Ziel des Blocks: Am Ende könnt ihr einen Messwert speichern, formatieren,
+          bewerten, in einer Liste ablegen und diese Liste durchlaufen. Das ist genau das, was ETL später braucht.</aside>
+      </section>
+
+      <!-- ============ 3 Trenner ============ -->
+      <section id="divider-php" class="section-divider" data-state="is-section-divider">
+        <h1>Was ist PHP?</h1>
+        <p>Die Sprache, die auf dem Server läuft</p>
+      </section>
+
+      <!-- ============ 4 ============ -->
+      <section id="was-ist-php">
+        <h2>Was ist PHP?</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px; align-items: start;">
+            <ul>
+              <li>Eine <strong>serverseitige Skriptsprache</strong> für das Web</li>
+              <li>Der Code läuft auf dem <strong>Server</strong>, nicht im Browser</li>
+              <li>Dateien enden auf <code>.php</code></li>
+              <li>Der Browser bekommt nur das <strong>Ergebnis</strong> – nie den Code</li>
+              <li>Typisch: Formulare verarbeiten, Datenbanken abfragen, Daten ausliefern</li>
+            </ul>
+            <div>
+              <span class="code-label">index.php</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+&lt;?php
+$message = "Hallo Welt!";
+echo $message;
+              </code></pre>
+              <span class="code-label mt-1">Im Browser sichtbar</span>
+              <div class="output">Hallo Welt!</div>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">Wichtig: "Quelltext anzeigen" im Browser zeigt nie PHP-Code. Das ist der Grund,
+          warum Passwörter und API-Keys in PHP sicher sind, in JavaScript aber nicht.</aside>
+      </section>
+
+      <!-- ============ 5 ============ -->
+      <section id="browser-server">
+        <h2>Browser und Server</h2>
+        <div class="content">
+          <div class="flow">
+            <div class="flow-step">
+              <span class="flow-title">Browser</span>
+              <span class="flow-sub">fragt eine URL an</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step is-active">
+              <span class="flow-title">Server</span>
+              <span class="flow-sub">führt die PHP-Datei aus</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <span class="flow-title">Antwort</span>
+              <span class="flow-sub">Text, JSON oder HTML</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <span class="flow-title">Browser</span>
+              <span class="flow-sub">zeigt das Ergebnis</span>
+            </div>
+          </div>
+          <div class="callout callout-orange mt-2">
+            <p>Deshalb musst du deine Datei über <code>http://…</code> aufrufen – also über den Kursserver
+              oder <code>php -S localhost:8000</code>.</p>
+            <p>Ein Doppelklick öffnet <code>file://…</code>, dort läuft kein PHP und du siehst nur den
+              Code als Text.</p>
+          </div>
+        </div>
+        <aside class="notes">Häufigster Fehler am ersten Tag. Immer zuerst die URL prüfen.</aside>
+      </section>
+
+      <!-- ============ 6 ============ -->
+      <section id="php-vs-js">
+        <h2>PHP und JavaScript</h2>
+        <div class="content">
+          <table>
+            <tr>
+              <th style="width: 26%;"></th>
+              <th style="width: 37%;">JavaScript (IM2)</th>
+              <th style="width: 37%;">PHP (IM3)</th>
+            </tr>
+            <tr>
+              <td>Läuft</td>
+              <td>im Browser</td>
+              <td>auf dem Server</td>
+            </tr>
+            <tr>
+              <td>Sichtbar</td>
+              <td>Code ist einsehbar</td>
+              <td>nur das Ergebnis</td>
+            </tr>
+            <tr>
+              <td>Datenbank</td>
+              <td>nur über eine API</td>
+              <td>direkt</td>
+            </tr>
+            <tr>
+              <td>Variablen</td>
+              <td><code>let temp = 19.4</code></td>
+              <td><code>$temp = 19.4;</code></td>
+            </tr>
+            <tr>
+              <td>Datei</td>
+              <td><code>script.js</code></td>
+              <td><code>index.php</code></td>
+            </tr>
+          </table>
+          <p class="text-sm text-muted mt-1">Vieles kennst du schon: Variablen, Funktionen, Bedingungen,
+            Arrays und Schleifen gibt es in beiden Sprachen. Vor allem die Schreibweise ist neu.</p>
+        </div>
+      </section>
+
+      <!-- ============ 7 ============ -->
+      <section id="erste-datei">
+        <h2>Die erste PHP-Datei</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <pre><code data-trim data-noescape class="language-php">
+&lt;?php
+// Das ist ein Kommentar
+$message = "Hallo PHP";
+echo $message;
+              </code></pre>
+            </div>
+            <ul class="list-tight">
+              <li><code>&lt;?php</code> öffnet den PHP-Bereich</li>
+              <li>Jede Anweisung endet mit <strong>Semikolon</strong> <code>;</code></li>
+              <li><code>//</code> macht einen Kommentar</li>
+              <li><code>echo</code> schreibt einen Wert in die Antwort</li>
+              <li>Das schliessende <code>?&gt;</code> lassen wir weg, wenn die Datei nur PHP enthält</li>
+            </ul>
+          </div>
+          <div class="callout callout-gray">
+            <p>PHP und HTML lassen sich mischen. In diesem Kurs machen wir das bewusst <strong>nicht</strong> –
+              siehe nächste Folie.</p>
+          </div>
+        </div>
+        <aside class="notes">Verweis auf Code-Along 00_hallo_php: dort ging es nur darum, dass der Weg
+          Ordner → Server → Browser funktioniert.</aside>
+      </section>
+
+      <!-- ============ 8 ============ -->
+      <section id="php-als-api">
+        <h2>PHP als Datenlieferant</h2>
+        <div class="content">
+          <p class="text-lg">In Block A bauen wir keine Webseite. PHP liefert nur <strong>Daten</strong> –
+            wir kontrollieren sie mit <code>echo</code> und <code>var_dump</code>.</p>
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+&lt;?php
+header('Content-Type: text/plain; charset=utf-8');   // reine Textausgabe
+
+echo "Aare in Bern: 19.4 °C\n";
+          </code></pre>
+          <div class="flow mt-1">
+            <div class="flow-step is-active">
+              <span class="flow-title">Block A</span>
+              <span class="flow-sub">Text-API · text/plain</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <span class="flow-title">Block B–E</span>
+              <span class="flow-sub">JSON-API · json_encode + application/json</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <span class="flow-title">Block F</span>
+              <span class="flow-sub">Chart.js liest das JSON</span>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">Der Header ist kein Selbstzweck: ohne ihn interpretiert der Browser die Ausgabe
+          als HTML und schluckt die Zeilenumbrüche.</aside>
+      </section>
+
+      <!-- ============ 9 Trenner ============ -->
+      <section id="divider-variablen" class="section-divider" data-state="is-section-divider">
+        <h1>Variablen &amp;<br>Datentypen</h1>
+        <p>Werte speichern und wiederverwenden</p>
+      </section>
+
+      <!-- ============ 10 ============ -->
+      <section id="variablen-regeln">
+        <h2>Variablen: die Regeln</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <ul class="list-tight">
+              <li>Beginnen immer mit <code>$</code></li>
+              <li>Erlaubt: Buchstaben, Zahlen, <code>_</code> – aber nie mit einer Zahl beginnen</li>
+              <li>Gross-/Kleinschreibung zählt: <code>$name</code> ≠ <code>$Name</code></li>
+              <li>Zuweisung mit <code>=</code></li>
+              <li><strong>Dynamisch typisiert:</strong> der Typ ergibt sich aus dem Wert</li>
+            </ul>
+            <div>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$location     = 'Bern';
+$temperatureC = 19.4;
+$measuredAt   = '10:00';
+$isOfficial   = true;
+              </code></pre>
+              <div class="callout callout-blue">
+                <p class="text-sm">Sprechende Namen in <strong>camelCase</strong>: <code>$temperatureC</code>
+                  statt <code>$t</code>. Das zahlt sich im Projekt aus.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 11 ============ -->
+      <section id="datentypen">
+        <h2>Datentypen</h2>
+        <div class="content">
+          <pre><code data-trim data-noescape class="language-php">
+$integer = 42;                    // int    – Ganzzahl
+$float   = 19.4;                  // float  – Kommazahl
+$string  = "Aare in Bern";        // string – Text
+$boolean = true;                  // bool   – true oder false
+$nothing = null;                  // null   – kein Wert (nicht dasselbe wie 0!)
+$array   = [18.9, 19.4, 20.1];    // array  – mehrere Werte
+          </code></pre>
+          <div class="callout callout-orange">
+            <p>Kommazahlen immer mit <strong>Punkt</strong>: <code>19.4</code>, nicht <code>19,4</code>.
+              Und <code>19.4</code> ist eine Zahl, <code>"19.4"</code> ist Text – der Unterschied wird
+              beim Rechnen und beim Vergleichen wichtig.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 12 ============ -->
+      <section id="ausgeben">
+        <h2>Ausgeben und prüfen</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+echo $temperatureC;
+
+var_dump($temperatureC);
+var_dump($isOfficial);
+
+print_r($temperatures);
+              </code></pre>
+            </div>
+            <div>
+              <span class="code-label">Ausgabe</span>
+              <div class="output">19.4
+float(19.4)
+bool(true)
+Array
+(
+    [0] =&gt; 18.9
+    [1] =&gt; 19.4
+)</div>
+            </div>
+          </div>
+          <ul class="list-tight mt-1">
+            <li><code>echo</code> schreibt den <strong>Wert</strong> – für die Ausgabe</li>
+            <li><code>var_dump</code> zeigt zusätzlich <strong>Typ und Struktur</strong> – zum Debuggen</li>
+            <li><code>print_r</code> zeigt Arrays lesbar, aber ohne Typen</li>
+          </ul>
+        </div>
+        <aside class="notes">var_dump ist das wichtigste Debugging-Werkzeug im ganzen Kurs. Wenn etwas nicht
+          funktioniert: var_dump statt raten.</aside>
+      </section>
+
+      <!-- ============ 13 ============ -->
+      <section id="strings">
+        <h2>Strings zusammensetzen</h2>
+        <div class="content">
+          <pre><code data-trim data-noescape class="language-php">
+$location     = 'Bern';
+$temperatureC = 19.4;
+
+// Variante 1: Variablen in doppelten Anführungszeichen
+echo "Aare in $location: $temperatureC °C";
+
+// Variante 2: mit Punkt verbinden (Konkatenation)
+echo 'Aare in ' . $location . ': ' . $temperatureC . ' °C';
+          </code></pre>
+          <div class="callout callout-blue">
+            <p><strong>Doppelte</strong> Anführungszeichen setzen Variablen ein.
+              <strong>Einfache</strong> nicht: <code>'Hallo $name'</code> gibt wörtlich
+              <code>Hallo $name</code> aus.</p>
+          </div>
+          <p class="text-sm text-muted"><code>\n</code> erzeugt einen Zeilenumbruch – funktioniert nur in
+            doppelten Anführungszeichen.</p>
+        </div>
+      </section>
+
+      <!-- ============ 14 Trenner ============ -->
+      <section id="divider-funktionen" class="section-divider" data-state="is-section-divider">
+        <h1>Funktionen</h1>
+        <p>Einmal schreiben, beliebig oft verwenden</p>
+      </section>
+
+      <!-- ============ 15 ============ -->
+      <section id="warum-funktionen">
+        <h2>Warum Funktionen?</h2>
+        <div class="content">
+          <p class="text-lg">Dieselbe Meldung für drei Orte – dreimal fast identischer Code:</p>
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+echo "Aare in Bern: 19.4 °C um 10:00 Uhr.";
+echo "Aare in Brienz: 16.8 °C um 10:00 Uhr.";
+echo "Aare in Thun: 18.2 °C um 10:00 Uhr.";
+          </code></pre>
+          <ul class="list-tight mt-1">
+            <li>Änderst du das Format, musst du es an <strong>drei</strong> Stellen ändern</li>
+            <li>Bei 500 Messwerten ist das unmöglich</li>
+            <li>Eine Funktion beschreibt die Regel <strong>einmal</strong> und du rufst sie beliebig oft auf</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ 16 ============ -->
+      <section id="funktion-deklarieren">
+        <h2>Deklarieren und aufrufen</h2>
+        <div class="content">
+          <pre><code data-trim data-noescape class="language-php">
+// 1. Deklarieren: die Regel einmal beschreiben
+function formatMeasurement($location, $temperatureC, $measuredAt)
+{
+    return "Aare in $location: $temperatureC °C um $measuredAt Uhr.";
+}
+
+// 2. Aufrufen: so oft du willst, mit unterschiedlichen Werten
+echo formatMeasurement('Bern', 19.4, '10:00');
+echo formatMeasurement('Brienz', 16.8, '10:00');
+          </code></pre>
+          <ul class="list-tight">
+            <li><code>function</code> + <strong>sprechender Name</strong> + Klammern</li>
+            <li><strong>Parameter</strong> sind Platzhalter, <strong>Argumente</strong> die konkreten Werte beim Aufruf</li>
+            <li>Eine Funktion erledigt genau <strong>eine</strong> Aufgabe</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ 17 ============ -->
+      <section id="funktion-return">
+        <h2>Default-Werte und <code>return</code></h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start;">
+            <div>
+              <h3>Default-Wert</h3>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+function multiply($x, $y = 2)
+{
+    return $x * $y;
+}
+
+multiply(10);      // 20
+multiply(10, 5);   // 50
+              </code></pre>
+            </div>
+            <div>
+              <h3><code>return</code> ist nicht <code>echo</code></h3>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+// gibt den Wert zurück
+$msg = formatMeasurement(...);
+
+// schreibt in die Antwort
+echo $msg;
+              </code></pre>
+            </div>
+          </div>
+          <div class="callout callout-blue mt-1">
+            <p><code>return</code> liefert einen Wert zurück und <strong>beendet</strong> die Funktion sofort.
+              Wer nur <code>echo</code> nutzt, kann das Ergebnis später nicht weiterverarbeiten – und genau das
+              brauchen wir in ETL.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 18 Trenner ============ -->
+      <section id="divider-bedingungen" class="section-divider" data-state="is-section-divider">
+        <h1>Bedingungen</h1>
+        <p>Entscheiden, was mit einem Wert passiert</p>
+      </section>
+
+      <!-- ============ 19 ============ -->
+      <section id="vergleichen">
+        <h2>Vergleichen</h2>
+        <div class="content">
+          <p>Ein Vergleich ergibt immer <code>true</code> oder <code>false</code>.</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <table>
+              <tr><th style="width: 34%;">Operator</th><th>Bedeutung</th></tr>
+              <tr><td><code>===</code></td><td>ist gleich</td></tr>
+              <tr><td><code>!==</code></td><td>ist nicht gleich</td></tr>
+              <tr><td><code>&lt;</code></td><td>ist kleiner als</td></tr>
+              <tr><td><code>&lt;=</code></td><td>ist kleiner oder gleich</td></tr>
+              <tr><td><code>&gt;</code></td><td>ist grösser als</td></tr>
+              <tr><td><code>&gt;=</code></td><td>ist grösser oder gleich</td></tr>
+            </table>
+            <div>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$x = 1;
+$y = 2;
+
+var_dump($x === $y);  // false
+var_dump($x !== $y);  // true
+var_dump($x &lt; $y);    // true
+var_dump($x &gt;= $y);   // false
+              </code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 20 Split ============ -->
+      <section id="lose-strikt" class="split-slide">
+        <div class="split-half split-bad">
+          <h2><code>==</code> lose</h2>
+          <p class="text-sm">Vergleicht nur den <strong>Wert</strong>. PHP wandelt Typen automatisch um.</p>
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+var_dump(5 == "5");      // true
+var_dump(0 == false);    // true
+var_dump("0" == false);  // true
+var_dump(null == false); // true
+          </code></pre>
+          <p class="text-sm">Führt zu Überraschungen, die man beim Debuggen kaum findet.</p>
+        </div>
+        <div class="split-half split-good">
+          <h2><code>===</code> strikt</h2>
+          <p class="text-sm">Vergleicht <strong>Wert und Typ</strong>. Keine automatische Umwandlung.</p>
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+var_dump(5 === "5");      // false
+var_dump(0 === false);    // false
+var_dump("0" === false);  // false
+var_dump(5 === 5);        // true
+          </code></pre>
+          <p class="text-sm"><strong>Im Kurs immer <code>===</code> und <code>!==</code> verwenden.</strong></p>
+        </div>
+      </section>
+
+      <!-- ============ 21 ============ -->
+      <section id="verknuepfen">
+        <h2>Bedingungen verknüpfen</h2>
+        <div class="content">
+          <pre><code data-trim data-noescape class="language-php">
+$temperatureC = 19.4;
+$isOfficial   = true;
+
+// && – beide müssen wahr sein
+var_dump($temperatureC &gt;= 16 &amp;&amp; $temperatureC &lt; 20);   // true
+
+// || – eine von beiden reicht
+var_dump($temperatureC &gt; 25 || $isOfficial === true);   // true
+          </code></pre>
+          <ul class="list-tight">
+            <li><code>&amp;&amp;</code> = <strong>und</strong> · <code>||</code> = <strong>oder</strong></li>
+            <li>Bei Unklarheit Klammern setzen – das ist keine Schwäche, sondern lesbar</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ 22 ============ -->
+      <section id="if-else">
+        <h2><code>if</code> / <code>elseif</code> / <code>else</code></h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 40px; align-items: start;">
+            <div>
+              <span class="code-label">Regel zuerst in Alltagssprache</span>
+              <div class="box">
+                <ul class="list-tight text-sm mb-0">
+                  <li>unter 16 °C → <strong>kalt</strong></li>
+                  <li>ab 16, unter 20 °C → <strong>frisch</strong></li>
+                  <li>ab 20 °C → <strong>warm</strong></li>
+                </ul>
+              </div>
+              <p class="text-sm text-muted">Erst die Regel, dann der Code. Immer.</p>
+            </div>
+            <pre class="code-sm"><code data-trim data-noescape class="language-php">
+function classifyTemperature($temperatureC)
+{
+    if ($temperatureC &lt; 16) {
+        return 'kalt';
+    } elseif ($temperatureC &lt; 20) {
+        return 'frisch';
+    } else {
+        return 'warm';
+    }
+}
+            </code></pre>
+          </div>
+          <p class="text-sm text-muted">Die Bedingungen werden <strong>von oben nach unten</strong> geprüft.
+            Deshalb braucht der mittlere Fall kein zusätzliches <code>&gt;= 16</code>.</p>
+        </div>
+        <aside class="notes">Grenzwerte gemeinsam testen: 15.9, 16, 19.9, 20. Und: fachliche Schwellenwerte
+          müssen im Projekt begründet und mit Quelle dokumentiert werden.</aside>
+      </section>
+
+      <!-- ============ 23 ============ -->
+      <section id="switch-ternary">
+        <h2>Kurzformen</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start;">
+            <div>
+              <h3><code>switch</code> – viele feste Fälle</h3>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+switch ($status) {
+    case 'ok':
+        echo "alles gut";
+        break;
+    default:
+        echo "unbekannt";
+        break;
+}
+              </code></pre>
+            </div>
+            <div>
+              <h3><code>? :</code> – zwei Fälle in einer Zeile</h3>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+echo $temperatureC &gt;= 20
+    ? 'warm'
+    : 'nicht warm';
+              </code></pre>
+              <p class="text-sm text-muted mt-1">Praktisch, aber schnell unleserlich.
+                Im Zweifel <code>if</code> schreiben.</p>
+            </div>
+          </div>
+          <p class="text-sm text-muted mt-1">Beides ist <strong>Referenzwissen</strong> – im Cheatsheet
+            <code>03_bedingungen.md</code> nachschlagen, wenn du es brauchst.</p>
+        </div>
+      </section>
+
+      <!-- ============ 24 Trenner ============ -->
+      <section id="divider-arrays" class="section-divider" data-state="is-section-divider">
+        <h1>Arrays</h1>
+        <p>Viele Werte in einer Variablen</p>
+      </section>
+
+      <!-- ============ 25 ============ -->
+      <section id="was-ist-array">
+        <h2>Was ist ein Array?</h2>
+        <div class="content">
+          <p class="text-lg">Bisher: eine Variable, ein Wert. Für Daten brauchen wir
+            <strong>eine Variable, viele Werte</strong>.</p>
+          <pre><code data-trim data-noescape class="language-php">
+// mühsam
+$temperature1 = 18.9;
+$temperature2 = 19.4;
+$temperature3 = 20.1;
+
+// gut
+$temperatures = [18.9, 19.4, 20.1];
+          </code></pre>
+          <div class="callout callout-blue">
+            <p>Jeder Datensatz, den ihr im Projekt aus einer API oder CSV-Datei ladet, kommt als Array in PHP an.
+              Arrays sind deshalb der wichtigste Datentyp des Kurses.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 26 ============ -->
+      <section id="array-arten">
+        <h2>Indexiert oder assoziativ</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <h3>Indexiert – Reihenfolge zählt</h3>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$temperatures = [18.9, 19.4, 20.1];
+
+echo $temperatures[0];   // 18.9
+echo $temperatures[1];   // 19.4
+              </code></pre>
+              <p class="text-sm text-muted">Die Zählung beginnt bei <strong>0</strong>.</p>
+            </div>
+            <div>
+              <h3>Assoziativ – Schlüssel zählt</h3>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$measurement = [
+    'location'      =&gt; 'Bern',
+    'temperature_c' =&gt; 19.4,
+    'measured_at'   =&gt; '10:00',
+];
+
+echo $measurement['location'];   // Bern
+              </code></pre>
+            </div>
+          </div>
+          <p class="text-sm text-muted mt-1">Faustregel: <strong>Liste</strong> von gleichartigen Dingen →
+            indexiert. <strong>Ein Ding</strong> mit benannten Eigenschaften → assoziativ.</p>
+        </div>
+      </section>
+
+      <!-- ============ 27 ============ -->
+      <section id="datensaetze">
+        <h2>Die Form, die alle Daten haben</h2>
+        <div class="content">
+          <p>Eine <strong>Liste</strong> (indexiert) von <strong>Datensätzen</strong> (assoziativ):</p>
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$measurements = [
+    ['time' =&gt; '08:00', 'temperature_c' =&gt; 18.9],
+    ['time' =&gt; '10:00', 'temperature_c' =&gt; 19.4],
+    ['time' =&gt; '12:00', 'temperature_c' =&gt; 20.1],
+];
+
+echo $measurements[1]['temperature_c'];   // 19.4
+          </code></pre>
+          <div class="callout callout-green">
+            <p>Genau so sehen JSON aus einer API, Zeilen aus einer CSV-Datei und Zeilen aus der Datenbank aus.
+              Wer diese Struktur lesen kann, kann alle drei lesen.</p>
+          </div>
+        </div>
+        <aside class="notes">Hier lohnt sich eine Minute an der Wandtafel: aussen die Liste, innen der einzelne
+          Datensatz. Diese Denkfigur trägt bis Block E.</aside>
+      </section>
+
+      <!-- ============ 28 ============ -->
+      <section id="arrays-arbeiten">
+        <h2>Mit Arrays arbeiten</h2>
+        <div class="content">
+          <pre><code data-trim data-noescape class="language-php">
+$temperatures[] = 20.3;              // Wert am Ende anhängen
+$stations['Interlaken'] = 17.5;      // Eintrag mit Schlüssel ergänzen
+
+echo count($temperatures);           // Anzahl Einträge
+var_dump($stations);                 // ganze Struktur prüfen
+          </code></pre>
+          <div class="callout callout-gray">
+            <p><strong>Bewusste Begrenzung:</strong> <code>array_map</code>, <code>array_filter</code>,
+              <code>array_reduce</code> und <code>sort</code> stehen im Cheatsheet
+              <code>04_arrays.md</code>. Zuerst müssen Liste, Index, Schlüssel und Wert sicher sitzen.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 29 Trenner ============ -->
+      <section id="divider-schleifen" class="section-divider" data-state="is-section-divider">
+        <h1>Schleifen</h1>
+        <p>Eine Anweisung, beliebig viele Daten</p>
+      </section>
+
+      <!-- ============ 30 ============ -->
+      <section id="warum-schleifen">
+        <h2>Warum Schleifen?</h2>
+        <div class="content">
+          <p class="text-lg">Fünf Messungen von Hand ausgeben ist mühsam. Bei einem Jahr Stundenwerten sind es
+            <strong>8760</strong> – von Hand unmöglich.</p>
+          <div class="flow mt-1">
+            <div class="flow-step">
+              <span class="flow-title">Liste</span>
+              <span class="flow-sub">beliebig viele Datensätze</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step is-active">
+              <span class="flow-title">Schleife</span>
+              <span class="flow-sub">eine Anweisung, einmal geschrieben</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <span class="flow-title">Ausgabe</span>
+              <span class="flow-sub">eine Zeile pro Datensatz</span>
+            </div>
+          </div>
+          <div class="callout callout-blue mt-2">
+            <p>Eine Schleife ist erst dann korrekt, wenn sie mit <strong>null</strong>, <strong>einem</strong>
+              und <strong>vielen</strong> Datensätzen sinnvoll läuft.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 31 ============ -->
+      <section id="foreach">
+        <h2><code>foreach</code> – die wichtigste Schleife</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 36px; align-items: start;">
+            <div>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+foreach ($measurements as $measurement) {
+    echo $measurement['time'] . ': '
+       . $measurement['temperature_c'] . " °C\n";
+}
+              </code></pre>
+              <ul class="list-tight text-sm mt-1">
+                <li><code>$measurements</code> ist die <strong>ganze Liste</strong> (Plural)</li>
+                <li><code>$measurement</code> ist <strong>ein Datensatz</strong> (Singular)</li>
+                <li>Kommt ein Datensatz dazu, musst du <strong>nichts</strong> ändern</li>
+              </ul>
+            </div>
+            <div>
+              <span class="code-label">Ausgabe</span>
+              <div class="output">08:00: 18.9 °C
+10:00: 19.4 °C
+12:00: 20.1 °C
+14:00: 20.3 °C
+16:00: 20.0 °C</div>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">Die Plural/Singular-Konvention konsequent durchziehen – das macht Schleifen
+          fast selbsterklärend.</aside>
+      </section>
+
+      <!-- ============ 32 ============ -->
+      <section id="andere-schleifen">
+        <h2>Die anderen Schleifen</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start;">
+            <div>
+              <h3><code>for</code> – wenn du zählst</h3>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+for ($i = 0; $i &lt; 10; $i++) {
+    echo $i;
+}
+              </code></pre>
+              <p class="text-sm text-muted">Startwert · Abbruchbedingung · Schrittweite</p>
+            </div>
+            <div>
+              <h3><code>while</code> – solange etwas gilt</h3>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$i = 0;
+while ($i &lt; 10) {
+    echo $i;
+    $i++;
+}
+              </code></pre>
+              <p class="text-sm text-muted">Wird die Bedingung nie <code>false</code>, läuft die Schleife ewig.</p>
+            </div>
+          </div>
+          <p class="text-sm text-muted mt-1">Für diesen Lernpfad reicht <code>foreach</code>.
+            <code>for</code>, <code>while</code>, <code>do while</code>, <code>break</code> und
+            <code>continue</code> bleiben Referenzwissen im Cheatsheet <code>05_schleifen.md</code>.</p>
+        </div>
+      </section>
+
+      <!-- ============ 33 Trenner ============ -->
+      <section id="divider-ausblick" class="section-divider" data-state="is-section-divider">
+        <h1>Zusammenspiel<br>&amp; Ausblick</h1>
+        <p>Wozu das alles gut ist</p>
+      </section>
+
+      <!-- ============ 34 ============ -->
+      <section id="roter-faden">
+        <h2>Der rote Faden</h2>
+        <div class="content">
+          <div class="flow">
+            <div class="flow-step"><span class="flow-title">Extract</span><span class="flow-sub">JSON · API · CSV</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Transform</span><span class="flow-sub">säubern · umbenennen</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Load</span><span class="flow-sub">in die Datenbank</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Unload</span><span class="flow-sub">JSON-Endpunkt</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Chart.js</span><span class="flow-sub">Story</span></div>
+          </div>
+          <p class="mt-2">In <strong>jedem</strong> dieser Schritte steckt Block A:</p>
+          <ul class="list-tight text-sm">
+            <li><strong>Arrays</strong> – jede Datenquelle wird zu einem Array</li>
+            <li><strong>foreach</strong> – jeder Datensatz wird einzeln verarbeitet</li>
+            <li><strong>Funktionen</strong> – eine Regel pro Aufgabe, wiederverwendbar</li>
+            <li><strong>Bedingungen</strong> – fehlende oder unplausible Werte abfangen</li>
+            <li><strong>Variablen &amp; Typen</strong> – <code>"19.4"</code> oder <code>19.4</code> entscheidet über das Ergebnis</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ 35 ============ -->
+      <section id="fehler">
+        <h2>Häufige Fehler</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <ul class="list-tight text-sm">
+              <li><strong>Weisse Seite:</strong> fast immer ein PHP-Fehler – Fehlermeldungen einschalten oder Log lesen</li>
+              <li><strong>Semikolon</strong> am Zeilenende vergessen</li>
+              <li><strong>$</strong> vor der Variablen vergessen</li>
+              <li><strong>Code als Text sichtbar:</strong> Datei per Doppelklick geöffnet statt über <code>http://</code></li>
+            </ul>
+            <ul class="list-tight text-sm">
+              <li><strong>Index beginnt bei 0:</strong> <code>$a[1]</code> ist der zweite Wert</li>
+              <li><strong>Tippfehler im Schlüssel:</strong> <code>'temperature_c'</code> ≠ <code>'temperatureC'</code></li>
+              <li><strong>Einfache Anführungszeichen</strong> setzen keine Variablen ein</li>
+              <li><strong><code>==</code> statt <code>===</code></strong> verglichen</li>
+            </ul>
+          </div>
+          <div class="callout callout-orange mt-1">
+            <p>Vorgehen bei jedem Fehler: <strong>var_dump</strong> vor die kritische Zeile setzen und schauen,
+              was tatsächlich drin steht – nicht raten.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 36 ============ -->
+      <section id="was-kommt">
+        <h2>Was jetzt kommt</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <h3>Code-Alongs</h3>
+              <ul class="list-tight text-sm">
+                <li><code>01_variablen</code></li>
+                <li><code>02_funktionen</code></li>
+                <li><code>03_bedingungen</code></li>
+                <li><code>04_arrays</code></li>
+                <li><code>05_schleifen</code></li>
+              </ul>
+            </div>
+            <div>
+              <h3>Danach</h3>
+              <ul class="list-tight text-sm">
+                <li>Digitale Übung <code>06_staedtevergleich</code></li>
+                <li>Analoge Übung <em>Messwertmaschine</em></li>
+                <li>Zusatzübungen <code>01</code>–<code>05</code> zum Vertiefen</li>
+                <li>Cheatsheets <code>00</code>–<code>05</code> zum Nachschlagen</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-green mt-1">
+            <p><strong>Meilenstein M2:</strong> Am Ende des Tages steht eure eigene Datenfrage.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 37 Schluss ============ -->
+      <section id="schluss">
+        <h2>Zum Mitnehmen</h2>
+        <div class="content" style="justify-content: center;">
+          <p class="big-statement">PHP läuft auf dem Server<br>und liefert Daten.</p>
+          <p class="text-xl mt-2">Variablen, Funktionen, Bedingungen, Arrays und <code>foreach</code> –
+            mehr Sprache brauchst du für den ganzen ETL-Prozess nicht.</p>
+          <p class="mt-2"><span class="next-step">Nächster Schritt: Code-Along 01 – Variablen</span></p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      width: 1280,
+      height: 720,
+      margin: 0,
+      controls: true,
+      progress: true,
+      slideNumber: 'c',
+      hash: true,
+      transition: 'slide',
+      center: false,
+      plugins: [ RevealHighlight, RevealNotes ]
+    });
+  </script>
+</body>
+</html>

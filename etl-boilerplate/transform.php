@@ -1,50 +1,47 @@
 <?php
+/**
+ * TRANSFORM – Projektvorlage
+ *
+ * Vor dem Code:
+ * 1. Datenfrage in TRANSFORM.md präzisieren.
+ * 2. Festlegen, was eine Ergebniszeile beschreibt.
+ * 3. Filter-, Mapping-, Ableitungs- und Aggregationsregeln dokumentieren.
+ * 4. Datenvertrag mit Feldnamen, Typen und Beispieldatensatz vereinbaren.
+ * 5. Audit-Zahlen festlegen: Input, Ausschlüsse, Output, Unbekannt.
+ *
+ * KI darf bei der Implementation helfen. Neue Regeln oder Kategorien werden
+ * aber zuerst im Transform-Plan ergänzt und anschliessend an Rohwerten geprüft.
+ */
 
-/* ============================================================================
-   HANDLUNGSANWEISUNG (transform.php)
-   0) Schau dir die Rohdaten genau an und plane exakt, wie du die Daten umwandeln möchtest (auf Papier)
-   1) Binde extract.php ein und erhalte das Rohdaten-Array.
-   2) Definiere Mapping Koordinaten → Anzeigename (z. B. Bern/Chur/Zürich).
-   3) Konvertiere Einheiten (z. B. °F → °C) und runde sinnvoll (Celsius = (Fahrenheit - 32) * 5 / 9).
-   4) Leite eine einfache "condition" ab (z. B. sonnig/teilweise bewölkt/bewölkt/regnerisch).
-   5) Baue ein kompaktes, flaches Array je Standort mit den Ziel-Feldern.
-   6) Optional: Sortiere die Werte (z. B. nach Zeit), entferne irrelevante Felder.
-   7) Validiere Pflichtfelder (location, temperature_celsius, …).
-   8) Kodieren: json_encode(..., JSON_PRETTY_PRINT) → JSON-String.
-   9) GIB den JSON-String ZURÜCK (return), nicht ausgeben – für den Load-Schritt.
-  10) Fehlerfälle als Exception nach oben weiterreichen (kein HTML/echo).
-   ============================================================================ */
+$rawData = include __DIR__ . '/extract.php';
 
-// Bindet das Skript extract.php für Rohdaten ein und speichere es in $data
-$data = include('extract.php');
-
-// Definiert eine Zuordnung von Koordinaten zu Stadtnamen
-$locationsMap = [
-    '46.94,7.44' => 'Bern',
-    '46.84,9.52' => 'Chur',
-    '47.36,8.559999' => 'Zürich',
+$audit = [
+    'input_rows' => count($rawData),
+    'excluded_rows' => 0,
+    'unknown_values' => 0,
+    'output_rows' => 0,
 ];
 
-// Funktion, um Fahrenheit in Celsius umzurechnen
+$transformedRows = [];
 
-// Neue Funktion zur Bestimmung der Wetterbedingung
+foreach ($rawData as $rawRow) {
+    // 1. Filtern: Gehört dieser Datensatz zu unserer Frage?
 
+    // 2. Normalisieren: Welche Rohwerte meinen dasselbe?
 
+    // 3. Auswählen/umbenennen: Nur Felder aus dem Datenvertrag übernehmen.
 
-// Initialisiert ein Array, um die transformierten Daten zu speichern
-$transformedData = [];
+    // 4. Ableiten oder aggregieren: Nur wenn die Datenfrage es verlangt.
 
-// Transformiert und fügt die notwendigen Informationen hinzu
-foreach ($data as $location) {
-    // Bestimmt den Stadtnamen anhand von Breitengrad und Längengrad
-
-    // Wandelt die Temperatur in Celsius um und rundet sie
-
-    // Bestimmt die Wetterbedingung
-
-    // Konstruiert die neue Struktur mit allen angegebenen Feldern, einschließlich des neuen 'condition'-Feldes
+    // $transformedRows[] = [
+    //     'target_field' => $rawRow['source_field'],
+    // ];
 }
 
-// Kodiert die transformierten Daten in JSON
+$audit['output_rows'] = count($transformedRows);
 
-// Gibt die JSON-Daten zurück, anstatt sie auszugeben
+// Für Load wird ein PHP-Array zurückgegeben – noch kein JSON und kein echo.
+return [
+    'data' => $transformedRows,
+    'audit' => $audit,
+];

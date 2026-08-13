@@ -62,8 +62,11 @@ foreach ($data as $location) {
     ];
 }
 
-// Kodiert die transformierten Daten in JSON
-$jsonData = json_encode($transformedData, JSON_PRETTY_PRINT);
-
-// Gibt die JSON-Daten zurück, anstatt sie auszugeben
-return $jsonData;
+// Gibt Daten und einen minimalen Audit für den nächsten ETL-Schritt zurück.
+// JSON wird erst im späteren Unload-Endpunkt erzeugt.
+return [
+    'data' => $transformedData,
+    'audit' => [
+        'output_rows' => count($transformedData),
+    ],
+];

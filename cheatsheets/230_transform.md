@@ -1,148 +1,151 @@
-# Erklärung: Transformation der Wetterdaten (Bezug zu `130_extract.php`)
+# Cheatsheet: Transform
 
-Dieses Dokument erklärt den zweiten Skriptabschnitt (Transformation), der **auf den Rohdaten** aus `130_extract.php` aufbaut.  
-Im ersten Schritt (Extract) werden mit cURL Wetterdaten der **Open-Meteo API** als JSON geholt und als **PHP-Array** zurückgegeben.  
-Der hier gezeigte Code übernimmt diese Rohdaten, **normalisiert** und **anreichert** sie und gibt am Ende **JSON** zurück.
+Transform bedeutet: Rohdaten so umformen, dass sie **zur Datenfrage** und zum
+**Datenvertrag** passen.
 
----
-
-## 1) Rohdaten einbinden (Bezug: Extract)
-```php
-$data = include('130_extract.php');
+```text
+Rohdaten + Datenfrage + begründete Regeln -> saubere Datensätze
 ```
-- Führt `130_extract.php` aus und **erhält dessen Rückgabewert** (das Array mit den Wetterdaten).  
-- Vorteil: lose Kopplung – das Transformationsskript kennt nur das **Interface** (Rohdaten-Array), nicht die Fetch-Details.
 
----
+Der Code ist nur die Ausführung dieser Regeln. Die wichtigste Arbeit passiert
+vorher: Begriffe definieren, Entscheidungen begründen und Datenverluste sichtbar
+machen.
 
-## 2) Koordinaten → Stadtnamen (Mapping)
+## Die sechs häufigsten Transform-Schritte
+
+| Schritt | Frage | Beispiel |
+| --- | --- | --- |
+| Filtern | Welche Zeilen gehören zur Frage? | nur Juni bis August |
+| Auswählen | Welche Felder brauchen wir? | Datum und Tagesmaximum |
+| Umbenennen | Wie sollen die Felder bei uns heissen? | `Species ` -> `shark_category` |
+| Normalisieren | Welche Werte meinen dasselbe? | `Surfing`, `Boogie boarding` -> `Surfing & Boardsport` |
+| Ableiten | Welcher neue Wert folgt aus vorhandenen Werten? | Temperatur >= 30 °C -> Hitzetag |
+| Aggregieren | Auf welcher Ebene vergleichen wir? | ein Datensatz pro Stadt und Jahr |
+
+## Die Reihenfolge
+
+1. Datenfrage präzisieren.
+2. Einen Rohdatensatz ansehen – nicht nur die Spaltennamen.
+3. Untersuchungseinheit festlegen: Was bedeutet **eine Zeile** im Resultat?
+4. Transform-Regeln in Worten notieren.
+5. Zielstruktur mit Feldnamen und Datentypen festlegen.
+6. Code erstellen – selbst oder mit KI-Unterstützung.
+7. Resultat und Datenverluste prüfen.
+
+## Beispiel Hitzesommer
+
+**Frage:** Wie hat sich die Anzahl Hitzetage pro meteorologischem Sommer in
+Bern, Chur und Zürich seit 1940 verändert?
+
+Festgelegte Begriffe:
+
+- Sommer = Juni, Juli und August;
+- Hitzetag = Tagesmaximum von mindestens 30 °C;
+- eine Ergebniszeile = eine Stadt in einem Jahr;
+- unvollständige Sommer werden nicht verglichen.
+
 ```php
-$locationsMap = [
-    '46.94,7.44' => 'Bern',
-    '46.84,9.52' => 'Chur',
-    '47.36,8.559999' => 'Zürich',
+$month = (int) substr($date, 5, 2);
+$isSummer = in_array($month, [6, 7, 8], true);
+$isHotDay = $temperatureC >= 30.0;
+```
+
+Möglicher Datenvertrag:
+
+```json
+{
+  "city": "Bern",
+  "year": 2023,
+  "measurement_days": 92,
+  "hot_days": 12,
+  "max_temperature_c": 36.3
+}
+```
+
+## Beispiel Shark Attacks
+
+Die Frage «Welcher Hai greift am häufigsten an?» ist zu ungenau. Der Datensatz
+kennt weder alle Haiarten noch die Anzahl Menschen, die einer Aktivität
+nachgehen. Er kann deshalb **keine Gefahr oder Wahrscheinlichkeit** berechnen.
+
+Präzisere Fragen:
+
+- Welche identifizierte Hai-Kategorie kommt in den ausgewählten, bestätigten
+  Vorfällen am häufigsten vor?
+- Bei welcher vereinheitlichten Aktivitätsgruppe wurden die meisten dieser
+  Vorfälle erfasst?
+
+Typische Regeln:
+
+- Zeitraum und Vorfalltyp bewusst begrenzen;
+- leere und unklare Haiangaben nicht erfinden, sondern als `null` zählen;
+- Schreibvarianten über eine dokumentierte Mapping-Funktion vereinheitlichen;
+- Aktivitäten zu wenigen nachvollziehbaren Gruppen zusammenfassen;
+- zeigen, wie viele Datensätze durch Filter oder fehlende Angaben wegfallen.
+
+## `null` ist ehrlicher als eine erfundene Antwort
+
+```php
+function normalizeFatal(string $raw): ?bool
+{
+    return match (strtoupper(trim($raw))) {
+        'Y' => true,
+        'N' => false,
+        default => null,
+    };
+}
+```
+
+Ein unbekannter Wert soll unbekannt bleiben. `false`, `0`, `''` und `null`
+bedeuten nicht dasselbe.
+
+## Audit: Transform kontrollieren
+
+Mindestens diese Zahlen festhalten:
+
+```text
+Datensätze am Anfang
+- wegen Filter ausgeschlossen
+- wegen ungültiger Werte ausgeschlossen
+= Datensätze nach Transform
+davon mit unbekannter Kategorie
+```
+
+Zusätzlich prüfen:
+
+- fünf zufällige Vorher-/Nachher-Beispiele;
+- häufigste Rohwerte, die keine Kategorie erhalten haben;
+- unerwartete Minimal- und Maximalwerte;
+- Summe der Gruppen gegen Anzahl eingeschlossener Datensätze;
+- Datentypen gegen den Datenvertrag.
+
+## KI sinnvoll einsetzen
+
+Gib der KI nicht einfach eine Datei mit dem Auftrag «Räume das auf». Gib ihr:
+
+1. die präzise Datenfrage;
+2. Spaltennamen und wenige repräsentative Beispielzeilen;
+3. deine Transform-Regeln;
+4. den gewünschten Datenvertrag;
+5. gewünschte Audit-Zahlen und Tests.
+
+Lass dir Annahmen und unklare Fälle auflisten. Prüfe den Code und besonders die
+Mappings an echten Rohwerten. Keine Passwörter, Zugangsdaten oder schützenswerte
+Personendaten in ein KI-Tool kopieren.
+
+## Wichtig für ETL+U
+
+`transform.php` gibt ein **PHP-Array** mit Daten und Audit zurück. Es erzeugt
+noch keinen Endpunkt und schreibt noch nichts in die Datenbank.
+
+```php
+return [
+    'data' => $transformedRows,
+    'audit' => $audit,
 ];
 ```
-- Ordnet **Latitude,Longitude**-Strings einem Anzeigenamen zu.  
-- **Wichtig:** Hier wird **String-Gleichheit** erwartet. Das funktioniert nur, wenn `latitude`/`longitude` **genau** in derselben Schreibweise im Rohdatensatz stehen.
 
-**Praxis-Tipp:**  
-Nutze eine **Rundung/Formatierung** vor dem Key-Bau, z. B. `number_format($lat, 2) . "," . number_format($lon, 2)`, damit kleine Abweichungen nicht zum *„Unbekannt“*-Fallback führen.
-
----
-
-## 3) Hilfsfunktion: Fahrenheit → Celsius
-```php
-function convertToCelsius($fahrenheit) {
-    return ($fahrenheit - 32) * 5/9;
-}
-```
-- Die Rohdaten werden in **Fahrenheit** abgefragt (`temperature_unit=fahrenheit`).  
-- Diese Funktion rechnet zuverlässig in **Celsius** um.
-
-**Hinweis:** Wenn du künftig in `130_extract.php` auf `temperature_unit=celsius` wechselst, **entfällt** diese Umrechnung.
-
----
-
-## 4) Hilfsfunktion: Wetterbedingung bestimmen
-```php
-function determineCondition($cloudCover, $rain, $showers, $snowfall) {
-    if ($rain > 0 || $showers > 0.2 || $snowfall > 0.2) {
-        return 'regnerisch';
-    } elseif ($cloudCover < 20) {
-        return 'sonnig';
-    } elseif ($cloudCover < 70) {
-        return 'teilweise bewölkt';
-    } else {
-        return 'bewölkt';
-    }
-}
-```
-- **Heuristik** für eine **menschlich lesbare** Bedingung aus numerischen Werten:  
-  - Regen/Schauer/Schnee → **„regnerisch“**  
-  - Sehr wenig Bewölkung → **„sonnig“**  
-  - Mittlere Bewölkung → **„teilweise bewölkt“**  
-  - Sonst → **„bewölkt“**
-
-**Anpassbar:** Schwellwerte (`0.2` etc.) und Reihenfolge der Checks können je nach Datenlage feiner kalibriert werden.
-
----
-
-## 5) Transformations-Loop
-```php
-$transformedData = [];
-
-foreach ($data as $location) {
-    $cityKey = $location['latitude'] . ',' . $location['longitude'];
-    $city = $locationsMap[$cityKey] ?? 'Unbekannt';
-
-    $temperatureCelsius = round(convertToCelsius($location['current']['temperature_2m']), 2);
-
-    $condition = determineCondition(
-        $location['current']['cloud_cover'],
-        $location['current']['rain'],
-        $location['current']['showers'],
-        $location['current']['snowfall']
-    );
-
-    $transformedData[] = [
-        'location'            => $city,
-        'temperature_celsius' => $temperatureCelsius,
-        'rain'                => $location['current']['rain'],
-        'showers'             => $location['current']['showers'],
-        'snowfall'            => $location['current']['snowfall'],
-        'cloud_cover'         => $location['current']['cloud_cover'],
-        'condition'           => $condition
-    ];
-}
-```
-- **Eingabe:** jedes Element in `$data` repräsentiert eine **Location** mit `latitude`, `longitude` und einem `current`-Block (aktuelle Messwerte).  
-- **City-Auflösung:** baut `"$lat,$lon"` als Key und schlägt ihn in `$locationsMap` nach.  
-  - Fallback: **„Unbekannt“**, falls kein exakter Treffer.  
-- **Celsius-Temperatur:** konvertiert via `convertToCelsius(...)` und rundet auf **2 Dezimalstellen**.  
-- **`condition`**: menschliche Zusammenfassung der Wetterlage.  
-- **Ausgabeformat:** ein **flaches Array** je Stadt mit Feldern `location, temperature_celsius, rain, showers, snowfall, cloud_cover, condition`.
-
-**Bezug zu `130_extract.php`:**  
-- Der `current`-Block stammt **direkt** aus dem JSON der Open-Meteo-API (im Extract festgelegt via `current=...`).  
-- Die Transformationsschicht **reduziert** und **vereinheitlicht** die Struktur – ideal für Weitergabe an Frontend/DB/CSV.
-
----
-
-## 6) JSON-Ausgabe (statt Echo)
-```php
-$jsonData = json_encode($transformedData, JSON_PRETTY_PRINT);
-return $jsonData;
-```
-- **Serialisiert** das Ergebnis-Array als **hübsches JSON** (`JSON_PRETTY_PRINT`).  
-- `return` (statt `echo`) macht das Skript **einbettbar** – wer dieses Skript `include`/`require`t, bekommt direkt die **JSON-String**-Repräsentation zurück.
-
-**Best Practice:**  
-- Für robustes Fehler-Handling: `json_encode(..., JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE)` nutzen und Exceptions oben `try/catch` behandeln.
-
----
-
-## Zusammenspiel Extract ↔ Transform (End-to-End)
-1. **Extract (`130_extract.php`)**: Holt per cURL JSON, prüft Status, dekodiert und gibt **PHP-Array** zurück.  
-2. **Transform (dieser Code)**: Mapped Koordinaten → Stadt, rechnet Temperatur um, bestimmt `condition` und gibt **JSON** zurück.  
-3. **Load/Anzeige**: Weitere Schritte (Persistenz, Rendering) können mit dem kompakten JSON direkt arbeiten.
-
----
-
-## Mögliche Verbesserungen
-- **Koordinaten normalisieren** (z. B. auf 2–3 Nachkommastellen runden), damit das Mapping stabil ist.  
-- **Fehlerbehandlung**: prüfen, ob Felder in `$location['current']` wirklich existieren (defensive Defaults).  
-- **Einheitlichkeit**: Einheit (°C vs. °F) zentral konfigurieren (ENV/Config).  
-- **Lokalisierung**: `condition` sprachabhängig (de/en/…); ggf. Mapping-Tabelle.  
-- **Erweiterungen**: Wind, Feuchte, gefühlte Temperatur (`apparent_temperature`) ergänzen.
-
----
-
-## Kurzbeispiel: robustes Koordinaten-Mapping
-```php
-$lat = number_format((float)$location['latitude'], 2, '.', '');
-$lon = number_format((float)$location['longitude'], 2, '.', '');
-$cityKey = "{$lat},{$lon}";
-$city = $locationsMap[$cityKey] ?? 'Unbekannt';
-```
-- Vermeidet **Floating-Point-Drift** und erhöht die Trefferquote im Mapping.
+Der Load-Schritt verwendet daraus `$transformResult['data']`. `json_encode()`
+gehört im Kurs zum späteren Unload-Endpunkt. Für eine sichtbare Kontrollausgabe
+darf ein separates `index.php` das ganze Transform-Resultat temporär als JSON
+anzeigen.

@@ -34,5 +34,20 @@ Die Datei- und CSV-Schritte haben je einen eigenen `data/`-Ordner, damit man
 ohne den vorherigen Schritt sofort arbeiten kann. Der Live-Schritt braucht
 Internet (die Daten kommen direkt von der API).
 
-Weitere vorhandene Code-Alongs werden beim Aufbau der späteren Blöcke geprüft,
-überarbeitet und ebenfalls in Block-Ordner (`C_…`, `D_…` usw.) einsortiert.
+## Block C – Transform
+
+Die Datenfrage wird zuerst in dokumentierte Regeln und einen Datenvertrag
+übersetzt. Der Code darf komplex sein und mit KI-Unterstützung entstehen; die
+fachlichen Entscheidungen und die Kontrolle bleiben beim Team.
+
+| Nr | Code-Along | Datenfrage | Schwerpunkt |
+| --- | --- | --- | --- |
+| 9 | [Hitzesommer transformieren](C_transform/09_hitzesommer_transformieren/) | Hitzetage pro Stadt und Sommer | filtern, ableiten, aggregieren, vollständige Jahre prüfen |
+| 10 | [Shark-Daten transformieren](C_transform/10_sharkdaten_transformieren/) | Hai-Kategorien und Aktivitäten in erfassten Vorfällen | komplexe Mappings mit KI planen und auditieren |
+
+Beide Ordner enthalten Startcode, eine Lösung, den Unterrichtsablauf und die
+bereits bekannten Rohdaten aus Block B. Beim Shark-Beispiel liegt zusätzlich
+eine wiederverwendbare KI-Spezifikation bei.
+
+Weitere Code-Alongs werden beim Aufbau der späteren Blöcke geprüft,
+überarbeitet und in Block-Ordner (`D_…`, `E_…` usw.) einsortiert.

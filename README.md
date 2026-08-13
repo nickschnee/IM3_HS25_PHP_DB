@@ -9,10 +9,11 @@ JSON-Schnittstelle.
 ## Lernpfad
 
 1. PHP-Skripte lesen, ändern und schreiben.
-2. JSON einlesen, filtern und als eigenen Endpunkt ausgeben.
-3. Daten mit PDO in einer Datenbank lesen und verändern.
-4. Einen kleinen ETL+U-Prozess aufbauen.
-5. Daten mit Chart.js sichtbar und als Story verständlich machen.
+2. JSON, APIs und CSV-Dateien als PHP-Arrays einlesen.
+3. Eine Datenfrage in Transform-Regeln und einen Datenvertrag übersetzen.
+4. Transformierte Daten mit PDO in eine Datenbank laden.
+5. Daten aus der Datenbank als eigenen JSON-Endpunkt ausgeben.
+6. Daten mit Chart.js sichtbar und als Story verständlich machen.
 
 ## Ablauf
 

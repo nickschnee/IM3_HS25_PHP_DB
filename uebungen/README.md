@@ -19,3 +19,8 @@ Die Übungen sind selbständig lösbar. Jeder Ordner enthält:
 ## Block B – Extract
 
 1. [01 Daten finden & herunterladen](B_extract/01_daten_finden/): offene Datenquelle (Open-Meteo) finden und als JSON/CSV speichern
+
+## Block C – Transform
+
+1. [01 Eigene Transform-Regeln](C_transform/01_eigener_transform/): Datenfrage,
+   Regeln, Datenvertrag, KI-Auftrag und Audit für das eigene Projekt entwickeln

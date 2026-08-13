@@ -27,7 +27,7 @@ Kurstage erstrecken. Die Story- und Recherchespur (`🔎`) läuft parallel mit.
 
 1. `🛠️` Tooling & Server `60'`
 2. `🧑‍🏫` Code-Along: [00 Hallo PHP](code-alongs/A_PHP_Basics/00_hallo_php) `30'`
-3. `📕` Theorie A `60'`
+3. `📕` Theorie A: [PHP Basics](theorie/A_PHP_Basics) `60'`
 4. `🧑‍🏫` Code-Along: [01 Variablen](code-alongs/A_PHP_Basics/01_variablen) `25'`
 5. `🧑‍🏫` Code-Along: [02 Funktionen](code-alongs/A_PHP_Basics/02_funktionen) `25'`
 6. `🧑‍🏫` Code-Along: [03 Bedingungen](code-alongs/A_PHP_Basics/03_bedingungen) `25'`
@@ -49,20 +49,22 @@ Kurstage erstrecken. Die Story- und Recherchespur (`🔎`) läuft parallel mit.
 
 ### Block B – Extract
 
-> Nur der **Extract-Schritt**: dieselben Daten aus drei Quellen lesen, jeweils
-> bis zu einem PHP-Array. Nur die Lese-Technik ändert sich. Umformen kommt in
-> Transform (C), der Endpunkt in Unload (E). Thema: Hitzesommer + Shark Attacks.
-
 1. `💻` Digitale Übung: [01 Daten finden & herunterladen](uebungen/B_extract/01_daten_finden) `45'`
-2. `📕` Theorie B: Extract-Varianten (Datei, API, CSV) → PHP-Array `20'`
+2. `📕` Theorie B `20'`
 3. `🧑‍🏫` Code-Along: [06 JSON lesen](code-alongs/B_extract/06_json_lesen) _(statische Datei)_ `30'`
 4. `🧑‍🏫` Code-Along: [07 API lesen](code-alongs/B_extract/07_api_lesen) _(Live-API)_ `30'`
 5. `🧑‍🏫` Code-Along: [08 CSV lesen](code-alongs/B_extract/08_csv_lesen) _(CSV-Datei)_ `30'`
 6. `🔎` Datenquellen recherchieren & prüfen `60'`
 7. `✅` **M3: Datensatz gefunden**
 
-> _Blöcke C–F folgen, sobald die Inhalte stehen. Entwurf unten (noch nach Tagen
-> skizziert)._
+### Block C – Transform
+
+1. `📕` [Theorie C: Eine Frage wird zu Regeln](theorie/C_transform/) `30'`
+2. `📝` [Transform-Entscheidungen](stift-und-papier/02_transform_entscheidungen/) `45'`
+3. `🧑‍🏫` Code-Along: [09 Hitzesommer transformieren](code-alongs/C_transform/09_hitzesommer_transformieren/) `45'`
+4. `🧑‍🏫` Code-Along: [10 Shark-Daten mit KI transformieren](code-alongs/C_transform/10_sharkdaten_transformieren/) `60'`
+5. `💻` [Eigene Transform-Regeln und Implementation](uebungen/C_transform/01_eigener_transform/) `60'`
+6. `✅` Datenfrage, Datenvertrag, Audit und ein transformierter Datensatz zeigen
 
 <!--
 

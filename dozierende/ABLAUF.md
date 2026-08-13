@@ -138,10 +138,11 @@ PHP-Array) bleibt gleich.
 | Prio | Form | Inhalt | Richtwert | Material oder Ergebnis |
 | --- | --- | --- | ---: | --- |
 | Muss | Repetition | Rohdaten der drei Quellen vergleichen | 15' | Gemeinsame Felder erkennen |
-| Muss | `📕` + `🧑‍🏫` | Felder auswählen, umbenennen, Einheiten/Typen normalisieren | 60' | Saubere Datensätze |
-| Muss | `🧑‍🏫` | Reduzieren/ableiten (z. B. Jahres-Höchstwert; `Y/N` → `true/false`) | 45' | Aussagekräftige Struktur |
-| Muss | `📝` | Datenvertrag entwerfen (Felder, Typen, Beispiel-JSON) | 45' | Mock-JSON |
-| Muss | Projekt | Eigene Transform-Regeln festlegen und anwenden | 60' | Transformierte Daten |
+| Muss | `📕` | Datenfrage → Untersuchungseinheit → Regeln → Datenvertrag → Audit | 30' | [Theorie C](../theorie/C_transform/) |
+| Muss | `📝` | [Transform-Entscheidungen](../stift-und-papier/02_transform_entscheidungen/) vor Code und KI | 35' | Begründete Regeln und Beispiel-JSON |
+| Muss | `🧑‍🏫` | [09 Hitzesommer](../code-alongs/C_transform/09_hitzesommer_transformieren/): filtern, ableiten, aggregieren, Teiljahre erkennen | 45' | Stadt-Jahr-Datensätze plus Audit |
+| Muss | `🧑‍🏫` | [10 Shark-Daten](../code-alongs/C_transform/10_sharkdaten_transformieren/): komplexe Mappings mit KI-Spezifikation entwickeln und prüfen | 60' | Zwei Rankings plus Abdeckungs-Audit |
+| Muss | Projekt | [Eigene Transform-Regeln](../uebungen/C_transform/01_eigener_transform/) festlegen, mit KI implementieren und im Viererteam abnehmen | 60' | `TRANSFORM.md`, Transform und Audit |
 | Soll | `✅` | Rohdaten → saubere Struktur zeigen | 15' | Tagesabnahme |
 
 ## Tag 6 – Block D: Load (Datenbank und PDO)
