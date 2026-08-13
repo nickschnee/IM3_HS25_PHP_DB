@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prueft einen Foliensatz gegen SCHREIBREGELN.md.
+"""Prueft einen Foliensatz gegen GESTALTUNGSREGELN.md.
 
 Aufruf:
     python3 theorie/_foliendesign/pruefe-folien.py theorie/A_PHP_Basics/index.html
@@ -69,13 +69,13 @@ def main() -> int:
 
     treffer = pruefe(pfad)
     if not treffer:
-        print(f"OK - {pfad} haelt die pruefbaren Schreibregeln ein.")
+        print(f"OK - {pfad} haelt die pruefbaren Gestaltungsregeln ein.")
         return 0
 
     print(f"{len(treffer)} Stelle(n) in {pfad}:\n")
     for t in treffer:
         print(t)
-    print("\nSiehe theorie/_foliendesign/SCHREIBREGELN.md")
+    print("\nSiehe theorie/_foliendesign/GESTALTUNGSREGELN.md")
     return 1
 
 

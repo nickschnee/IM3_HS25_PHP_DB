@@ -1,10 +1,11 @@
-# Schreibregeln für Folien
+# Gestaltungsregeln für Folien
 
-Diese Regeln gelten für alle Foliensätze in `theorie/`. Sie wachsen mit –
-was sich im Unterricht bewährt oder stört, kommt hier rein.
+Diese inhaltlichen und visuellen Regeln gelten für alle Foliensätze in
+`theorie/`. Sie wachsen mit – was sich im Unterricht bewährt oder stört,
+kommt hier rein.
 
-> `fhgr-slides.css` regelt, **wie** eine Folie aussieht.
-> Diese Datei regelt, **was** draufsteht.
+> `fhgr-slides.css` setzt das gemeinsame Design technisch um.
+> Diese Datei beschreibt Inhalt und Einsatz der Gestaltungsbausteine.
 
 ---
 
@@ -105,3 +106,14 @@ Durchtesten kommen in `<aside class="notes">`, nicht auf die Folie.
 Soll eine Frage in die Klasse gehen, startet die Folie leer und die Antwort
 wird schrittweise eingeblendet – siehe `.code-lines` in `README.md`. Der
 Ablauf gehört in die Sprechernotizen.
+
+## 12. Geteilte Folien
+
+Geteilte Folien bleiben auf beiden Seiten weiss.
+
+Eine olivbraune vertikale Linie trennt die beiden Hälften in der Mitte.
+
+Flächige Rot-/Grün-Codierungen werden nicht verwendet.
+
+Die Gegenüberstellung entsteht durch Überschriften, Inhalt und die mittige
+Trennlinie.

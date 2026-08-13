@@ -167,7 +167,7 @@ Bereiche klar trennen:
 - `cheatsheets/`: kurze Nachschlagewerke.
 - `theorie/`: Inputs nach Themenblock, je ein Ordner pro Foliensatz.
 - `theorie/_foliendesign/`: gemeinsames Foliendesign, Vorlage und
-  Schreibregeln fuer alle Foliensaetze.
+  Gestaltungsregeln fuer alle Foliensaetze.
 - `code-alongs/`: gemeinsam entwickelte Beispiele.
 - `uebungen/`: eigenstaendige Aufgaben mit Loesungen.
 - `stift-und-papier/`: Planung von ETL, Datenmodell, Story und Schnittstelle.
@@ -177,18 +177,18 @@ Bereiche klar trennen:
 ## Foliensaetze erstellen und aendern
 
 Die Theorie-Inputs sind reveal.js-Praesentationen als einzelne HTML-Datei
-ohne Build-Schritt. Design, Vorlage und Schreibregeln liegen zentral in
+ohne Build-Schritt. Design, Vorlage und Gestaltungsregeln liegen zentral in
 `theorie/_foliendesign/`.
 
 **Vor jeder Arbeit an Folien diese drei Dateien lesen:**
 
 - `theorie/_foliendesign/README.md`: Farben, Bausteine (Callouts, Ablauf,
   Split-Folien, Code-Bloecke), Anleitung fuer einen neuen Foliensatz.
-- `theorie/_foliendesign/SCHREIBREGELN.md`: was auf eine Folie kommt und wie
-  es formuliert wird. Wichtigste Regeln: ein Absatz enthaelt genau einen
-  Satz, ein Aufzaehlungspunkt genau einen Gedanken, und die Blocknamen des
-  Kurses (`Block A`, `Block C`) erscheinen nicht auf den Folien, sondern nur
-  in `ablauf_studierende.md` und in den Sprechernotizen.
+- `theorie/_foliendesign/GESTALTUNGSREGELN.md`: was auf eine Folie kommt, wie
+  es formuliert und wie sie gestaltet wird. Wichtigste Regeln: ein Absatz
+  enthaelt genau einen Satz, ein Aufzaehlungspunkt genau einen Gedanken, und
+  die Blocknamen des Kurses (`Block A`, `Block C`) erscheinen nicht auf den
+  Folien, sondern nur in `ablauf_studierende.md` und in den Sprechernotizen.
 - `theorie/A_PHP_Basics/index.html`: fertiges Referenzbeispiel.
 
 Regeln beim Arbeiten:
@@ -210,7 +210,7 @@ python3 theorie/_foliendesign/pruefe-folien.py theorie/<ordner>/index.html
 node ~/.claude/skills/revealjs-1.0.0/scripts/check-overflow.js theorie/<ordner>/index.html
 ```
 
-Der erste Befehl prueft die Schreibregeln, der zweite findet ueberlaufende
+Der erste Befehl prueft die Gestaltungsregeln, der zweite findet ueberlaufende
 Folien. Zusaetzlich die geaenderten Folien als Screenshot ansehen: sich
 ueberlappende Elemente innerhalb einer Folie findet der Overflow-Check
 nicht.
@@ -222,7 +222,7 @@ npx decktape reveal theorie/<ordner>/index.html out.pdf \
 
 Neue Erkenntnisse zu Design oder Formulierung nicht in einem einzelnen
 Foliensatz verstecken, sondern in `theorie/_foliendesign/` ergaenzen. Die
-Schreibregeln sind ausdruecklich als wachsendes Dokument gedacht.
+Gestaltungsregeln sind ausdruecklich als wachsendes Dokument gedacht.
 
 ## Hinweise fuer weitere Arbeiten
 

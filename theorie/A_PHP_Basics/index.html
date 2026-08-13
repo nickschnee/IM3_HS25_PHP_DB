@@ -333,18 +333,20 @@ echo 'Aare in ' . $location . ': ' . $temperatureC . ' °C';
       <section id="warum-funktionen">
         <h2>Warum Funktionen?</h2>
         <div class="content">
-          <p class="text-lg">Dieselbe Meldung für drei Orte – dreimal fast identischer Code:</p>
-          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+          <p class="text-lg fragment" data-fragment-index="0">Dieselbe Meldung für drei Orte – dreimal fast identischer Code:</p>
+          <pre class="code-sm fragment" data-fragment-index="0"><code data-trim data-noescape class="language-php">
 echo "Aare in Bern: 19.4 °C um 10:00 Uhr.";
 echo "Aare in Brienz: 16.8 °C um 10:00 Uhr.";
 echo "Aare in Thun: 18.2 °C um 10:00 Uhr.";
           </code></pre>
-          <ul class="list-tight mt-1">
+          <ul class="list-tight mt-1 fragment" data-fragment-index="1">
             <li>Änderst du das Format, musst du es an <strong>drei</strong> Stellen ändern</li>
             <li>Bei 500 Messwerten ist das unmöglich</li>
             <li>Eine Funktion beschreibt die Regel <strong>einmal</strong> und du rufst sie beliebig oft auf</li>
           </ul>
         </div>
+        <aside class="notes">Zuerst nur den Titel zeigen. Beim ersten Klick das Beispiel einblenden und
+          fragen, was daran problematisch ist. Beim zweiten Klick die Antworten zeigen.</aside>
       </section>
 
       <!-- ============ 16 ============ -->
@@ -374,10 +376,10 @@ echo formatMeasurement('Brienz', 16.8, '10:00');
       <section id="funktion-return">
         <h2>Default-Werte und <code>return</code></h2>
         <div class="content">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start;">
-            <div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: stretch;">
+            <div style="display: flex; flex-direction: column;">
               <h3>Default-Wert</h3>
-              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+              <pre class="code-sm" style="flex: 1;"><code data-trim data-noescape class="language-php" style="height: 100%; box-sizing: border-box;">
 function multiply($x, $y = 2)
 {
     return $x * $y;
@@ -387,9 +389,9 @@ multiply(10);      // 20
 multiply(10, 5);   // 50
               </code></pre>
             </div>
-            <div>
+            <div style="display: flex; flex-direction: column;">
               <h3><code>return</code> ist nicht <code>echo</code></h3>
-              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+              <pre class="code-sm" style="flex: 1;"><code data-trim data-noescape class="language-php" style="height: 100%; box-sizing: border-box;">
 // gibt den Wert zurück
 $msg = formatMeasurement(...);
 
@@ -418,7 +420,7 @@ echo $msg;
         <div class="content">
           <p>Ein Vergleich ergibt immer <code>true</code> oder <code>false</code>.</p>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
-            <table>
+            <table class="fragment" data-fragment-index="0">
               <tr><th style="width: 34%;">Operator</th><th>Bedeutung</th></tr>
               <tr><td><code>===</code></td><td>ist gleich</td></tr>
               <tr><td><code>!==</code></td><td>ist nicht gleich</td></tr>
@@ -428,7 +430,7 @@ echo $msg;
               <tr><td><code>&gt;=</code></td><td>ist grösser oder gleich</td></tr>
             </table>
             <div>
-              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+              <pre class="code-sm fragment" data-fragment-index="0"><code data-trim data-noescape class="language-php">
 $x = 1;
 $y = 2;
 
@@ -440,6 +442,8 @@ var_dump($x &gt;= $y);   // false
             </div>
           </div>
         </div>
+        <aside class="notes">Vor dem Klick bekannte Vergleichsoperatoren und ihre Bedeutung sammeln.
+          Danach die Tabelle und den Beispielcode gemeinsam einblenden.</aside>
       </section>
 
       <!-- ============ 20 Split ============ -->
@@ -536,13 +540,15 @@ function classifyTemperature($temperatureC)
             <div>
               <h3><code>switch</code> – viele feste Fälle</h3>
               <pre class="code-sm"><code data-trim data-noescape class="language-php">
-switch ($status) {
-    case 'ok':
-        echo "alles gut";
-        break;
-    default:
-        echo "unbekannt";
-        break;
+$dataStatus = 'checked';
+
+switch ($dataStatus) {
+    case 'new':       echo 'neu'; break;
+    case 'cleaned':   echo 'bereinigt'; break;
+    case 'checked':   echo 'geprüft'; break;
+    case 'published': echo 'veröffentlicht'; break;
+    case 'archived':  echo 'archiviert'; break;
+    default:          echo 'unbekannt'; break;
 }
               </code></pre>
             </div>

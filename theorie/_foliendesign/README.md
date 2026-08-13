@@ -7,8 +7,8 @@ reveal.js-Präsentationen als einzelne HTML-Datei – kein Build-Schritt.
 | --- | --- |
 | `fhgr-slides.css` | Das Design. Wird von jedem Foliensatz verlinkt, **nicht kopiert**. |
 | `vorlage.html` | Startpunkt für einen neuen Foliensatz, zeigt alle Bausteine. |
-| [`SCHREIBREGELN.md`](SCHREIBREGELN.md) | Was auf eine Folie kommt und wie es formuliert wird. |
-| `pruefe-folien.py` | Prüft einen Foliensatz gegen die Schreibregeln. |
+| [`GESTALTUNGSREGELN.md`](GESTALTUNGSREGELN.md) | Inhaltliche und visuelle Regeln für Folien. |
+| `pruefe-folien.py` | Prüft einen Foliensatz gegen die automatisch prüfbaren Gestaltungsregeln. |
 
 ## Neuen Foliensatz anlegen
 
@@ -37,6 +37,7 @@ Foliendesign. Das gemeinsame Stylesheet dafür nicht verändern.
 | Fliesstext | Grau `#575757` |
 | Akzent | Petrol `#4B93A4` |
 | Kapiteltrenner | Vollflächig Petrol, weisser Titel unten links |
+| Geteilte Folien | Weiss, mit olivbrauner Trennlinie in der Mitte |
 | Aufzählung | Gedankenstrich statt Punkt |
 | Foliennummer | Unten links (unten rechts sitzen die Navigationspfeile) |
 | Schrift | Helvetica Neue / Helvetica / Arial |
@@ -56,7 +57,7 @@ Schriftgrössen immer in `pt`.
 | `.flow` mit `.flow-step` / `.flow-arrow` | Ablauf oder Pipeline |
 | `.output` | Ausgabe von Terminal oder Browser |
 | `.code-label` | kleine Beschriftung über Code oder Ausgabe |
-| `split-slide` mit `.split-half.split-good/.split-bad` | Gegenüberstellung |
+| `split-slide` mit `.split-half.split-good/.split-bad` | Gegenüberstellung mit mittiger Trennlinie |
 | `.footnote` | Quellenangabe unten |
 | `.text-sm` … `.text-4xl`, `.text-muted` | Schriftgrösse und Farbe anpassen |
 | `.big-statement` | Kernaussage auf der Schlussfolie |
@@ -67,6 +68,16 @@ Mehrspaltige Layouts direkt am Element setzen, nicht als Utility-Klasse:
 ```html
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
 ```
+
+### Geteilte Folien
+
+Geteilte Folien bleiben auf beiden Seiten weiss.
+
+Die beiden Hälften werden nur durch eine olivbraune vertikale Linie in der
+Mitte getrennt.
+
+Die Klassen `.split-good` und `.split-bad` beschreiben die inhaltliche Rolle,
+erzeugen aber keine Hintergrundfarbe.
 
 ## Code auf Folien
 
@@ -114,7 +125,7 @@ Beispiel im Einsatz: Folie „Datentypen" in `theorie/A_PHP_Basics/`.
 
 ## Vor der Abgabe prüfen
 
-Schreibregeln prüfen (Absätze mit mehr als einem Satz, Blocknamen auf Folien):
+Gestaltungsregeln prüfen (Absätze mit mehr als einem Satz, Blocknamen auf Folien):
 
 ```bash
 python3 theorie/_foliendesign/pruefe-folien.py theorie/<ordner>/index.html
