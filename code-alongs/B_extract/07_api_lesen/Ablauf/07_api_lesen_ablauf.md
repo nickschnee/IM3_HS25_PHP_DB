@@ -1,4 +1,4 @@
-# Ablauf `07_live_lesen`
+# Ablauf `07_api_lesen`
 
 > **Ziel:** Daten nicht aus einer Datei, sondern **live aus dem Internet**
 > holen. Mit dem vorbereiteten Helfer `fetchJson($url)` rufen wir die

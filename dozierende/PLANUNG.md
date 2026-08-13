@@ -249,7 +249,7 @@ Material:
 Code-Alongs (je: lesen → PHP-Array, ohne Endpunkt):
 
 - `06_json_lesen`: statische JSON-Datei lesen und Struktur verstehen.
-- `07_live_lesen`: Live-API mit `fetchJson()` abrufen.
+- `07_api_lesen`: Live-API mit `fetchJson()` abrufen.
 - `08_csv_lesen`: Shark-Attack-CSV mit `fgetcsv` in Arrays umwandeln.
 
 Sensor-API, Google Sheets und eigene Datasets werden nur eingeordnet; sie folgen

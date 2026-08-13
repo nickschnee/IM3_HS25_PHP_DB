@@ -27,7 +27,7 @@ Transform (Block C), der Endpunkt in Unload (Block E).
 | Nr | Code-Along | Quelle | Technik |
 | --- | --- | --- | --- |
 | 6 | [JSON lesen](B_extract/06_json_lesen/) | statische JSON-Datei (Hitzesommer) | `file_get_contents` + `json_decode` |
-| 7 | [Live-Daten holen](B_extract/07_live_lesen/) | Live-API (Open-Meteo) | `fetchJson()` (cURL) |
+| 7 | [API lesen](B_extract/07_api_lesen/) | Live-API (Open-Meteo) | `fetchJson()` (cURL) |
 | 8 | [CSV lesen](B_extract/08_csv_lesen/) | CSV-Datei (Shark Attacks) | `fopen` + `fgetcsv` |
 
 Die Datei- und CSV-Schritte haben je einen eigenen `data/`-Ordner, damit man

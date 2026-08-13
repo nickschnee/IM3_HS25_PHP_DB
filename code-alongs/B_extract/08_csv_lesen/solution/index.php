@@ -2,36 +2,40 @@
 /**
  * Code-Along 08: CSV lesen (Extract) – Lösung
  *
- * Quelle -> PHP-Array von Datensätzen, diesmal aus einer CSV-Datei.
+ * Quelle -> PHP-Array von Datensätzen, diesmal aus einer echten CSV-Datei
+ * (Shark Attack File, GSAF).
  */
 
 header('Content-Type: text/plain; charset=utf-8');
 
 // 1. CSV-Datei zum Lesen öffnen.
-$handle = fopen('data/sharks.csv', 'r');
+$handle = fopen('data/attacks.csv', 'r');
 
-// 2. Kopfzeile (Spaltennamen) einzeln lesen.
+// 2. Kopfzeile (Spaltennamen) lesen und Leerzeichen entfernen. Einige Spalten
+//    heissen z. B. "Species " mit Leerzeichen am Ende - trim() räumt das auf.
 //    Die Argumente ',' '"' '' sind die Standardwerte; wir geben sie explizit
 //    an, damit PHP keine Deprecation-Warnung zeigt.
-$header = fgetcsv($handle, null, ',', '"', '');
+$header = array_map('trim', fgetcsv($handle, null, ',', '"', ''));
 
-// 3. Alle weiteren Zeilen lesen. array_combine verbindet Spaltennamen mit den
-//    Werten der Zeile -> ein assoziatives Array pro Angriff.
+// 3. Alle weiteren Zeilen lesen. Echte Daten haben viele leere Zeilen: wenn die
+//    erste Spalte (Case Number) leer ist, überspringen wir die Zeile.
+//    array_combine verbindet Spaltennamen mit den Werten -> ein Array pro Angriff.
 $attacks = [];
 while (($row = fgetcsv($handle, null, ',', '"', '')) !== false) {
+    if ($row[0] === '') {
+        continue; // leere Zeile
+    }
     $attacks[] = array_combine($header, $row);
 }
-
-
-
-// 4. Datei schliessen und Struktur prüfen.
 fclose($handle);
+
+// 4. Struktur prüfen.
 echo 'Spalten: ' . implode(', ', $header) . "\n";
 echo 'Anzahl Angriffe: ' . count($attacks) . "\n\n";
 
 // 5. Die ersten 5 Angriffe ausgeben.
 for ($i = 0; $i < 5; $i++) {
     $a = $attacks[$i];
-    echo $a['year'] . ': ' . $a['country'] . ' – ' . $a['activity']
-        . ' (' . $a['species'] . ")\n";
+    echo $a['Year'] . ': ' . $a['Country'] . ' – ' . $a['Activity']
+        . ' (' . $a['Species'] . ")\n";
 }

@@ -56,7 +56,7 @@ Kurstage erstrecken. Die Story- und Recherchespur (`🔎`) läuft parallel mit.
 1. `💻` Digitale Übung: [01 Daten finden & herunterladen](uebungen/B_extract/01_daten_finden) `45'`
 2. `📕` Theorie B: Extract-Varianten (Datei, API, CSV) → PHP-Array `20'`
 3. `🧑‍🏫` Code-Along: [06 JSON lesen](code-alongs/B_extract/06_json_lesen) _(statische Datei)_ `30'`
-4. `🧑‍🏫` Code-Along: [07 Live-Daten holen](code-alongs/B_extract/07_live_lesen) _(Live-API)_ `30'`
+4. `🧑‍🏫` Code-Along: [07 API lesen](code-alongs/B_extract/07_api_lesen) _(Live-API)_ `30'`
 5. `🧑‍🏫` Code-Along: [08 CSV lesen](code-alongs/B_extract/08_csv_lesen) _(CSV-Datei)_ `30'`
 6. `🔎` Datenquellen recherchieren & prüfen `60'`
 7. `✅` **M3: Datensatz gefunden**
