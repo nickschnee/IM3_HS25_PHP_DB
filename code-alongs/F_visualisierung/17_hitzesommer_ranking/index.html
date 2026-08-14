@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html lang="de">
 
+<!--
+  Diese Seite muss über den PHP-Server laufen:
+
+    php -S localhost:8000
+
+  Dann http://localhost:8000 öffnen. Der Live Server von VS Code (Port 5500)
+  führt kein PHP aus – er liefert den Quelltext von unload.php statt der Daten.
+
+  Per Doppelklick geöffnet (file://) bleibt die Seite komplett leer: Der
+  Browser lädt script.js dann gar nicht erst.
+-->
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hitzesommer 1940–2025 – Lösung</title>
+  <title>Hitzesommer – Rangliste</title>
 
-  <!-- Diese Datei liegt in solution/, deshalb ein Ordner nach oben.
-       Im eigenen Projekt steht hier style.css ohne ../ -->
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="style.css">
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
   <script src="script.js" type="module"></script>
@@ -38,17 +48,17 @@
       </div>
 
       <div class="control">
+        <label for="from-year">Ab Jahr <output id="from-year-value">1940</output></label>
+        <input type="range" id="from-year" min="1940" max="2010" step="1" value="1940">
+        <p class="hint">rechnet nur im Browser</p>
+      </div>
+
+      <div class="control">
         <span class="control-label">Messwert</span>
         <div class="switch" id="metric">
           <button type="button" data-metric="hot_days" class="is-active">Hitzetage</button>
           <button type="button" data-metric="max_temperature_c">Höchste Temperatur</button>
         </div>
-        <p class="hint">rechnet nur im Browser</p>
-      </div>
-
-      <div class="control">
-        <label for="from-year">Ab Jahr <output id="from-year-value">1940</output></label>
-        <input type="range" id="from-year" min="1940" max="2010" step="1" value="1940">
         <p class="hint">rechnet nur im Browser</p>
       </div>
     </section>

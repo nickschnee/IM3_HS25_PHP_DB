@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="de">
 
+<!--
+  Diese Seite muss über den PHP-Server laufen:
+
+    php -S localhost:8000
+
+  Dann http://localhost:8000 öffnen. Der Live Server von VS Code (Port 5500)
+  führt kein PHP aus – er liefert den Quelltext von unload.php statt der Daten.
+
+  Per Doppelklick geöffnet (file://) bleibt die Seite komplett leer: Der
+  Browser lädt script.js dann gar nicht erst.
+-->
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,42 +51,17 @@
         </select>
         <p class="hint">fragt den Endpunkt neu an</p>
       </div>
-
-      <div class="control">
-        <span class="control-label">Messwert</span>
-        <div class="switch" id="metric">
-          <button type="button" data-metric="hot_days" class="is-active">Hitzetage</button>
-          <button type="button" data-metric="max_temperature_c">Höchste Temperatur</button>
-        </div>
-        <p class="hint">rechnet nur im Browser</p>
-      </div>
-
-      <div class="control">
-        <label for="from-year">Ab Jahr <output id="from-year-value">1940</output></label>
-        <input type="range" id="from-year" min="1940" max="2010" step="1" value="1940">
-        <p class="hint">rechnet nur im Browser</p>
-      </div>
     </section>
 
     <p id="status" class="status" role="status"></p>
 
     <section class="chart">
-      <h2>Verlauf pro Sommer</h2>
+      <h2>Hitzetage pro Sommer</h2>
       <p class="chart-note">
         Eine Linie pro Stadt. Ein Klick in die Legende blendet eine Stadt aus.
       </p>
       <div class="chart-box">
         <canvas id="verlauf"></canvas>
-      </div>
-    </section>
-
-    <section class="chart">
-      <h2>Die zehn stärksten Sommer im gewählten Zeitraum</h2>
-      <p class="chart-note">
-        Eine Rangliste ist keine Entwicklung – deshalb Balken und keine Linie.
-      </p>
-      <div class="chart-box chart-box-tall">
-        <canvas id="rangliste"></canvas>
       </div>
     </section>
   </main>

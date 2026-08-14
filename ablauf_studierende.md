@@ -96,6 +96,7 @@ vom rohen Datensatz über die eigene Datenfrage zum fertigen JSON.
 
 1. `📕` [Theorie E: Unload](theorie/E_unload/) `35'`
 2. `🧑‍🏫` Code-Along: [14 Hitzesommer unloaden](code-alongs/E_unload/14_hitzesommer_ausliefern/) `60'`
+3. `🛠️` Tooling: Deployment `60'`
 
 #### Zusatzmaterial (Block E)
 
@@ -104,4 +105,5 @@ vom rohen Datensatz über die eigene Datenfrage zum fertigen JSON.
 ### Block F – Visualisierung
 
 1. `📕` Theorie F: Diagrammtypen und Chart.js `30'`
-2. `🧑‍🏫` Code-Along: [16 Hitzesommer visualisieren](code-alongs/F_visualisierung/16_hitzesommer_visualisieren/) `90'`
+2. `🧑‍🏫` Code-Along: [16 Hitzesommer visualisieren](code-alongs/F_visualisierung/16_hitzesommer_liniendiagramm/) `70'`
+3. `🧑‍🏫` Code-Along: [17 Hitzesommer-Rangliste](code-alongs/F_visualisierung/17_hitzesommer_ranking/) `60'`

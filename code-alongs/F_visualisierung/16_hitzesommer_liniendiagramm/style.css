@@ -74,20 +74,14 @@ h2 {
   gap: 6px;
 }
 
-.control label,
-.control-label {
+.control label {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--oliv);
 }
 
-.control select,
-.control input[type="range"] {
-  min-width: 190px;
-  accent-color: var(--petrol);
-}
-
 .control select {
+  min-width: 190px;
   padding: 6px 8px;
   font: inherit;
   color: inherit;
@@ -100,28 +94,6 @@ h2 {
   margin: 0;
   font-size: 0.75rem;
   color: var(--muted);
-}
-
-.switch {
-  display: flex;
-  gap: 4px;
-}
-
-.switch button {
-  padding: 7px 12px;
-  font: inherit;
-  font-size: 0.9rem;
-  color: var(--text);
-  background: #ffffff;
-  border: 1px solid var(--box-border);
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.switch button.is-active {
-  color: #ffffff;
-  background: var(--petrol);
-  border-color: var(--petrol);
 }
 
 /* --- Status und Diagramme ------------------------------------------------ */
@@ -148,10 +120,6 @@ h2 {
 .chart-box {
   position: relative;
   height: 340px;
-}
-
-.chart-box-tall {
-  height: 400px;
 }
 
 /* --- Fuss ---------------------------------------------------------------- */

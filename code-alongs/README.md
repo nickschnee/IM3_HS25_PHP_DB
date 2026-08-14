@@ -3,6 +3,12 @@
 Code-Alongs werden gemeinsam mit dem Dozierenden oder LBA entwickelt. Der Startcode
 liegt direkt im jeweiligen Ordner, die fertige Fassung in `solution/`.
 
+**Womit ihr die Seiten öffnet:** immer über `php -S localhost:8000` im Ordner
+des Code-Alongs, nie mit dem Live Server von VS Code. Live Server kann HTML,
+CSS und JavaScript, führt aber kein PHP aus: Er liefert den Quelltext von
+`unload.php` aus, statt die Datei laufen zu lassen. In der Adressleiste muss
+`8000` stehen, nicht `5500`.
+
 ## Block A – PHP Basics
 
 | Reihenfolge | Code-Along                                     | Kurstag |
@@ -101,18 +107,30 @@ den Datensätzen ein Diagramm.
 
 | Nr | Code-Along | Worum es geht | Technik |
 | --- | --- | --- | --- |
-| 16 | [Hitzesommer visualisieren](F_visualisierung/16_hitzesommer_visualisieren/) | zwei Diagramme und drei Bedienelemente auf dem eigenen Endpunkt | `fetch()`, `labels`/`datasets`, Chart.js, `chart.update()` |
+| 16 | [Hitzesommer visualisieren](F_visualisierung/16_hitzesommer_visualisieren/) | ein Liniendiagramm auf dem eigenen Endpunkt | `fetch()`, `labels`/`datasets`, Chart.js, `chart.update()` |
+| 17 | [Hitzesommer-Rangliste](F_visualisierung/17_hitzesommer_rangliste/) | ein zweites Diagramm und Interaktion ohne Server | Balkendiagramm, `sort`/`slice`, Zustand und `render()` |
 
-Auch hier gibt es vier Bausteine: `Holen`, `Umformen`, `Zeichnen`, `Reagieren`.
-Der wichtigste ist der zweite – Chart.js will keine Datensätze, sondern zwei
-gleich lange Listen. Der Diagrammtyp folgt der Aussage: die Entwicklung als
-Linie, die Rangliste als Balken.
+Nummer 16 bleibt bewusst schmal: ein Diagramm, ein Bedienelement. In vier
+Bausteinen – `Holen`, `Umformen`, `Zeichnen`, `Reagieren` – entsteht die Linie
+mit den Hitzetagen pro Sommer, und die Stadtauswahl benutzt zum ersten Mal den
+`$_GET`-Filter aus Block E. Der wichtigste Baustein ist der zweite: Chart.js
+will keine Datensätze, sondern zwei gleich lange Listen.
 
-Im Ordner liegen `index.html`, `style.css` und der fertige Endpunkt aus
+Nummer 17 startet beim fertigen Stand von 16 und baut darauf auf. Neu sind der
+zweite Diagrammtyp – eine Rangliste ist keine Entwicklung, also Balken statt
+Linie – und die zweite Sorte Interaktion: Bedienelemente, die nur mit den
+Daten rechnen, die schon im Browser liegen. Der Server filtert, was viel ist;
+der Browser filtert, was schon da ist.
+
+In beiden Ordnern liegen `index.html`, `style.css` und der fertige Endpunkt aus
 Code-Along 14, damit Frontend und Endpunkt über dieselbe Adresse laufen.
 Gebaut wird nur `script.js`. Die Datei `data/heat-summers.json` enthält
 dieselben 258 Datensätze: Damit lässt sich das Frontend bauen, bevor das
 Backend fertig ist – und sie ist der Fallback für den Marktstand.
+
+**Nicht mit Live Server öffnen.** Diese Seiten laden `unload.php`; ein
+statischer Server liefert dafür den PHP-Quelltext aus. Es gilt dieselbe Regel
+wie oben: `php -S localhost:8000`, und in der Adressleiste steht `8000`.
 
 Die Zugangsdaten stehen in **einer einzigen** `config.php` im Hauptordner des
 Kurses – kopiert aus `config.template.php`, dort mit den eigenen Werten

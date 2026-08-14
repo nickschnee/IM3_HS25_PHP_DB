@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<!--
+  Diese Seite muss über den PHP-Server laufen. Im Ordner des Code-Alongs
+  (einen über diesem) starten:
+
+    php -S localhost:8000
+
+  Dann http://localhost:8000/solution/ öffnen. Der Live Server von VS Code
+  (Port 5500) führt kein PHP aus – er liefert den Quelltext von unload.php
+  statt der Daten.
+
+  Per Doppelklick geöffnet (file://) bleibt die Seite komplett leer: Der
+  Browser lädt script.js dann gar nicht erst.
+-->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hitzesommer 1940–2025 – Lösung</title>
+
+  <!-- Diese Datei liegt in solution/, deshalb ein Ordner nach oben.
+       Im eigenen Projekt steht hier style.css ohne ../ -->
+  <link rel="stylesheet" href="../style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+  <script src="script.js" type="module"></script>
+</head>
+
+<body>
+  <header class="page-header">
+    <p class="kicker">Sommer 1940 bis 2025 · Bern, Chur und Zürich</p>
+    <h1>Wie viele heisse Tage hat ein Sommer?</h1>
+    <p class="lead">
+      Ein Hitzetag ist ein Tag mit mindestens 30 °C Tageshöchsttemperatur.
+      Gezählt werden die 92 Tage von Juni bis August.
+    </p>
+  </header>
+
+  <main>
+    <section class="controls" aria-label="Ansicht steuern">
+      <div class="control">
+        <label for="city">Stadt</label>
+        <select id="city">
+          <option value="alle">alle drei Städte</option>
+          <option value="Bern">Bern</option>
+          <option value="Chur">Chur</option>
+          <option value="Zürich">Zürich</option>
+        </select>
+        <p class="hint">fragt den Endpunkt neu an</p>
+      </div>
+    </section>
+
+    <p id="status" class="status" role="status"></p>
+
+    <section class="chart">
+      <h2>Hitzetage pro Sommer</h2>
+      <p class="chart-note">
+        Eine Linie pro Stadt. Ein Klick in die Legende blendet eine Stadt aus.
+      </p>
+      <div class="chart-box">
+        <canvas id="verlauf"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p>
+      Quelle: Open-Meteo Historical Weather API, Tageshöchsttemperaturen,
+      aufbereitet in Code-Along 09 und geladen in Code-Along 12.
+    </p>
+    <p>
+      Grenze der Aussage: drei Städte, ein Schwellenwert, keine Aussage über
+      die Schweiz als Ganzes.
+    </p>
+  </footer>
+</body>
+
+</html>
