@@ -15,10 +15,13 @@ header('Content-Type: text/plain; charset=utf-8');
 // 1. Zugangsdaten laden
 // ---------------------------------------------------------------------------
 //
-// config.php liegt einen Ordner höher, weil die Lösung in solution/ liegt.
-// Beide Fassungen benutzen dieselbe Datei – Zugangsdaten gibt es nur einmal.
+// config.php liegt im Hauptordner des Kurses und gilt für alle Übungen. Von
+// hier aus sind das vier Ordner nach oben – ein Ordner mehr als in der Fassung
+// daneben, weil diese Datei zusätzlich in solution/ liegt.
+//
+// Das '..' kennt ihr aus CSS und HTML: ein Ordner zurück.
 
-require __DIR__ . '/../config.php';
+require __DIR__ . '/../../../../config.php';
 
 // ---------------------------------------------------------------------------
 // 2. Verbindung aufbauen

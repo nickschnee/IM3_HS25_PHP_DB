@@ -62,9 +62,17 @@ Der erste Schritt trennt bewusst die beiden Fehlerquellen: Wer hier Zeilen im
 Browser sieht, hat eine funktionierende Verbindung – alles Weitere ist dann
 reine Programmierung.
 
-Jeder Ordner in diesem Block braucht eine eigene `config.php` mit den
-Zugangsdaten. Sie wird aus `config.template.php` kopiert und steht in
-`.gitignore`; im Repository liegt nur die Vorlage.
+Die Zugangsdaten stehen in **einer einzigen** `config.php` im Hauptordner des
+Kurses – kopiert aus `config.template.php`, dort mit den eigenen Werten
+ausgefüllt. Alle Code-Alongs binden dieselbe Datei ein:
+
+```php
+require __DIR__ . '/../../../config.php';
+```
+
+Sie steht in `.gitignore`; im Repository liegt nur die Vorlage. Ein Passwort an
+einer Stelle zu pflegen ist nicht nur bequemer, es landet auch seltener
+versehentlich in einem Commit.
 
 Das Code-Along zum Laden der Hitzesommer-Daten folgt.
 

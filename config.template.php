@@ -1,20 +1,55 @@
 <?php
+/**
+ * Vorlage für die Zugangsdaten zur Datenbank.
+ *
+ * Diese Datei liegt im Hauptordner des Kurses und gilt für alle Code-Alongs
+ * und Übungen. Es gibt sie also genau einmal.
+ *
+ * So legst du deine eigene Fassung an – im Hauptordner:
+ *
+ *     cp config.template.php config.php
+ *
+ * config.php steht in .gitignore und wird nie hochgeladen. Diese Vorlage ohne
+ * Werte bleibt im Repository, damit alle wissen, welche Angaben nötig sind.
+ */
 
-// Definition der Verbindungsparameter für die Datenbank
-$host     = '';     // Hostserver, auf dem die DB läuft.
-// «localhost» bedeutet: die selbe Serveradresse, auf dem auch die Seiten gespeichert sind
+// --- Zugangsdaten -----------------------------------------------------------
+//
+// Alle drei Werte stehen im Hostpoint-Panel, wo du die Datenbank angelegt hast.
+//
+// $host bleibt 'localhost': Die Datenbank läuft auf demselben Server wie deine
+// PHP-Dateien. «localhost» heisst deshalb nicht dein Laptop, sondern der
+// Server, auf dem das Skript gerade läuft.
 
-$dbname   = '';   // Name der Datenbank
-$username = '';   // Benutzername für die DB
-$password = '';   // Passwort für die DB
+$host     = 'localhost';
+$dbname   = '';
+$username = '';
+$password = '';
 
+// --- DSN: die Adresse der Datenbank -----------------------------------------
+//
+// DSN heisst Data Source Name. Er sagt PDO, welche Datenbank wo liegt.
+// charset=utf8mb4 sorgt dafür, dass Umlaute richtig ankommen.
 
-// DSN (Datenquellenname) für PDO
-$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4"; // siehe https://en.wikipedia.org/wiki/Data_source_name
+$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
 
-// Optionen für PDO
+// --- Optionen für PDO -------------------------------------------------------
+
 $options = [
-  PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, // Aktiviert die Ausnahmebehandlung für Datenbankfehler
-  PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, // Legt den Standard-Abrufmodus auf assoziatives Array fest
-  PDO::ATTR_EMULATE_PREPARES   => false // Deaktiviert die Emulation vorbereiteter Anweisungen, für bessere Leistung
+    // Fehler brechen laut ab, statt still zu scheitern. Wichtigste Zeile hier.
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+
+    // Zeilen kommen als assoziative Arrays zurück: $row['location'].
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+
+    // Platzhalter werden von der Datenbank selbst eingesetzt, nicht von PHP.
+    PDO::ATTR_EMULATE_PREPARES   => false,
 ];
+
+// --- Nur für den lokalen Weg mit MAMP ---------------------------------------
+//
+// Der Kurs läuft auf dem Server. Wer zusätzlich lokal arbeitet, ersetzt die
+// $dsn-Zeile oben durch diese und nimmt 'root' als Benutzer und Passwort.
+// MAMP legt MySQL auf Port 8889 statt auf den Standardport.
+//
+// $dsn = "mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4";

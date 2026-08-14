@@ -6,14 +6,17 @@
  * schreiben ein paar Messwerte hinein und lesen sie wieder heraus.
  * Kein Datensatz, kein ETL – nur die Frage: Funktioniert die Verbindung?
  *
- * Vorher: config.template.php zu config.php kopieren und mit den Zugangsdaten
- * aus dem Hostpoint-Panel ausfüllen, Tabelle aus schema.sql in phpMyAdmin
- * anlegen, den Ordner auf den Server laden.
+ * Vorher:
+ * - config.php im Hauptordner anlegen (aus config.template.php kopieren)
+ *   und mit den Zugangsdaten aus dem Hostpoint-Panel ausfüllen;
+ * - Tabelle aus schema.sql in phpMyAdmin anlegen.
  */
 
 // TODO 1: Ausgabe als reinen Text anzeigen lassen.
 
-// TODO 2: config.php einbinden.
+// TODO 2: config.php aus dem Hauptordner einbinden.
+//         Von hier aus sind das drei Ordner nach oben:
+//         __DIR__ . '/../../../config.php'
 
 // TODO 3: Verbindung aufbauen und melden, ob sie steht.
 

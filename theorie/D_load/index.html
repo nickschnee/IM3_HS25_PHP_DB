@@ -681,7 +681,7 @@ DELETE FROM heat_summers;
         <div class="content">
           <div class="code-pair">
             <div>
-              <span class="code-label">config.php</span>
+              <span class="code-label">config.php – einmal im Hauptordner</span>
               <pre class="code-sm"><code data-trim data-noescape class="language-php">
 &lt;?php
 $host     = 'localhost';
@@ -693,17 +693,18 @@ $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
               </code></pre>
             </div>
             <div>
-              <span class="code-label">load.php</span>
+              <span class="code-label">load.php – irgendwo im Kursordner</span>
               <pre class="code-sm"><code data-trim data-noescape class="language-php">
-require __DIR__ . '/config.php';
+// drei Ordner nach oben zum Hauptordner
+require __DIR__ . '/../../../config.php';
 
 $pdo = new PDO($dsn, $username, $password, $options);
               </code></pre>
             </div>
           </div>
           <ul class="list-tight text-sm mt-1">
+            <li>Es gibt genau eine <code>config.php</code> für alle Übungen</li>
             <li>Der DSN sagt PDO, welche Datenbank wo liegt</li>
-            <li><code>charset=utf8mb4</code> rettet Umlaute und Emojis</li>
             <li>Lokal kommt in den DSN zusätzlich <code>port=8889</code></li>
           </ul>
           <div class="callout callout-red">

@@ -37,8 +37,9 @@ keine eigenen Unterlagen – es wird gemeinsam durchgeklickt.
 1. Im Hostpoint-Panel eine MySQL-Datenbank und einen Benutzer anlegen.
 2. Datenbankname, Benutzername und Passwort notieren; der Host ist `localhost`.
 3. phpMyAdmin aus dem Panel öffnen und die leere Datenbank ansehen.
-4. `config.template.php` zu `config.php` kopieren und die Werte eintragen.
-5. `config.php` in `.gitignore` eintragen.
+4. Im Hauptordner des Kurses `config.template.php` zu `config.php` kopieren und
+   die Werte eintragen. Diese Datei gibt es genau einmal für alle Übungen.
+5. Prüfen, dass `config.php` nicht im Git auftaucht – sie steht in `.gitignore`.
 6. Verbindung mit einer kleinen Testdatei prüfen.
 
 ### Alternative für Schnelle: lokal mit MAMP
@@ -197,6 +198,21 @@ Warnzeichen.
 
 PDO (PHP Data Objects) ist fest in PHP eingebaut und die Brücke zwischen PHP und
 der Datenbank: Wir schicken SQL als Text hin und bekommen PHP-Arrays zurück.
+
+### Eine `config.php` für alles
+
+Die Zugangsdaten stehen in genau einer Datei, und zwar im Hauptordner des
+Kurses. Alle Code-Alongs und Übungen binden dieselbe ein:
+
+```php
+// drei Ordner nach oben zum Hauptordner
+require __DIR__ . '/../../../config.php';
+
+$pdo = new PDO($dsn, $username, $password, $options);
+```
+
+Zugangsdaten in jedem Übungsordner zu pflegen wäre mühsam und würde die
+Wahrscheinlichkeit erhöhen, dass eine Fassung doch in einem Commit landet.
 
 ### Prepared Statements
 

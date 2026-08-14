@@ -39,7 +39,7 @@ Kurstage erstrecken. Die Story- und Recherchespur (`🔎`) läuft parallel mit.
 
 #### Zusatzmaterial (Block A)
 
-- `🛠️` [00 Lokaler PHP-Server](theorie/00_lokaler_php_server)
+- `🛠️` [00 Lokaler PHP-Server](theorie/00_lokaler_php_server/index.html)
 - `💻` [01 Messwert](uebungen/A_PHP_Basics/01_messwert)
 - `💻` [02 Badewetter](uebungen/A_PHP_Basics/02_badewetter)
 - `💻` [03 Warnstufe](uebungen/A_PHP_Basics/03_warnstufe)

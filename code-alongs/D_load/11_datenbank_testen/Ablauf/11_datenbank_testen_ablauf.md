@@ -20,10 +20,11 @@ Gemeinsam durchgehen, jede Person auf dem eigenen Zugang:
 
 1. Zugangsdaten aus dem Hostpoint-Panel bereitlegen: Datenbankname, Benutzer,
    Passwort.
-2. `config.template.php` zu `config.php` kopieren:
+2. Im **Hauptordner** des Kurses `config.template.php` zu `config.php` kopieren:
    ```bash
    cp config.template.php config.php
    ```
+   Diese Datei gibt es genau einmal für alle Code-Alongs und Übungen.
 3. Die drei Werte eintragen. `$host` bleibt `localhost`: Die Datenbank läuft auf
    demselben Server wie die PHP-Dateien, «localhost» meint also den Server und
    nicht den eigenen Laptop.
@@ -49,7 +50,8 @@ Gemeinsam durchgehen, jede Person auf dem eigenen Zugang:
 
 1. `header('Content-Type: text/plain; charset=utf-8')` – die Ausgabe ist eine
    Kontrollansicht, keine Webseite.
-2. `require __DIR__ . '/config.php';`
+2. `require __DIR__ . '/../../../config.php';` – drei Ordner nach oben in den
+   Hauptordner. Das `..` kennen sie aus CSS.
 3. Verbindung im `try`-Block aufbauen und `Verbindung steht.` ausgeben. Den
    `catch`-Block bewusst gemeinsam schreiben und einmal absichtlich ein falsches
    Passwort eintragen, um die Meldung zu sehen.
@@ -76,6 +78,9 @@ Gemeinsam durchgehen, jede Person auf dem eigenen Zugang:
 
 - **Zwei Fehlerquellen trennen:** Erst die Verbindung, dann die Logik. Wer diese
   Reihenfolge einhält, spart sich im Projekt viel Sucherei.
+- **`config.php` gibt es genau einmal:** Sie liegt im Hauptordner und gilt für
+  alle Übungen. Zugangsdaten in jedem Ordner zu pflegen wäre mühsam und würde
+  die Wahrscheinlichkeit erhöhen, dass eine Fassung doch im Repository landet.
 - **`config.php` gehört niemandem sonst:** Die Datei steht in `.gitignore`, im
   Repository liegt nur die Vorlage.
 - **Fehlermeldungen lesen:** `Access denied` heisst Zugangsdaten,
