@@ -57,10 +57,13 @@ dazu, weil man sie zum Laden braucht.
 | Nr | Code-Along | Worum es geht | Technik |
 | --- | --- | --- | --- |
 | 11 | [Datenbank testen](D_load/11_datenbank_testen/) | vier Messwerte schreiben und wieder lesen | `new PDO`, `prepare`/`execute`, `query` |
+| 12 | [Hitzesommer laden](D_load/12_hitzesommer_laden/) | 258 transformierte Zeilen in zwei Tabellen schreiben | Fremdschlüssel füllen, `DELETE` vor der Schleife |
 
-Der erste Schritt trennt bewusst die beiden Fehlerquellen: Wer hier Zeilen im
+Der erste Schritt trennt bewusst die beiden Fehlerquellen: Wer dort Zeilen im
 Browser sieht, hat eine funktionierende Verbindung – alles Weitere ist dann
-reine Programmierung.
+reine Programmierung. Der zweite Schritt bringt Extract und Transform fertig
+mit und baut nur noch `load.php`; damit ist die ETL-Kette zum ersten Mal
+durchgehend.
 
 Die Zugangsdaten stehen in **einer einzigen** `config.php` im Hauptordner des
 Kurses – kopiert aus `config.template.php`, dort mit den eigenen Werten
@@ -73,8 +76,6 @@ require __DIR__ . '/../../../config.php';
 Sie steht in `.gitignore`; im Repository liegt nur die Vorlage. Ein Passwort an
 einer Stelle zu pflegen ist nicht nur bequemer, es landet auch seltener
 versehentlich in einem Commit.
-
-Das Code-Along zum Laden der Hitzesommer-Daten folgt.
 
 Weitere Code-Alongs werden beim Aufbau der späteren Blöcke geprüft,
 überarbeitet und in Block-Ordner (`E_…`, `F_…` usw.) einsortiert.

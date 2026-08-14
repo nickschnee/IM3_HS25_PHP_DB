@@ -81,7 +81,7 @@ vom rohen Datensatz über die eigene Datenfrage zum fertigen JSON.
 3. `📕` [Theorie D: Load (ab Kapitel SQL)](theorie/D_load/) `45'`
 4. `🛠️` Datenbank einrichten `60'`
 5. `🧑‍🏫` Code-Along: [11 Datenbank testen](code-alongs/D_load/11_datenbank_testen/) `60'`
-6. `🧑‍🏫` Code-Along: Hitzesommer-Daten in die Datenbank laden `70'`
+6. `🧑‍🏫` Code-Along: [12 Hitzesommer laden](code-alongs/D_load/12_hitzesommer_laden/) `70'`
 
 #### Zusatzmaterial (Block D)
 

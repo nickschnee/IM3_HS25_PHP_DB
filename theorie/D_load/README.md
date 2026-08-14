@@ -379,6 +379,10 @@ Code-Along zum ersten Mal auf.
 - Direkt danach:
   [`code-alongs/D_load/11_datenbank_testen`](../../code-alongs/D_load/11_datenbank_testen/)
   – Verbindung prüfen, bevor es um Daten geht
+- Dann:
+  [`code-alongs/D_load/12_hitzesommer_laden`](../../code-alongs/D_load/12_hitzesommer_laden/)
+  – die 258 Zeilen aus dem Transform in die beiden Tabellen dieses Foliensatzes
+  schreiben
 - Danach: `unload.php` in Block E baut auf denselben Tabellen auf
 - Nachschlagewerke: [`cheatsheets/10__pdo.md`](../../cheatsheets/10__pdo.md) und
   [`cheatsheets/310_load.md`](../../cheatsheets/310_load.md)
@@ -395,9 +399,12 @@ npx decktape reveal theorie/D_load/index.html slides.pdf --size 1280x720
 
 ### Offene Punkte
 
-- Die Papierübung zum Datenmodell und das Code-Along zum Laden der
-  Hitzesommer-Daten sind noch nicht gebaut; die Folien 16 und 35 verweisen
-  bereits darauf. Das Code-Along zum Verbindungstest steht.
+- Die Papierübung zum Datenmodell ist noch nicht gebaut; Folie 16 verweist
+  bereits darauf. Beide Code-Alongs stehen: Verbindungstest (11) und Laden der
+  Hitzesommer-Daten (12).
+- `JOIN` kommt weder auf den Folien noch im Code-Along 12 vor. Die
+  Kontrollabfrage dort fragt pro Stadt einzeln nach. Für Block E ist das die
+  offene Stelle: Aus dem `SELECT` mit Fremdschlüssel wird dort ein `JOIN`.
 - `cheatsheets/310_load.md` stammt aus dem letzten Durchlauf und passt noch
   nicht zu diesem Datenmodell.
 - Für Gruppen mit Live-Sammlung fehlt ein ausformuliertes Beispiel mit
