@@ -68,7 +68,7 @@ In MAMP auf **Start** klicken. Die Anzeige für MySQL wird grün.
 
 | Angabe | Üblicher Wert |
 | --- | --- |
-| Host | `localhost` |
+| Host | `127.0.0.1` |
 | Port | `8889` |
 | Benutzer | `root` |
 | Passwort | `root` |
@@ -105,16 +105,22 @@ heil ankommen.
 Zwischen Server und lokal unterscheidet sich genau eine Zeile:
 
 ```php
-// auf dem Server
+// auf dem Server ($host = 'localhost')
 $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
 
-// lokal mit MAMP
+// lokal mit MAMP ($host = '127.0.0.1')
 $dsn = "mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4";
 ```
 
-Benutzername und Passwort sind lokal beide `root`, `$host` bleibt `localhost`.
-Der übrige Code bleibt unverändert. Auch die lokale `config.php` gehört nicht
-ins Repository.
+Benutzername und Passwort sind lokal beide `root`. Der übrige Code bleibt
+unverändert. Auch die lokale `config.php` gehört nicht ins Repository.
+
+**Lokal `127.0.0.1` und nicht `localhost`.** Bei `localhost` verbindet sich PHP
+nicht über den Port, sondern über eine Socket-Datei, und sucht sie unter
+`/tmp/mysql.sock` – dort legt MAMP keine an. Die Meldung lautet dann
+`SQLSTATE[HY000] [2002] No such file or directory`, und `port=8889` im DSN wird
+dabei ignoriert. Mit `127.0.0.1` läuft die Verbindung über den Port, und alles
+stimmt.
 
 ### 6. PHP wie bisher starten
 
@@ -130,6 +136,7 @@ sich an deiner bisherigen Arbeitsweise nichts.
 
 | Meldung oder Symptom | Ursache |
 | --- | --- |
+| `No such file or directory` | Im DSN steht `localhost` statt `127.0.0.1` |
 | `Connection refused` | MAMP läuft nicht oder der Port stimmt nicht |
 | `Access denied` | Benutzer oder Passwort falsch, lokal beides `root` |
 | `Unknown database` | Der Name in `config.php` passt nicht zur angelegten Datenbank |

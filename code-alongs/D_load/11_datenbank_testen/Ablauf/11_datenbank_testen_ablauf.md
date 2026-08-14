@@ -39,10 +39,15 @@ Gemeinsam durchgehen, jede Person auf dem eigenen Zugang:
 6. Den Ordner auf den Server laden, in den eigenen Projektordner.
 
 > **Für Schnelle:** Wer zusätzlich lokal arbeiten will, startet MAMP und nutzt
-> daraus nur MySQL. Benutzer und Passwort sind dort beide `root`, und im DSN
-> muss `port=8889` stehen (die auskommentierte Zeile unten in
-> `config.template.php`). PHP läuft weiterhin über `php -S localhost:8000`.
-> Für den Kurs ist das nicht nötig – der Server ist der Standardweg.
+> daraus nur MySQL. Benutzer und Passwort sind dort beide `root`, `$host` ist
+> `127.0.0.1` und im DSN steht zusätzlich `port=8889` (die auskommentierte Zeile
+> unten in `config.template.php`). PHP läuft weiterhin über
+> `php -S localhost:8000`. Für den Kurs ist das nicht nötig – der Server ist der
+> Standardweg.
+>
+> Lokal `127.0.0.1` und nicht `localhost`: Bei `localhost` verbindet sich PHP
+> über eine Socket-Datei statt über den Port und meldet
+> `SQLSTATE[HY000] [2002] No such file or directory`.
 
 ## Schritte im Code (15')
 
@@ -86,6 +91,9 @@ Gemeinsam durchgehen, jede Person auf dem eigenen Zugang:
 - **Fehlermeldungen lesen:** `Access denied` heisst Zugangsdaten,
   `Unknown database` heisst Datenbankname, `Unknown column` heisst Tippfehler in
   der Tabelle. Alle drei einmal absichtlich provozieren.
+- **`No such file or directory`** heisst nicht, dass eine PHP-Datei fehlt: PHP
+  sucht dann eine Socket-Datei, weil `localhost` statt `127.0.0.1` im DSN steht.
+  Die Meldung führt in die Irre, deshalb hier einmal benennen.
 - **Das Muster bleibt:** `prepare()` einmal, `execute()` oft – im nächsten
   Schritt mit 258 statt vier Zeilen.
 - **`measurements` ist eine Wegwerf-Tabelle:** Das richtige Datenmodell kommt

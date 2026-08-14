@@ -165,7 +165,7 @@ Mein Betriebssystem ist macOS.</div>
             <div>
               <span class="code-label">config.php im Hauptordner – lokal mit MAMP</span>
               <pre class="code-sm"><code data-trim data-noescape class="language-php">
-$host     = 'localhost';
+$host     = '127.0.0.1';
 $dbname   = 'im3_hitzesommer';
 $username = 'root';
 $password = 'root';
@@ -179,7 +179,7 @@ $dsn = "mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4";
                 <li>Hier kommen die vier Werte hinein, die ihr notiert habt</li>
                 <li>Weicht ein Wert bei euch ab, gilt eurer und nicht der hier</li>
                 <li>Neu gegenüber dem Server ist nur <code>port=8889</code></li>
-                <li><code>$host</code> bleibt <code>localhost</code></li>
+                <li><code>127.0.0.1</code> statt <code>localhost</code>, sonst sucht PHP am falschen Ort</li>
               </ul>
             </div>
           </div>
@@ -190,7 +190,7 @@ $dsn = "mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4";
         <aside class="notes">Damit ist der Agentenweg zu Ende – wer hier ankommt, überspringt das nächste
           Kapitel. Der zweite Punkt ist wichtig: Wenn der Agent etwas anderes als MAMP installiert hat,
           stimmen Port und Passwort hier nicht, und dann gelten die Werte aus seiner Antwort. Genau dafür
-          waren sie zu notieren.</aside>
+          waren sie zu notieren. Auf 127.0.0.1 bestehen: Mit localhost sucht PHP eine Socket-Datei statt den Port zu benutzen und meldet «No such file or directory».</aside>
       </section>
 
       <!-- ============ 9 Trenner ============ -->
@@ -238,7 +238,7 @@ $dsn = "mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4";
               <span class="code-label">übliche Werte</span>
               <table>
                 <tr><th>Angabe</th><th>Wert</th></tr>
-                <tr><td>Host</td><td><code>localhost</code></td></tr>
+                <tr><td>Host</td><td><code>127.0.0.1</code></td></tr>
                 <tr><td>Port</td><td><code>8889</code></td></tr>
                 <tr><td>Benutzer</td><td><code>root</code></td></tr>
                 <tr><td>Passwort</td><td><code>root</code></td></tr>
@@ -302,7 +302,7 @@ $dsn = "mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4";
             <div>
               <span class="code-label">config.php im Hauptordner – lokal mit MAMP</span>
               <pre class="code-sm"><code data-trim data-noescape class="language-php">
-$host     = 'localhost';
+$host     = '127.0.0.1';
 $dbname   = 'im3_hitzesommer';
 $username = 'root';
 $password = 'root';
@@ -316,7 +316,7 @@ $dsn = "mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4";
                 <li><code>$dbname</code> ist der Name, den ihr gerade angelegt habt</li>
                 <li>Benutzer und Passwort sind lokal beide <code>root</code></li>
                 <li>Neu gegenüber dem Server ist nur <code>port=8889</code></li>
-                <li><code>$host</code> bleibt <code>localhost</code></li>
+                <li><code>127.0.0.1</code> statt <code>localhost</code>, sonst sucht PHP am falschen Ort</li>
               </ul>
             </div>
           </div>
@@ -327,7 +327,7 @@ $dsn = "mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4";
         <aside class="notes">Das ist genau die Datei, die sie im Code-Along vor sich haben – deshalb hier
           ausgefüllt und nicht als Gegenüberstellung. Der Punkt: Zwischen lokal und Server unterscheiden sich
           nur diese vier Zeilen, der restliche Code läuft an beiden Orten gleich. Wer beides benutzt, hat
-          einfach zwei Fassungen dieser Datei – sie wandert ja nie mit ins Repository.</aside>
+          einfach zwei Fassungen dieser Datei – sie wandert ja nie mit ins Repository. Warum 127.0.0.1 und nicht localhost: Bei localhost verbindet sich PHP über eine Socket-Datei statt über den Port und sucht sie unter /tmp, wo MAMP keine anlegt. Die Meldung heisst dann «No such file or directory» und der Port im DSN wird ignoriert. Das ist der häufigste Fehler auf diesem Weg.</aside>
       </section>
 
       <!-- ============ 15 ============ -->
@@ -360,6 +360,7 @@ php -S localhost:8000
               <th style="width: 42%;">Meldung oder Symptom</th>
               <th>Ursache</th>
             </tr>
+            <tr><td><code>No such file or directory</code></td><td>Im DSN steht <code>localhost</code> statt <code>127.0.0.1</code></td></tr>
             <tr><td><code>Connection refused</code></td><td>MAMP läuft nicht oder der Port stimmt nicht</td></tr>
             <tr><td><code>Access denied</code></td><td>Benutzer oder Passwort falsch, lokal beides <code>root</code></td></tr>
             <tr><td><code>Unknown database</code></td><td>Der Name in <code>config.php</code> passt nicht zur angelegten Datenbank</td></tr>

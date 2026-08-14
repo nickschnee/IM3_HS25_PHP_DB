@@ -57,20 +57,26 @@ php -S localhost:8000
 
 | Wert | Lokal mit MAMP | Auf Hostpoint |
 | --- | --- | --- |
-| Host | `localhost` | `localhost` |
+| Host | `127.0.0.1` | `localhost` |
 | Port | `8889` | Standard, entfällt |
 | Benutzer | `root` | aus dem Panel |
 | Passwort | `root` | aus dem Panel |
 | phpMyAdmin | MAMP-Startseite | Hostpoint-Panel |
 
+Lokal muss `127.0.0.1` stehen und nicht `localhost`: Bei `localhost` verbindet
+sich PHP über eine Socket-Datei statt über den Port und sucht sie unter
+`/tmp/mysql.sock`, wo MAMP keine anlegt. Die Meldung lautet dann
+`SQLSTATE[HY000] [2002] No such file or directory`, und der Port im DSN wird
+ignoriert.
+
 Der DSN unterscheidet sich dadurch nur in einer Kleinigkeit:
 
 ```php
-// lokal
-$dsn = "mysql:host=localhost;port=8889;dbname=$dbname;charset=utf8mb4";
+// lokal ($host = '127.0.0.1')
+$dsn = "mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4";
 
-// auf dem Server
-$dsn = "mysql:host=localhost;dbname=$dbname;charset=utf8mb4";
+// auf dem Server ($host = 'localhost')
+$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
 ```
 
 Alles andere bleibt gleich. Genau dafür stehen die Zugangsdaten in einer eigenen
@@ -274,6 +280,7 @@ die Tabelle bleibt leer. Die drei häufigsten Meldungen:
 | Meldung | Ursache |
 | --- | --- |
 | `Unknown column` | Tippfehler im Spaltennamen |
+| `No such file or directory` | lokal steht `localhost` statt `127.0.0.1` im DSN |
 | `Access denied` | falsche Zugangsdaten in `config.php` |
 | `Cannot add or update a child row` | Fremdschlüssel ohne passende Zeile |
 

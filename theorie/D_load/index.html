@@ -705,7 +705,7 @@ $pdo = new PDO($dsn, $username, $password, $options);
           <ul class="list-tight text-sm mt-1">
             <li>Es gibt genau eine <code>config.php</code> für alle Übungen</li>
             <li>Der DSN sagt PDO, welche Datenbank wo liegt</li>
-            <li>Lokal kommt in den DSN zusätzlich <code>port=8889</code></li>
+            <li>Lokal heisst der Host <code>127.0.0.1</code> und der DSN bekommt <code>port=8889</code></li>
           </ul>
           <div class="callout callout-red">
             <p class="text-lg"><strong>config.php</strong> enthält euer Passwort und darf nie auf GitHub landen.</p>
@@ -715,7 +715,9 @@ $pdo = new PDO($dsn, $username, $password, $options);
         <aside class="notes">DSN heisst Data Source Name und ist einfach die Adresse der Datenbank. Der
           Grund für die eigene Datei ist nicht Ordnung, sondern der Wechsel zwischen lokal und Server: Nur
           diese Datei unterscheidet sich, der ganze übrige Code bleibt gleich. Die $options mit
-          ERRMODE_EXCEPTION stehen ebenfalls in config.php und kommen auf der übernächsten Folie.</aside>
+          ERRMODE_EXCEPTION stehen ebenfalls in config.php und kommen auf der übernächsten Folie. Falls jemand
+          lokal arbeitet: Dort muss 127.0.0.1 stehen und nicht localhost, sonst verbindet sich PHP über eine
+          Socket-Datei statt über den Port und meldet «No such file or directory».</aside>
       </section>
 
       <!-- ============ 28 ============ -->

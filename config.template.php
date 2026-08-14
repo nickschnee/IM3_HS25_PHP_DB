@@ -48,8 +48,14 @@ $options = [
 
 // --- Nur für den lokalen Weg mit MAMP ---------------------------------------
 //
-// Der Kurs läuft auf dem Server. Wer zusätzlich lokal arbeitet, ersetzt die
-// $dsn-Zeile oben durch diese und nimmt 'root' als Benutzer und Passwort.
-// MAMP legt MySQL auf Port 8889 statt auf den Standardport.
+// Der Kurs läuft auf dem Server. Wer zusätzlich lokal arbeitet, setzt oben
+// $host auf '127.0.0.1' und nimmt 'root' als Benutzer und Passwort. Dann diese
+// $dsn-Zeile statt der obigen verwenden:
 //
 // $dsn = "mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4";
+//
+// Wichtig: lokal '127.0.0.1' und nicht 'localhost'.
+// Bei 'localhost' verbindet sich PHP nicht über den Port, sondern über eine
+// Socket-Datei – und sucht sie an einer Stelle, an der MAMP keine anlegt.
+// Die Folge ist die Meldung «SQLSTATE[HY000] [2002] No such file or directory».
+// '127.0.0.1' erzwingt die Verbindung über den Port, und dann stimmt alles.
