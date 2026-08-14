@@ -36,16 +36,23 @@ Darunter der Werkzeugkasten aus der Theorie:
 ```text
 filtern         – Zeilen weglassen, die nicht zur Frage gehören
 deduplizieren   – dieselbe Beobachtung nur einmal behalten
-normalisieren   – gleiche Bedeutung, gleiche Schreibweise
 bereinigen      – falsche, unmögliche oder fehlende Werte behandeln
+normalisieren   – gleiche Bedeutung, gleiche Schreibweise
 umbenennen      – Feldnamen auf den Datenvertrag bringen
-aggregieren     – aus mehreren Werten einen neuen ableiten
+ableiten        – aus Werten derselben Zeile einen neuen berechnen
+aggregieren     – mehrere Zeilen zu einer zusammenfassen
 ```
 
+Es sind dieselben sieben Formen wie in der Theorie und im Cheatsheet.
+
 Weil die Begriffe bekannt sind, ist der Auftrag schärfer als reines Suchen:
-**Zu jedem Begriff mindestens eine Stelle im Blatt finden und die konkrete Regel
+**Zu jedem Begriff eine Stelle im Blatt finden und die konkrete Regel
 formulieren.** Sonst haken die Paare die Liste ab, sobald jeder Begriff einmal
 vorkommt, und hören auf zu denken.
+
+Dazu die Warnung: **Ein Begriff bleibt übrig.** Welcher das ist, wird nicht
+verraten – das Blatt enthält keinen Fall für `aggregieren`, weil sechs
+Tageszeilen sechs Tageszeilen bleiben.
 
 Die Zuordnung nicht selbst vormachen. Die Begriffe stehen da, welcher wo
 hingehört, entscheiden die Paare.
@@ -72,7 +79,7 @@ hingehört, entscheiden die Paare.
 | Cloud Cover `-50`          | unmöglich, Bewölkung liegt bei 0–100        | bereinigen    |
 | Rain `N/A`                 | fehlt – **nicht** 0 mm                      | bereinigen    |
 | `Rain (mm)`                | heisst im Datenvertrag `Precipitation (mm)` | umbenennen    |
-| `Weather Condition`        | leer, muss abgeleitet werden                | aggregieren   |
+| `Weather Condition`        | leer, muss abgeleitet werden                | ableiten      |
 
 ## Die zwei Stellen, die Zeit verdienen
 
@@ -95,8 +102,10 @@ hingehört, entscheiden die Paare.
   jede Summe.
 - 22 °C am 10. Februar fällt selten auf – Plausibilität ist etwas anderes als
   Format. Nur aufgreifen, wenn es aus der Klasse kommt.
-- Bleibt ein Begriff aus dem Werkzeugkasten leer? Dann nicht auflösen, sondern
-  auf die Spalte zeigen, in der er steckt.
+- Bleibt einer der sechs übrigen Begriffe leer? Dann nicht auflösen, sondern auf
+  die Spalte zeigen, in der er steckt.
+- Wer `aggregieren` für die leere Spalte einsetzt, verwechselt es mit `ableiten`.
+  Nachfragen: Wie viele Zeilen hat das Blatt vorher, wie viele nachher?
 
 ## Abschluss und Anschluss
 

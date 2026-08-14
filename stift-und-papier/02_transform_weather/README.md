@@ -14,9 +14,10 @@ Code-Along
 
 ## Warum diese Übung
 
-In der Theorie habt ihr die Begriffe kennengelernt: filtern, deduplizieren,
-normalisieren, bereinigen, umbenennen, aggregieren. Sie einzeln zu verstehen ist
-das eine – sie in echten Daten wiederzuerkennen das andere.
+In der Theorie habt ihr die sieben Formen kennengelernt: filtern,
+deduplizieren, bereinigen, normalisieren, umbenennen, ableiten, aggregieren.
+Sie einzeln zu verstehen ist das eine – sie in echten Daten wiederzuerkennen das
+andere.
 
 Hier macht ihr das von Hand, bevor daraus Code wird. Wer direkt mit
 `transform.php` anfängt, hält Transformieren für Aufräumen. Es ist aber eine

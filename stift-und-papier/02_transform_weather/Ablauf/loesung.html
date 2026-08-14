@@ -146,6 +146,14 @@
 
   .funde b { color: var(--petrol-dark); }
 
+  .hinweis {
+    margin: 3mm 0 0 0;
+    font-size: 9.5pt;
+    color: var(--muted);
+  }
+
+  .hinweis b { color: var(--petrol-dark); }
+
   /* --- Boxen ---------------------------------------------------------- */
 
   .spalten { display: flex; gap: 6mm; align-items: flex-start; }
@@ -275,9 +283,12 @@
     <li><span class="nr">9</span><span><b>bereinigen</b> – <code>N/A</code>
       heisst «wir wissen es nicht», nicht «0 mm». Fehlend ist
       <code>null</code>.</span></li>
-    <li><span class="nr">10</span><span><b>aggregieren</b> – die Spalte ist leer
-      und wird aus Bewölkung und Niederschlag abgeleitet.</span></li>
+    <li><span class="nr">10</span><span><b>ableiten</b> – die Spalte ist leer und
+      wird aus Bewölkung und Niederschlag derselben Zeile berechnet.</span></li>
   </ol>
+
+  <p class="hinweis"><b>aggregieren</b> kommt auf diesem Blatt nicht vor: Aus
+    sechs Tageszeilen werden keine zusammengefasst.</p>
 
 </section>
 

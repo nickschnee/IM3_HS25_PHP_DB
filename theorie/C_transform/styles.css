@@ -1,0 +1,76 @@
+/* Sonderregeln nur fuer den Foliensatz "Transform".
+ * Das gemeinsame Design steht in ../_foliendesign/fhgr-slides.css und wird
+ * hier nicht veraendert. */
+
+/* ===========================================
+   ETL-STREIFEN AUF DEN KAPITELTRENNERN
+   ===========================================
+   Zeigt auf jedem Trenner, an welcher Stelle der Kette wir gerade sind.
+   Absolut positioniert, damit das Flex-Layout des Trenners (Titel unten
+   links) unveraendert bleibt. */
+
+.reveal .slides section.section-divider .etl-strip {
+  position: absolute;
+  top: 56px;
+  left: 72px;
+  right: 72px;
+  font-family: var(--mono-font);
+  font-size: 12pt;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.reveal .slides section.section-divider .etl-strip .is-here {
+  color: #ffffff;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+  padding-bottom: 3px;
+}
+
+.reveal .slides section.section-divider .etl-strip .sep {
+  padding: 0 8px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ===========================================
+   MINITABELLE IN EINER BOX
+   ===========================================
+   Fuer die Vorher-/Nachher-Beispiele bei "ableiten" und "aggregieren". */
+
+.reveal .mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mono-font);
+  margin: 6px 0 0 0;
+}
+
+.reveal .mini-table td,
+.reveal .mini-table th {
+  font-family: var(--mono-font);
+  font-size: 11.5pt;
+  padding: 4px 22px 4px 0;
+  border: none;
+  text-align: left;
+}
+
+.reveal .mini-table th {
+  color: var(--muted-color);
+  font-weight: 400;
+  border-bottom: 1px solid var(--box-border);
+}
+
+/* In einer geteilten Folie ist die Haelfte ein Flex-Container. Eine Tabelle
+ * darin wird sonst auf die volle Breite gedehnt, auch mit width: auto. */
+.reveal .mini-table.is-narrow {
+  width: auto;
+  align-self: flex-start;
+}
+
+/* Kettenglied: Dateiname und Rueckgabewert untereinander. */
+
+.reveal .chain-return {
+  display: block;
+  font-family: var(--mono-font);
+  font-size: 11.5pt;
+  color: var(--primary-color);
+  margin: 2px 0 2px 0;
+}

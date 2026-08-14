@@ -19,8 +19,13 @@ eine Story geeignet.
 
 ```text
 Extract:   Woher kommen die Daten und wie lesen wir sie?
-Transform: Welche Daten brauchen wir für unsere Frage und was bedeuten sie?
+Transform: Welche Daten brauchen wir für unsere Frage, was bedeuten sie,
+           und in welche Form bringen wir sie?
 ```
+
+Säubern gehört also dazu. Es ist nur kein eigener, neutraler Arbeitsschritt:
+Welche Werte falsch sind und welche Schreibweise gilt, folgt genauso aus der
+Frage wie die Auswahl der Zeilen.
 
 Es gibt keine neutrale «Aufräumfunktion». Dieselbe Spalte kann für eine Frage
 wichtig und für eine andere irrelevant sein. Jede Transformation enthält
@@ -154,90 +159,80 @@ stabil und für andere nachvollziehbar bleiben.
 
 ---
 
-## Notizen für den Foliensatz (noch nicht gebaut)
+## Der Foliensatz
 
-Diese Punkte sind beim Erstellen von `index.html` einzuarbeiten. Sie betreffen
-nicht den Inhalt oben, sondern das, was im Code-Along sonst unerklärt bleibt.
+`index.html` ist die Präsentation zu diesem Text – eine einzelne HTML-Datei
+ohne Build-Schritt. Richtwert 30 Minuten.
 
-### 1. `include` und `__DIR__` brauchen eine eigene Folie
-
-In Block C taucht zum ersten Mal auf, dass eine **Datei einen Wert
-zurückgibt**:
-
-```php
-$rawLocations = include __DIR__ . '/extract.php';
+```bash
+open index.html
 ```
 
-Das ist neu und wird sonst überlesen. Zu erklären sind drei Dinge getrennt:
+Reveal.js kommt über ein CDN, für die Präsentation braucht es also eine
+Internetverbindung.
 
-- `include` führt die andere Datei aus und liefert deren `return` als Wert
-  zurück – die Datei verhält sich wie ein Funktionsaufruf;
-- `__DIR__` ist der Ordner **dieser** Datei, nicht das Arbeitsverzeichnis des
-  Servers. Ohne `__DIR__` hängt der Pfad davon ab, wo `php -S` gestartet wurde,
-  und die Fehlermeldung zeigt dann auf die falsche Stelle;
-- der Punkt `.` verkettet Text – hier Ordner plus Dateiname.
+| Taste | Wirkung |
+| --- | --- |
+| `→` / `Leertaste` | nächste Folie |
+| `←` | zurück |
+| `S` | Referentenansicht mit Notizen |
+| `F` | Vollbild |
+| `Esc` | Übersicht aller Folien |
 
-Das ist auch die Stelle, an der `return` ausserhalb einer Funktion erklärt
-werden muss.
+### Aufbau
 
-### 2. Die Verkettung der Dateien gehört als Bild auf eine Folie
+| Folien | Kapitel |
+| --- | --- |
+| 1–3 | Titel, Inhalt, Einordnung in die ETL-Kette |
+| 4–12 | Die Frage bestimmt die Form (Hitzesommer, Shark-Rohwerte, Datenerkundung, Nenner) |
+| 13–19 | Sieben Transformationsformen, Untersuchungseinheit, Reihenfolge, `null`, Mapping |
+| 20–24 | Datenvertrag, Audit, Abdeckung, `TRANSFORM.md` |
+| 25–29 | Verkettung der Skripte, `include`/`return`, `__DIR__`, Kontrollansicht |
+| 30–34 | Neue Schreibweisen: `??`, Casts, `continue`, Leseliste |
+| 35–38 | KI: Spezifikation statt Zuruf, Prüfliste |
+| 39–40 | Ausblick und Kernaussage |
 
-```text
-extract.php   liest Rohdaten          -> gibt ein PHP-Array zurück
-transform.php wendet die Regeln an    -> gibt ein PHP-Array zurück
-index.php     macht das Array sichtbar -> gibt JSON aus
+Jeder Kapiteltrenner trägt oben einen schmalen Streifen mit der ETL-Kette und
+der aktuellen Position. Er kommt aus `styles.css` in diesem Ordner; das
+gemeinsame Design steht unverändert in `theorie/_foliendesign/`.
+
+Alle Zahlen auf den Folien zu Audit und Abdeckung stammen aus den tatsächlichen
+Ausgaben der beiden Code-Alongs, alle Code-Beispiele wörtlich aus deren
+Lösungen.
+
+### Was wo behandelt wird
+
+Der Anspruch des Foliensatzes: Kein Begriff und kein PHP-Konstrukt taucht im
+Code-Along zum ersten Mal auf.
+
+| Konstrukt | wo erklärt |
+| --- | --- |
+| `include`, `return` in einer Datei, `__DIR__`, `.` | Folien 27 und 28 |
+| `??`, `(int)`/`(float)`/`(string)`, `continue` | Folien 31 bis 33 |
+| `json_encode` mit Flags, `header(...)` | Folie 29 |
+| `substr`, `is_numeric`, `in_array(..., true)`, `usort`/`<=>`, `str_contains`, `arsort`, `array_slice`, `throw` | Folie 34 als Leseliste, Details im Cheatsheet |
+| `preg_match` mit `\b`, Referenzen mit `&`, Spread `...` | nur Cheatsheet und mündlich im Code-Along |
+
+### Bezug zum übrigen Material
+
+- Vorwissen: [`theorie/B_extract/`](../B_extract/)
+- Direkt danach: [`stift-und-papier/02_transform_weather/`](../../stift-und-papier/02_transform_weather/)
+- Code-Alongs: [`09_hitzesommer_transformieren`](../../code-alongs/C_transform/09_hitzesommer_transformieren/)
+  und [`10_sharkdaten_transformieren`](../../code-alongs/C_transform/10_sharkdaten_transformieren/)
+- Projektarbeit: [`uebungen/C_transform/01_eigener_transform/`](../../uebungen/C_transform/01_eigener_transform/)
+- Nachschlagewerk: [`cheatsheets/230_transform.md`](../../cheatsheets/230_transform.md)
+
+### Nach Änderungen prüfen
+
+```bash
+python3 theorie/_foliendesign/pruefe-folien.py theorie/C_transform/index.html
+node ~/.claude/skills/revealjs-1.0.0/scripts/check-overflow.js theorie/C_transform/index.html
+npx decktape reveal theorie/C_transform/index.html slides.pdf --size 1280x720
 ```
 
-Kernaussage: Zwischen den Dateien fliesst ein **PHP-Array**, kein JSON. JSON
-entsteht erst ganz am Schluss. Wer das verwechselt, sucht später beim Unload an
-der falschen Stelle.
+### Offene Punkte
 
-### 3. Warum wir `index.php` überhaupt anschauen
-
-`transform.php` gibt nur ein Array zurück und **gibt nichts aus**. Im Browser
-geöffnet wäre die Seite leer – das irritiert zuverlässig. `index.php` ist die
-Kontrollansicht, die das Array als JSON sichtbar macht.
-
-Zwei Punkte dazu:
-
-- Sie ist ein Prüfwerkzeug für uns, kein Produkt für die Website;
-- sie ist die Vorübung für `unload.php` in Block E, das genau dasselbe tut –
-  nur mit Daten aus der Datenbank. Diesen Vorgriff laut machen.
-
-### 4. Die Befehle in den Skripten benennen, statt sie zu übergehen
-
-Im Code-Along stehen Funktionen, die vorher nie erklärt wurden. Für jede ist zu
-entscheiden: Folie, Cheatsheet oder nur mündlich im Code-Along. Nicht alle
-brauchen eine Folie, aber keine darf kommentarlos vorbeigehen.
-
-| Konstrukt | wo es auftaucht | Vorschlag |
-| --- | --- | --- |
-| `include` / `return` in einer Datei | beide Code-Alongs | Folie, siehe Punkt 1 |
-| `__DIR__` und `.` zum Verketten | beide Code-Alongs | Folie, siehe Punkt 1 |
-| `??` (Null-Koaleszenz) | `$attack['Year'] ?? ''` | Folie – kurz, wirkt oft |
-| `(int)`, `(float)`, `(string)` | Casts beim Datentyp bereinigen | Folie – gehört zum Transform-Thema |
-| `substr` | Jahr und Monat aus `YYYY-MM-DD` | mündlich |
-| `is_numeric`, `isset` | Gültigkeitsprüfungen | mündlich |
-| `in_array($x, $arr, true)` | Sommermonate filtern | mündlich, aber `true` erklären |
-| `continue` | jedes Wegwerfen einer Zeile | Folie – das Muster «zählen, dann `continue`» wiederholt sich überall |
-| `throw new RuntimeException` | ungleich lange Listen | mündlich: Abbruch statt Zähler |
-| `usort` und `<=>` | Sortieren beider Code-Alongs | Cheatsheet |
-| `str_contains`, `strtolower`, `trim` | Mapping der Shark-Daten | mündlich |
-| `preg_match` mit `\b` | «or» als ganzes Wort | mündlich, nur die Wortgrenze |
-| `&$array` als Parameter, `&$row` in `foreach` + `unset` | `incrementCount`, `makeRankingRows` | Cheatsheet – heikel, aber nicht Prüfungsstoff |
-| `array_slice`, `arsort` | Top-N und häufigste Rohwerte | mündlich |
-| `...` (Spread) | zwei Ranglisten in eine Liste | mündlich |
-| `json_encode` mit Flags, `header(...)` | `index.php` | Folie, zusammen mit Punkt 3 |
-
-Nachgeschaut: `cheatsheets/230_transform.md` ist rein konzeptionell (Schritte,
-Reihenfolge, Audit, `null`) und enthält **keine** dieser Konstrukte.
-`cheatsheets/130_extract.md` erwähnt `include` in genau einem Satz
-(«liefert direkt das Array zurück»), erklärt aber weder `__DIR__` noch, was
-`return` in einer Datei bedeutet. Für die Zeilen mit dem Vorschlag
-«Cheatsheet» muss also neu geschrieben werden.
-
-### 5. Grundhaltung für den Foliensatz
-
-Die Studierenden sollen fremden Code **lesen** können, nicht auswendig
-schreiben. Jede Folie zu einem Befehl beantwortet deshalb dieselbe Frage: Was
-geht rein, was kommt raus, und warum steht das genau hier?
+- Der Foliensatz ist mit 40 Folien für 30 Minuten dicht. Falls es im Unterricht
+  nicht aufgeht, sind die Kapitel «Wie die Dateien zusammenhängen» und «Neue
+  Schreibweisen» die Kandidaten zum Kürzen, weil beide im Code-Along ohnehin
+  wieder auftauchen.
