@@ -100,3 +100,8 @@ vom rohen Datensatz über die eigene Datenfrage zum fertigen JSON.
 #### Zusatzmaterial (Block E)
 
 - `🧑‍🏫` Code-Along: [15 Shark-Ranglisten ausliefern](code-alongs/E_unload/15_sharkdaten_ausliefern/) `60'`
+
+### Block F – Visualisierung
+
+1. `📕` Theorie F: Diagrammtypen und Chart.js `30'`
+2. `🧑‍🏫` Code-Along: [16 Hitzesommer visualisieren](code-alongs/F_visualisierung/16_hitzesommer_visualisieren/) `90'`

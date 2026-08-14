@@ -185,8 +185,8 @@ Der UX-Slot ist laut Miro-Board flexibel und kann auch früher stattfinden.
 | Prio | Form | Inhalt | Richtwert | Ergebnis |
 | --- | --- | --- | ---: | --- |
 | Muss | `📕` | Diagrammtypen passend zur Aussage auswählen | 30' | Begründeter Diagrammtyp |
-| Muss | `🧑‍🏫` | Chart.js-Setup, `fetch()` auf Endpunkt, Labels/Datasets mappen | 70' | Sichtbarer Chart |
-| Soll | `💻` | Einfache Interaktion: Filter/Zeitraum/Kategorie | 45' | Interaktiver Chart |
+| Muss | `🧑‍🏫` | [Hitzesommer visualisieren](../code-alongs/F_visualisierung/16_hitzesommer_visualisieren/), Bausteine 1–3: `fetch()` auf den Endpunkt, Datensätze zu `labels` und `datasets` umformen, Linie und Balken zeichnen | 70' | Sichtbarer Chart |
+| Soll | `🧑‍🏫` | Im selben Code-Along, Baustein 4: Stadtfilter über `?city=`, Messwert und Zeitraum im Browser | 45' | Interaktiver Chart |
 | Soll | UX | UX-Input oder betreute Projektarbeit | 60' | Bessere Nutzung |
 | Soll | `✅` | Chart aus echten Daten zeigen | 15' | Tagesabnahme |
 

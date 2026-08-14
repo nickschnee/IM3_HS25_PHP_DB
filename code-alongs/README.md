@@ -94,6 +94,26 @@ zwei Entscheidungen neu getroffen werden: Die Spalte `rank_position` muss im
 `SELECT` zurück auf den Vertragsnamen übersetzt werden, und ein unbekannter
 Filterwert ist hier keine leere Liste, sondern eine falsch gestellte Frage.
 
+## Block F – Visualisierung
+
+Das Ende der Kette: Das Frontend lädt den Endpunkt mit `fetch()` und macht aus
+den Datensätzen ein Diagramm.
+
+| Nr | Code-Along | Worum es geht | Technik |
+| --- | --- | --- | --- |
+| 16 | [Hitzesommer visualisieren](F_visualisierung/16_hitzesommer_visualisieren/) | zwei Diagramme und drei Bedienelemente auf dem eigenen Endpunkt | `fetch()`, `labels`/`datasets`, Chart.js, `chart.update()` |
+
+Auch hier gibt es vier Bausteine: `Holen`, `Umformen`, `Zeichnen`, `Reagieren`.
+Der wichtigste ist der zweite – Chart.js will keine Datensätze, sondern zwei
+gleich lange Listen. Der Diagrammtyp folgt der Aussage: die Entwicklung als
+Linie, die Rangliste als Balken.
+
+Im Ordner liegen `index.html`, `style.css` und der fertige Endpunkt aus
+Code-Along 14, damit Frontend und Endpunkt über dieselbe Adresse laufen.
+Gebaut wird nur `script.js`. Die Datei `data/heat-summers.json` enthält
+dieselben 258 Datensätze: Damit lässt sich das Frontend bauen, bevor das
+Backend fertig ist – und sie ist der Fallback für den Marktstand.
+
 Die Zugangsdaten stehen in **einer einzigen** `config.php` im Hauptordner des
 Kurses – kopiert aus `config.template.php`, dort mit den eigenen Werten
 ausgefüllt. Alle Code-Alongs binden dieselbe Datei ein:
@@ -107,4 +127,4 @@ einer Stelle zu pflegen ist nicht nur bequemer, es landet auch seltener
 versehentlich in einem Commit.
 
 Weitere Code-Alongs werden beim Aufbau der späteren Blöcke geprüft,
-überarbeitet und in Block-Ordner (`F_…` usw.) einsortiert.
+überarbeitet und in Block-Ordner einsortiert.
