@@ -72,6 +72,21 @@ dieselben vier Fragen an die Daten: Hier genügt eine Tabelle, eine Spalte darf
 nicht heissen wie im Datenvertrag, und die Datenbank selbst verhindert
 Duplikate.
 
+## Block E – Unload
+
+Der Weg zurück ins Frontend: Die gespeicherten Daten werden per PDO gelesen und
+als JSON-Endpunkt ausgeliefert. Geschrieben wird hier nichts mehr.
+
+| Nr | Code-Along | Worum es geht | Technik |
+| --- | --- | --- | --- |
+| 14 | [Hitzesommer ausliefern](E_unload/14_hitzesommer_ausliefern/) | aus zwei Tabellen eine flache JSON-Liste machen | `SELECT` mit `JOIN`, `fetchAll`, `json_encode`, `$_GET`-Filter |
+
+Der Endpunkt entsteht in vier Bausteinen – `Verbinden`, `Lesen`, `Antworten`,
+`Filtern` – und wird nach jedem Baustein im Browser geprüft. Vorausgesetzt sind
+die Tabellen aus Code-Along 12; wer sie leer hat, ruft dort einmal `load.php`
+auf. Am Ende steht die Datei, die das Frontend-Team in Block F mit `fetch()`
+lädt.
+
 Die Zugangsdaten stehen in **einer einzigen** `config.php` im Hauptordner des
 Kurses – kopiert aus `config.template.php`, dort mit den eigenen Werten
 ausgefüllt. Alle Code-Alongs binden dieselbe Datei ein:
@@ -85,4 +100,4 @@ einer Stelle zu pflegen ist nicht nur bequemer, es landet auch seltener
 versehentlich in einem Commit.
 
 Weitere Code-Alongs werden beim Aufbau der späteren Blöcke geprüft,
-überarbeitet und in Block-Ordner (`E_…`, `F_…` usw.) einsortiert.
+überarbeitet und in Block-Ordner (`F_…` usw.) einsortiert.

@@ -171,8 +171,8 @@ und liefert sie gefiltert aus.
 | --- | --- | --- | ---: | --- |
 | Muss | Repetition | Datenvertrag gegen Beispiel-JSON prüfen | 15' | Fehler erkennen |
 | Muss | `📕` | [`SELECT`, `JOIN`, Datenvertrag und JSON-Antwort](../theorie/E_unload/) | 35' | Weg von der DB zum JSON verstanden |
-| Muss | `🧑‍🏫` | `unload.php` geführt aufbauen: lesen, normalisieren, Header setzen, `json_encode` | 35' | Stabiler JSON-Endpunkt |
-| Muss | `🧑‍🏫` | Optionalen Stadtfilter mit `$_GET` und Prepared Statement ergänzen; leere Liste und Fehler testen | 40' | Filterbare API-Antwort |
+| Muss | `🧑‍🏫` | [`unload.php` geführt aufbauen](../code-alongs/E_unload/14_hitzesommer_ausliefern/): verbinden, lesen, Typen festlegen, `json_encode` | 35' | Stabiler JSON-Endpunkt |
+| Muss | `🧑‍🏫` | Im selben Code-Along: Stadtfilter mit `$_GET` und Prepared Statement ergänzen, leere Liste und Fehler testen | 40' | Filterbare API-Antwort |
 | Muss | Projekt | Eigenen `unload.php`-Endpunkt bauen | 60' | Endpunkt der Gruppe |
 | Muss | `✅` | Endpunkt ohne Filter, mit Treffer und ohne Treffer zeigen | 15' | Tagesabnahme |
 
