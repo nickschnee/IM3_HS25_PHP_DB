@@ -86,6 +86,7 @@ vom rohen Datensatz über die eigene Datenfrage zum fertigen JSON.
 #### Zusatzmaterial (Block D)
 
 - `🛠️` [01 Lokale Datenbank](theorie/01_lokale_db/)
+- `🧑‍🏫` [13 Shark laden](code-alongs/D_load/13_sharkdaten_laden/)
 
 <!--
 
