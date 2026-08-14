@@ -174,6 +174,7 @@ und liefert sie gefiltert aus.
 | Muss | `🧑‍🏫` | [`unload.php` geführt aufbauen](../code-alongs/E_unload/14_hitzesommer_ausliefern/): verbinden, lesen, Typen festlegen, `json_encode` | 35' | Stabiler JSON-Endpunkt |
 | Muss | `🧑‍🏫` | Im selben Code-Along: Stadtfilter mit `$_GET` und Prepared Statement ergänzen, leere Liste und Fehler testen | 40' | Filterbare API-Antwort |
 | Muss | Projekt | Eigenen `unload.php`-Endpunkt bauen | 60' | Endpunkt der Gruppe |
+| Optional | `🧑‍🏫` | [15 Shark-Ranglisten ausliefern](../code-alongs/E_unload/15_sharkdaten_ausliefern/): Alias für ein reserviertes Wort, geprüfter Filter mit Status 400 | 45' | Zweiter Endpunkt an anderen Daten |
 | Muss | `✅` | Endpunkt ohne Filter, mit Treffer und ohne Treffer zeigen | 15' | Tagesabnahme |
 
 ## Tag 8 – Block F: Chart.js und UX-Slot

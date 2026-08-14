@@ -80,12 +80,19 @@ als JSON-Endpunkt ausgeliefert. Geschrieben wird hier nichts mehr.
 | Nr | Code-Along | Worum es geht | Technik |
 | --- | --- | --- | --- |
 | 14 | [Hitzesommer ausliefern](E_unload/14_hitzesommer_ausliefern/) | aus zwei Tabellen eine flache JSON-Liste machen | `SELECT` mit `JOIN`, `fetchAll`, `json_encode`, `$_GET`-Filter |
+| 15 | [Shark-Ranglisten ausliefern](E_unload/15_sharkdaten_ausliefern/) | zwei Ranglisten aus einer Tabelle ausliefern | Alias für ein reserviertes Wort, geprüfter Filter mit Status 400 |
 
 Der Endpunkt entsteht in vier Bausteinen – `Verbinden`, `Lesen`, `Antworten`,
 `Filtern` – und wird nach jedem Baustein im Browser geprüft. Vorausgesetzt sind
 die Tabellen aus Code-Along 12; wer sie leer hat, ruft dort einmal `load.php`
 auf. Am Ende steht die Datei, die das Frontend-Team in Block F mit `fetch()`
 lädt.
+
+Nummer 15 ist Zusatzmaterial und liest die Shark-Ranglisten aus Code-Along 13.
+Sie zeigt am zweiten Datensatz, dass der Bauplan derselbe bleibt und trotzdem
+zwei Entscheidungen neu getroffen werden: Die Spalte `rank_position` muss im
+`SELECT` zurück auf den Vertragsnamen übersetzt werden, und ein unbekannter
+Filterwert ist hier keine leere Liste, sondern eine falsch gestellte Frage.
 
 Die Zugangsdaten stehen in **einer einzigen** `config.php` im Hauptordner des
 Kurses – kopiert aus `config.template.php`, dort mit den eigenen Werten

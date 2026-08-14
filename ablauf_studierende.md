@@ -95,9 +95,8 @@ vom rohen Datensatz über die eigene Datenfrage zum fertigen JSON.
 ### Block E – Unload
 
 1. `📕` [Theorie E: Unload](theorie/E_unload/) `35'`
-2. `🧑‍🏫` Code-Along: 14 Hitzesommer unloaden – `SELECT`, `JOIN` und JSON-Antwort `35'`
-3. `🧑‍🏫` Code-Along: optionalen Stadtfilter mit `$_GET` ergänzen `40'`
-4. `🛠️` Eigenen Endpunkt nach dem vereinbarten Datenvertrag bauen `60'`
-5. `🛠️` Tooling: Deployment: Webhosting und Datenbank auf dem Server einrichten `45'`
-6. `🛠️` Tooling: Deployment: Dateien hochladen, `config.php` auf dem Server ausfüllen, ETL
-   laufen lassen `45'`
+2. `🧑‍🏫` Code-Along: [14 Hitzesommer unloaden](code-alongs/E_unload/14_hitzesommer_ausliefern/) `60'`
+
+#### Zusatzmaterial (Block E)
+
+- `🧑‍🏫` Code-Along: [15 Shark-Ranglisten ausliefern](code-alongs/E_unload/15_sharkdaten_ausliefern/) `60'`
