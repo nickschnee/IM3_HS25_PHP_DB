@@ -80,9 +80,12 @@ vom rohen Datensatz über die eigene Datenfrage zum fertigen JSON.
 2. `📝` Analoge Übung: eigenes Datenmodell zeichnen `35'`
 3. `📕` [Theorie D: Load (ab Kapitel SQL)](theorie/D_load/) `45'`
 4. `🛠️` Datenbank einrichten `60'`
-5. `🛠️` Datenbankverbindung testen `60'`
+5. `🧑‍🏫` Code-Along: [11 Datenbank testen](code-alongs/D_load/11_datenbank_testen/) `60'`
 6. `🧑‍🏫` Code-Along: Hitzesommer-Daten in die Datenbank laden `70'`
-7. `🛠️` Eigene Tabellen anlegen und eigene Daten laden `60'`
+
+#### Zusatzmaterial (Block D)
+
+- `🛠️` [01 Lokale Datenbank](theorie/01_lokale_db/)
 
 <!--
 

@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IM3 – Lokale Datenbank</title>
+
+  <!-- Reveal.js core -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- FHGR Foliendesign (gemeinsam fuer alle Foliensaetze) -->
+  <link rel="stylesheet" href="../_foliendesign/fhgr-slides.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ============ 1 Titel ============ -->
+      <section id="title" class="title-slide" data-state="is-title">
+        <h1>Lokale Datenbank</h1>
+        <div class="rule"></div>
+        <p>Interaktive Medien 3</p>
+        <p class="sub">nick.schneeberger@fhgr.ch</p>
+      </section>
+
+      <!-- ============ 2 ============ -->
+      <section id="wofuer">
+        <h2>Wofür das gut ist</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <p class="list-intro">Auf dem Server läuft alles, was ihr im Kurs braucht.</p>
+              <ul class="list-tight text-sm">
+                <li>Datenbank, phpMyAdmin und PHP sind dort eingerichtet</li>
+                <li>Ihr ladet eure Dateien hoch und ruft sie im Browser auf</li>
+                <li>Das ist der Weg, den wir gemeinsam gehen</li>
+              </ul>
+            </div>
+            <div>
+              <p class="list-intro">Lokal geht dasselbe schneller.</p>
+              <ul class="list-tight text-sm">
+                <li>Speichern, neu laden, fertig – ohne Hochladen</li>
+                <li>Ihr könnt ausprobieren, ohne etwas kaputtzumachen</li>
+                <li>Ihr arbeitet auch ohne Internet weiter</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-orange">
+            <p>Das hier ist ein Zusatz und keine Voraussetzung.</p>
+            <p>Wenn es euch länger als eine halbe Stunde aufhält, arbeitet auf dem Server weiter.</p>
+          </div>
+        </div>
+        <aside class="notes">Der letzte Satz ist ernst gemeint und wird laut gesagt. Erfahrungsgemäss
+          verlieren ein bis zwei Personen sonst einen halben Tag mit Ports und Rechten, während der Rest
+          längst Daten lädt. Wer im Kurs zurückliegt, macht das hier nicht.</aside>
+      </section>
+
+      <!-- ============ 3 ============ -->
+      <section id="ziel">
+        <h2>Was am Ende stehen soll</h2>
+        <div class="content">
+          <ul class="text-lg">
+            <li>Auf eurem Rechner läuft eine MySQL-Datenbank</li>
+            <li>Ihr könnt phpMyAdmin im Browser öffnen</li>
+            <li>Ihr kennt Host, Port, Benutzername und Passwort</li>
+            <li>Eure <code>config.php</code> verbindet sich damit</li>
+          </ul>
+          <div class="callout callout-blue">
+            <p>Dieselben vier Angaben braucht ihr auch auf dem Server – nur mit anderen Werten.</p>
+          </div>
+        </div>
+        <aside class="notes">Diese vier Punkte sind die Abnahme. Wer sie zeigen kann, ist fertig – egal auf
+          welchem Weg. Das ist wichtig, weil der eine Weg über einen Agenten läuft und niemand vorher weiss,
+          welche Befehle der wählt.</aside>
+      </section>
+
+      <!-- ============ 4 Trenner ============ -->
+      <section id="divider-agent" class="section-divider" data-state="is-section-divider">
+        <h1>Der schnelle Weg</h1>
+        <p>Lasst euren Agenten installieren</p>
+      </section>
+
+      <!-- ============ 5 ============ -->
+      <section id="agent">
+        <h2>Wenn ihr einen Agenten habt</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <p class="list-intro">Gemeint sind Werkzeuge wie diese:</p>
+              <ul class="list-tight text-sm">
+                <li>Claude Code</li>
+                <li>Codex</li>
+                <li>Cursor</li>
+                <li>GitHub Copilot</li>
+              </ul>
+            </div>
+            <div>
+              <p class="list-intro">Warum sich das hier lohnt:</p>
+              <ul class="list-tight text-sm">
+                <li>Sie sehen euer Betriebssystem und was schon installiert ist</li>
+                <li>Sie kennen die üblichen Stolperstellen</li>
+                <li>Sie lesen Fehlermeldungen mit</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-blue">
+            <p>Eine Installation ist genau die Sorte Fleissarbeit, die ihr abgeben dürft.</p>
+          </div>
+        </div>
+        <aside class="notes">Anschluss an die Regel aus dem Transform-Input: Die KI macht die Fleissarbeit,
+          die Entscheidungen bleiben bei euch. Hier gibt es fachlich nichts zu entscheiden, deshalb ist das ein
+          guter Einsatz. Wer keinen Agenten hat, nimmt den Weg auf den nächsten Folien.</aside>
+      </section>
+
+      <!-- ============ 6 ============ -->
+      <section id="agent-auftrag">
+        <h2>Der Auftrag zum Kopieren</h2>
+        <div class="content">
+          <div class="output">Ich brauche auf diesem Rechner eine lokale MySQL-Datenbank
+für ein PHP-Schulprojekt.
+
+- Installiere MAMP und starte die Server.
+- Sag mir danach Host, Port, Benutzername und Passwort.
+- Sag mir die Adresse, unter der ich phpMyAdmin öffne.
+- Erkläre mir jeden Schritt, bevor du ihn ausführst.
+
+Mein Betriebssystem ist macOS.</div>
+          <p class="text-sm mt-1">Die letzte Zeile anpassen, wenn ihr Windows benutzt.</p>
+        </div>
+        <aside class="notes">Der Auftrag steht auch im README zum Kopieren. Die dritte Zeile ist die
+          wichtigste: Ohne sie bekommt ihr eine laufende Installation, aber nicht die vier Werte, die ihr
+          gleich in config.php braucht. Die letzte Zeile verhindert, dass unbemerkt am System herumgeschraubt
+          wird.</aside>
+      </section>
+
+      <!-- ============ 7 ============ -->
+      <section id="agent-pruefen">
+        <h2>Was ihr trotzdem selbst macht</h2>
+        <div class="content">
+          <ul class="list-tight">
+            <li>phpMyAdmin wirklich im Browser öffnen und nicht nur der Zusage glauben</li>
+            <li>Die vier Werte notieren, statt sie später wieder zu suchen</li>
+            <li>Jeden Befehl kurz ansehen, bevor ihr ihn bestätigt</li>
+          </ul>
+          <div class="callout callout-orange">
+            <p>Zugangsdaten vom Kursserver haben in keinem Chat etwas zu suchen.</p>
+          </div>
+          <p class="text-sm mt-1">Ein Agent, der nicht weiterkommt, erfindet manchmal einen Weg – dann lieber
+            abbrechen und von Hand weitermachen.</p>
+        </div>
+        <aside class="notes">Der zweite Punkt klingt banal und ist der häufigste Zeitfresser: Die Werte
+          stehen im Chatverlauf und sind eine Stunde später nicht mehr auffindbar. Notieren heisst hier
+          wirklich aufschreiben, nicht scrollen.</aside>
+      </section>
+
+      <!-- ============ 8 ============ -->
+      <section id="config-anpassen-agent">
+        <h2>Die <code>config.php</code> ausfüllen</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1.35fr 1fr; gap: 36px; align-items: start;">
+            <div>
+              <span class="code-label">config.php – lokal mit MAMP</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$host     = 'localhost';
+$dbname   = 'im3_hitzesommer';
+$username = 'root';
+$password = 'root';
+
+// DSN: die Adresse der Datenbank
+$dsn = "mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4";
+              </code></pre>
+            </div>
+            <div>
+              <ul class="list-tight text-sm">
+                <li>Hier kommen die vier Werte hinein, die ihr notiert habt</li>
+                <li>Weicht ein Wert bei euch ab, gilt eurer und nicht der hier</li>
+                <li>Neu gegenüber dem Server ist nur <code>port=8889</code></li>
+                <li><code>$host</code> bleibt <code>localhost</code></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-orange">
+            <p>Auch die lokale <code>config.php</code> gehört nicht ins Repository.</p>
+          </div>
+        </div>
+        <aside class="notes">Damit ist der Agentenweg zu Ende – wer hier ankommt, überspringt das nächste
+          Kapitel. Der zweite Punkt ist wichtig: Wenn der Agent etwas anderes als MAMP installiert hat,
+          stimmen Port und Passwort hier nicht, und dann gelten die Werte aus seiner Antwort. Genau dafür
+          waren sie zu notieren.</aside>
+      </section>
+
+      <!-- ============ 9 Trenner ============ -->
+      <section id="divider-hand" class="section-divider" data-state="is-section-divider">
+        <h1>Von Hand</h1>
+        <p>Wenn ihr keinen Agenten habt</p>
+      </section>
+
+      <!-- ============ 10 ============ -->
+      <section id="mamp-installieren">
+        <h2>MAMP installieren</h2>
+        <div class="content">
+          <ol>
+            <li>Auf <a href="https://www.mamp.info/de/downloads/">mamp.info</a> die kostenlose Version für euer
+              System herunterladen</li>
+            <li>Die Datei öffnen und der Installation folgen</li>
+            <li>Das Programm <strong>MAMP</strong> starten, nicht MAMP PRO</li>
+          </ol>
+          <div class="callout callout-blue">
+            <p>MAMP bringt Apache, PHP und MySQL in einem Paket mit.</p>
+            <p>Wir brauchen daraus nur die Datenbank.</p>
+          </div>
+        </div>
+        <div class="footnote">MAMP ist kostenlos. Die mitinstallierte PRO-Version ist kostenpflichtig und hier
+          nicht nötig.</div>
+        <aside class="notes">Der Installer legt beide Programme an, MAMP und MAMP PRO. Wer versehentlich PRO
+          startet, landet nach der Testphase in einer Kaufaufforderung. Im Dock also auf das graue Elefanten-
+          Symbol ohne den PRO-Schriftzug achten.</aside>
+      </section>
+
+      <!-- ============ 11 ============ -->
+      <section id="mamp-starten">
+        <h2>Server starten und Port ablesen</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <p class="list-intro">In MAMP auf <strong>Start</strong> klicken.</p>
+              <ul class="list-tight text-sm">
+                <li>Die Anzeige für MySQL wird grün</li>
+                <li>Unter Einstellungen steht der Port</li>
+                <li>Diesen Port braucht ihr gleich</li>
+              </ul>
+            </div>
+            <div>
+              <span class="code-label">übliche Werte</span>
+              <table>
+                <tr><th>Angabe</th><th>Wert</th></tr>
+                <tr><td>Host</td><td><code>localhost</code></td></tr>
+                <tr><td>Port</td><td><code>8889</code></td></tr>
+                <tr><td>Benutzer</td><td><code>root</code></td></tr>
+                <tr><td>Passwort</td><td><code>root</code></td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="callout callout-orange">
+            <p>Auf Windows steht dort oft <code>3306</code> statt <code>8889</code>.</p>
+            <p>Deshalb den Wert ablesen und nicht abschreiben.</p>
+          </div>
+        </div>
+        <aside class="notes">Der Port ist die häufigste Fehlerquelle im ganzen lokalen Setup. In MAMP steht er
+          auf der Startseite und unter Einstellungen bei «Ports». Wer ihn falsch hat, bekommt später «Connection
+          refused» und sucht im PHP-Code, obwohl dort nichts falsch ist.</aside>
+      </section>
+
+      <!-- ============ 12 ============ -->
+      <section id="phpmyadmin-oeffnen">
+        <h2>phpMyAdmin öffnen</h2>
+        <div class="content">
+          <ol>
+            <li>In MAMP auf <strong>WebStart</strong> klicken – die Startseite öffnet sich im Browser</li>
+            <li>Dort im Menü <strong>Tools</strong> auf <strong>phpMyAdmin</strong> gehen</li>
+          </ol>
+          <span class="code-label">oder direkt im Browser</span>
+          <div class="output">http://localhost:8888/phpMyAdmin/</div>
+          <div class="callout callout-blue">
+            <p>Das ist dieselbe Oberfläche wie auf dem Server, nur mit eurer lokalen Datenbank.</p>
+          </div>
+        </div>
+        <aside class="notes">Achtung bei der Adresse: 8888 ist der Webserver von MAMP, 8889 die Datenbank.
+          Zwei Ports, zwei Zwecke – das durcheinanderzubringen ist normal und kostet fünf Minuten. Wer die
+          Adresse nicht erreicht, hat MAMP nicht gestartet.</aside>
+      </section>
+
+      <!-- ============ 13 ============ -->
+      <section id="db-anlegen">
+        <h2>Datenbank anlegen</h2>
+        <div class="content">
+          <ol>
+            <li>In phpMyAdmin links auf <strong>Neu</strong> klicken</li>
+            <li>Einen Namen eingeben, zum Beispiel <code>im3_hitzesommer</code></li>
+            <li>Als Kollation <code>utf8mb4_general_ci</code> wählen</li>
+            <li>Auf <strong>Anlegen</strong> klicken</li>
+          </ol>
+          <div class="callout callout-blue">
+            <p>Die Datenbank ist jetzt leer – die Tabellen kommen im Unterricht dazu.</p>
+          </div>
+        </div>
+        <aside class="notes">Kollation heisst: Nach welchen Regeln werden Texte verglichen und sortiert.
+          utf8mb4 ist dieselbe Einstellung, die auch im DSN steht, und sorgt dafür, dass Umlaute und Emojis
+          heil ankommen. Der Name der Datenbank ist frei wählbar, sollte aber ohne Leerzeichen und Umlaute
+          auskommen.</aside>
+      </section>
+
+      <!-- ============ 14 ============ -->
+      <section id="config-anpassen">
+        <h2>Die <code>config.php</code> ausfüllen</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1.35fr 1fr; gap: 36px; align-items: start;">
+            <div>
+              <span class="code-label">config.php – lokal mit MAMP</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$host     = 'localhost';
+$dbname   = 'im3_hitzesommer';
+$username = 'root';
+$password = 'root';
+
+// DSN: die Adresse der Datenbank
+$dsn = "mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4";
+              </code></pre>
+            </div>
+            <div>
+              <ul class="list-tight text-sm">
+                <li><code>$dbname</code> ist der Name, den ihr gerade angelegt habt</li>
+                <li>Benutzer und Passwort sind lokal beide <code>root</code></li>
+                <li>Neu gegenüber dem Server ist nur <code>port=8889</code></li>
+                <li><code>$host</code> bleibt <code>localhost</code></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-orange">
+            <p>Auch die lokale <code>config.php</code> gehört nicht ins Repository.</p>
+          </div>
+        </div>
+        <aside class="notes">Das ist genau die Datei, die sie im Code-Along vor sich haben – deshalb hier
+          ausgefüllt und nicht als Gegenüberstellung. Der Punkt: Zwischen lokal und Server unterscheiden sich
+          nur diese vier Zeilen, der restliche Code läuft an beiden Orten gleich. Wer beides benutzt, hat
+          einfach zwei Fassungen dieser Datei – sie wandert ja nie mit ins Repository.</aside>
+      </section>
+
+      <!-- ============ 15 ============ -->
+      <section id="php-bleibt">
+        <h2>PHP startet ihr weiterhin selbst</h2>
+        <div class="content">
+          <pre class="code-sm"><code data-trim data-noescape class="language-bash">
+php -S localhost:8000
+          </code></pre>
+          <ul class="list-tight">
+            <li>MAMP liefert uns die Datenbank, nicht den Webserver</li>
+            <li>Eure PHP-Dateien bleiben in eurem Projektordner liegen</li>
+            <li>Im Browser ruft ihr sie über <code>localhost:8000</code> auf</li>
+          </ul>
+          <div class="callout callout-blue">
+            <p>So ändert sich an eurer Arbeitsweise aus den letzten Tagen nichts.</p>
+          </div>
+        </div>
+        <aside class="notes">Die Alternative wäre, alle Dateien in den htdocs-Ordner von MAMP zu legen und
+          über Port 8888 zu arbeiten. Das funktioniert auch, verschiebt aber den Projektordner und bringt alle
+          bisherigen Pfade durcheinander. Deshalb hier bewusst nur die Datenbank aus MAMP.</aside>
+      </section>
+
+      <!-- ============ 16 ============ -->
+      <section id="fehler">
+        <h2>Wenn es nicht läuft</h2>
+        <div class="content">
+          <table>
+            <tr>
+              <th style="width: 42%;">Meldung oder Symptom</th>
+              <th>Ursache</th>
+            </tr>
+            <tr><td><code>Connection refused</code></td><td>MAMP läuft nicht oder der Port stimmt nicht</td></tr>
+            <tr><td><code>Access denied</code></td><td>Benutzer oder Passwort falsch, lokal beides <code>root</code></td></tr>
+            <tr><td><code>Unknown database</code></td><td>Der Name in <code>config.php</code> passt nicht zur angelegten Datenbank</td></tr>
+            <tr><td>Seite lädt ewig</td><td>Ihr habt den Webserver-Port 8888 im DSN statt 8889</td></tr>
+            <tr><td>phpMyAdmin nicht erreichbar</td><td>In MAMP wurde nicht auf Start geklickt</td></tr>
+          </table>
+          <p class="text-sm mt-1">Bleibt es dabei, arbeitet auf dem Server weiter und fragt in der Pause
+            nach.</p>
+        </div>
+        <aside class="notes">Diese fünf decken erfahrungsgemäss fast alles ab, und vier davon sind Ports oder
+          Namen. Deshalb der Rat: zuerst die vier Werte nebeneinanderlegen und mit phpMyAdmin vergleichen,
+          bevor irgendwer im PHP-Code sucht.</aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      width: 1280,
+      height: 720,
+      margin: 0,
+      controls: true,
+      progress: true,
+      slideNumber: 'c',
+      hash: true,
+      transition: 'slide',
+      center: false,
+      plugins: [ RevealHighlight, RevealNotes ]
+    });
+  </script>
+</body>
+</html>

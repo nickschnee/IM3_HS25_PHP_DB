@@ -41,7 +41,11 @@ keine eigenen Unterlagen – es wird gemeinsam durchgeklickt.
 5. `config.php` in `.gitignore` eintragen.
 6. Verbindung mit einer kleinen Testdatei prüfen.
 
-### Alternative: lokal mit MAMP
+### Alternative für Schnelle: lokal mit MAMP
+
+Der Kurs läuft auf dem Server. Wer zusätzlich lokal arbeiten will, findet die
+ausführliche Anleitung in [`theorie/01_lokale_db/`](../01_lokale_db/) – dort
+auch der Weg, die Installation von einem Agenten erledigen zu lassen.
 
 MAMP wird nur für die Datenbank verwendet, nicht als Webserver. PHP startet ihr
 weiterhin wie bisher:
@@ -349,6 +353,9 @@ Code-Along zum ersten Mal auf.
 ### Bezug zum übrigen Material
 
 - Vorwissen: [`theorie/C_transform/`](../C_transform/)
+- Direkt danach:
+  [`code-alongs/D_load/11_datenbank_testen`](../../code-alongs/D_load/11_datenbank_testen/)
+  – Verbindung prüfen, bevor es um Daten geht
 - Danach: `unload.php` in Block E baut auf denselben Tabellen auf
 - Nachschlagewerke: [`cheatsheets/10__pdo.md`](../../cheatsheets/10__pdo.md) und
   [`cheatsheets/310_load.md`](../../cheatsheets/310_load.md)
@@ -365,8 +372,9 @@ npx decktape reveal theorie/D_load/index.html slides.pdf --size 1280x720
 
 ### Offene Punkte
 
-- Die Papierübung zum Datenmodell und die Code-Alongs zu diesem Block sind noch
-  nicht gebaut; die Folien 16 und 35 verweisen bereits darauf.
+- Die Papierübung zum Datenmodell und das Code-Along zum Laden der
+  Hitzesommer-Daten sind noch nicht gebaut; die Folien 16 und 35 verweisen
+  bereits darauf. Das Code-Along zum Verbindungstest steht.
 - `cheatsheets/310_load.md` stammt aus dem letzten Durchlauf und passt noch
   nicht zu diesem Datenmodell.
 - Für Gruppen mit Live-Sammlung fehlt ein ausformuliertes Beispiel mit

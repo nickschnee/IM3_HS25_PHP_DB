@@ -49,5 +49,24 @@ Beide Ordner enthalten Startcode, eine Lösung, den Unterrichtsablauf und die
 bereits bekannten Rohdaten aus Block B. Beim Shark-Beispiel liegt zusätzlich
 eine wiederverwendbare KI-Spezifikation bei.
 
+## Block D – Load
+
+Zuerst nur die Verbindung, dann die echten Daten. Datenbank und PDO kommen hier
+dazu, weil man sie zum Laden braucht.
+
+| Nr | Code-Along | Worum es geht | Technik |
+| --- | --- | --- | --- |
+| 11 | [Datenbank testen](D_load/11_datenbank_testen/) | vier Messwerte schreiben und wieder lesen | `new PDO`, `prepare`/`execute`, `query` |
+
+Der erste Schritt trennt bewusst die beiden Fehlerquellen: Wer hier Zeilen im
+Browser sieht, hat eine funktionierende Verbindung – alles Weitere ist dann
+reine Programmierung.
+
+Jeder Ordner in diesem Block braucht eine eigene `config.php` mit den
+Zugangsdaten. Sie wird aus `config.template.php` kopiert und steht in
+`.gitignore`; im Repository liegt nur die Vorlage.
+
+Das Code-Along zum Laden der Hitzesommer-Daten folgt.
+
 Weitere Code-Alongs werden beim Aufbau der späteren Blöcke geprüft,
-überarbeitet und in Block-Ordner (`D_…`, `E_…` usw.) einsortiert.
+überarbeitet und in Block-Ordner (`E_…`, `F_…` usw.) einsortiert.
