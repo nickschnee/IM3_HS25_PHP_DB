@@ -54,32 +54,48 @@ sichtbar.
 
 ## Aufbau des Foliensatzes
 
+Der Foliensatz hat eine Orientierung und danach ein Kapitel pro Baustein des
+Endpunkts. Jeder Kapiteltrenner nennt den Baustein, jede Code-Folie zeigt oben
+rechts, womit gerade gearbeitet wird: `Datenbank`, `SQL`, `PHP`, `URL + PHP`
+oder `Browser`. So bleibt sichtbar, wann die Sprache wechselt.
+
 | Folien | Inhalt |
 | --- | --- |
 | 1–3 | Titel, Inhalt und Position in der ETL+U-Kette |
-| 4–13 | `SELECT`, `JOIN`, PDO und Normalisierung auf den Datenvertrag |
-| 14–20 | JSON-Header, `json_encode`, leere Listen und Fehlerantworten |
-| 21–26 | optionaler Stadtfilter mit `$_GET` und Prepared Statement |
-| 27–29 | Tests, Übergabe ans Frontend und Projekt-Checkliste |
-| 30 | Kernaussage und Ausblick auf Chart.js |
+| 4–6 | Begriff «Unload», Anfrage und Antwort, Datenvertrag |
+| 7 | Landkarte: die vier Bausteine des Endpunkts |
+| 8–12 | Bausteine 1 und 2: `JOIN`, `SELECT` und PDO |
+| 13–16 | Baustein 3: Header, `json_encode` und reine JSON-Ausgabe |
+| 17–19 | Ausnahmefall: leere Liste und Fehlerantwort |
+| 20–23 | Baustein 4: Stadtfilter mit `$_GET` und Prepared Statement |
+| 24–25 | Tests und Projekt-Checkliste |
+| 26 | Kernaussage und Ausblick auf Chart.js |
 
-Richtwert für den Theorie-Input: 35 Minuten. Danach werden die vier Bausteine
-des Endpunkts geführt umgesetzt und sofort im Browser getestet.
+Die vier Bausteine sind: **1 Verbinden** (`config.php`, PDO), **2 Lesen**
+(`SELECT` mit `JOIN`), **3 Antworten** (Header, `json_encode`) und
+**4 Filtern** (`$_GET`). Nur Baustein 2 ist SQL, alles andere ist PHP.
+
+Richtwert für den Theorie-Input: 35 Minuten. Danach werden dieselben vier
+Bausteine geführt umgesetzt und sofort im Browser getestet.
 
 ## Didaktischer Ablauf
 
 1. Den Datenvertrag gegen das Mock-JSON prüfen.
 2. Mit `JOIN` aus zwei Tabellen eine flache Ergebniszeile machen.
-3. Die PDO-Ausgabe mit `var_dump` nur während des Code-Alongs prüfen.
-4. Feldnamen und Typen in `normalizeSummer()` festschreiben.
+3. Die Verbindung aus `config.php` übernehmen und mit PDO lesen.
+4. Die PDO-Ausgabe mit `var_dump` nur während des Code-Alongs prüfen.
 5. Header und `json_encode` ergänzen.
 6. Den Stadtfilter mit einem Prepared Statement hinzufügen.
 7. Vier URLs testen: ohne Filter, Bern, Zürich und eine unbekannte Stadt.
 8. Mock-Datei und echten Endpunkt im Viererteam vergleichen.
 
-Die Folie «Vier Bausteine ergeben den Endpunkt» ist die natürliche Stelle, um
-vom Input in das Code-Along zu wechseln. Die späteren Folien werden jeweils
-kurz vor dem passenden Umsetzungsschritt gezeigt.
+Die Folie «Vier Bausteine ergeben den Endpunkt» ist die Landkarte: Sie kommt
+direkt nach dem Datenvertrag, und jedes folgende Kapitel ist einer dieser
+Bausteine. Dieselbe Reihenfolge wird danach im Code-Along umgesetzt.
+
+Die Typen der JSON-Felder stehen bewusst nicht mehr auf den Folien. Sie werden
+im Code-Along beim Aufbau von `unload.php` gezeigt, damit der Input pro Folie
+nur eine Sprache und ein Konzept enthält.
 
 ## Nach Änderungen prüfen
 

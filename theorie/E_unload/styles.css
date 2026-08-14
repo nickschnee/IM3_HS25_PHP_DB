@@ -24,28 +24,28 @@
   color: rgba(255, 255, 255, 0.3);
 }
 
-/* Gleich hohe Code-Bloecke fuer direkte Vergleiche. */
-.reveal .code-pair {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 36px;
-  align-items: stretch;
+/* Sagt oben rechts, womit auf dieser Folie gearbeitet wird: SQL, PHP oder URL. */
+.reveal .slides section > .slide-tag {
+  position: absolute;
+  top: 60px;
+  right: var(--slide-padding);
+  padding: 4px 12px;
+  border: 1px solid var(--box-border);
+  border-radius: 999px;
+  background: var(--box-bg);
+  color: var(--muted-color);
+  font-family: var(--mono-font);
+  font-size: 11pt;
+  letter-spacing: 0.04em;
 }
 
-.reveal .code-pair > div {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.reveal .code-pair pre {
-  flex: 1;
-  margin-bottom: 0;
-}
-
-.reveal .code-pair pre code {
-  height: 100%;
-  box-sizing: border-box;
+/* Kapitelangabe ueber dem Titel eines Trenners. */
+.reveal .slides section.section-divider .chapter-step {
+  margin: 0 0 14px;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--mono-font);
+  font-size: 13pt;
+  letter-spacing: 0.04em;
 }
 
 /* Definition auf der Begriffsfolie. */
@@ -94,6 +94,104 @@
   padding: 2px 4px;
 }
 
+/* Anfrage und Antwort zwischen Browser und Endpunkt. */
+.reveal .roundtrip {
+  display: grid;
+  grid-template-columns: 0.85fr 1.5fr 0.85fr;
+  gap: 20px;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.reveal .rt-actor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  min-height: 128px;
+  padding: 20px 18px;
+  background: var(--box-bg);
+  border: 1px solid var(--box-border);
+  border-radius: var(--box-radius);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.reveal .rt-actor.is-active {
+  background: var(--blue-bg);
+  border-color: var(--blue-border);
+}
+
+.reveal .rt-title {
+  color: var(--text-color);
+  font-size: 15pt;
+  line-height: 1.35;
+}
+
+.reveal .rt-sub {
+  color: var(--muted-color);
+  font-size: 12pt;
+}
+
+.reveal .rt-exchange {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.reveal .rt-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border: 1px solid var(--code-border);
+  border-radius: var(--box-radius);
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.reveal .rt-line.rt-response {
+  background: var(--blue-bg);
+  border-color: var(--blue-border);
+}
+
+.reveal .rt-tag {
+  flex: none;
+  color: var(--muted-color);
+  font-family: var(--body-font);
+  font-size: 10.5pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.reveal .rt-payload {
+  flex: 1;
+  min-width: 0;
+  color: var(--code-text);
+  font-family: var(--mono-font);
+  font-size: 13pt;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reveal .rt-arrow {
+  flex: none;
+  color: var(--primary-color);
+  font-size: 17pt;
+}
+
+/* Hinweisbox am unteren Folienrand. */
+.reveal .callout.is-bottom {
+  margin-top: auto;
+}
+
+/* Zusaetzlicher Platz, wenn unter der Box noch eine Fussnote steht. */
+.reveal .callout.is-bottom.has-footnote {
+  margin-bottom: 34px;
+}
+
 .reveal .contract-table td,
 .reveal .contract-table th,
 .reveal .test-table td,
@@ -101,39 +199,80 @@
   font-size: 12.5pt;
 }
 
-/* Datenbankform und JSON-Form als kleine Karten. */
+/* Datenbankform links, JSON-Form rechts. */
 .reveal .shape-bridge {
   display: grid;
-  grid-template-columns: 0.75fr auto 1.2fr auto 1.4fr;
-  gap: 16px;
-  align-items: stretch;
-  margin-top: 30px;
+  grid-template-columns: 1fr auto 0.8fr;
+  gap: 26px;
+  align-items: center;
+  margin: auto 0;
 }
 
-.reveal .shape-card {
+.reveal .shape-side {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  min-height: 145px;
-  padding: 20px;
-  background: var(--box-bg);
+  gap: 14px;
+  min-width: 0;
+}
+
+.reveal .shape-side .code-label {
+  margin-bottom: 0;
+}
+
+.reveal .mini-table {
   border: 1px solid var(--box-border);
   border-radius: var(--box-radius);
+  overflow: hidden;
+}
+
+.reveal .mini-name {
+  padding: 8px 14px;
+  background: var(--box-bg);
+  border-bottom: 1px solid var(--box-border);
+  color: var(--secondary-color);
+  font-family: var(--mono-font);
+  font-size: 12pt;
+}
+
+.reveal .mini-row {
+  display: flex;
+}
+
+.reveal .mini-row > span {
+  flex: 1;
+  padding: 9px 14px;
+  border-right: 1px solid #f0f0ea;
   color: var(--text-color);
   font-size: 13pt;
-  line-height: 1.7;
-  box-sizing: border-box;
 }
 
-.reveal .shape-card.is-result {
-  background: var(--blue-bg);
-  border-color: var(--blue-border);
+.reveal .mini-row > span:last-child {
+  border-right: none;
 }
 
-.reveal .shape-plus {
-  align-self: center;
+.reveal .mini-row.is-head > span {
+  border-bottom: 1px solid #f0f0ea;
   color: var(--muted-color);
-  font-size: 22pt;
+  font-family: var(--mono-font);
+  font-size: 11pt;
+}
+
+.reveal .mini-row mark,
+.reveal .shape-json mark {
+  padding: 1px 3px;
+  border-radius: 3px;
+  background: var(--orange-bg);
+  color: var(--code-text);
+}
+
+.reveal .shape-arrow {
+  color: var(--primary-color);
+  font-size: 26pt;
+}
+
+.reveal .shape-json {
+  margin: 0;
+  font-size: 14pt;
 }
 
 /* Kleines JOIN-Diagramm aus echten Tabellenzeilen. */
