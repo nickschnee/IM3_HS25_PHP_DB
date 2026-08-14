@@ -1,0 +1,190 @@
+/* Sonderregeln nur fuer den Foliensatz "Load".
+ * Das gemeinsame Design steht in ../_foliendesign/fhgr-slides.css und wird
+ * hier nicht veraendert. */
+
+/* ===========================================
+   ETL-STREIFEN AUF DEN KAPITELTRENNERN
+   ===========================================
+   Zeigt auf jedem Trenner, an welcher Stelle der Kette wir gerade sind.
+   Gleicher Baustein wie im Foliensatz "Transform". */
+
+.reveal .slides section.section-divider .etl-strip {
+  position: absolute;
+  top: 56px;
+  left: 72px;
+  right: 72px;
+  font-family: var(--mono-font);
+  font-size: 12pt;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.reveal .slides section.section-divider .etl-strip .is-here {
+  color: #ffffff;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+  padding-bottom: 3px;
+}
+
+.reveal .slides section.section-divider .etl-strip .sep {
+  padding: 0 8px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ===========================================
+   MINITABELLE
+   ===========================================
+   Fuer die Vorher-/Nachher-Beispiele und die Datentyp-Uebersicht. */
+
+.reveal .mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mono-font);
+  margin: 6px 0 0 0;
+}
+
+.reveal .mini-table td,
+.reveal .mini-table th {
+  font-family: var(--mono-font);
+  font-size: 11.5pt;
+  padding: 4px 22px 4px 0;
+  border: none;
+  text-align: left;
+}
+
+.reveal .mini-table th {
+  color: var(--muted-color);
+  font-weight: 400;
+  border-bottom: 1px solid var(--box-border);
+}
+
+/* Hebt eine einzelne Zelle hervor, z. B. den immer gleichen Stadtnamen. */
+.reveal .mini-table .is-marked {
+  color: var(--orange);
+}
+
+.reveal .flow-arrow { text-align: center; }
+
+/* ===========================================
+   ZWEI CODE-KAESTEN AUF GLEICHER HOEHE
+   ===========================================
+   Gestaltungsregel 13: Kaesten, die nebeneinander stehen und verglichen
+   werden, haben dieselbe Hoehe. Das Grid streckt beide Spalten, der
+   Code-Block fuellt seine Spalte aus - auch wenn er weniger Zeilen hat. */
+
+.reveal .code-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: stretch;
+}
+
+.reveal .code-pair > div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.reveal .code-pair pre {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.reveal .code-pair pre code {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* ===========================================
+   ROTE WARNBOX
+   ===========================================
+   Bewusste Ausnahme vom Zweifarbenschema des Foliendesigns (Petrol fuer
+   Einordnung, Gold fuer Achtung). Rot gibt es in diesem Foliensatz nur fuer
+   eine Sache: die Zugangsdaten, die erfahrungsgemaess jedes Semester in
+   einem oeffentlichen Repository landen. */
+
+.reveal .callout-red {
+  border-left-color: #a8382c;
+  background: #fbeeed;
+}
+
+.reveal .callout-red strong {
+  color: #a8382c;
+}
+
+/* ===========================================
+   ERM LIGHT
+   ===========================================
+   Zwei Tabellenkaesten mit einer Beziehungslinie dazwischen. Die Kaesten
+   sind bewusst schlicht: Kopfzeile mit Tabellenname, darunter eine Zeile
+   pro Spalte, Schluessel als kleines Kuerzel rechts. */
+
+.reveal .erm {
+  display: grid;
+  grid-template-columns: 1fr 120px 1fr;
+  align-items: center;
+  gap: 0;
+  margin: 6px 0;
+}
+
+.reveal .erm-table {
+  border: 1px solid var(--box-border);
+  border-radius: var(--box-radius);
+  overflow: hidden;
+}
+
+.reveal .erm-name {
+  background: var(--box-bg);
+  border-bottom: 1px solid var(--box-border);
+  font-family: var(--mono-font);
+  font-size: 13pt;
+  color: var(--primary-color);
+  padding: 8px 16px;
+}
+
+.reveal .erm-col {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  font-family: var(--mono-font);
+  font-size: 11.5pt;
+  color: var(--code-text);
+  padding: 5px 16px;
+}
+
+.reveal .erm-col + .erm-col {
+  border-top: 1px solid #f0f0ea;
+}
+
+.reveal .erm-key {
+  font-size: 9.5pt;
+  letter-spacing: 0.08em;
+  color: var(--muted-color);
+}
+
+/* Beziehungslinie: Strich quer durch die mittlere Spalte, die Kardinalitaet
+ * sitzt links und rechts darueber. */
+.reveal .erm-link {
+  position: relative;
+  height: 40px;
+}
+
+.reveal .erm-link::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-top: 1px solid var(--secondary-color);
+}
+
+.reveal .erm-card {
+  position: absolute;
+  top: 4px;
+  font-family: var(--mono-font);
+  font-size: 12pt;
+  color: var(--secondary-color);
+}
+
+.reveal .erm-card.is-left { left: 8px; }
+.reveal .erm-card.is-right { right: 8px; }

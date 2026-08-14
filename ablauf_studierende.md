@@ -74,6 +74,16 @@ vom rohen Datensatz über die eigene Datenfrage zum fertigen JSON.
 - `💻` [02 Datenfrage schärfen](uebungen/C_transform/02_datenfrage/)
 - `💻` [03 Airbnb-Daten transformieren](uebungen/C_transform/03_airbnb_transformieren/)
 
+### Block D – Load
+
+1. `📕` [Theorie D: Load (bis Kapitel Datenmodell)](theorie/D_load/) `30'`
+2. `📝` Analoge Übung: eigenes Datenmodell zeichnen `35'`
+3. `📕` [Theorie D: Load (ab Kapitel SQL)](theorie/D_load/) `45'`
+4. `🛠️` Datenbank einrichten `60'`
+5. `🛠️` Datenbankverbindung testen `60'`
+6. `🧑‍🏫` Code-Along: Hitzesommer-Daten in die Datenbank laden `70'`
+7. `🛠️` Eigene Tabellen anlegen und eigene Daten laden `60'`
+
 <!--
 
 ### Tag 4 – Block C: Datenbanken & Datenjournalismus

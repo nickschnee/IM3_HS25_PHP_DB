@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IM3 – Load</title>
+
+  <!-- Reveal.js core -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- FHGR Foliendesign (gemeinsam fuer alle Foliensaetze) -->
+  <link rel="stylesheet" href="../_foliendesign/fhgr-slides.css">
+
+  <!-- Sonderregeln nur fuer diesen Foliensatz -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ============ 1 Titel ============ -->
+      <section id="title" class="title-slide" data-state="is-title">
+        <h1>Load</h1>
+        <div class="rule"></div>
+        <p>Interaktive Medien 3</p>
+        <p class="sub">nick.schneeberger@fhgr.ch</p>
+      </section>
+
+      <!-- ============ 2 Inhalt ============ -->
+      <section id="inhalt">
+        <h2>Inhalt</h2>
+        <div class="content">
+          <ul class="text-xl">
+            <li>Was eine Datenbank ist</li>
+            <li>Das Datenmodell: von der Zeile zur Tabelle</li>
+            <li>SQL: die Sprache der Datenbank</li>
+            <li>PDO: die Brücke von PHP zur Datenbank</li>
+            <li>Was beim zweiten Aufruf passiert</li>
+          </ul>
+          <p class="text-sm text-muted mt-2">Danach: das eigene Datenmodell auf Papier und ein Code-Along.</p>
+        </div>
+        <aside class="notes">Richtwert 45 Minuten für den ganzen Satz. Er lässt sich am Trenner «PDO» sauber
+          teilen: die ersten drei Kapitel als Input vor der Papierübung, das PDO-Kapitel direkt vor dem
+          Code-Along. Der Ablauf sieht genau diese Teilung vor (40 Minuten Datenbank und SQL, später 70
+          Minuten PDO und Code-Along).</aside>
+      </section>
+
+      <!-- ============ 3 ============ -->
+      <section id="wo-wir-stehen">
+        <h2>Wo wir stehen</h2>
+        <div class="content">
+          <div class="flow">
+            <div class="flow-step"><span class="flow-title">Extract</span><span class="flow-sub">Daten hereinholen</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Transform</span><span class="flow-sub">Regeln anwenden</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step is-active"><span class="flow-title">Load</span><span class="flow-sub">in die Datenbank</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Unload</span><span class="flow-sub">JSON-Endpunkt</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Chart.js</span><span class="flow-sub">Story</span></div>
+          </div>
+          <ul class="list-tight mt-1">
+            <li><strong>Extract</strong> hat beantwortet: Woher kommen die Daten, und wie lesen wir sie?</li>
+            <li><strong>Transform</strong> hat beantwortet: Welche Daten brauchen wir für unsere Frage, was bedeuten sie, und in welche Form bringen wir sie?</li>
+            <li><strong>Load</strong> beantwortet: Wie kommen sie an einen Ort, an dem sie bleiben?</li>
+          </ul>
+          <p class="mt-1">Bisher leben die 258 Datensätze nur, solange das Skript läuft.</p>
+          <div class="callout callout-blue">
+            <p>Wir bauen heute den Ort und den Weg dorthin.</p>
+          </div>
+        </div>
+        <aside class="notes">Rückfrage in die Klasse: Was passiert mit dem Array aus dem Transform, wenn ihr
+          den Browser schliesst? Es ist weg – und mit ihm jeder API-Abruf, den ihr dafür gebraucht habt. Genau
+          das ist die Lücke, die heute geschlossen wird.</aside>
+      </section>
+
+      <!-- ============ 4 Trenner ============ -->
+      <section id="divider-datenbank" class="section-divider" data-state="is-section-divider">
+        <div class="etl-strip">Extract<span class="sep">→</span>Transform<span class="sep">→</span><span class="is-here">Load</span><span class="sep">→</span>Datenbank<span class="sep">→</span>Unload<span class="sep">→</span>Chart.js</div>
+        <h1>Was ist eine Datenbank?</h1>
+      </section>
+
+      <!-- ============ 5 ============ -->
+      <section id="warum-nicht-datei">
+        <h2>Warum nicht einfach eine Datei?</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <p class="list-intro">Eine JSON-Datei zu speichern wäre möglich.</p>
+              <ul class="list-tight text-sm">
+                <li>Für 258 Zeilen funktioniert das sogar gut</li>
+                <li>Ihr könnt sie öffnen und lesen</li>
+                <li>Sie liegt einfach im Ordner</li>
+              </ul>
+            </div>
+            <div>
+              <p class="list-intro">Das ist mühsam:</p>
+              <ul class="list-tight text-sm">
+                <li>Eine einzelne Stadt heraussuchen müsst ihr selbst programmieren</li>
+                <li>Eine Zeile ergänzen heisst: die ganze Datei neu schreiben</li>
+                <li>Zwei Abrufe gleichzeitig können die Datei zerstören</li>
+                <li>Sortieren und Zählen macht niemand für euch</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-blue">
+            <p>Eine Datenbank ist ein Programm, das genau diese Arbeit übernimmt.</p>
+          </div>
+          <p class="text-sm mt-1">Sie beantwortet Fragen an die Daten, statt nur Text aufzubewahren.</p>
+        </div>
+        <aside class="notes">Die Frage kommt fast immer, und sie ist berechtigt – für ein kleines historisches
+          Dataset wäre eine Datei tatsächlich vertretbar. Das ehrliche Argument ist deshalb nicht «Dateien sind
+          schlecht», sondern: Sobald gesucht, gefiltert und dazugeschrieben wird, programmiert ihr sonst eine
+          halbe Datenbank nach. Für Gruppen mit Live-Sammlung ist der dritte Punkt der entscheidende.</aside>
+      </section>
+
+      <!-- ============ 6 ============ -->
+      <section id="tabelle">
+        <h2>Eine Tabelle ist eine Liste mit festen Spalten</h2>
+        <div class="content">
+          <span class="code-label">Tabelle heat_summers</span>
+          <table class="mini-table">
+            <tr><th>id</th><th>city</th><th>year</th><th>measurement_days</th><th>hot_days</th><th>max_temperature_c</th></tr>
+            <tr><td>1</td><td>Bern</td><td>2022</td><td>92</td><td>14</td><td>34.6</td></tr>
+            <tr><td>2</td><td>Bern</td><td>2023</td><td>92</td><td>12</td><td>36.3</td></tr>
+            <tr><td>3</td><td>Chur</td><td>2023</td><td>92</td><td>14</td><td>35.4</td></tr>
+          </table>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;" class="mt-2">
+            <ul class="list-tight text-sm">
+              <li>Eine <strong>Zeile</strong> ist ein Datensatz</li>
+              <li>Eine <strong>Spalte</strong> ist ein Feld dieses Datensatzes</li>
+              <li>Alle Zeilen haben dieselben Spalten</li>
+            </ul>
+            <ul class="list-tight text-sm">
+              <li>Eine <strong>Datenbank</strong> enthält mehrere Tabellen</li>
+              <li>Jede Spalte hat einen festen Datentyp</li>
+              <li>Diese Struktur heisst <strong>Schema</strong></li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Das ist dieselbe Struktur wie das Resultat aus dem Transform, nur an einem
+          anderen Ort. Wer die Excel-Analogie braucht, darf sie hier haben – mit dem Unterschied, dass die
+          Datenbank die Spaltentypen erzwingt und Excel nicht.</aside>
+      </section>
+
+      <!-- ============ 7 Split ============ -->
+      <section id="relational" class="split-slide">
+        <div class="split-half split-good">
+          <h2>Relational</h2>
+          <p class="text-sm list-intro">Daten stehen in Tabellen und sind untereinander verknüpft.</p>
+          <ul class="list-tight text-sm">
+            <li>Die Spalten stehen vorher fest</li>
+            <li>Abgefragt wird mit SQL</li>
+            <li>MySQL, MariaDB, PostgreSQL, SQLite</li>
+          </ul>
+          <p class="text-sm mt-1">Passt, wenn alle Datensätze gleich gebaut sind.</p>
+        </div>
+        <div class="split-half split-bad">
+          <h2>Nicht relational</h2>
+          <p class="text-sm list-intro">Daten stehen als einzelne Dokumente nebeneinander.</p>
+          <ul class="list-tight text-sm">
+            <li>Jedes Dokument darf andere Felder haben</li>
+            <li>Jedes System hat seine eigene Abfragesprache</li>
+            <li>MongoDB, Firebase, Redis</li>
+          </ul>
+          <p class="text-sm mt-1">Passt, wenn die Struktur offen bleiben muss.</p>
+        </div>
+        <aside class="notes">Bewusst kurz gehalten, es ist eine Einordnung und kein Vergleichstest. Der
+          Anschluss an den letzten Block ist das Argument: Nach dem Transform sind alle Zeilen gleich gebaut –
+          das ist die Voraussetzung, unter der eine Tabelle das einfachere Werkzeug ist. «NoSQL» als Begriff
+          nennen, falls er aus der Klasse kommt.</aside>
+      </section>
+
+      <!-- ============ 8 ============ -->
+      <section id="was-wir-benutzen">
+        <h2>Womit wir arbeiten</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <h3>Auf dem Server</h3>
+              <ul class="list-tight text-sm">
+                <li>MariaDB, eine sehr nahe Verwandte von MySQL</li>
+                <li>Datenbank und Zugangsdaten kommen aus dem Hostpoint-Panel</li>
+                <li>Bedient wird sie im Browser über phpMyAdmin</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Lokal auf eurem Rechner</h3>
+              <ul class="list-tight text-sm">
+                <li>MAMP startet dieselbe Datenbank auf eurem Rechner</li>
+                <li>PHP startet ihr weiterhin mit <code>php -S localhost:8000</code></li>
+                <li>phpMyAdmin liegt auf der MAMP-Startseite</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-blue">
+            <p>Beide Wege sprechen dieselbe Sprache, deshalb läuft derselbe Code auf beiden.</p>
+          </div>
+          <p class="text-sm mt-1">Unterschiedlich sind nur die Zugangsdaten, und die stehen in einer eigenen
+            Datei.</p>
+        </div>
+        <aside class="notes">Aus MAMP brauchen wir nur den Datenbankteil, nicht den Apache – deshalb bleibt
+          der Ablauf mit php -S genau wie in den letzten Tagen. Der Stolperstein lokal ist der Port: MAMP legt
+          MySQL auf 8889, Benutzer und Passwort sind beide root. Auf Hostpoint ist der Host localhost und die
+          Zugangsdaten stammen aus dem Panel. Das wird im Tooling-Teil vorher gemeinsam eingerichtet.</aside>
+      </section>
+
+      <!-- ============ 9 Trenner ============ -->
+      <section id="divider-datenmodell" class="section-divider" data-state="is-section-divider">
+        <div class="etl-strip">Extract<span class="sep">→</span>Transform<span class="sep">→</span><span class="is-here">Load</span><span class="sep">→</span>Datenbank<span class="sep">→</span>Unload<span class="sep">→</span>Chart.js</div>
+        <h1>Das Datenmodell</h1>
+        <p>Von der Zeile im Resultat zur Tabelle in der Datenbank</p>
+      </section>
+
+      <!-- ============ 10 ============ -->
+      <section id="zeile-wird-zeile">
+        <h2>Eine Zeile bleibt eine Zeile</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr auto 1fr; column-gap: 32px; align-items: start;">
+            <div>
+              <span class="code-label">Resultat aus dem Transform</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-json">
+{
+  "city": "Bern",
+  "year": 2023,
+  "measurement_days": 92,
+  "hot_days": 12,
+  "max_temperature_c": 36.3
+}
+              </code></pre>
+            </div>
+            <div class="text-2xl text-muted" style="align-self: center;">→</div>
+            <div>
+              <span class="code-label">Zeile in der Datenbank</span>
+              <table class="mini-table">
+                <tr><th>Spalte</th><th>Wert</th></tr>
+                <tr><td>city</td><td>Bern</td></tr>
+                <tr><td>year</td><td>2023</td></tr>
+                <tr><td>measurement_days</td><td>92</td></tr>
+                <tr><td>hot_days</td><td>12</td></tr>
+                <tr><td>max_temperature_c</td><td>36.3</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="callout callout-blue">
+            <p>Die Untersuchungseinheit aus dem Transform wird zur Zeile in der Tabelle.</p>
+          </div>
+          <p class="text-sm mt-1">Bei uns ist das eine Stadt in einem Sommer.</p>
+        </div>
+        <aside class="notes">Der Datenvertrag ist damit bereits fast das Datenmodell – das ist die gute
+          Nachricht dieses Kapitels. Wer im Transform sauber entschieden hat, was eine Zeile bedeutet, hat die
+          Tabelle schon entworfen. Feld für Feld dasselbe, nur an einem anderen Ort. Dass der Stadtname
+          später noch in eine eigene Tabelle wandert, kommt in fünf Folien.</aside>
+      </section>
+
+      <!-- ============ 11 ============ -->
+      <section id="datentypen">
+        <h2>Jede Spalte bekommt einen Datentyp</h2>
+        <div class="content">
+          <table>
+            <tr>
+              <th style="width: 26%;">Typ</th>
+              <th style="width: 34%;">Wofür</th>
+              <th>Bei uns</th>
+            </tr>
+            <tr><td><code>INT</code></td><td>ganze Zahlen</td><td><code>id</code></td></tr>
+            <tr><td><code>SMALLINT</code></td><td>kleine ganze Zahlen</td><td><code>year</code>, <code>hot_days</code></td></tr>
+            <tr><td><code>DECIMAL(4,1)</code></td><td>Kommazahl mit fester Genauigkeit</td><td><code>max_temperature_c</code></td></tr>
+            <tr><td><code>VARCHAR(80)</code></td><td>Text bis zu einer Höchstlänge</td><td><code>city</code></td></tr>
+            <tr><td><code>DATE</code>, <code>DATETIME</code></td><td>Datum und Zeitpunkt</td><td>in vielen Projekten</td></tr>
+            <tr><td><code>BOOLEAN</code></td><td>ja oder nein</td><td>in vielen Projekten</td></tr>
+          </table>
+          <div class="callout callout-orange mt-1">
+            <p>Der Typ ist eine Zusage: Was nicht hineinpasst, bleibt draussen.</p>
+          </div>
+        </div>
+        <aside class="notes">Der Unterschied zur Datei auf den Punkt gebracht: In einer JSON-Datei kann in
+          hot_days plötzlich «viele» stehen, in der Spalte nicht. Praktischer Hinweis fürs Projekt: Für Text
+          unbekannter Länge gibt es TEXT, für Zeitpunkte immer DATETIME statt Text nehmen – sonst sortiert
+          später nichts richtig. Genauere Typen stehen im Cheatsheet.</aside>
+      </section>
+
+      <!-- ============ 12 ============ -->
+      <section id="primaerschluessel">
+        <h2>Der Primärschlüssel</h2>
+        <div class="content">
+          <p class="list-intro">Jede Zeile braucht eine eindeutige Nummer, an der man genau sie erkennt.</p>
+          <pre class="code-sm"><code data-trim data-noescape class="language-sql">
+id INT AUTO_INCREMENT PRIMARY KEY
+          </code></pre>
+          <ul class="list-tight">
+            <li><code>PRIMARY KEY</code> heisst: Dieser Wert kommt kein zweites Mal vor</li>
+            <li><code>AUTO_INCREMENT</code> heisst: Die Datenbank vergibt die Nummer selbst</li>
+            <li>Ihr schreibt diese Spalte beim Einfügen deshalb nie mit</li>
+          </ul>
+          <div class="callout callout-blue">
+            <p>Ohne Primärschlüssel könnt ihr eine einzelne Zeile später nicht sicher ansprechen.</p>
+          </div>
+        </div>
+        <aside class="notes">Die drei Regeln zuerst, das Beispiel dazu steht auf der nächsten Folie.
+          AUTO_INCREMENT heisst wörtlich «automatisch hochzählen» – die erste Zeile bekommt 1, die nächste 2.
+          Gelöschte Nummern werden nicht wiederverwendet.</aside>
+      </section>
+
+      <!-- ============ 13 ============ -->
+      <section id="primaerschluessel-beispiel">
+        <h2>Die <code>id</code> in unseren Zeilen</h2>
+        <div class="content">
+          <span class="code-label">drei Zeilen aus heat_summers</span>
+          <div style="max-width: 620px;">
+            <table class="mini-table">
+              <tr><th>id</th><th>city</th><th>year</th><th>hot_days</th></tr>
+              <tr><td>1</td><td>Bern</td><td>2022</td><td>14</td></tr>
+              <tr><td>2</td><td>Bern</td><td class="is-marked">2023</td><td>12</td></tr>
+              <tr><td>3</td><td>Chur</td><td class="is-marked">2023</td><td>14</td></tr>
+            </table>
+          </div>
+          <ul class="list-tight mt-2">
+            <li>Das Jahr 2023 steht zweimal da, die <code>id</code> nie</li>
+            <li>Stadt und Jahr zusammen wären auch eindeutig, aber umständlich</li>
+            <li>Mit <code>WHERE id = 2</code> erwischt ihr genau eine Zeile</li>
+          </ul>
+          <div class="callout callout-blue">
+            <p>Die Nummer bedeutet nichts, sie zeigt nur auf genau diese Zeile.</p>
+          </div>
+        </div>
+        <aside class="notes">Frage in die Klasse, bevor die Liste kommt: Könnten wir nicht das Jahr als
+          Schlüssel nehmen? Antwort: nur solange eine Stadt drin ist – bei drei Städten kommt 2023 dreimal
+          vor. Die Kombination aus Stadt und Jahr wäre tatsächlich eindeutig, und genau die brauchen wir am
+          Ende noch einmal als UNIQUE-Regel. Als Schlüssel bleibt die eigene, bedeutungslose id die
+          verlässlichste Wahl.</aside>
+      </section>
+
+      <!-- ============ 14 ============ -->
+      <section id="redundanz">
+        <h2>«Bern» steht 86-mal da</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <span class="code-label">alles in einer Tabelle</span>
+              <table class="mini-table">
+                <tr><th>city</th><th>year</th><th>hot_days</th></tr>
+                <tr><td class="is-marked">Bern</td><td>2021</td><td>0</td></tr>
+                <tr><td class="is-marked">Bern</td><td>2022</td><td>14</td></tr>
+                <tr><td class="is-marked">Bern</td><td>2023</td><td>12</td></tr>
+                <tr><td>…</td><td>…</td><td>…</td></tr>
+              </table>
+            </div>
+            <div>
+              <p class="list-intro">Drei Städte, 86 Jahre, 258 Zeilen.</p>
+              <ul class="list-tight text-sm">
+                <li>Jeder Stadtname steht 86-mal in der Tabelle</li>
+                <li>Ein Tippfehler erzeugt eine vierte Stadt, die es nicht gibt</li>
+                <li>Eine Umbenennung müsstet ihr 86-mal machen</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-orange">
+            <p>Wiederholte Werte sind hier kein Platzproblem, sondern ein Fehlerrisiko.</p>
+            <p>Bei sehr grossen Datenmengen werden sie irgendwann auch ein Platzproblem.</p>
+          </div>
+        </div>
+        <aside class="notes">«Zürich» und «Zuerich» nebeneinander ist der Klassiker – im Chart erscheinen
+          dann zwei Städte. In unserer Grössenordnung ist Speicherplatz das schwächste Argument: 258-mal ein
+          Wort ist nichts. Bei Millionen Zeilen kippt das, und dann zählt beides. Für eure Projekte gilt
+          trotzdem der erste Satz: Es geht um die eine Stelle, an der ein Wert steht und geändert werden
+          kann.</aside>
+      </section>
+
+      <!-- ============ 15 ============ -->
+      <section id="zwei-tabellen">
+        <h2>Darum: Zwei Tabellen und ein Fremdschlüssel</h2>
+        <div class="content">
+          <div class="erm">
+            <div class="erm-table">
+              <div class="erm-name">cities</div>
+              <div class="erm-col"><span>id</span><span class="erm-key">PK</span></div>
+              <div class="erm-col"><span>name</span><span class="erm-key">VARCHAR(80)</span></div>
+            </div>
+            <div class="erm-link">
+              <span class="erm-card is-left">1</span>
+              <span class="erm-card is-right">n</span>
+            </div>
+            <div class="erm-table">
+              <div class="erm-name">heat_summers</div>
+              <div class="erm-col"><span>id</span><span class="erm-key">PK</span></div>
+              <div class="erm-col"><span>city_id</span><span class="erm-key">FK</span></div>
+              <div class="erm-col"><span>year</span><span class="erm-key">SMALLINT</span></div>
+              <div class="erm-col"><span>measurement_days</span><span class="erm-key">SMALLINT</span></div>
+              <div class="erm-col"><span>hot_days</span><span class="erm-key">SMALLINT</span></div>
+              <div class="erm-col"><span>max_temperature_c</span><span class="erm-key">DECIMAL(4,1)</span></div>
+            </div>
+          </div>
+          <ul class="list-tight text-sm mt-1">
+            <li>Der Stadtname steht jetzt genau einmal in <code>cities</code></li>
+            <li><code>city_id</code> verweist auf die <code>id</code> in <code>cities</code> und heisst deshalb <strong>Fremdschlüssel</strong></li>
+            <li>Gelesen wird die Linie als: eine Stadt hat viele Sommer</li>
+            <li>Jeder Sommer gehört aber nur zu einer Stadt</li>
+          </ul>
+        </div>
+        <aside class="notes">Diese Zeichnung ist das ERM, das die Klasse gleich selbst für ihre Daten macht.
+          Die Fremdschlüsselspalte trägt den Namen der Zieltabelle im Singular plus _id – das ist Konvention
+          und macht sie sofort erkennbar. Wichtig für den Code-Along: Die Datenbank lehnt eine city_id ab, zu
+          der es keine Stadt gibt, und schützt euch damit vor verwaisten Zeilen.</aside>
+      </section>
+
+      <!-- ============ 16 ============ -->
+      <section id="erm-light">
+        <h2>So plant ihr euer eigenes Modell</h2>
+        <div class="content">
+          <p class="list-intro">Vier Fragen, und zwar auf Papier und vor dem ersten SQL-Befehl.</p>
+          <ul class="list-tight">
+            <li>Was bedeutet eine Zeile in euren Daten?</li>
+            <li>Welche Felder hat sie, und welchen Datentyp hat jedes davon?</li>
+            <li>Welcher Wert wiederholt sich in fast jeder Zeile?</li>
+            <li>Woran erkennt ihr eine einzelne Zeile eindeutig?</li>
+          </ul>
+          <div class="callout callout-blue">
+            <p>Der wiederholte Wert ist der Kandidat für die zweite Tabelle.</p>
+          </div>
+          <p class="text-sm mt-1">Mehr als zwei Tabellen braucht in diesem Kurs kein Projekt – ausser ihr
+            kombiniert mehrere Datensätze.</p>
+        </div>
+        <aside class="notes">Genau diese vier Fragen stehen auf dem Arbeitsblatt der Papierübung. Die
+          Antworten auf Frage eins und zwei stehen bereits im Datenvertrag aus dem Transform – das laut sagen,
+          es spart den Gruppen die halbe Übung. Zeitrahmen 35 Minuten, danach hängt jede Gruppe ihr Modell
+          auf.</aside>
+      </section>
+
+      <!-- ============ 17 ============ -->
+      <section id="eine-tabelle-reicht">
+        <h2>Wann eine Tabelle genügt</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <h3>Eine Tabelle</h3>
+              <ul class="list-tight text-sm">
+                <li>Kein Wert wiederholt sich auffällig</li>
+                <li>Alle Felder beschreiben dieselbe Sache</li>
+                <li>Beispiel: Messwerte einer einzigen Station</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Zwei Tabellen</h3>
+              <ul class="list-tight text-sm">
+                <li>Ein Name oder eine Kategorie wiederholt sich ständig</li>
+                <li>Diese Sache hat eigene Felder wie Koordinaten oder Farbe</li>
+                <li>Beispiel: Städte und ihre Messungen</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-orange">
+            <p>Eine schlecht geschnittene zweite Tabelle kostet mehr, als sie einbringt.</p>
+          </div>
+          <p class="text-sm mt-1">Im Zweifel klein anfangen und die Aufteilung begründen können.</p>
+        </div>
+        <aside class="notes">Die Gruppen fragen erfahrungsgemäss genau hier nach ihrem eigenen Fall. Als
+          Faustregel taugt: Wenn ihr die zweite Tabelle nur anlegt, weil es «richtiger» aussieht, lasst es.
+          Wenn ihr sie anlegt, weil ihr sonst einen Namen hundertmal schreibt, macht es.</aside>
+      </section>
+
+      <!-- ============ 18 Trenner ============ -->
+      <section id="divider-sql" class="section-divider" data-state="is-section-divider">
+        <div class="etl-strip">Extract<span class="sep">→</span>Transform<span class="sep">→</span><span class="is-here">Load</span><span class="sep">→</span>Datenbank<span class="sep">→</span>Unload<span class="sep">→</span>Chart.js</div>
+        <h1>SQL</h1>
+        <p>Die Sprache, in der man mit einer Datenbank redet</p>
+      </section>
+
+      <!-- ============ 19 ============ -->
+      <section id="sql-sprache">
+        <h2>Vier Befehle reichen für alles</h2>
+        <div class="content">
+          <table>
+            <tr>
+              <th style="width: 22%;">Befehl</th>
+              <th style="width: 38%;">Was er tut</th>
+              <th>Wo wir ihn brauchen</th>
+            </tr>
+            <tr><td><code>INSERT</code></td><td>schreibt eine Zeile hinein</td><td>heute, in <code>load.php</code></td></tr>
+            <tr><td><code>SELECT</code></td><td>holt Zeilen heraus</td><td>heute zum Kontrollieren, später in <code>unload.php</code></td></tr>
+            <tr><td><code>UPDATE</code></td><td>ändert vorhandene Zeilen</td><td>selten</td></tr>
+            <tr><td><code>DELETE</code></td><td>löscht Zeilen</td><td>zum Aufräumen</td></tr>
+          </table>
+          <p class="mt-1">SQL ist eine eigene Sprache und hat mit PHP nichts zu tun.</p>
+          <p>Wir schicken sie als Text an die Datenbank und bekommen ein Resultat zurück.</p>
+        </div>
+        <aside class="notes">Kurz einordnen, dass SQL älter ist als fast alles andere im Kurs und sich seit
+          Jahrzehnten kaum verändert hat – gelernt wird das hier also nicht für dieses Semester. Grossschreibung
+          der Befehle ist Konvention und keine Vorschrift, sie macht die Abfrage lesbar. Das Semikolon am Ende
+          gehört dazu.</aside>
+      </section>
+
+      <!-- ============ 20 ============ -->
+      <section id="create-table">
+        <h2>Die Tabellen anlegen</h2>
+        <div class="content">
+          <pre class="code-sm"><code data-trim data-noescape class="language-sql">
+CREATE TABLE cities (
+  id   INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(80) NOT NULL UNIQUE
+);
+
+CREATE TABLE heat_summers (
+  id                INT AUTO_INCREMENT PRIMARY KEY,
+  city_id           INT NOT NULL,
+  year              SMALLINT NOT NULL,
+  measurement_days  SMALLINT NOT NULL,
+  hot_days          SMALLINT NOT NULL,
+  max_temperature_c DECIMAL(4,1),
+  FOREIGN KEY (city_id) REFERENCES cities(id)
+);
+          </code></pre>
+          <ul class="list-tight text-sm mt-1">
+            <li><code>NOT NULL</code> verlangt einen Wert, <code>UNIQUE</code> verbietet Wiederholungen</li>
+            <li><code>max_temperature_c</code> darf leer bleiben und ist dann <code>NULL</code></li>
+            <li>Dasselbe könnt ihr in phpMyAdmin auch zusammenklicken</li>
+          </ul>
+        </div>
+        <aside class="notes">Das ist die Zeichnung von vorhin als Text – Feld für Feld dieselbe Reihenfolge.
+          Die Tabelle cities muss zuerst existieren, sonst zeigt der Fremdschlüssel ins Leere. Wichtig für den
+          Anschluss an den Transform: NULL ist hier erlaubt, weil es «nicht gemessen» heisst, und genau das
+          hatten wir letzten Block als Regel. Im Unterricht klicken wir es im GUI zusammen und lassen uns von
+          phpMyAdmin das SQL dazu anzeigen – dann sehen sie beide Wege nebeneinander.</aside>
+      </section>
+
+      <!-- ============ 21 ============ -->
+      <section id="insert">
+        <h2><code>INSERT</code> schreibt eine Zeile</h2>
+        <div class="content">
+          <pre class="code-sm"><code data-trim data-noescape class="language-sql">
+INSERT INTO cities (name)
+VALUES ('Bern');
+
+INSERT INTO heat_summers (city_id, year, measurement_days, hot_days, max_temperature_c)
+VALUES (1, 2023, 92, 12, 36.3);
+          </code></pre>
+          <ul class="list-tight">
+            <li>Zuerst die Spalten, dann in derselben Reihenfolge die Werte</li>
+            <li>Text steht in einfachen Anführungszeichen, Zahlen stehen ohne</li>
+            <li>Die Spalte <code>id</code> fehlt, weil die Datenbank sie selbst vergibt</li>
+          </ul>
+          <div class="callout callout-blue">
+            <p>258-mal dieser Befehl mit anderen Werten – das ist der ganze Ladevorgang.</p>
+          </div>
+        </div>
+        <aside class="notes">Hier lohnt sich der Vorgriff: Genau diesen Befehl schreiben wir gleich einmal
+          hin und lassen ihn von PHP 258-mal mit anderen Werten ausführen. Die 1 in der zweiten Anweisung ist
+          die id, die Bern beim ersten INSERT bekommen hat – dass die von Hand hingeschrieben ist, ist das
+          Problem, das später lastInsertId löst.</aside>
+      </section>
+
+      <!-- ============ 22 ============ -->
+      <section id="select-kontrolle">
+        <h2><code>SELECT</code> zum Nachschauen</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <pre class="code-sm"><code data-trim data-noescape class="language-sql">
+SELECT * FROM heat_summers;
+
+SELECT year, hot_days
+FROM heat_summers
+WHERE city_id = 1
+ORDER BY year;
+              </code></pre>
+            </div>
+            <div>
+              <ul class="list-tight text-sm">
+                <li>Der Stern holt alle Spalten</li>
+                <li><code>WHERE</code> wählt Zeilen aus</li>
+                <li><code>ORDER BY</code> sortiert das Resultat</li>
+              </ul>
+            </div>
+          </div>
+          <p class="text-sm mt-1">Aus diesem Befehl wird später der JSON-Endpunkt für das Frontend.</p>
+          <div class="callout callout-blue">
+            <p>Heute braucht ihr das nur, um zu prüfen, ob das Laden geklappt hat.</p>
+          </div>
+        </div>
+        <aside class="notes">Bewusst knapp – SELECT ist das Thema des nächsten Blocks, hier ist es reines
+          Kontrollwerkzeug nach dem Laden. Praktisch im Unterricht: nach dem Code-Along in phpMyAdmin SELECT
+          COUNT(*) laufen lassen, das Resultat muss 258 sein.</aside>
+      </section>
+
+      <!-- ============ 23 ============ -->
+      <section id="update-delete">
+        <h2><code>UPDATE</code> und <code>DELETE</code></h2>
+        <div class="content">
+          <pre class="code-sm"><code data-trim data-noescape class="language-sql">
+UPDATE heat_summers SET hot_days = 13 WHERE id = 42;
+
+DELETE FROM heat_summers WHERE id = 42;
+
+DELETE FROM heat_summers;
+          </code></pre>
+          <ul class="list-tight">
+            <li>Beide wirken auf alle Zeilen, auf die die Bedingung zutrifft</li>
+            <li>Ohne <code>WHERE</code> trifft sie auf jede Zeile zu</li>
+            <li>Die dritte Zeile leert also die ganze Tabelle</li>
+          </ul>
+          <div class="callout callout-orange">
+            <p>Es gibt keine Rückfrage und kein Rückgängig.</p>
+          </div>
+        </div>
+        <aside class="notes">Der Moment für die Warnung, aber ohne Drama: In unserem Ladeskript ist das
+          letzte Kommando gleich Absicht. Merksatz: erst als SELECT mit derselben WHERE-Bedingung ausprobieren,
+          dann das SELECT durch UPDATE oder DELETE ersetzen. Wer produktiv arbeitet, macht vorher einen Export
+          in phpMyAdmin.</aside>
+      </section>
+
+      <!-- ============ 24 ============ -->
+      <section id="phpmyadmin">
+        <h2>phpMyAdmin</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <p class="list-intro">phpMyAdmin ist eine Oberfläche im Browser für eure Datenbank.</p>
+              <ul class="list-tight text-sm">
+                <li>Tabellen anlegen, Daten ansehen, Zeilen löschen</li>
+                <li>Jede Aktion zeigt euch das SQL dazu an</li>
+                <li>Der Reiter «SQL» nimmt eigene Befehle entgegen</li>
+              </ul>
+            </div>
+            <div>
+              <div class="callout callout-blue">
+                <p>Was ihr klickt, könnt ihr also auch lesen und lernen.</p>
+              </div>
+            </div>
+          </div>
+          <div class="callout callout-orange">
+            <p>Angelegt wird die Tabelle einmal von Hand.</p>
+            <p>Gefüllt wird sie danach nur noch von <code>load.php</code>.</p>
+          </div>
+        </div>
+        <aside class="notes">Der zweite Satz im goldenen Kasten ist wichtiger, als er klingt: Am Marktstand
+          muss die Pipeline erklärbar sein, und handgetippte Zeilen sind es nicht. Tipp für die Gruppen: Die
+          CREATE-TABLE-Befehle nach dem Klicken exportieren und als schema.sql ins Repository legen – dann
+          kann jede Person im Team dieselbe Struktur wiederherstellen.</aside>
+      </section>
+
+      <!-- ============ 25 Trenner ============ -->
+      <section id="divider-pdo" class="section-divider" data-state="is-section-divider">
+        <div class="etl-strip">Extract<span class="sep">→</span>Transform<span class="sep">→</span><span class="is-here">Load</span><span class="sep">→</span>Datenbank<span class="sep">→</span>Unload<span class="sep">→</span>Chart.js</div>
+        <h1>PDO</h1>
+        <p>Wie PHP mit der Datenbank spricht</p>
+      </section>
+
+      <!-- ============ 26 ============ -->
+      <section id="pdo-bruecke">
+        <h2>PHP spricht kein SQL</h2>
+        <div class="content">
+          <div class="flow">
+            <div class="flow-step"><span class="flow-title">load.php</span><span class="flow-sub">unser PHP-Skript</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step is-active"><span class="flow-title">PDO</span><span class="flow-sub">schickt SQL hin und Resultate zurück</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">MariaDB</span><span class="flow-sub">führt SQL aus</span></div>
+          </div>
+          <ul class="list-tight mt-1">
+            <li>PDO ist fest in PHP eingebaut und heisst PHP Data Objects</li>
+            <li>Wir übergeben SQL als Text und bekommen PHP-Arrays zurück</li>
+            <li>Für MySQL, MariaDB, PostgreSQL und SQLite funktioniert es gleich</li>
+          </ul>
+          <div class="callout callout-blue">
+            <p>PDO ist ein Helfer wie <code>fetchJson()</code> beim Extract, nur für Datenbanken statt APIs.</p>
+          </div>
+        </div>
+        <aside class="notes">Der Vergleich mit fetchJson trägt weiter, als er zuerst scheint: Auch dort ging
+          eine Anfrage raus und ein Array kam zurück, und auch dort war das Protokoll dazwischen nicht unser
+          Thema. Wer mysqli aus dem Internet kennt: dasselbe Ziel, ältere Schnittstelle, wir nehmen PDO.</aside>
+      </section>
+
+      <!-- ============ 27 ============ -->
+      <section id="verbindung">
+        <h2>Die Verbindung aufbauen</h2>
+        <div class="content">
+          <div class="code-pair">
+            <div>
+              <span class="code-label">config.php</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+&lt;?php
+$host     = 'localhost';
+$dbname   = 'im3_hitzesommer';
+$username = 'im3';
+$password = 'nicht_dieses';
+
+$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
+              </code></pre>
+            </div>
+            <div>
+              <span class="code-label">load.php</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+require __DIR__ . '/config.php';
+
+$pdo = new PDO($dsn, $username, $password, $options);
+              </code></pre>
+            </div>
+          </div>
+          <ul class="list-tight text-sm mt-1">
+            <li>Der DSN sagt PDO, welche Datenbank wo liegt</li>
+            <li><code>charset=utf8mb4</code> rettet Umlaute und Emojis</li>
+            <li>Lokal kommt in den DSN zusätzlich <code>port=8889</code></li>
+          </ul>
+          <div class="callout callout-red">
+            <p class="text-lg"><strong>config.php</strong> enthält euer Passwort und darf nie auf GitHub landen.</p>
+            <p class="text-sm">Tragt die Datei in <code>.gitignore</code> ein, bevor ihr das erste Mal committet.</p>
+          </div>
+        </div>
+        <aside class="notes">DSN heisst Data Source Name und ist einfach die Adresse der Datenbank. Der
+          Grund für die eigene Datei ist nicht Ordnung, sondern der Wechsel zwischen lokal und Server: Nur
+          diese Datei unterscheidet sich, der ganze übrige Code bleibt gleich. Die $options mit
+          ERRMODE_EXCEPTION stehen ebenfalls in config.php und kommen auf der übernächsten Folie.</aside>
+      </section>
+
+      <!-- ============ 28 ============ -->
+      <section id="config-nicht-ins-git">
+        <h2>Zugangsdaten gehören nicht ins Repository</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <p class="list-intro">So arbeitet das Team damit.</p>
+              <ul class="list-tight text-sm">
+                <li><code>config.php</code> steht in <code>.gitignore</code></li>
+                <li>Eine <code>config.template.php</code> ohne Werte liegt im Repository</li>
+                <li>Jede Person kopiert sie und trägt ihre eigenen Werte ein</li>
+              </ul>
+            </div>
+            <div>
+              <span class="code-label">.gitignore</span>
+              <div class="output">config.php</div>
+              <div class="callout callout-orange">
+                <p>Auch KI-Werkzeuge bekommen diese Datei nicht zu sehen.</p>
+              </div>
+            </div>
+          </div>
+          <div class="callout callout-red">
+            <p class="text-lg">Ein Passwort, das einmal in einem Commit steht, bleibt in der Historie stehen.</p>
+            <p class="text-sm">Wer es trotzdem hochgeladen hat, ändert sofort das Passwort.</p>
+          </div>
+        </div>
+        <aside class="notes">Im Repository liegt bereits eine config.template.php, die genau dafür gedacht
+          ist. Der letzte Satz ist der Grund, warum das jetzt kommt und nicht später: Nachträglich aus der
+          Historie entfernen ist mühsam, und öffentliche Repositories werden automatisiert nach genau solchen
+          Dateien durchsucht. Wer es doch einmal committet, ändert das Passwort und diskutiert nicht.</aside>
+      </section>
+
+      <!-- ============ 29 ============ -->
+      <section id="prepare-execute">
+        <h2>Erst vorbereiten, dann ausführen</h2>
+        <div class="content">
+          <p class="list-intro text-sm">Werte schreiben wir nie direkt in den SQL-Text.</p>
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$insertSummer = $pdo-&gt;prepare(
+    'INSERT INTO heat_summers (city_id, year, measurement_days, hot_days, max_temperature_c)
+     VALUES (:city_id, :year, :measurement_days, :hot_days, :max_temperature_c)'
+);
+
+$insertSummer-&gt;execute([
+    'city_id' =&gt; 1,
+    'year' =&gt; 2023,
+    'measurement_days' =&gt; 92,
+    'hot_days' =&gt; 12,
+    'max_temperature_c' =&gt; 36.3,
+]);
+          </code></pre>
+          <ul class="list-tight text-sm mt-1">
+            <li>Die Namen mit Doppelpunkt sind Platzhalter und keine Werte</li>
+            <li><code>prepare</code> schickt den Bauplan, <code>execute</code> schickt die Werte</li>
+            <li>Die Datenbank hält beides getrennt, deshalb kann kein Wert zu Code werden</li>
+          </ul>
+        </div>
+        <aside class="notes">Das Prinzip an der Tafel: Der Satzbau geht einmal hin, die Wörter kommen später
+          und einzeln. Deshalb spielt es keine Rolle mehr, was in einem Wert steht. Die Schlüssel im Array
+          müssen genau den Platzhaltern entsprechen, ohne Doppelpunkt – das ist die häufigste Fehlermeldung
+          im Code-Along.</aside>
+      </section>
+
+      <!-- ============ 30 ============ -->
+      <section id="schleife">
+        <h2>Einmal vorbereiten, 258-mal ausführen</h2>
+        <div class="content">
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+foreach ($rows as $row) {
+    $insertSummer-&gt;execute([
+        'city_id'           =&gt; $cityIds[$row['city']],
+        'year'              =&gt; $row['year'],
+        'measurement_days'  =&gt; $row['measurement_days'],
+        'hot_days'          =&gt; $row['hot_days'],
+        'max_temperature_c' =&gt; $row['max_temperature_c'],
+    ]);
+}
+          </code></pre>
+          <ul class="list-tight text-sm mt-1">
+            <li><code>prepare</code> steht vor der Schleife und läuft genau einmal</li>
+            <li><code>execute</code> steht in der Schleife und läuft für jede Zeile</li>
+            <li>Das ist schneller und lesbarer als 258 zusammengebaute Befehle</li>
+          </ul>
+          <div class="callout callout-blue">
+            <p>Die Werte kommen unverändert aus dem Transform.</p>
+          </div>
+        </div>
+        <aside class="notes">Hier schliesst sich der Kreis zum letzten Block: Weil der Transform bereits
+          echte Zahlen und den vereinbarten Datenvertrag liefert, ist diese Schleife so kurz. Wer hier noch
+          umrechnen oder umbenennen muss, hat es im Transform vergessen – das ist eine gute Diagnose für die
+          Projektgruppen.</aside>
+      </section>
+
+      <!-- ============ 31 ============ -->
+      <section id="fremdschluessel-fuellen">
+        <h2>Woher kommt die <code>city_id</code>?</h2>
+        <div class="content">
+          <p class="list-intro">Im Transform steht «Bern», in der Tabelle braucht es die Nummer von Bern.</p>
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$findCity-&gt;execute([$city]);
+$id = $findCity-&gt;fetchColumn();
+
+if ($id === false) {
+    $insertCity-&gt;execute([$city]);
+    $id = $pdo-&gt;lastInsertId();
+}
+          </code></pre>
+          <ul class="list-tight text-sm mt-1">
+            <li><code>fetchColumn</code> holt den ersten Wert der ersten gefundenen Zeile</li>
+            <li>Ohne Treffer liefert es <code>false</code>, und dann legen wir die Stadt an</li>
+            <li><code>lastInsertId</code> gibt die Nummer zurück, die die Datenbank gerade vergeben hat</li>
+          </ul>
+        </div>
+        <aside class="notes">Das Muster heisst «suchen, sonst anlegen» und begegnet euch in jedem Projekt mit
+          zwei Tabellen wieder. Der Vergleich mit === false ist genau, weil die id 0 sonst wie «nicht gefunden»
+          aussähe. Im Code-Along merken wir uns die gefundenen Nummern zusätzlich in einem Array, damit nicht
+          258-mal dieselbe Abfrage läuft.</aside>
+      </section>
+
+      <!-- ============ 32 ============ -->
+      <section id="zweimal-laden">
+        <h2>Was beim zweiten Aufruf passiert</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr auto 1fr; column-gap: 32px; align-items: start;">
+            <div>
+              <span class="code-label">nach dem ersten Aufruf</span>
+              <div class="output">258 Zeilen</div>
+            </div>
+            <div class="text-2xl text-muted" style="align-self: center;">→</div>
+            <div>
+              <span class="code-label">nach dem zweiten Aufruf</span>
+              <div class="output">516 Zeilen</div>
+            </div>
+          </div>
+          <ul class="list-tight text-sm mt-1">
+            <li><code>INSERT</code> fragt nicht, ob es die Zeile schon gibt</li>
+            <li>Beim Entwickeln ruft ihr <code>load.php</code> zwanzigmal auf</li>
+            <li>Der Chart zeigt danach jeden Sommer doppelt</li>
+          </ul>
+          <div class="callout callout-orange">
+            <p>Ein Ladeskript muss man mehrmals aufrufen können.</p>
+          </div>
+        </div>
+        <aside class="notes">Das ist der Fehler, der in diesem Block am häufigsten passiert, und er meldet
+          sich nicht – die Zahlen sehen nur plötzlich doppelt so hoch aus. Frage in die Klasse, bevor die
+          Lösung kommt: Wie verhindert ihr das? Meist kommen beide Antworten der nächsten Folie aus dem
+          Raum.</aside>
+      </section>
+
+      <!-- ============ 33 ============ -->
+      <section id="zwei-muster">
+        <h2>Zwei Muster, je nach Datenquelle</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <h3>Stand neu schreiben</h3>
+              <p class="text-sm list-intro">Für einen historischen Datensatz, der jedes Mal vollständig kommt.</p>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$pdo-&gt;exec('DELETE FROM heat_summers');
+              </code></pre>
+              <p class="text-sm">Diese Zeile steht vor der Schleife.</p>
+            </div>
+            <div>
+              <h3>Dazuschreiben ohne Duplikate</h3>
+              <p class="text-sm list-intro">Für eine Live-Sammlung, die über Wochen wächst.</p>
+              <ul class="list-tight text-sm">
+                <li>Eine <code>UNIQUE</code>-Regel auf Zeitpunkt und Ort</li>
+                <li>Dazu <code>INSERT IGNORE</code> statt <code>INSERT</code></li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-orange">
+            <p>Bei einer Live-Sammlung wäre Leeren fatal, weil die Vergangenheit nirgends sonst steht.</p>
+          </div>
+        </div>
+        <aside class="notes">Die Entscheidung hängt allein daran, ob die Quelle die Vergangenheit noch einmal
+          liefern kann. Open-Meteo liefert 1940 bis heute jederzeit neu, ein Sensor liefert nur jetzt. Gruppen
+          mit Live-Sammlung müssen das heute festlegen; für sie steht das genaue INSERT-IGNORE-Beispiel im
+          Cheatsheet. Wir bauen im Code-Along das linke Muster.</aside>
+      </section>
+
+      <!-- ============ 34 ============ -->
+      <section id="fehler">
+        <h2>Wenn etwas schiefgeht</h2>
+        <div class="content">
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$options = [
+    PDO::ATTR_ERRMODE            =&gt; PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC,
+];
+          </code></pre>
+          <ul class="list-tight text-sm">
+            <li>Die erste Zeile sorgt dafür, dass Fehler laut abbrechen statt still zu scheitern</li>
+            <li>Die zweite lässt PDO Zeilen als assoziative Arrays zurückgeben</li>
+          </ul>
+          <div class="callout callout-blue">
+            <p>Lest die Fehlermeldung von unten nach oben und sucht den Tabellen- oder Spaltennamen darin.</p>
+          </div>
+          <p class="text-sm mt-1">Die drei häufigsten Fehler sind Tippfehler im Spaltennamen, falsche
+            Zugangsdaten und ein Fremdschlüssel ohne passende Stadt.</p>
+        </div>
+        <aside class="notes">ERRMODE_EXCEPTION ist die wichtigste Zeile des ganzen Setups: Ohne sie läuft ein
+          fehlgeschlagenes INSERT einfach durch und die Tabelle bleibt leer. Typische Meldungen kurz vorlesen,
+          damit sie im Code-Along wiedererkannt werden: «Unknown column», «Access denied», «Cannot add or
+          update a child row». Alle drei sind eindeutig, wenn man sie einmal gesehen hat.</aside>
+      </section>
+
+      <!-- ============ 35 Schluss ============ -->
+      <section id="schluss">
+        <h2>Zum Mitnehmen</h2>
+        <div class="content" style="justify-content: center;">
+          <p class="big-statement">Der Datenvertrag aus dem Transform ist bereits<br>eine gute Grundlage für euer Datenmodell.</p>
+          <p class="mt-2"><span class="next-step">Nächster Schritt: das eigene Datenmodell auf Papier</span></p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      width: 1280,
+      height: 720,
+      margin: 0,
+      controls: true,
+      progress: true,
+      slideNumber: 'c',
+      hash: true,
+      transition: 'slide',
+      center: false,
+      plugins: [ RevealHighlight, RevealNotes ]
+    });
+  </script>
+</body>
+</html>
