@@ -22,5 +22,12 @@ Die Übungen sind selbständig lösbar. Jeder Ordner enthält:
 
 ## Block C – Transform
 
-1. [01 Eigene Transform-Regeln](C_transform/01_eigener_transform/): Datenfrage,
-   Regeln, Datenvertrag, KI-Auftrag und Audit für das eigene Projekt entwickeln
+Dreierserie mit denselben Daten von [Inside Airbnb](https://insideairbnb.com/).
+Sie bauen aufeinander auf und sind auch einzeln lösbar.
+
+1. [01 Airbnb-Daten holen & erkunden](C_transform/01_airbnb_erkunden/): echten
+   Datensatz herunterladen und mit `explore.php` prüfen, was in den Spalten steht
+2. [02 Datenfrage schärfen](C_transform/02_datenfrage/): aus den Befunden eine
+   beantwortbare Datenfrage und einen Datenvertrag machen (ohne PHP)
+3. [03 Airbnb-Daten transformieren](C_transform/03_airbnb_transformieren/):
+   filtern, gruppieren, aggregieren und als JSON mit Audit-Zahlen ausliefern

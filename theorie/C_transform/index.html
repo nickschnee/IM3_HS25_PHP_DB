@@ -36,8 +36,8 @@
         <div class="content">
           <ul class="text-xl">
             <li>Die Frage bestimmt die Form</li>
-            <li>Sieben Arten zu transformieren</li>
             <li>Datenvertrag und Audit</li>
+            <li>Sieben Arten zu transformieren</li>
             <li>Wie die Dateien zusammenhängen</li>
             <li>Neue Schreibweisen im Code</li>
             <li>Die KI schreibt den Code, nicht die Regeln</li>
@@ -123,7 +123,7 @@
       <section id="hitzesommer-frage">
         <h2>Von der Frage zu den Regeln</h2>
         <div class="content">
-          <div class="callout callout-gray">
+          <div class="callout callout-blue">
             <p>Wie hat sich die Anzahl Hitzetage pro meteorologischem Sommer in Bern, Chur und Zürich seit
               1940 verändert?</p>
           </div>
@@ -134,7 +134,7 @@
             <li>Wir zählen pro Stadt und Jahr</li>
             <li>Einen unvollständigen Sommer vergleichen wir nicht mit</li>
           </ul>
-          <div class="callout callout-blue">
+          <div class="callout callout-orange">
             <p>Keine dieser vier Regeln steht in den Daten – sie stehen alle in der Frage.</p>
           </div>
         </div>
@@ -216,9 +216,9 @@ spinner shark</div>
           Klasse: Welche dieser Zeilen nennt eine Art? Bei vier von sechs: keine.</aside>
       </section>
 
-      <!-- ============ 9 ============ -->
+      <!-- ============ 10 ============ -->
       <section id="erst-schauen">
-        <h2>Zuerst erkunden</h2>
+        <h2>Darum: Zuerst erkunden</h2>
         <div class="content">
           <div style="display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: start;">
             <div>
@@ -228,10 +228,10 @@ spinner shark</div>
                 <li>Wie oft kommt jeder von ihnen vor?</li>
                 <li>Welche sagen in Wahrheit «wir wissen es nicht»?</li>
               </ul>
-              <div class="callout callout-green mt-1">
-                <p class="text-sm">Dafür lohnt sich ein kleines Skript, das nur zählt.</p>
-                <p class="text-sm">Unser <code>explore.php</code> tut genau das – solche Skripte schreibt
-                  euch die KI zuverlässig.</p>
+              <div class="callout callout-blue mt-1">
+                <p class="text-sm">Dafür lohnt sich ein kleines Skript, das nur erkundet.</p>
+                <p class="text-sm">Dieses nennen wir <code>explore.php</code>.</p>
+                <p class="text-sm">Dafür lässt sich KI sehr gut einsetzen.</p>
               </div>
             </div>
             <div>
@@ -244,28 +244,27 @@ spinner shark</div>
                 <tr><td>verschiedene Werte in Activity</td><td style="text-align: right;">1504</td></tr>
                 <tr><td>verschiedene Werte in Type</td><td style="text-align: right;">9</td></tr>
               </table>
+              <p class="text-sm mt-1">Demo:
+                <a href="http://localhost:8000/code-alongs/C_transform/10_sharkdaten_transformieren/explore.php"
+                   target="_blank" rel="noopener">explore.php im Browser öffnen</a></p>
             </div>
           </div>
-          <div style="margin-top: auto;">
-            <div class="callout callout-orange">
-              <p>1468 Schreibweisen heisst: Eine Kategorie «für alle» ist unmöglich.</p>
-              <p>9 Werte heisst: Hier lohnt sich ein exakter Filter.</p>
-            </div>
-            <p class="text-sm mt-1 mb-0">Ohne diesen Blick schreibt ihr Regeln für Daten, die es so gar
-              nicht gibt.</p>
-          </div>
+          <p class="text-sm mb-0" style="margin-top: auto;">Ohne diesen Blick schreibt ihr Regeln für
+            Daten, die es so gar nicht gibt.</p>
         </div>
-        <aside class="notes">Das Skript liegt fertig im Code-Along und wird gleich im Browser geöffnet. Für
+        <aside class="notes">Der Demo-Link zeigt auf localhost:8000 und funktioniert nur, wenn der Server
+          mit «php -S localhost:8000» im Hauptordner des Repositorys läuft. Er öffnet einen neuen Tab, die
+          Präsentation bleibt also stehen. Das Skript liegt fertig im Code-Along und wird gleich im Browser geöffnet. Für
           die eigenen Projektdaten braucht es dasselbe: ein Skript, das nur zählt. Diese zehn Minuten sind
           keine verlorene Zeit, sondern die Grundlage jeder späteren Regel.</aside>
       </section>
 
-      <!-- ============ 9 Split ============ -->
+      <!-- ============ 11 Split ============ -->
       <section id="shark-frage" class="split-slide">
         <div class="split-half split-bad">
           <h2>Schlechte Frage</h2>
           <p class="text-sm list-intro">Welcher Hai greift am häufigsten an?</p>
-          <ul class="list-tight text-sm">
+          <ul class="list-tight text-sm fragment" data-fragment-index="0">
             <li>Kein Zeitraum genannt</li>
             <li>Unklar, welche Vorfälle zählen</li>
             <li>Bei 60 Prozent fehlt die Art</li>
@@ -273,41 +272,43 @@ spinner shark</div>
           </ul>
         </div>
         <div class="split-half split-good">
-          <h2>Gute Frage</h2>
-          <p class="text-sm list-intro">Welche identifizierte Hai-Kategorie kommt in bestätigten,
-            unprovozierten Vorfällen von 1950 bis 2018 am häufigsten vor?</p>
-          <ul class="list-tight text-sm">
+          <div class="fragment" data-fragment-index="1">
+            <h2>Gute Frage</h2>
+            <p class="text-sm list-intro">Welche identifizierte Hai-Kategorie kommt in bestätigten,
+              unprovozierten Vorfällen von 1950 bis 2018 am häufigsten vor?</p>
+          </div>
+          <ul class="list-tight text-sm fragment" data-fragment-index="2">
             <li>Zeitraum steht drin</li>
             <li>Auswahl der Fälle steht drin</li>
             <li>Das Wort «identifiziert» gibt die Lücke zu</li>
           </ul>
         </div>
-        <aside class="notes">Die rechte Frage ist sperrig, und das ist Absicht. Wer sie laut vorliest, hört
+        <aside class="notes">Drei Klicks: Erst steht nur die schlechte Frage da – die Klasse sagt selbst,
+          was daran nicht stimmt, bevor die vier Punkte erscheinen. Dann kommt die bessere Frage, und erst
+          zuletzt, was sie besser macht. Die rechte Frage ist sperrig, und das ist Absicht. Wer sie laut vorliest, hört
           die Einschränkungen. In der Story darf die Überschrift wieder kurz sein – die Einschränkung steht
           dann in der Bildlegende.</aside>
       </section>
 
-      <!-- ============ 10 ============ -->
+      <!-- ============ 12 ============ -->
       <section id="haeufigkeit-risiko">
         <h2>Häufigkeit ist kein Risiko</h2>
         <div class="content">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch;">
-            <div style="display: flex; flex-direction: column;">
-              <span class="code-label">was wir haben</span>
-              <div class="output" style="flex: 1;">426 Vorfälle
+          <!-- Ein Grid statt zweier Spalten-Container: So liegen die beiden Ausgabe-Kaesten in
+               derselben Zeile und sind dadurch automatisch gleich hoch. -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; align-items: stretch;">
+            <span class="code-label">was wir haben</span>
+            <span class="code-label">was ein Risiko bräuchte</span>
+            <div class="output" style="margin: 0;">426 Vorfälle
 mit White shark</div>
-              <p class="text-sm text-muted">Das ist eine Zählung in diesem Datensatz.</p>
-            </div>
-            <div style="display: flex; flex-direction: column;">
-              <span class="code-label">was ein Risiko bräuchte</span>
-              <div class="output" style="flex: 1;">      Vorfälle
+            <div class="output" style="margin: 0;">      Vorfälle
 ──────────────────
    Gelegenheiten</div>
-              <p class="text-sm text-muted">Diesen Nenner enthält der Datensatz nicht.</p>
-            </div>
+            <p class="text-sm text-muted mt-1">Das ist eine Zählung in diesem Datensatz.</p>
+            <p class="text-sm text-muted mt-1">Diesen Nenner enthält der Datensatz nicht.</p>
+            <p class="text-sm mt-1" style="grid-column: 2;">Zur Gelegenheit gehören beide Seiten: wie viele
+              Menschen wie lange im Wasser waren – und wie viele Haie dieser Art dort überhaupt leben.</p>
           </div>
-          <p class="text-sm mt-1">Zur Gelegenheit gehören beide Seiten: wie viele Menschen wie lange im
-            Wasser waren – und wie viele Haie dieser Art dort überhaupt leben.</p>
           <div class="callout callout-orange">
             <p>Eine häufige Art steht auch dann zuoberst, wenn von ihr wenig Gefahr ausgeht.</p>
             <p>Ohne Nenner keine Aussage über Gefahr, Wahrscheinlichkeit oder Ursache.</p>
@@ -320,197 +321,13 @@ mit White shark</div>
           fehlt in eurem Datensatz?</aside>
       </section>
 
-      <!-- ============ 11 Trenner ============ -->
-      <section id="divider-werkzeugkasten" class="section-divider" data-state="is-section-divider">
-        <div class="etl-strip">Extract<span class="sep">→</span><span class="is-here">Transform</span><span class="sep">→</span>Load<span class="sep">→</span>Datenbank<span class="sep">→</span>Unload<span class="sep">→</span>Chart.js</div>
-        <h1>Sieben Arten<br>zu transformieren</h1>
-        <p>Der Werkzeugkasten für jeden Datensatz</p>
-      </section>
-
-      <!-- ============ 12 ============ -->
-      <section id="werkzeugkasten">
-        <h2>Der Werkzeugkasten</h2>
-        <div class="content">
-          <table>
-            <tr>
-              <th style="width: 22%;">Form</th>
-              <th style="width: 40%;">Was passiert</th>
-              <th>Beispiel aus unseren Daten</th>
-            </tr>
-            <tr><td><strong>filtern</strong></td><td>Zeilen weglassen, die nicht zur Frage gehören</td><td>nur Juni bis August</td></tr>
-            <tr><td><strong>deduplizieren</strong></td><td>dieselbe Beobachtung nur einmal behalten</td><td>ein Datum steht zweimal da</td></tr>
-            <tr><td><strong>bereinigen</strong></td><td>falsche, unmögliche oder fehlende Werte behandeln</td><td><code>18C</code>, <code>-50</code>, <code>N/A</code></td></tr>
-            <tr><td><strong>normalisieren</strong></td><td>gleiche Bedeutung, gleiche Schreibweise</td><td><code>Boogie boarding</code> → Surfing</td></tr>
-            <tr><td><strong>umbenennen</strong></td><td>Feldnamen auf den Datenvertrag bringen</td><td><code>Rain (mm)</code> → <code>precipitation_mm</code></td></tr>
-            <tr><td><strong>ableiten</strong></td><td>aus vorhandenen Werten einen neuen berechnen</td><td>31.2 °C → Hitzetag</td></tr>
-            <tr><td><strong>aggregieren</strong></td><td>mehrere Zeilen zu einer zusammenfassen</td><td>92 Tage → ein Sommer</td></tr>
-          </table>
-          <p class="text-sm text-muted mt-1">Felder, die niemand braucht, lassen wir beim Bauen der
-            Zielstruktur einfach weg.</p>
-        </div>
-        <aside class="notes">Diese sieben Begriffe stehen gleich an der Wand, wenn die Klasse die
-          Wettertabelle auf Papier bearbeitet. Sie sind dort der Auftrag: zu jedem Begriff mindestens eine
-          Stelle im Blatt finden. Nicht auswendig lernen lassen, sondern als Suchraster benutzen.</aside>
-      </section>
-
-      <!-- ============ 13 Split ============ -->
-      <section id="ableiten-aggregieren" class="split-slide">
-        <div class="split-half split-good">
-          <h2>ableiten</h2>
-          <p class="text-sm list-intro">Aus einer Zeile wird eine Zeile mit einem Wert mehr.</p>
-          <table class="mini-table is-narrow">
-            <tr><th>Datum</th><th>°C</th><th>Hitzetag</th></tr>
-            <tr><td>2023-07-14</td><td>31.2</td><td>ja</td></tr>
-            <tr><td>2023-07-15</td><td>24.8</td><td>nein</td></tr>
-          </table>
-          <p class="text-sm text-muted">Die Anzahl Zeilen bleibt gleich.</p>
-        </div>
-        <div class="split-half split-bad">
-          <h2>aggregieren</h2>
-          <p class="text-sm list-intro">Aus vielen Zeilen wird eine einzige.</p>
-          <table class="mini-table is-narrow">
-            <tr><th>Stadt</th><th>Jahr</th><th>Hitzetage</th></tr>
-            <tr><td>Bern</td><td>2023</td><td>12</td></tr>
-          </table>
-          <p class="text-sm text-muted">Die einzelnen Tage sind danach weg.</p>
-        </div>
-        <aside class="notes">Diese beiden werden am häufigsten verwechselt, auch im Lösungsblatt der
-          Papierübung. Merkhilfe an die Tafel: Ableiten schaut nach rechts in derselben Zeile, aggregieren
-          schaut nach unten über viele Zeilen.</aside>
-      </section>
-
-      <!-- ============ 14 ============ -->
-      <section id="untersuchungseinheit">
-        <h2>Was bedeutet eine Zeile?</h2>
-        <div class="content">
-          <p class="list-intro">Die Untersuchungseinheit ist die Antwort auf genau diese Frage.</p>
-          <table>
-            <tr>
-              <th style="width: 34%;">Projekt</th>
-              <th style="width: 33%;">vorher</th>
-              <th>nachher</th>
-            </tr>
-            <tr><td>Hitzesommer</td><td>ein Tag in einer Stadt</td><td>eine Stadt in einem Sommer</td></tr>
-            <tr><td>Hai-Rangliste</td><td>ein einzelner Vorfall</td><td>eine Kategorie mit ihrer Anzahl</td></tr>
-            <tr><td>euer Projekt</td><td>eine Messung</td><td>vielleicht eine Woche, ein Ort, ein Land</td></tr>
-          </table>
-          <div class="callout callout-orange mt-1">
-            <p>Nach dem Aggregieren lässt sich keine Frage mehr zu den einzelnen Ereignissen beantworten.</p>
-          </div>
-          <p class="text-sm mt-1">Deshalb wird zuerst entschieden, welche Fragen die Story stellen soll.</p>
-        </div>
-        <aside class="notes">Konkret machen: Nach der Aggregation kann niemand mehr fragen, an welchem Tag im
-          Sommer 2003 es am heissesten war – diese Zeile existiert nicht mehr. Wer beides braucht, speichert
-          später zwei Ergebnisse.</aside>
-      </section>
-
-      <!-- ============ 15 ============ -->
-      <section id="reihenfolge">
-        <h2>Erst filtern, dann rechnen</h2>
-        <div class="content">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
-            <div>
-              <h3>Falsche Reihenfolge</h3>
-              <ul class="list-tight text-sm">
-                <li>Durchschnitt über alle Tage rechnen</li>
-                <li>Danach die Wintertage entfernen</li>
-                <li>Der Durchschnitt enthält sie trotzdem</li>
-              </ul>
-            </div>
-            <div>
-              <h3>Richtige Reihenfolge</h3>
-              <ul class="list-tight text-sm">
-                <li>Wintertage entfernen</li>
-                <li>Fehlende Werte behandeln</li>
-                <li>Danach rechnen und zusammenfassen</li>
-              </ul>
-            </div>
-          </div>
-          <div class="callout callout-blue mt-1">
-            <p>Der Fehler wirft keine Fehlermeldung, sondern liefert eine plausible falsche Zahl.</p>
-          </div>
-          <p class="text-sm mt-1">Als Faustregel: erst auswählen, dann bereinigen, dann rechnen, zuletzt
-            zusammenfassen.</p>
-        </div>
-        <aside class="notes">In der Papierübung fällt das an einer Stelle auf: Der fehlende Regenwert steht
-          ausgerechnet in der Zeile, die vorher schon weggefiltert wird. Wer sie trotzdem ausfüllt, hat das
-          Filtern vergessen.</aside>
-      </section>
-
-      <!-- ============ 16 ============ -->
-      <section id="null-nicht-null">
-        <h2><code>null</code> ist nicht <code>0</code></h2>
-        <div class="content">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
-            <div>
-              <span class="code-label">im Rohdatensatz steht</span>
-              <div class="output">Rain (mm): N/A</div>
-              <p class="text-sm">Das heisst: Wir wissen es nicht.</p>
-              <p class="text-sm">Das heisst nicht: Es hat nicht geregnet.</p>
-            </div>
-            <div>
-              <span class="code-label">was passiert, wenn man 0 einsetzt</span>
-              <ul class="list-tight text-sm">
-                <li>Jeder Durchschnitt wird zu tief</li>
-                <li>Das Diagramm sieht trotzdem plausibel aus</li>
-                <li>Niemand bemerkt den Fehler</li>
-              </ul>
-            </div>
-          </div>
-          <div class="callout callout-orange">
-            <p>Unbekannte Werte werden <code>null</code> oder fallen bewusst weg.</p>
-            <p>Wie viele es waren, gehört ins Audit.</p>
-          </div>
-          <p class="text-sm mt-1"><code>false</code>, <code>0</code>, <code>''</code> und <code>null</code>
-            bedeuten vier verschiedene Dinge.</p>
-        </div>
-        <aside class="notes">Fast alle setzen in der Papierübung eine 0 ein. Das ist der Moment, um zu
-          zeigen, dass ein stiller Fehler schlimmer ist als ein lauter. Bei fehlenden Temperaturen im
-          Hitzesommer-Datensatz machen wir es gleich: Der Tag zählt weder als Hitzetag noch als kühler
-          Tag.</aside>
-      </section>
-
-      <!-- ============ 17 ============ -->
-      <section id="mapping-behauptung">
-        <h2>Ein Mapping ist eine Behauptung</h2>
-        <div class="content">
-          <div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px; align-items: start;">
-            <div>
-              <span class="code-label">Rohwerte</span>
-              <div class="output">"Surfing"
-"Boogie boarding"
-"Kite boarding"
-"Surf fishing"</div>
-              <p class="text-sm text-muted">Die ersten drei werden eine Gruppe, die vierte nicht.</p>
-            </div>
-            <div>
-              <p class="list-intro">Wer Kategorien bildet, entscheidet:</p>
-              <ul class="list-tight text-sm">
-                <li>Welche Werte meinen dasselbe?</li>
-                <li>Was passiert mit unsicheren Angaben?</li>
-                <li>Welche Reihenfolge haben die Regeln?</li>
-              </ul>
-            </div>
-          </div>
-          <div class="callout callout-orange">
-            <p><code>Possibly a white shark</code> wird nicht zu <code>White shark</code>.</p>
-            <p>Diese Unsicherheit haben die Erfasser:innen absichtlich hingeschrieben.</p>
-          </div>
-          <p class="text-sm mt-1">Die Begründung gehört in den Code und in <code>TRANSFORM.md</code>.</p>
-        </div>
-        <aside class="notes">Kollisionen sind der Kern: Wer Surfing über das Suchwort «surf» erkennt, fängt
-          auch Surf fishing ein. Solche Fälle findet man nur, indem man die häufigsten Rohwerte anschaut.
-          Genau diese Falle steckt im zweiten Code-Along.</aside>
-      </section>
-
-      <!-- ============ 18 Trenner ============ -->
+      <!-- ============ 13 Trenner ============ -->
       <section id="divider-vertrag" class="section-divider" data-state="is-section-divider">
         <div class="etl-strip">Extract<span class="sep">→</span><span class="is-here">Transform</span><span class="sep">→</span>Load<span class="sep">→</span>Datenbank<span class="sep">→</span>Unload<span class="sep">→</span>Chart.js</div>
         <h1>Datenvertrag<br>und Audit</h1>
-        <p>Was rauskommt und was dabei verloren geht</p>
       </section>
 
-      <!-- ============ 19 ============ -->
+      <!-- ============ 14 ============ -->
       <section id="datenvertrag">
         <h2>Der Datenvertrag</h2>
         <div class="content">
@@ -534,23 +351,23 @@ mit White shark</div>
                 <li><code>max_temperature_c</code> ist eine Kommazahl</li>
                 <li>Alle Zeilen haben dieselben Felder</li>
               </ul>
-              <div class="callout callout-green">
-                <p>Backend und Frontend vereinbaren das <strong>vor</strong> der Implementation.</p>
-                <p>Danach kann das Frontend mit erfundenen Daten anfangen.</p>
-              </div>
+              <p class="text-sm mt-1">Vertrag heisst: Beide Seiten dürfen sich darauf verlassen, und
+                geändert wird er nur gemeinsam.</p>
             </div>
           </div>
-          <p class="text-sm mt-1">Vertrag heisst: Beide Seiten dürfen sich darauf verlassen, und geändert
-            wird er nur gemeinsam.</p>
+          <div class="callout callout-blue" style="margin-top: auto;">
+            <p>Backend und Frontend vereinbaren das <strong>vor</strong> der Implementation.</p>
+            <p>Danach kann das Frontend mit erfundenen Daten anfangen.</p>
+          </div>
         </div>
         <aside class="notes">Das ist das Arbeitsergebnis, das die beiden Zweierteams miteinander verbindet.
           Praktischer Tipp für das Projekt: Der Beispieldatensatz gehört als Datei ins Repository, dann
           arbeitet das Frontend sofort damit.</aside>
       </section>
 
-      <!-- ============ 20 ============ -->
+      <!-- ============ 15 ============ -->
       <section id="audit">
-        <h2>Das Audit gehört zum Resultat</h2>
+        <h2>Das Audit</h2>
         <div class="content">
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
             <div>
@@ -586,90 +403,383 @@ mit White shark</div>
           verschiedene Einheiten.</aside>
       </section>
 
-      <!-- ============ 21 ============ -->
-      <section id="abdeckung">
-        <h2>Abdeckung: Für wie viele Fälle gilt die Aussage?</h2>
+      <!-- ============ 16 Trenner ============ -->
+      <section id="divider-werkzeugkasten" class="section-divider" data-state="is-section-divider">
+        <div class="etl-strip">Extract<span class="sep">→</span><span class="is-here">Transform</span><span class="sep">→</span>Load<span class="sep">→</span>Datenbank<span class="sep">→</span>Unload<span class="sep">→</span>Chart.js</div>
+        <h1>Sieben Arten<br>zu transformieren</h1>
+        <p>Der Werkzeugkasten für jeden Datensatz</p>
+      </section>
+
+      <!-- ============ 17 ============ -->
+      <section id="werkzeugkasten">
+        <h2>Der Werkzeugkasten</h2>
         <div class="content">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
-            <div>
-              <span class="code-label">Hai-Kategorien</span>
-              <div class="output">3347 Vorfälle in der Auswahl
-1012 davon mit Kategorie
-──────────────────────────
-30.2 % Abdeckung</div>
-            </div>
-            <div>
-              <span class="code-label">häufigste nicht zugeordnete Rohwerte</span>
-              <div class="output">1378  (leer)
-  34  4' shark
-  30  6' shark
-  29  1.8 m [6'] shark</div>
-            </div>
-          </div>
-          <div class="callout callout-green mt-1">
-            <p>Eine tiefe Abdeckung ist ein Ergebnis und kein Makel.</p>
-            <p>Sie gehört sichtbar in die Story.</p>
-          </div>
-          <p class="text-sm mt-1">Die Liste der unzugeordneten Rohwerte zeigt, ob eine Regel fehlt.</p>
+          <table>
+            <tr>
+              <th style="width: 22%;">Form</th>
+              <th style="width: 40%;">Was passiert</th>
+              <th>Beispiel aus unseren Daten</th>
+            </tr>
+            <tr><td><strong>filtern</strong></td><td>Zeilen weglassen, die nicht zur Frage gehören</td><td>nur Juni bis August</td></tr>
+            <tr><td><strong>deduplizieren</strong></td><td>dieselbe Beobachtung nur einmal behalten</td><td>ein Datum steht zweimal da</td></tr>
+            <tr><td><strong>bereinigen</strong></td><td>falsche, unmögliche oder fehlende Werte behandeln</td><td><code>18C</code>, <code>-50</code>, <code>N/A</code></td></tr>
+            <tr><td><strong>normalisieren</strong></td><td>gleiche Bedeutung, gleiche Schreibweise</td><td><code>Boogie boarding</code> → Surfing</td></tr>
+            <tr><td><strong>umbenennen</strong></td><td>Feldnamen auf den Datenvertrag bringen</td><td><code>Rain (mm)</code> → <code>precipitation_mm</code></td></tr>
+            <tr><td><strong>ableiten</strong></td><td>aus vorhandenen Werten einen neuen berechnen</td><td>31.1 °C → Hitzetag</td></tr>
+            <tr><td><strong>aggregieren</strong></td><td>mehrere Zeilen zu einer zusammenfassen</td><td>92 Tage → ein Sommer</td></tr>
+          </table>
+          <p class="text-sm text-muted mt-1">Felder, die niemand braucht, lassen wir beim Bauen der
+            Zielstruktur einfach weg.</p>
         </div>
-        <aside class="notes">Die Liste ist das eigentliche Werkzeug: Steht dort ein Wert, den man zuordnen
-          könnte, fehlt eine Regel. Steht dort «2 m shark», ist alles richtig gelaufen – eine Grössenangabe
-          nennt keine Art.</aside>
+        <aside class="notes">Diese sieben Begriffe stehen gleich an der Wand, wenn die Klasse die
+          Wettertabelle auf Papier bearbeitet. Sie sind dort der Auftrag: zu jedem Begriff mindestens eine
+          Stelle im Blatt finden. Nicht auswendig lernen lassen, sondern als Suchraster benutzen.</aside>
+      </section>
+
+      <!-- ============ 18 Split ============ -->
+      <section id="filtern">
+        <h2>filtern</h2>
+        <div class="content">
+          <p class="list-intro">Zeilen, die nicht zur Frage gehören, fallen weg.</p>
+          <div style="display: grid; grid-template-columns: 1fr auto 1fr; column-gap: 32px; align-items: start;">
+            <div>
+              <span class="code-label">vorher: alle Tage</span>
+              <table class="mini-table">
+                <tr><th>Datum</th><th>°C</th></tr>
+                <tr><td>2023-01-12</td><td>6.1</td></tr>
+                <tr><td>2023-07-15</td><td>31.1</td></tr>
+                <tr><td>2023-11-03</td><td>9.8</td></tr>
+              </table>
+            </div>
+            <div class="text-2xl text-muted" style="align-self: center;">→</div>
+            <div>
+              <span class="code-label">nachher: nur Sommertage</span>
+              <table class="mini-table">
+                <tr><th>Datum</th><th>°C</th></tr>
+                <tr><td>2023-07-15</td><td>31.1</td></tr>
+              </table>
+            </div>
+          </div>
+          <p class="text-sm mt-1">Die Bedingung steht in der Frage: nur Juni, Juli und August.</p>
+        </div>
+        <aside class="notes">Erste und häufigste Form. Wichtig ist der zweite Satz: Ein Filter ist nie
+          allgemein richtig, er folgt aus der Frage. Bei «Wann war es am heissesten?» wäre genau dieser
+          Filter falsch.</aside>
+      </section>
+
+      <!-- ============ 19 ============ -->
+      <section id="deduplizieren">
+        <h2>deduplizieren</h2>
+        <div class="content">
+          <p class="list-intro">Dieselbe Beobachtung bleibt nur einmal stehen.</p>
+          <div style="display: grid; grid-template-columns: 1fr auto 1fr; column-gap: 32px; align-items: start;">
+            <div>
+              <span class="code-label">vorher</span>
+              <table class="mini-table">
+                <tr><th>Datum</th><th>°C</th></tr>
+                <tr><td>2023-07-15</td><td>31.1</td></tr>
+                <tr><td>2023-07-15</td><td>31.1</td></tr>
+                <tr><td>2023-07-16</td><td>24.0</td></tr>
+              </table>
+            </div>
+            <div class="text-2xl text-muted" style="align-self: center;">→</div>
+            <div>
+              <span class="code-label">nachher</span>
+              <table class="mini-table">
+                <tr><th>Datum</th><th>°C</th></tr>
+                <tr><td>2023-07-15</td><td>31.1</td></tr>
+                <tr><td>2023-07-16</td><td>24.0</td></tr>
+              </table>
+            </div>
+          </div>
+          <p class="text-sm mt-1">Dafür braucht es eine Regel, woran ihr dieselbe Beobachtung erkennt.</p>
+        </div>
+        <aside class="notes">Der unauffälligste Fund in der Papierübung – erfahrungsgemäss findet ihn nur
+          etwa die Hälfte der Paare. Nachfragen, woran man ein Duplikat überhaupt erkennt: gleiches Datum,
+          gleicher Ort, gleiche Messung.</aside>
+      </section>
+
+      <!-- ============ 20 ============ -->
+      <section id="bereinigen">
+        <h2>bereinigen</h2>
+        <div class="content">
+          <p class="list-intro">Falsche, unmögliche und fehlende Werte werden behandelt.</p>
+          <div style="display: grid; grid-template-columns: 1fr auto 1fr; column-gap: 32px; align-items: start;">
+            <div>
+              <span class="code-label">vorher: Rohwert</span>
+              <table class="mini-table">
+                <tr><th>Spalte</th><th>Wert</th></tr>
+                <tr><td>Temperatur</td><td>999</td></tr>
+                <tr><td>Luftfeuchtigkeit</td><td>150</td></tr>
+                <tr><td>Wind</td><td>12 km/h</td></tr>
+                <tr><td>Sonnenstunden</td><td>(leer)</td></tr>
+              </table>
+            </div>
+            <div class="text-2xl text-muted" style="align-self: center;">→</div>
+            <div>
+              <span class="code-label">nachher: bereinigt</span>
+              <table class="mini-table">
+                <tr><th>Spalte</th><th>Wert</th></tr>
+                <tr><td>Temperatur</td><td>null</td></tr>
+                <tr><td>Luftfeuchtigkeit</td><td>null</td></tr>
+                <tr><td>Wind</td><td>12</td></tr>
+                <tr><td>Sonnenstunden</td><td>null</td></tr>
+              </table>
+            </div>
+          </div>
+          <p class="text-sm mt-1">999 ist keine Temperatur, sondern ein Platzhalter für «nicht
+            gemessen».</p>
+          <div class="callout callout-orange" style="margin-top: auto;">
+            <p>Falsch und fehlend sind zwei verschiedene Fälle.</p>
+          </div>
+        </div>
+        <aside class="notes">Vier Sorten Problem in vier Zeilen: Platzhalter, unmöglicher Wert, Einheit am
+          Wert, fehlender Wert. 999 und -999 sind in Wetterdaten übliche Platzhalter für «nicht gemessen» –
+          wer sie stehen lässt, bekommt einen Sommer mit 999 Grad. Luftfeuchtigkeit liegt zwischen 0 und
+          100. Auf dem Arbeitsblatt gleich stecken andere Fälle, die suchen sie selbst.</aside>
+      </section>
+
+      <!-- ============ 21 ============ -->
+      <section id="normalisieren">
+        <h2>normalisieren</h2>
+        <div class="content">
+          <p class="list-intro">Werte mit gleicher Bedeutung bekommen dieselbe Schreibweise.</p>
+          <div style="display: grid; grid-template-columns: 1fr auto 1.1fr; column-gap: 32px; align-items: start;">
+            <div>
+              <span class="code-label">vorher: Rohwerte</span>
+              <table class="mini-table">
+                <tr><th>Activity</th></tr>
+                <tr><td>Surfing</td></tr>
+                <tr><td>Boogie boarding</td></tr>
+                <tr><td>Kite boarding</td></tr>
+                <tr><td>Surf fishing</td></tr>
+              </table>
+            </div>
+            <div class="text-2xl text-muted" style="align-self: center;">→</div>
+            <div>
+              <span class="code-label">nachher: Gruppen</span>
+              <table class="mini-table">
+                <tr><th>Aktivität</th></tr>
+                <tr><td>Surfing &amp; board sports</td></tr>
+                <tr><td>Surfing &amp; board sports</td></tr>
+                <tr><td>Surfing &amp; board sports</td></tr>
+                <tr><td>Fishing</td></tr>
+              </table>
+            </div>
+          </div>
+          <p class="text-sm mt-1">Die vierte Zeile enthält das Wort «surf» und gehört trotzdem woandershin.</p>
+          <div class="callout callout-blue" style="margin-top: auto;">
+            <p>Welche Werte dasselbe meinen, entscheidet ihr und nicht die Daten.</p>
+          </div>
+        </div>
+        <aside class="notes">Die vierte Zeile ist die Falle des ganzen Blocks: Wer Surfing über das Suchwort
+          «surf» erkennt, fängt Surf fishing mit ein. Solche Kollisionen findet man nur in der Liste der
+          häufigsten Rohwerte, nie beim Nachdenken am Schreibtisch. Zweiter Punkt für den Code-Along:
+          Unsichere Angaben wie «Possibly a white shark» werden keiner Kategorie zugeschlagen, denn diese
+          Unsicherheit haben die Erfasser:innen absichtlich hingeschrieben.</aside>
       </section>
 
       <!-- ============ 22 ============ -->
-      <section id="transform-md">
-        <h2><code>TRANSFORM.md</code> im Projekt</h2>
+      <section id="umbenennen">
+        <h2>umbenennen</h2>
         <div class="content">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
-            <ol class="list-tight text-sm">
-              <li>Datenfrage und Zeitraum</li>
-              <li>Untersuchungseinheit</li>
-              <li>alle Filter-, Mapping- und Ableitungsregeln</li>
-              <li>Datenvertrag mit Beispiel</li>
-            </ol>
-            <ol class="list-tight text-sm" start="5">
-              <li>Audit-Zahlen</li>
-              <li>bekannte Grenzen und offene Fälle</li>
-              <li>was mit KI entstand und wie es geprüft wurde</li>
-            </ol>
+          <p class="list-intro">Die Felder bekommen die Namen aus dem Datenvertrag.</p>
+          <div style="display: grid; grid-template-columns: 1fr auto 1fr; column-gap: 32px; align-items: start;">
+            <div>
+              <span class="code-label">vorher: Name in der Quelle</span>
+              <table class="mini-table">
+                <tr><th>Feldname</th></tr>
+                <tr><td>time</td></tr>
+                <tr><td>temperature_2m_max</td></tr>
+                <tr><td>"Species "</td></tr>
+              </table>
+            </div>
+            <div class="text-2xl text-muted" style="align-self: center;">→</div>
+            <div>
+              <span class="code-label">nachher: unser Name</span>
+              <table class="mini-table">
+                <tr><th>Feldname</th></tr>
+                <tr><td>date</td></tr>
+                <tr><td>max_temperature_c</td></tr>
+                <tr><td>shark_category</td></tr>
+              </table>
+            </div>
           </div>
-          <div class="callout callout-blue">
-            <p>Code kann jederzeit neu generiert werden.</p>
-            <p>Diese Entscheidungen müssen stabil bleiben.</p>
+          <p class="text-sm mt-1">Die Einheit gehört in den Namen, nicht an den Wert.</p>
+          <div class="callout callout-blue" style="margin-top: auto;">
+            <p>Das Frontend kennt nur diese Namen – deshalb werden sie vorher vereinbart.</p>
           </div>
-          <p class="text-sm mt-1">Am Marktstand werdet ihr nach genau diesen Punkten gefragt.</p>
         </div>
-        <aside class="notes">Die Vorlage dazu liegt in der Übung als transform-plan.md bereit und wird als
-          TRANSFORM.md ins Projekt kopiert. Anschlussfrage an jede Gruppe: Welche eurer Regeln müsstet ihr am
-          ehesten verteidigen?</aside>
+        <aside class="notes">Das Leerzeichen in «Species » ist echt und stammt aus der CSV-Kopfzeile – genau
+          deshalb hat der Extract die Spaltennamen getrimmt. Zweiter Punkt: Namen werden nicht schöner
+          gemacht, sondern an den Datenvertrag angeglichen.</aside>
       </section>
 
-      <!-- ============ 23 Trenner ============ -->
+      <!-- ============ 23 ============ -->
+      <section id="ableiten">
+        <h2>ableiten</h2>
+        <div class="content">
+          <p class="list-intro">Aus Werten derselben Zeile entsteht ein neuer Wert.</p>
+          <div style="display: grid; grid-template-columns: 1fr auto 1.25fr; column-gap: 32px; align-items: start;">
+            <div>
+              <span class="code-label">vorher: drei Tage aus Bern</span>
+              <table class="mini-table">
+                <tr><th>Datum</th><th>°C</th></tr>
+                <tr><td>2023-07-14</td><td>26.5</td></tr>
+                <tr><td>2023-07-15</td><td>31.1</td></tr>
+                <tr><td>2023-07-16</td><td>24.0</td></tr>
+              </table>
+            </div>
+            <div class="text-2xl text-muted" style="align-self: center;">→</div>
+            <div>
+              <span class="code-label">nachher: eine Spalte mehr</span>
+              <table class="mini-table">
+                <tr><th>Datum</th><th>°C</th><th>Hitzetag</th></tr>
+                <tr><td>2023-07-14</td><td>26.5</td><td>nein</td></tr>
+                <tr><td>2023-07-15</td><td>31.1</td><td>ja</td></tr>
+                <tr><td>2023-07-16</td><td>24.0</td><td>nein</td></tr>
+              </table>
+            </div>
+          </div>
+          <p class="text-sm mt-1">Die Regel dahinter ist unsere Definition:
+            <code>$temperatureC &gt;= 30.0</code></p>
+          <div class="callout callout-blue" style="margin-top: auto;">
+            <p>Drei Zeilen bleiben drei Zeilen – es kommt nur ein Wert dazu.</p>
+          </div>
+        </div>
+        <aside class="notes">Ableiten schaut nach rechts in derselben Zeile. Der neue Wert steckt schon in
+          den Daten, er wird nur ausgesprochen. Frage in die Klasse: Was ändert sich, wenn wir die Schwelle
+          auf 25 Grad setzen? Antwort: dieselbe Tabelle, andere Story.</aside>
+      </section>
+
+      <!-- ============ 24 ============ -->
+      <section id="aggregieren">
+        <h2>aggregieren</h2>
+        <div class="content">
+          <p class="list-intro">Aus vielen Zeilen wird eine einzige.</p>
+          <div style="display: grid; grid-template-columns: 1.25fr auto 1fr; column-gap: 32px; align-items: start;">
+            <div>
+              <span class="code-label">vorher: 92 Sommertage in Bern</span>
+              <table class="mini-table">
+                <tr><th>Datum</th><th>°C</th><th>Hitzetag</th></tr>
+                <tr><td>2023-07-14</td><td>26.5</td><td>nein</td></tr>
+                <tr><td>2023-07-15</td><td>31.1</td><td>ja</td></tr>
+                <tr><td>…</td><td>…</td><td>…</td></tr>
+              </table>
+            </div>
+            <div class="text-2xl text-muted" style="align-self: center;">→</div>
+            <div>
+              <span class="code-label">nachher: eine Zeile</span>
+              <table class="mini-table">
+                <tr><th>Stadt</th><th>Jahr</th><th>Hitzetage</th></tr>
+                <tr><td>Bern</td><td>2023</td><td>12</td></tr>
+              </table>
+            </div>
+          </div>
+          <p class="text-sm mt-1">Aus 92 Tageszeilen wird eine Zeile pro Stadt und Sommer.</p>
+          <div class="callout callout-orange" style="margin-top: auto;">
+            <p>Die einzelnen Tage sind danach weg.</p>
+            <p>Welcher Tag der heisseste war, lässt sich hier nicht mehr fragen.</p>
+          </div>
+        </div>
+        <aside class="notes">Aggregieren schaut nach unten über viele Zeilen. Hier wechselt, was eine Zeile im Resultat
+          überhaupt bedeutet: vorher ein Tag, nachher eine Stadt in einem Sommer. Das laut sagen, der
+          Begriff dafür steht im Cheatsheet. Ableiten und Aggregieren werden am häufigsten verwechselt,
+          auch im Lösungsblatt der Papierübung.</aside>
+      </section>
+
+      <!-- ============ 25 ============ -->
+      <section id="null-nicht-null">
+        <h2><code>null</code> ist nicht <code>0</code></h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <span class="code-label">im Rohdatensatz steht</span>
+              <div class="output">Rain (mm): N/A</div>
+              <p class="text-sm">Das heisst: Wir wissen es nicht.</p>
+              <p class="text-sm">Das heisst nicht: Es hat nicht geregnet.</p>
+            </div>
+            <div>
+              <span class="code-label">was passiert, wenn man 0 einsetzt</span>
+              <ul class="list-tight text-sm">
+                <li>Jeder Durchschnitt wird zu tief</li>
+                <li>Das Diagramm sieht trotzdem plausibel aus</li>
+                <li>Niemand bemerkt den Fehler</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-orange">
+            <p>Unbekannte Werte werden <code>null</code> oder fallen bewusst weg.</p>
+            <p>Wie viele es waren, gehört ins Audit.</p>
+          </div>
+          <p class="text-sm mt-1"><code>false</code>, <code>0</code>, <code>''</code> und <code>null</code>
+            bedeuten vier verschiedene Dinge.</p>
+        </div>
+        <aside class="notes">Fast alle setzen in der Papierübung eine 0 ein. Das ist der Moment, um zu
+          zeigen, dass ein stiller Fehler schlimmer ist als ein lauter. Bei fehlenden Temperaturen im
+          Hitzesommer-Datensatz machen wir es gleich: Der Tag zählt weder als Hitzetag noch als kühler
+          Tag.</aside>
+      </section>
+
+      <!-- ============ 26 ============ -->
+      <section id="reihenfolge">
+        <h2>Erst filtern, dann rechnen</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <h3>Falsche Reihenfolge</h3>
+              <ul class="list-tight text-sm">
+                <li>Durchschnitt über alle Tage rechnen</li>
+                <li>Danach die Wintertage entfernen</li>
+                <li>Der Durchschnitt enthält sie trotzdem</li>
+              </ul>
+            </div>
+            <div class="fragment" data-fragment-index="0">
+              <h3>Richtige Reihenfolge</h3>
+              <ul class="list-tight text-sm">
+                <li>Wintertage entfernen</li>
+                <li>Fehlende Werte behandeln</li>
+                <li>Danach rechnen und zusammenfassen</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-blue mt-1">
+            <p>Der Fehler wirft keine Fehlermeldung, sondern liefert eine plausible falsche Zahl.</p>
+          </div>
+          <p class="text-sm mt-1">Als Faustregel: erst auswählen, dann bereinigen, dann rechnen, zuletzt
+            zusammenfassen.</p>
+        </div>
+        <aside class="notes">Die linke Spalte stehen lassen und fragen, was daran falsch ist, bevor die
+          rechte auf Klick erscheint. In der Papierübung fällt das an einer Stelle auf: Der fehlende Regenwert steht
+          ausgerechnet in der Zeile, die vorher schon weggefiltert wird. Wer sie trotzdem ausfüllt, hat das
+          Filtern vergessen.</aside>
+      </section>
+
+      <!-- ============ 27 Trenner ============ -->
       <section id="divider-dateien" class="section-divider" data-state="is-section-divider">
         <div class="etl-strip">Extract<span class="sep">→</span><span class="is-here">Transform</span><span class="sep">→</span>Load<span class="sep">→</span>Datenbank<span class="sep">→</span>Unload<span class="sep">→</span>Chart.js</div>
         <h1>Wie die Dateien<br>zusammenhängen</h1>
         <p>Drei Skripte, ein Array</p>
       </section>
 
-      <!-- ============ 24 ============ -->
+      <!-- ============ 28 ============ -->
       <section id="drei-dateien">
         <h2>Drei Skripte, ein Array</h2>
         <div class="content">
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
-            <div class="flow" style="flex-direction: column; align-items: stretch; margin-top: 0;">
+            <div class="flow flow-vertical">
               <div class="flow-step"><span class="flow-title">extract.php</span><span class="flow-sub">liest die Rohdaten</span></div>
               <div class="flow-arrow">↓ <span class="chain-return">PHP-Array</span></div>
               <div class="flow-step is-active"><span class="flow-title">transform.php</span><span class="flow-sub">wendet die Regeln an</span></div>
               <div class="flow-arrow">↓ <span class="chain-return">PHP-Array</span></div>
-              <div class="flow-step"><span class="flow-title">index.php</span><span class="flow-sub">macht das Resultat sichtbar</span></div>
-              <div class="flow-arrow">↓ <span class="chain-return">JSON im Browser</span></div>
+              <div class="flow-step"><span class="flow-title">index.php</span><span class="flow-sub">macht das Array sichtbar</span></div>
+              <div class="flow-arrow">↓ <span class="chain-return">Kontrollansicht</span></div>
             </div>
             <div>
               <ul class="list-tight text-sm">
                 <li>Jede Datei hat genau eine Aufgabe</li>
                 <li>Zwischen den Dateien fliesst ein <strong>PHP-Array</strong></li>
-                <li>JSON entsteht erst ganz am Schluss</li>
+                <li><code>index.php</code> zeigt uns dieses Array nur an</li>
                 <li>Die Rohdaten liegen daneben im Ordner <code>data/</code></li>
               </ul>
               <div class="callout callout-orange">
@@ -678,12 +788,43 @@ mit White shark</div>
             </div>
           </div>
         </div>
-        <aside class="notes">An der Tafel mitzeichnen. Später kommen in dieser Kette noch load.php und
-          unload.php dazu, der Aufbau bleibt derselbe. Die Aufteilung ist kein Selbstzweck: Sie erlaubt, den
-          Transform zu ändern, ohne den Extract anzufassen.</aside>
+        <aside class="notes">An der Tafel mitzeichnen. Die Aufteilung ist kein Selbstzweck: Sie erlaubt,
+          den Transform zu ändern, ohne den Extract anzufassen. Wichtig für die nächste Folie: Heute endet
+          die Kette beim Array, nicht bei einer fertigen Schnittstelle.</aside>
       </section>
 
-      <!-- ============ 25 ============ -->
+      <!-- ============ 29 ============ -->
+      <section id="ganze-kette">
+        <h2>So hängt am Ende alles zusammen</h2>
+        <div class="content">
+          <div class="flow">
+            <div class="flow-step is-active"><span class="flow-title">extract.php</span><span class="flow-sub">liest</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step is-active"><span class="flow-title">transform.php</span><span class="flow-sub">wendet Regeln an</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">load.php</span><span class="flow-sub">schreibt hinein</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Datenbank</span><span class="flow-sub">speichert</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">unload.php</span><span class="flow-sub">liest heraus</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Chart.js</span><span class="flow-sub">zeichnet</span></div>
+          </div>
+          <ul class="list-tight">
+            <li>Die ersten beiden Dateien bauen wir heute</li>
+            <li>Zwischen allen PHP-Dateien fliesst ein <strong>PHP-Array</strong></li>
+            <li>Erst <code>unload.php</code> macht daraus <strong>JSON</strong> für das Frontend</li>
+          </ul>
+          <div class="callout callout-blue">
+            <p><code>index.php</code> steht daneben und nicht in dieser Kette.</p>
+          </div>
+        </div>
+        <aside class="notes">Die Frage kommt fast immer: Warum geben wir nicht gleich JSON aus? Weil die
+          Daten zuerst in die Datenbank sollen – nur dann sind sie am Marktstand auch ohne Internet und ohne
+          Quelle noch da. JSON braucht erst das Frontend, und zwar an genau einer Stelle.</aside>
+      </section>
+
+      <!-- ============ 29 ============ -->
       <section id="datei-gibt-wert-zurueck">
         <h2>Eine Datei kann einen Wert zurückgeben</h2>
         <div class="content">
@@ -720,7 +861,7 @@ $rawLocations = include __DIR__ . '/extract.php';
           ohne return gibt es weiterhin, etwa für Funktionsdateien.</aside>
       </section>
 
-      <!-- ============ 26 ============ -->
+      <!-- ============ 30 ============ -->
       <section id="dir-und-punkt">
         <h2><code>__DIR__</code> und der Punkt</h2>
         <div class="content">
@@ -742,7 +883,7 @@ __DIR__ . '/extract.php'       // ...der Ordner plus Dateiname
           und sind fest eingebaut. Praktischer Test im Unterricht: einmal echo __DIR__ ausgeben lassen.</aside>
       </section>
 
-      <!-- ============ 27 ============ -->
+      <!-- ============ 31 ============ -->
       <section id="index-kontrollansicht">
         <h2>Warum wir <code>index.php</code> überhaupt öffnen</h2>
         <div class="content">
@@ -770,7 +911,7 @@ echo json_encode(
               </ul>
             </div>
           </div>
-          <div class="callout callout-green">
+          <div class="callout callout-blue">
             <p>Das ist ein Prüfwerkzeug für uns und kein Produkt für die Website.</p>
             <p>Der spätere Endpunkt für Chart.js macht genau dasselbe mit Daten aus der Datenbank.</p>
           </div>
@@ -780,14 +921,14 @@ echo json_encode(
           wird, versteht es dort auch.</aside>
       </section>
 
-      <!-- ============ 28 Trenner ============ -->
+      <!-- ============ 32 Trenner ============ -->
       <section id="divider-syntax" class="section-divider" data-state="is-section-divider">
         <div class="etl-strip">Extract<span class="sep">→</span><span class="is-here">Transform</span><span class="sep">→</span>Load<span class="sep">→</span>Datenbank<span class="sep">→</span>Unload<span class="sep">→</span>Chart.js</div>
         <h1>Neue Schreibweisen<br>im Code</h1>
         <p>Damit im Code-Along nichts unerklärt vorbeikommt</p>
       </section>
 
-      <!-- ============ 29 ============ -->
+      <!-- ============ 33 ============ -->
       <section id="null-koaleszenz">
         <h2><code>??</code> – nimm das hier, sonst das da</h2>
         <div class="content">
@@ -812,7 +953,7 @@ $counts[$category] = ($counts[$category] ?? 0) + 1;
           den leeren String.</aside>
       </section>
 
-      <!-- ============ 30 ============ -->
+      <!-- ============ 34 ============ -->
       <section id="casts">
         <h2>Datentypen erzwingen mit <code>(int)</code> und <code>(float)</code></h2>
         <div class="content">
@@ -836,7 +977,7 @@ $yearRaw = (string) $attack['Year'];     // 1985    wird zu  "1985"
           geht.</aside>
       </section>
 
-      <!-- ============ 31 ============ -->
+      <!-- ============ 35 ============ -->
       <section id="continue-muster">
         <h2>Zählen, dann <code>continue</code></h2>
         <div class="content">
@@ -859,7 +1000,7 @@ if (!in_array($month, $summerMonths, true)) {
           Audit am Ende geschenkt. Unterschied zu break kurz nennen, falls die Frage kommt.</aside>
       </section>
 
-      <!-- ============ 32 ============ -->
+      <!-- ============ 36 ============ -->
       <section id="lesen-koennen">
         <h2>Diese Befehle müsst ihr lesen, nicht auswendig können</h2>
         <div class="content">
@@ -884,14 +1025,14 @@ if (!in_array($month, $summerMonths, true)) {
           Wortgrenzen und Referenzen mit dem kaufmännischen Und.</aside>
       </section>
 
-      <!-- ============ 33 Trenner ============ -->
+      <!-- ============ 37 Trenner ============ -->
       <section id="divider-ki" class="section-divider" data-state="is-section-divider">
         <div class="etl-strip">Extract<span class="sep">→</span><span class="is-here">Transform</span><span class="sep">→</span>Load<span class="sep">→</span>Datenbank<span class="sep">→</span>Unload<span class="sep">→</span>Chart.js</div>
         <h1>Die KI schreibt den Code,<br>nicht die Regeln</h1>
         <p>Spezifikation statt Zuruf</p>
       </section>
 
-      <!-- ============ 34 Split ============ -->
+      <!-- ============ 38 Split ============ -->
       <section id="ki-kann" class="split-slide">
         <div class="split-half split-good">
           <h2>Das kann die KI gut</h2>
@@ -918,7 +1059,7 @@ if (!in_array($month, $summerMonths, true)) {
           vorgebt.</aside>
       </section>
 
-      <!-- ============ 35 ============ -->
+      <!-- ============ 39 ============ -->
       <section id="ki-auftrag">
         <h2>Ein brauchbarer Auftrag ist eine Spezifikation</h2>
         <div class="content">
@@ -952,7 +1093,7 @@ Funktionen.</div>
           liegt im zweiten Code-Along bereit.</aside>
       </section>
 
-      <!-- ============ 36 ============ -->
+      <!-- ============ 40 ============ -->
       <section id="ki-pruefen">
         <h2>Was ihr an der Antwort prüft</h2>
         <div class="content">
@@ -973,15 +1114,13 @@ Funktionen.</div>
             <p>Jede Annahme, die nicht in eurer Spezifikation stand, ist eine Entscheidung, die ihr hättet
               treffen müssen.</p>
           </div>
-          <p class="text-sm mt-1">Eine neue Regel wird zuerst in <code>TRANSFORM.md</code> ergänzt und erst
-            danach im Code.</p>
         </div>
         <aside class="notes">Der Code ist nicht fertig, wenn er läuft. Nach zwei Runden Nachbessern weiss
           sonst niemand mehr, warum der Code tut, was er tut – deshalb die Reihenfolge Dokument vor
           Code.</aside>
       </section>
 
-      <!-- ============ 37 ============ -->
+      <!-- ============ 41 ============ -->
       <section id="was-kommt">
         <h2>Was jetzt kommt</h2>
         <div class="content">
@@ -1003,7 +1142,7 @@ Funktionen.</div>
               </ul>
             </div>
           </div>
-          <div class="callout callout-green" style="margin-top: auto;">
+          <div class="callout callout-blue" style="margin-top: auto;">
             <p>Am Ende des Tages zeigt ihr: Rohdaten rein, saubere Struktur raus, Audit daneben.</p>
           </div>
         </div>
@@ -1012,7 +1151,7 @@ Funktionen.</div>
           stehen.</aside>
       </section>
 
-      <!-- ============ 38 Schluss ============ -->
+      <!-- ============ 42 Schluss ============ -->
       <section id="schluss">
         <h2>Zum Mitnehmen</h2>
         <div class="content" style="justify-content: center;">

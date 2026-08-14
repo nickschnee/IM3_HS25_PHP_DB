@@ -65,6 +65,23 @@
   align-self: flex-start;
 }
 
+/* Pfeil und Beschriftung stehen untereinander und mittig unter den Kaesten.
+ * Ohne text-align klebt der Pfeil am linken Rand der Beschriftung. */
+
+.reveal .flow-arrow { text-align: center; }
+
+/* Senkrechte Kette: Nach dem Pfeil braucht es mehr Luft als davor, sonst
+ * klebt die Beschriftung am naechsten Kasten. */
+
+.reveal .flow-vertical {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
+  margin-top: 0;
+}
+
+.reveal .flow-vertical .flow-arrow { margin-bottom: 12px; }
+
 /* Kettenglied: Dateiname und Rueckgabewert untereinander. */
 
 .reveal .chain-return {

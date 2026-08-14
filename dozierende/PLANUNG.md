@@ -303,7 +303,10 @@ Material:
 - `code-alongs/C_transform/10_sharkdaten_transformieren` inklusive
   `explore.php` (Datenerkundung) und `KI_PROMPT.md` (Gerüst, das die Klasse
   selbst ausfüllt)
-- `uebungen/C_transform/01_eigener_transform`
+- `uebungen/C_transform/01_airbnb_erkunden`, `02_datenfrage` und
+  `03_airbnb_transformieren`: Zusatzserie mit Inside-Airbnb-Daten vom rohen
+  Datensatz über die Datenfrage bis zum JSON. Die Vorlage `datenfrage.md` aus
+  Übung 02 dient auch als Gerüst für die `TRANSFORM.md` der Projektgruppen.
 - `cheatsheets/230_transform.md`
 
 Projektabgabe des Blocks: Jede Gruppe führt eine `TRANSFORM.md` mit Datenfrage,

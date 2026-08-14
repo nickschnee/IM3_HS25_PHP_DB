@@ -60,12 +60,19 @@ Kurstage erstrecken. Die Story- und Recherchespur (`🔎`) läuft parallel mit.
 
 ### Block C – Transform
 
-1. `📕` [Theorie C: Eine Frage wird zu Regeln](theorie/C_transform/) `30'`
-2. `📝` Analoge Übung: [02 Wetterdaten transformieren](stift-und-papier/02_transform_weather/) `35'`
-3. `🧑‍🏫` Code-Along: [09 Hitzesommer transformieren](code-alongs/C_transform/09_hitzesommer_transformieren/) `45'`
-4. `🧑‍🏫` Code-Along: [10 Shark-Daten mit KI transformieren](code-alongs/C_transform/10_sharkdaten_transformieren/) `60'`
-5. `💻` [Eigene Transform-Regeln und Implementation](uebungen/C_transform/01_eigener_transform/) `60'`
-6. `✅` Datenfrage, Datenvertrag, Audit und ein transformierter Datensatz zeigen
+1. `📕` [Theorie C: Transform](theorie/C_transform/) `60'`
+2. `📝` Analoge Übung: [02 Wetterdaten transformieren](stift-und-papier/02_transform_weather/) `30'`
+3. `🧑‍🏫` Code-Along: [09 Hitzesommer transformieren](code-alongs/C_transform/09_hitzesommer_transformieren/) `60'`
+4. `🧑‍🏫` Code-Along: [10 Shark-Daten mit KI transformieren](code-alongs/C_transform/10_sharkdaten_transformieren/) `90'`
+
+#### Zusatzmaterial (Block C)
+
+Dreierserie mit Airbnb-Daten von [Inside Airbnb](https://insideairbnb.com/):
+vom rohen Datensatz über die eigene Datenfrage zum fertigen JSON.
+
+- `💻` [01 Airbnb-Daten holen & erkunden](uebungen/C_transform/01_airbnb_erkunden/)
+- `💻` [02 Datenfrage schärfen](uebungen/C_transform/02_datenfrage/)
+- `💻` [03 Airbnb-Daten transformieren](uebungen/C_transform/03_airbnb_transformieren/)
 
 <!--
 

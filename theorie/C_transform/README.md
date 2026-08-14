@@ -185,12 +185,17 @@ Internetverbindung.
 | --- | --- |
 | 1–3 | Titel, Inhalt, Einordnung in die ETL-Kette |
 | 4–12 | Die Frage bestimmt die Form (Hitzesommer, Shark-Rohwerte, Datenerkundung, Nenner) |
-| 13–19 | Sieben Transformationsformen, Untersuchungseinheit, Reihenfolge, `null`, Mapping |
-| 20–24 | Datenvertrag, Audit, Abdeckung, `TRANSFORM.md` |
-| 25–29 | Verkettung der Skripte, `include`/`return`, `__DIR__`, Kontrollansicht |
-| 30–34 | Neue Schreibweisen: `??`, Casts, `continue`, Leseliste |
-| 35–38 | KI: Spezifikation statt Zuruf, Prüfliste |
-| 39–40 | Ausblick und Kernaussage |
+| 13–15 | Datenvertrag und Audit |
+| 16–24 | Der Werkzeugkasten: Übersicht und die sieben Formen, je eine Folie mit Vorher und Nachher |
+| 25–26 | `null` gegen `0` und die Reihenfolge der Schritte |
+| 27–32 | Verkettung der Skripte, die ganze Kette bis Chart.js, `include`/`return`, `__DIR__`, Kontrollansicht |
+| 33–37 | Neue Schreibweisen: `??`, Casts, `continue`, Leseliste |
+| 38–41 | KI: Spezifikation statt Zuruf, Prüfliste |
+| 42–43 | Ausblick und Kernaussage |
+
+Farbige Boxen gibt es nur in zwei Varianten: Petrol für Einordnung und Zusage,
+Gold für Achtung und Merksatz. Im Werkzeugkasten-Kapitel steht die Box immer am
+unteren Folienrand.
 
 Jeder Kapiteltrenner trägt oben einen schmalen Streifen mit der ETL-Kette und
 der aktuellen Position. Er kommt aus `styles.css` in diesem Ordner; das
@@ -207,10 +212,10 @@ Code-Along zum ersten Mal auf.
 
 | Konstrukt | wo erklärt |
 | --- | --- |
-| `include`, `return` in einer Datei, `__DIR__`, `.` | Folien 27 und 28 |
-| `??`, `(int)`/`(float)`/`(string)`, `continue` | Folien 31 bis 33 |
-| `json_encode` mit Flags, `header(...)` | Folie 29 |
-| `substr`, `is_numeric`, `in_array(..., true)`, `usort`/`<=>`, `str_contains`, `arsort`, `array_slice`, `throw` | Folie 34 als Leseliste, Details im Cheatsheet |
+| `include`, `return` in einer Datei, `__DIR__`, `.` | Folien 30 und 31 |
+| `??`, `(int)`/`(float)`/`(string)`, `continue` | Folien 34 bis 36 |
+| `json_encode` mit Flags, `header(...)` | Folie 32 |
+| `substr`, `is_numeric`, `in_array(..., true)`, `usort`/`<=>`, `str_contains`, `arsort`, `array_slice`, `throw` | Folie 37 als Leseliste, Details im Cheatsheet |
 | `preg_match` mit `\b`, Referenzen mit `&`, Spread `...` | nur Cheatsheet und mündlich im Code-Along |
 
 ### Bezug zum übrigen Material
@@ -219,7 +224,8 @@ Code-Along zum ersten Mal auf.
 - Direkt danach: [`stift-und-papier/02_transform_weather/`](../../stift-und-papier/02_transform_weather/)
 - Code-Alongs: [`09_hitzesommer_transformieren`](../../code-alongs/C_transform/09_hitzesommer_transformieren/)
   und [`10_sharkdaten_transformieren`](../../code-alongs/C_transform/10_sharkdaten_transformieren/)
-- Projektarbeit: [`uebungen/C_transform/01_eigener_transform/`](../../uebungen/C_transform/01_eigener_transform/)
+- Übungen: [`uebungen/C_transform/`](../../uebungen/C_transform/) – Airbnb-Serie
+  (erkunden, Datenfrage, transformieren)
 - Nachschlagewerk: [`cheatsheets/230_transform.md`](../../cheatsheets/230_transform.md)
 
 ### Nach Änderungen prüfen
@@ -232,7 +238,10 @@ npx decktape reveal theorie/C_transform/index.html slides.pdf --size 1280x720
 
 ### Offene Punkte
 
-- Der Foliensatz ist mit 40 Folien für 30 Minuten dicht. Falls es im Unterricht
-  nicht aufgeht, sind die Kapitel «Wie die Dateien zusammenhängen» und «Neue
-  Schreibweisen» die Kandidaten zum Kürzen, weil beide im Code-Along ohnehin
-  wieder auftauchen.
+- Der Foliensatz hat 43 Folien und passt so nicht in die 30 Minuten aus
+  `dozierende/ABLAUF.md`. Realistisch sind eher 45 Minuten, oder der Input wird
+  gekürzt.
+- Zum Kürzen eignen sich zwei Stellen: die sieben Einzelfolien zu den
+  Transformationsformen (Folien 18 bis 24) lassen sich auf die Übersichtstabelle
+  von Folie 17 zusammenziehen, und die Kapitel «Wie die Dateien zusammenhängen»
+  und «Neue Schreibweisen» tauchen im Code-Along ohnehin wieder auf.

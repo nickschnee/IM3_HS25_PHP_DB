@@ -141,7 +141,8 @@ PHP-Array) bleibt gleich.
 | Muss | `📕` | Datenfrage → Untersuchungseinheit → Regeln → Datenvertrag → Audit | 30' | [Theorie C](../theorie/C_transform/) |
 | Muss | `🧑‍🏫` | [09 Hitzesommer](../code-alongs/C_transform/09_hitzesommer_transformieren/): filtern, ableiten, aggregieren, Teiljahre erkennen | 45' | Stadt-Jahr-Datensätze plus Audit |
 | Muss | `🧑‍🏫` | [10 Shark-Daten](../code-alongs/C_transform/10_sharkdaten_transformieren/): komplexe Mappings mit KI-Spezifikation entwickeln und prüfen | 60' | Zwei Rankings plus Abdeckungs-Audit |
-| Muss | Projekt | [Eigene Transform-Regeln](../uebungen/C_transform/01_eigener_transform/) festlegen, mit KI implementieren und im Viererteam abnehmen | 60' | `TRANSFORM.md`, Transform und Audit |
+| Muss | Projekt | Eigene Transform-Regeln festlegen, mit KI implementieren und im Viererteam abnehmen; Vorlage: [`02_datenfrage/datenfrage.md`](../uebungen/C_transform/02_datenfrage/datenfrage.md) | 60' | `TRANSFORM.md`, Transform und Audit |
+| Kann | `💻` | Airbnb-Serie als Zusatzmaterial: [erkunden](../uebungen/C_transform/01_airbnb_erkunden/), [Datenfrage](../uebungen/C_transform/02_datenfrage/), [transformieren](../uebungen/C_transform/03_airbnb_transformieren/) | 135' | Übung an einem zweiten Datensatz |
 | Soll | `✅` | Rohdaten → saubere Struktur zeigen | 15' | Tagesabnahme |
 
 ## Tag 6 – Block D: Load (Datenbank und PDO)
