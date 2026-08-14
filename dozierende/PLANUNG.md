@@ -301,7 +301,8 @@ Material:
 - `theorie/C_transform/README.md`
 - `code-alongs/C_transform/09_hitzesommer_transformieren`
 - `code-alongs/C_transform/10_sharkdaten_transformieren` inklusive
-  `KI_PROMPT.md`
+  `explore.php` (Datenerkundung) und `KI_PROMPT.md` (Gerüst, das die Klasse
+  selbst ausfüllt)
 - `uebungen/C_transform/01_eigener_transform`
 - `cheatsheets/230_transform.md`
 

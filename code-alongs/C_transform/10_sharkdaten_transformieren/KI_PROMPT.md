@@ -1,89 +1,142 @@
-# KI-Auftrag für den Shark-Transform
+# Euer KI-Auftrag für den Shark-Transform
 
-Dieser Prompt ist absichtlich eine **Spezifikation**, nicht nur «Räume die Daten
-auf». Ergänzt bei Bedarf echte Beispielwerte aus `Species` und `Activity`.
+Ihr schreibt den Prompt selbst. Dieses Blatt gibt nur die Gliederung vor.
+
+Der Grund: «Räume die Daten auf» ergibt Code, den ihr nicht prüfen könnt, weil
+ihr selbst nicht wisst, was richtig gewesen wäre. Ein brauchbarer Auftrag ist
+eine **Spezifikation** – er enthält alle Entscheidungen, die die KI nicht für
+euch treffen darf.
+
+Arbeitet der Reihe nach. Jeder Abschnitt entsteht aus dem, was ihr in
+`explore.php` gesehen habt.
+
+---
+
+## 1. Datenfragen
+
+Schreibt eure zwei Fragen hin, so präzise, dass sie mit diesen Daten
+beantwortbar sind.
+
+Prüft jede Frage:
+
+- Steht drin, welcher **Zeitraum** gilt?
+- Steht drin, welche **Fälle** überhaupt zählen?
+- Behauptet die Frage mehr, als die Daten hergeben?
 
 ```text
-Erstelle in PHP 8.2+ die Transformation eines bereits eingelesenen Arrays
-$rawAttacks. Verändere den Extract nicht.
+Frage 1:
 
-Datenfragen:
-1. Welche identifizierte Hai-Kategorie kommt in bestätigten, unprovozierten
-   Vorfällen von 1950 bis 2018 am häufigsten vor?
-2. Bei welcher vereinheitlichten Aktivitätsgruppe wurden in derselben Auswahl
-   die meisten Vorfälle erfasst?
-
-Wichtige Einschränkung:
-Die Resultate sind Häufigkeiten in diesem Datensatz und keine Aussage über
-Risiko oder Kausalität.
-
-Filterregeln:
-- Year muss numerisch und zwischen 1950 und 2018 liegen.
-- Type muss nach trim() exakt "Unprovoked" sein.
-- Alle Ausschlüsse müssen nach Grund gezählt werden.
-
-Normalisierung Species:
-- Ordne nur über explizite, gut prüfbare Textmuster zu.
-- Kategorien: White shark; Tiger shark; Bull / Zambesi shark;
-  Sand tiger / Raggedtooth / Grey nurse shark; Blacktip shark;
-  Wobbegong; Blue shark; Bronze whaler / Copper shark; Lemon shark;
-  Hammerhead; Mako shark.
-- Angaben wie "2 m shark", leer, "unknown", "not confirmed", "possibly",
-  "probably", "thought to involve" oder nur "shark" dürfen nicht geraten
-  werden und werden null.
-- Angaben mit mehreren möglichen Arten (z. B. "Blacktip or spinner shark")
-  werden ebenfalls null und nicht der zuerst genannten Kategorie zugeschlagen.
-- Gib die zehn häufigsten nicht zugeordneten Species-Rohwerte im Audit aus.
-
-Normalisierung Activity:
-- Surfing & board sports
-- Swimming & wading
-- Spearfishing
-- Diving & snorkeling
-- Fishing
-- Paddling
-- Boating
-- Sonstige unklare Angaben werden null.
-- Beachte die Reihenfolge: "spearfishing" vor "fishing" und "surf fishing"
-  als Fishing, nicht als Surfing.
-
-Nicht benötigte Felder:
-- Fatal (Y/N), Name, Injury und weitere Spalten werden für diese beiden Fragen
-  nicht transformiert. Keine Arbeit in Felder investieren, die der
-  Datenvertrag nicht braucht.
-
-Zieldatenvertrag:
-[
-  {
-    "dimension": "shark_category | activity_group",
-    "rank": "int",
-    "category": "string",
-    "incidents": "int"
-  }
-]
-
-Erzeuge pro Dimension ein absteigend sortiertes Top-10-Ranking. Bei Gleichstand
-alphabetisch sortieren.
-
-Audit:
-- input_rows
-- excluded_invalid_year
-- excluded_outside_period
-- excluded_not_unprovoked
-- included_incidents
-- species_classified und species_unclassified
-- activity_classified und activity_unclassified
-- Abdeckung in Prozent für Species und Activity
-- zehn häufigste nicht zugeordnete Species-Werte
-
-Liste vor dem Code alle Annahmen oder mehrdeutigen Entscheidungen auf. Erfinde
-keine zusätzlichen Kategorien. Schreibe kleine Funktionen für Normalisierung,
-Ranking und häufigste unbekannte Werte.
+Frage 2:
 ```
+
+## 2. Was das Ergebnis nicht sagt
+
+Ein Satz, der verhindert, dass jemand aus eurem Resultat etwas Falsches liest.
+
+```text
+Einschränkung:
+```
+
+## 3. Filterregeln
+
+Welche Zeilen fliegen raus, und woran erkennt man sie?
+
+Für jede Regel: Spalte, Bedingung, Begründung.
+
+```text
+Filter 1:
+Filter 2:
+Filter 3:
+```
+
+Dazu die Anweisung an die KI, jeden Ausschluss **nach Grund getrennt** zu
+zählen. Ohne diese Zahlen könnt ihr später nicht prüfen, ob der Filter das tut,
+was ihr wolltet.
+
+## 4. Normalisierung
+
+Für jede Spalte, die ihr vereinheitlicht:
+
+- Welche **Kategorien** soll es geben? Die Liste ist eure Entscheidung.
+- An welchen **Textmustern** erkennt man sie?
+- Was passiert mit Werten, die zu keiner Kategorie passen?
+- Welche Werte dürfen **nicht geraten** werden?
+- Gibt es Muster, die sich gegenseitig in die Quere kommen? In welcher
+  **Reihenfolge** müssen sie geprüft werden?
+
+```text
+Spalte:
+Kategorien:
+Nicht zuordenbar, wenn:
+Reihenfolge beachten bei:
+```
+
+## 5. Felder, die ihr nicht braucht
+
+Nennt sie ausdrücklich. Sonst transformiert die KI Spalten, die in eurem
+Datenvertrag gar nicht vorkommen.
+
+```text
+Nicht benötigt:
+```
+
+## 6. Zieldatenvertrag
+
+Wie sieht **eine** Ergebniszeile aus? Feldnamen und Datentypen, als Beispiel
+hingeschrieben.
+
+```json
+
+```
+
+Dazu: Wie viele Zeilen, in welcher Sortierung, und was passiert bei
+Gleichstand?
+
+## 7. Audit
+
+Welche Zahlen muss der Code mitliefern, damit ihr das Ergebnis prüfen könnt?
+
+Denkt an:
+
+- wie viele Zeilen reinkamen;
+- wie viele pro Grund ausgeschlossen wurden;
+- wie viele übrig blieben;
+- wie viele Werte zugeordnet werden konnten und wie viele nicht;
+- welche nicht zugeordneten Rohwerte am häufigsten sind.
+
+```text
+Audit-Zahlen:
+```
+
+## 8. Schlusssätze an die KI
+
+Diese drei Anweisungen gehören ans Ende jedes Auftrags:
+
+```text
+Liste vor dem Code alle Annahmen und mehrdeutigen Entscheidungen auf.
+Erfinde keine zusätzlichen Kategorien.
+Schreibe kleine, einzeln prüfbare Funktionen.
+```
+
+---
 
 ## Nach der Antwort
 
-Prüft mindestens zehn Rohwerte pro Mapping-Kategorie. Sucht besonders nach
-falschen Treffern durch Teilwörter und kontrolliert die häufigsten nicht
-zugeordneten Werte. Neue Regeln werden zuerst in der Spezifikation ergänzt und
-erst danach in den Code übernommen.
+Der Code ist noch nicht fertig, wenn er läuft. Prüft:
+
+1. **Stichprobe:** mindestens zehn Rohwerte pro Kategorie. Sind sie richtig
+   einsortiert?
+2. **Falsche Treffer durch Teilwörter:** Hat ein kurzes Suchwort etwas
+   erwischt, das gar nicht gemeint war?
+3. **Die häufigsten nicht zugeordneten Werte:** Steht dort etwas, das ihr
+   eigentlich zuordnen könntet? Dann fehlt eine Regel.
+4. **Die Abdeckung:** Für wie viel Prozent eurer Fälle habt ihr überhaupt eine
+   Aussage? Ist diese Zahl niedrig, gehört sie in die Story.
+5. **Annahmen:** Hat die KI Entscheidungen getroffen, die ihr nicht
+   aufgeschrieben hattet? Jede davon gehört geprüft und dann in eure
+   Spezifikation nachgetragen.
+
+Eine neue Regel wird **zuerst hier oben** ergänzt und erst danach im Code. Sonst
+weiss nach zwei Runden niemand mehr, warum der Code tut, was er tut.
+
+Keine Zugangsdaten und keine schützenswerten Personendaten an ein KI-Tool geben.

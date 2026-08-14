@@ -5,18 +5,69 @@
  * Die Kategorien sind bewusst klein und explizit. Eine unbekannte Art wird
  * nicht geraten. Andere fachlich begründete Mappings sind möglich, müssen aber
  * dokumentiert und auditiert werden.
+ *
+ * -------------------------------------------------------------------------
+ * FÜR DOZIERENDE: Diesen Code nicht vortippen lassen
+ * -------------------------------------------------------------------------
+ * Dieser Transform soll im Unterricht mit KI entstehen – das ist der Zweck des
+ * Code-Alongs. Die Klasse stellt ihre Datenfragen selbst, erkundet die Rohwerte
+ * mit ../explore.php und schreibt ihre Spezifikation ins Gerüst ../KI_PROMPT.md.
+ * Erst danach beauftragt sie die KI.
+ *
+ * Diese Datei ist die Referenz für die Prüfung, nicht die Vorlage zum
+ * Abschreiben. Was die KI liefert, wird anders aussehen und darf das auch:
+ * andere Kategorienamen, andere Reihenfolge, andere Hilfsfunktionen. Die
+ * Kontrollfragen stehen in ../Ablauf/10_sharkdaten_transformieren_ablauf.md
+ * unter «Abnahme».
+ *
+ * Auch die Kommentare hier dürft ihr von der KI erzeugen lassen. Nur die
+ * fachlichen Entscheide – welche Kategorien es gibt, was null bedeutet, welche
+ * Aussage die Story machen darf – kommen von der Klasse.
+ *
+ * -------------------------------------------------------------------------
+ * Datenfluss dieser Datei
+ * -------------------------------------------------------------------------
+ *
+ *   8702 CSV-Zeilen, ein Vorfall pro Zeile       (aus extract.php)
+ *     -> 3347 Vorfälle 1950–2018, Unprovoked
+ *       -> zwei Zähl-Arrays: Art und Aktivität   ($speciesCounts, $activityCounts)
+ *         -> 17 Ranking-Zeilen in einer Liste    ($rankingRows)
+ *
+ * Die 17 sind 10 Hai-Kategorien plus 7 Aktivitätsgruppen: Bei den Aktivitäten
+ * gibt es gar keine zehn Gruppen, die Top-10 ist dort einfach die ganze Liste.
+ *
+ * Anders als in Code-Along 09 entstehen hier ZWEI Ergebnisse aus denselben
+ * Daten. Sie stehen in einer flachen Liste und werden über das Feld `dimension`
+ * auseinandergehalten – so kann das Frontend beide mit demselben Code zeichnen.
  */
 
-$rawAttacks = include __DIR__ . '/../extract.php';
+$rawAttacks = include __DIR__ . '/extract.php';
 
+// Die Regeln aus der Planungsrunde. Sie stehen zuoberst und werden am Schluss
+// unter `rules` mit ausgegeben, damit die Auswahl im Resultat sichtbar bleibt.
 $yearFrom = 1950;
 $yearTo = 2018;
 $topN = 10;
 
+/**
+ * TODO 2 (Teil 1): Rohe Artangabe zu einer Kategorie machen.
+ *
+ * Der Rückgabetyp ?string ist die zentrale Entscheidung dieser Funktion:
+ * null heisst «nicht zuordenbar», nicht «unbekannte Art». Wir behaupten
+ * lieber nichts, als etwas Falsches zu behaupten.
+ */
 function normalizeSpecies(string $raw): ?string
 {
     $value = strtolower(trim($raw));
 
+    // Erst die Ausschlüsse, dann die Zuordnung. Jedes dieser Wörter ist ein
+    // Hinweis der Erfasser:innen, dass sie selbst unsicher waren – etwa
+    // "Possibly a white shark". Diese Unsicherheit dürfen wir nicht
+    // wegtransformieren.
+    //
+    // 'possiby' ist kein Tippfehler von uns, sondern steht so im Datensatz.
+    // Solche Funde kommen aus der Kontrolle der häufigsten nicht zugeordneten
+    // Rohwerte (siehe most_frequent_unmapped_species im Audit).
     if (
         $value === ''
         || str_contains($value, 'not confirmed')
@@ -33,12 +84,19 @@ function normalizeSpecies(string $raw): ?string
         || str_contains($value, 'suspect')
         || str_contains($value, 'said to')
         || str_contains($value, 'either')
+        // "Blacktip or spinner shark" nennt zwei Arten und wird deshalb keiner
+        // von beiden zugeschlagen. \b sind Wortgrenzen: So trifft die Regel das
+        // Wort "or", aber nicht das "or" in "north" oder "sailor".
         || preg_match('/\bor\b/', $value) === 1
     ) {
         return null;
     }
 
     // Spezifische Begriffe stehen vor allgemeineren Begriffen.
+    //
+    // Die Liste ist absichtlich kurz. Jede Kategorie ist eine fachliche
+    // Behauptung, die jemand verteidigen können muss – deshalb keine Kategorie
+    // ohne klares Textmuster.
     $patterns = [
         'White shark' => ['white shark', 'great white'],
         'Tiger shark' => ['tiger shark'],
@@ -57,6 +115,8 @@ function normalizeSpecies(string $raw): ?string
         'Mako shark' => ['mako'],
     ];
 
+    // Zwei verschachtelte Schleifen: aussen die Kategorie, innen ihre
+    // Schreibweisen. Der erste Treffer gewinnt und steigt sofort aus.
     foreach ($patterns as $category => $needles) {
         foreach ($needles as $needle) {
             if (str_contains($value, $needle)) {
@@ -65,9 +125,18 @@ function normalizeSpecies(string $raw): ?string
         }
     }
 
+    // Alles, was durchfällt – "2 m shark", "shark involvement not confirmed",
+    // schlicht "shark" – bleibt bewusst ohne Kategorie.
     return null;
 }
 
+/**
+ * TODO 2 (Teil 2): Rohe Aktivität zu einer Gruppe machen.
+ *
+ * Hier ist die REIHENFOLGE der if-Blöcke die eigentliche Logik. Wer sie
+ * umstellt, ändert das Ergebnis, ohne dass ein Fehler auftritt. Das ist die
+ * Stelle, an der KI-Code am häufigsten still falsch ist.
+ */
 function normalizeActivity(string $raw): ?string
 {
     $value = strtolower(trim($raw));
@@ -81,6 +150,8 @@ function normalizeActivity(string $raw): ?string
         return 'Spearfishing';
     }
 
+    // "Surf fishing" enthält das Wort "surf" und würde sonst weiter unten als
+    // Surfing gezählt. Deshalb steht der Spezialfall vor der allgemeinen Regel.
     if (str_contains($value, 'surf fish')) {
         return 'Fishing';
     }
@@ -95,6 +166,10 @@ function normalizeActivity(string $raw): ?string
         return 'Surfing & board sports';
     }
 
+    // Schwimmen und im flachen Wasser stehen werden hier zusammengefasst. Das
+    // ist eine Vereinfachung: Wer im Wasser steht, tut etwas anderes als wer
+    // schwimmt. Für unsere Frage reicht die Gruppe – gesagt werden muss es
+    // trotzdem.
     if (
         str_contains($value, 'swim')
         || str_contains($value, 'bathing')
@@ -115,10 +190,13 @@ function normalizeActivity(string $raw): ?string
         return 'Diving & snorkeling';
     }
 
+    // Die allgemeine Fisch-Regel steht bewusst NACH Spearfishing und
+    // Surf fishing.
     if (str_contains($value, 'fish') || str_contains($value, 'angling')) {
         return 'Fishing';
     }
 
+    // 'paddl' fängt paddling, paddleboarding und paddled gemeinsam ab.
     if (
         str_contains($value, 'paddl')
         || str_contains($value, 'kayak')
@@ -139,16 +217,34 @@ function normalizeActivity(string $raw): ?string
     return null;
 }
 
+/**
+ * TODO 3: einen Zähler in einem assoziativen Array um eins erhöhen.
+ *
+ * Das & vor $counts ist neu gegenüber Block A: Ohne & bekäme die Funktion eine
+ * Kopie des Arrays und die Zählung ginge draussen verloren. Mit & arbeitet sie
+ * direkt auf dem Array der aufrufenden Stelle.
+ *
+ * ($counts[$category] ?? 0) + 1 erspart die Prüfung, ob es die Kategorie schon
+ * gibt: Beim ersten Mal ist sie nicht gesetzt, ?? liefert dann 0.
+ */
 function incrementCount(array &$counts, string $category): void
 {
     $counts[$category] = ($counts[$category] ?? 0) + 1;
 }
 
+/**
+ * TODO 4 und 5: aus einem Zähl-Array eine sortierte Top-N-Rangliste machen.
+ *
+ * Die Funktion wird zweimal aufgerufen – einmal für Arten, einmal für
+ * Aktivitäten. Beide Ranglisten haben dadurch garantiert denselben Aufbau,
+ * und der Datenvertrag steht nur an einer Stelle im Code.
+ */
 function makeRankingRows(
     array $counts,
     string $dimension,
     int $limit
 ): array {
+    // Schritt 1: aus "Kategorie => Anzahl" wird eine Liste von Zeilen.
     $rows = [];
 
     foreach ($counts as $category => $incidents) {
@@ -159,13 +255,31 @@ function makeRankingRows(
         ];
     }
 
+    // Schritt 2: absteigend nach Anzahl sortieren. $b vor $a dreht die
+    // Richtung um. Bei Gleichstand entscheidet der Name alphabetisch – ohne
+    // diesen zweiten Vergleich wäre die Reihenfolge bei gleicher Anzahl
+    // zufällig und das Ergebnis nicht reproduzierbar.
     usort($rows, function (array $a, array $b): int {
         $byCount = $b['incidents'] <=> $a['incidents'];
         return $byCount !== 0 ? $byCount : $a['category'] <=> $b['category'];
     });
 
+    // Schritt 3: nur die ersten $limit Zeilen behalten.
     $rows = array_slice($rows, 0, $limit);
 
+    // Schritt 4: Rang vergeben. Der Rang ergibt sich aus der Position, deshalb
+    // erst hier, nach dem Sortieren und Kürzen.
+    //
+    // Die Zeile wird komplett neu zusammengesetzt, statt nur 'rank' zu
+    // ergänzen. Grund: In PHP behält ein Array die Reihenfolge, in der die
+    // Schlüssel gesetzt wurden, und diese Reihenfolge landet so im JSON.
+    // Neu bauen heisst: die Felder erscheinen in der Reihenfolge des
+    // Datenvertrags – dimension, rank, category, incidents.
+    //
+    // &$row ist wieder eine Referenz, damit die Änderung im Array ankommt.
+    // Das unset danach ist Pflicht: Ohne es zeigt $row weiterhin auf die
+    // letzte Zeile, und die nächste Schleife mit derselben Variable würde sie
+    // überschreiben. Ein klassischer PHP-Stolperstein.
     foreach ($rows as $index => &$row) {
         $row = [
             'dimension' => $row['dimension'],
@@ -179,6 +293,18 @@ function makeRankingRows(
     return $rows;
 }
 
+/**
+ * TODO 6: die häufigsten Rohwerte finden, die keiner Kategorie zugeordnet
+ * wurden.
+ *
+ * Diese Liste ist das Werkzeug zur Verbesserung des Mappings: Steht ganz oben
+ * ein Wert, den man eigentlich zuordnen könnte, fehlt eine Regel. Steht dort
+ * "2 m shark", ist alles richtig gelaufen.
+ *
+ * arsort sortiert absteigend nach Wert UND behält dabei die Schlüssel – bei
+ * "Rohwert => Anzahl" wäre der Rohwert sonst weg. Das true in array_slice
+ * erhält die Schlüssel ebenfalls.
+ */
 function mostFrequentValues(array $counts, int $limit): array
 {
     arsort($counts);
@@ -191,6 +317,10 @@ function mostFrequentValues(array $counts, int $limit): array
     return $result;
 }
 
+// Anders als in Code-Along 09 gehen diese Zähler auf: klassifiziert plus
+// unklassifiziert ergibt included_incidents, und die drei excluded-Zähler plus
+// included ergeben input_rows. Diese Rechnung in der Abnahme laut vorführen –
+// sie ist der Beweis, dass keine Zeile unbemerkt verschwunden ist.
 $audit = [
     'input_rows' => count($rawAttacks),
     'excluded_invalid_year' => 0,
@@ -203,35 +333,58 @@ $audit = [
     'activity_unclassified' => 0,
 ];
 
+// Drei assoziative Arrays als Zähler: zweimal für das Ergebnis, einmal für die
+// Qualitätskontrolle des Mappings.
 $speciesCounts = [];
 $activityCounts = [];
 $unmappedSpeciesCounts = [];
 
+// ---------------------------------------------------------------------------
+// TODO 1 bis 3: filtern, normalisieren, zählen
+// ---------------------------------------------------------------------------
+
 foreach ($rawAttacks as $attack) {
+    // (string) und trim vor jeder Prüfung: Die Werte kommen aus einer CSV und
+    // sind immer Text, oft mit Leerzeichen am Rand.
     $yearRaw = trim((string) ($attack['Year'] ?? ''));
 
+    // TODO 1, Filter 1: Ohne brauchbare Jahreszahl lässt sich der Vorfall
+    // nicht einordnen.
     if ($yearRaw === '' || !is_numeric($yearRaw)) {
         $audit['excluded_invalid_year']++;
         continue;
     }
 
+    // TODO 1, Filter 2: Zeitraum. Vor 1950 ist der Datensatz lückenhaft, nach
+    // 2018 unvollständig erfasst.
     $year = (int) $yearRaw;
     if ($year < $yearFrom || $year > $yearTo) {
         $audit['excluded_outside_period']++;
         continue;
     }
 
+    // TODO 1, Filter 3: Nur unprovozierte Vorfälle. Provozierte Fälle sagen
+    // etwas über menschliches Verhalten aus, nicht über die Frage.
+    // Der Vergleich ist strikt und exakt – "Unprovoked " mit Leerzeichen ist
+    // durch trim schon erledigt, "unprovoked" klein geschrieben fällt hier
+    // bewusst raus, weil es im Datensatz nicht vorkommt.
     if (trim((string) ($attack['Type'] ?? '')) !== 'Unprovoked') {
         $audit['excluded_not_unprovoked']++;
         continue;
     }
 
+    // Ab hier gehört der Vorfall zur Auswahl. Das ist der Nenner für die
+    // Abdeckung weiter unten.
     $audit['included_incidents']++;
 
+    // TODO 2: normalisieren. Nur diese beiden Felder – Fatal, Name und Injury
+    // bleiben unangetastet, weil die zwei Fragen sie nicht brauchen.
     $speciesRaw = trim((string) ($attack['Species'] ?? ''));
     $species = normalizeSpecies($speciesRaw);
     $activity = normalizeActivity((string) ($attack['Activity'] ?? ''));
 
+    // TODO 3: zählen. Nicht zugeordnete Arten verschwinden nicht, sondern
+    // landen im Kontroll-Array mit ihrem Rohwert.
     if ($species === null) {
         $audit['species_unclassified']++;
         $label = $speciesRaw === '' ? '(empty)' : $speciesRaw;
@@ -249,10 +402,29 @@ foreach ($rawAttacks as $attack) {
     }
 }
 
+// ---------------------------------------------------------------------------
+// TODO 4 und 5: zwei Ranglisten, ein Datenvertrag
+// ---------------------------------------------------------------------------
+//
+// Die drei Punkte sind der Spread-Operator: Er hängt die Zeilen beider
+// Ranglisten hintereinander in EINE flache Liste. Unterschieden werden sie
+// später am Feld `dimension`.
+
 $rankingRows = [
     ...makeRankingRows($speciesCounts, 'shark_category', $topN),
     ...makeRankingRows($activityCounts, 'activity_group', $topN),
 ];
+
+// ---------------------------------------------------------------------------
+// TODO 6: Abdeckung berechnen
+// ---------------------------------------------------------------------------
+//
+// Die Abdeckung ist die ehrlichste Zahl im ganzen Resultat: Sie sagt, für wie
+// viel Prozent der eingeschlossenen Vorfälle wir überhaupt eine Aussage haben.
+// Bei den Arten ist sie niedrig, und das gehört so in die Story.
+//
+// Die Prüfung auf 0 verhindert eine Division durch null, falls alle Zeilen
+// weggefiltert wurden – etwa wenn jemand den Zeitraum falsch setzt.
 
 $included = $audit['included_incidents'];
 $audit['species_coverage_percent'] = $included === 0
@@ -267,6 +439,10 @@ $audit['most_frequent_unmapped_species'] = mostFrequentValues(
 );
 $audit['output_rows'] = count($rankingRows);
 
+// Der Datenvertrag dieses Schritts. Neben den Daten reisen drei Dinge mit:
+// die Fragen, die Regeln, nach denen gefiltert wurde, und `limits` – der Satz,
+// der verhindert, dass aus einer Häufigkeit eine Risikoaussage wird.
+// Diesen Satz später in der Story sichtbar lassen.
 return [
     'questions' => [
         'Welche identifizierte Hai-Kategorie kommt am häufigsten vor?',

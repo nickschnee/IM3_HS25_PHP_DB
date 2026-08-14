@@ -2,11 +2,16 @@
 /**
  * Code-Along 10: Shark-Daten transformieren – Startcode
  *
- * Fragen:
- * 1. Welche identifizierte Hai-Kategorie kommt in bestätigten, unprovozierten
- *    Vorfällen von 1950–2018 am häufigsten vor?
- * 2. Bei welcher vereinheitlichten Aktivitätsgruppe wurden die meisten dieser
- *    Vorfälle erfasst?
+ * Dieses Gerüst braucht ihr nur, wenn ihr ohne KI arbeitet. Der reguläre Weg
+ * läuft über explore.php und eure eigene Spezifikation in KI_PROMPT.md.
+ *
+ * Eure Fragen:
+ * 1. ...
+ * 2. ...
+ *
+ * Die Werte unten sind Platzhalter aus einer möglichen Fassung. Ersetzt sie
+ * durch eure eigenen Entscheidungen – Zeitraum und Kategorien folgen aus eurer
+ * Frage, nicht umgekehrt.
  *
  * Wichtig: Häufigkeit im Datensatz ist nicht dasselbe wie Risiko.
  */
