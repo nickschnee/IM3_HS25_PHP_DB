@@ -33,30 +33,32 @@
         <div class="content">
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
             <div>
-              <p class="list-intro">Im Kurs arbeitet ihr auf dem Server.</p>
-              <ul class="list-tight text-sm">
-                <li>Datei ändern, hochladen, im Browser aufrufen</li>
-                <li>Das funktioniert und ist der verbindliche Weg</li>
-                <li>Beim vielen Ausprobieren wird es zäh</li>
-              </ul>
-            </div>
-            <div>
-              <p class="list-intro">Lokal läuft PHP direkt auf eurem Laptop.</p>
+              <p class="list-intro">PHP läuft direkt auf eurem Laptop.</p>
               <ul class="list-tight text-sm">
                 <li>Speichern, im Browser neu laden, fertig</li>
                 <li>Kein Hochladen zwischendurch</li>
                 <li>Funktioniert auch ohne Internet</li>
               </ul>
             </div>
+            <div>
+              <p class="list-intro">Auf einen Webserver kommt euer Projekt am Schluss.</p>
+              <ul class="list-tight text-sm">
+                <li>Dort muss es am Marktstand laufen</li>
+                <li>Dafür gibt es einen eigenen Teil im Kurs</li>
+                <li>Bis dahin ändert ihr nichts an eurer Arbeitsweise</li>
+              </ul>
+            </div>
           </div>
-          <div class="callout callout-orange">
-            <p>Das hier ist ein Zusatz und keine Voraussetzung.</p>
-            <p>Wenn es euch länger als eine halbe Stunde aufhält, arbeitet auf dem Server weiter.</p>
+          <div class="callout callout-blue">
+            <p>Das hier ist eure Arbeitsumgebung für den ganzen Kurs.</p>
+            <p>Alle Code-Alongs und Übungen setzen sie voraus.</p>
           </div>
         </div>
-        <aside class="notes">Denselben Satz gibt es im Foliensatz zur lokalen Datenbank, und er gilt hier
-          genauso. Erfahrungsgemäss verliert sonst eine Handvoll Leute den Anschluss an einer Installation,
-          während der Rest längst programmiert.</aside>
+        <aside class="notes">Das ist eine bewusste Änderung gegenüber früheren Durchläufen: Früher lief der
+          Kurs auf einem Webserver und lokal war der Zusatz. Jetzt ist es umgekehrt, weil das ständige
+          Hochladen beim Ausprobieren am meisten Zeit gekostet hat. Deshalb hier nicht weitergehen, bevor
+          alle eine laufende Ausgabe im Browser haben – es gibt keinen Weg mehr, an dem man vorbeikommt.
+          Wer hängen bleibt, meldet sich sofort und wartet nicht bis zur Pause.</aside>
       </section>
 
       <!-- ============ 3 ============ -->
@@ -69,12 +71,12 @@
             <li>Eure Seite erscheint unter <code>localhost:8000</code></li>
           </ul>
           <div class="callout callout-blue">
-            <p>Zusammen mit der lokalen Datenbank ergibt das eure vollständige Arbeitsumgebung.</p>
+            <p>Die Datenbank kommt später dazu, wenn wir sie brauchen.</p>
           </div>
         </div>
-        <aside class="notes">Die beiden Zusatz-Foliensätze gehören zusammen: hier PHP, im anderen die
-          Datenbank. Wer nur eines von beidem einrichtet, kann lokal noch nicht arbeiten – das vorher sagen,
-          damit niemand auf halbem Weg aufhört und sich wundert.</aside>
+        <aside class="notes">Die beiden Setup-Foliensätze gehören zusammen: hier PHP, in Block D die
+          Datenbank. Bewusst getrennt und nicht beides am ersten Tag – eine Installation auf einmal reicht,
+          und die Datenbank ergibt erst dann Sinn, wenn es etwas zu speichern gibt.</aside>
       </section>
 
       <!-- ============ 4 ============ -->
@@ -318,13 +320,13 @@ php -S localhost:8000
             <tr><td><code>Not Found</code></td><td>Falscher Dateiname oder falscher Startordner</td></tr>
             <tr><td>Nichts passiert nach dem Speichern</td><td>Im Browser neu laden, nicht den Server neu starten</td></tr>
           </table>
-          <p class="text-sm mt-1">Bleibt es dabei, arbeitet auf dem Server weiter und fragt in der Pause
-            nach.</p>
+          <p class="text-sm mt-1">Bleibt es dabei, meldet euch sofort – ohne laufenden Server geht es nicht
+            weiter.</p>
         </div>
         <aside class="notes">Bei «Not Found» hilft die Rückfrage, in welchem Ordner der Server gestartet
           wurde: php -S liefert immer nur den Ordner aus, in dem es läuft. Gross- und Kleinschreibung im
-          Dateinamen zählt auf dem Server, auf dem Mac lokal oft nicht – das erzeugt Fehler, die erst beim
-          Hochladen auftauchen.</aside>
+          Dateinamen zählt auf dem Webserver, auf dem Mac lokal oft nicht – das erzeugt Fehler, die erst beim
+          Deployment am Schluss auftauchen. Deshalb von Anfang an konsequent kleinschreiben.</aside>
       </section>
 
     </div>

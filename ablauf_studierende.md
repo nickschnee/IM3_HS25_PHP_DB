@@ -17,6 +17,11 @@
 Der Kurs ist in Themenblöcke gegliedert. Ein Block kann sich über mehrere
 Kurstage erstrecken. Die Story- und Recherchespur (`🔎`) läuft parallel mit.
 
+**Wo ihr arbeitet:** PHP und die Datenbank laufen auf eurem eigenen Rechner.
+Ihr richtet beides zu Beginn des jeweiligen Blocks ein – den PHP-Server in
+Block A, die Datenbank in Block D. Auf einen Webserver kommt euer Projekt erst
+ganz am Schluss, im Deployment-Teil.
+
 ### Kickoff & Setup
 
 1. `📕` Kickoff `45'`
@@ -25,21 +30,21 @@ Kurstage erstrecken. Die Story- und Recherchespur (`🔎`) läuft parallel mit.
 
 ### Block A – PHP Basics
 
-1. `🛠️` Tooling & Server `60'`
-2. `🧑‍🏫` Code-Along: [00 Hallo PHP](code-alongs/A_PHP_Basics/00_hallo_php) `30'`
-3. `📕` Theorie A: [PHP Basics](theorie/A_PHP_Basics) `60'`
-4. `🧑‍🏫` Code-Along: [01 Variablen](code-alongs/A_PHP_Basics/01_variablen) `25'`
-5. `🧑‍🏫` Code-Along: [02 Funktionen](code-alongs/A_PHP_Basics/02_funktionen) `25'`
-6. `🧑‍🏫` Code-Along: [03 Bedingungen](code-alongs/A_PHP_Basics/03_bedingungen) `25'`
-7. `🧑‍🏫` Code-Along: [04 Arrays](code-alongs/A_PHP_Basics/04_arrays) `25'`
-8. `🧑‍🏫` Code-Along: [05 Schleifen](code-alongs/A_PHP_Basics/05_schleifen) `25'`
-9. `💻` Digitale Übung: [06 Städtevergleich](uebungen/A_PHP_Basics/06_staedtevergleich) `45'`
-10. `🔎` Eigene Datenfrage formulieren `60'`
-11. `✅` M2: Datenfrage formuliert
+1. `🛠️` Tooling: Editor, Terminal und Git überprüfen `30'`
+2. `🛠️` Tooling: Lokaler Server [00 Lokaler PHP-Server](theorie/00_lokaler_php_server/index.html) `30'`
+3. `🧑‍🏫` Code-Along: [00 Hallo PHP](code-alongs/A_PHP_Basics/00_hallo_php) `30'`
+4. `📕` Theorie A: [PHP Basics](theorie/A_PHP_Basics) `60'`
+5. `🧑‍🏫` Code-Along: [01 Variablen](code-alongs/A_PHP_Basics/01_variablen) `25'`
+6. `🧑‍🏫` Code-Along: [02 Funktionen](code-alongs/A_PHP_Basics/02_funktionen) `25'`
+7. `🧑‍🏫` Code-Along: [03 Bedingungen](code-alongs/A_PHP_Basics/03_bedingungen) `25'`
+8. `🧑‍🏫` Code-Along: [04 Arrays](code-alongs/A_PHP_Basics/04_arrays) `25'`
+9. `🧑‍🏫` Code-Along: [05 Schleifen](code-alongs/A_PHP_Basics/05_schleifen) `25'`
+10. `💻` Digitale Übung: [06 Städtevergleich](uebungen/A_PHP_Basics/06_staedtevergleich) `45'`
+11. `🔎` Eigene Datenfrage formulieren `60'`
+12. `✅` M2: Datenfrage formuliert
 
 #### Zusatzmaterial (Block A)
 
-- `🛠️` [00 Lokaler PHP-Server](theorie/00_lokaler_php_server/index.html)
 - `💻` [01 Messwert](uebungen/A_PHP_Basics/01_messwert)
 - `💻` [02 Badewetter](uebungen/A_PHP_Basics/02_badewetter)
 - `💻` [03 Warnstufe](uebungen/A_PHP_Basics/03_warnstufe)
@@ -79,14 +84,37 @@ vom rohen Datensatz über die eigene Datenfrage zum fertigen JSON.
 1. `📕` [Theorie D: Load (bis Kapitel Datenmodell)](theorie/D_load/) `30'`
 2. `📝` Analoge Übung: eigenes Datenmodell zeichnen `35'`
 3. `📕` [Theorie D: Load (ab Kapitel SQL)](theorie/D_load/) `45'`
-4. `🛠️` Datenbank einrichten `60'`
+4. `🛠️` Datenbank einrichten: [00 Lokale Datenbank](theorie/00_lokale_db/) `60'`
 5. `🧑‍🏫` Code-Along: [11 Datenbank testen](code-alongs/D_load/11_datenbank_testen/) `60'`
 6. `🧑‍🏫` Code-Along: [12 Hitzesommer laden](code-alongs/D_load/12_hitzesommer_laden/) `70'`
 
 #### Zusatzmaterial (Block D)
 
-- `🛠️` [01 Lokale Datenbank](theorie/01_lokale_db/)
-- `🧑‍🏫` [13 Shark laden](code-alongs/D_load/13_sharkdaten_laden/)
+- `🧑‍🏫` Code-Along: [13 Shark laden](code-alongs/D_load/13_sharkdaten_laden/)
+
+### Block E – Unload
+
+1. `📕` [Theorie E: Unload](theorie/E_unload/) `35'`
+2. `🧑‍🏫` Code-Along: 14 Hitzesommer unloaden – `SELECT`, `JOIN` und JSON-Antwort `35'`
+3. `🧑‍🏫` Code-Along: optionalen Stadtfilter mit `$_GET` ergänzen `40'`
+4. `🛠️` Eigenen Endpunkt nach dem vereinbarten Datenvertrag bauen `60'`
+5. `✅` Endpunkt ohne Filter, mit Treffer und ohne Treffer testen `15'`
+
+#### Zusatzmaterial (Block E)
+
+- `📕` [Cheatsheet Unload](cheatsheets/550_unload.md)
+- `🛠️` [ETL-Boilerplate: unload.php](etl-boilerplate/unload.php)
+
+### Deployment
+
+Am Schluss des Kurses. Bis dahin läuft alles lokal; hier bringt ihr euer
+fertiges Projekt auf einen Webserver, damit es am Marktstand und nach dem Kurs
+erreichbar bleibt.
+
+1. `🛠️` Tooling: Webhosting und Datenbank auf dem Server einrichten `45'`
+2. `🛠️` Tooling: Dateien hochladen, `config.php` auf dem Server ausfüllen, ETL
+   laufen lassen `45'`
+3. `✅` Projekt läuft unter einer eigenen URL
 
 <!--
 

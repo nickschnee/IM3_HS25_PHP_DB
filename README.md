@@ -20,6 +20,19 @@ JSON-Schnittstelle.
 Der ganze Kursablauf nach Tagen steht im
 [Ablauf für Studierende](ablauf_studierende.md).
 
+## Wo ihr arbeitet
+
+Ihr entwickelt auf eurem eigenen Rechner. Zwei kurze Setups gehören dazu, und
+beide sind Teil des Kurses:
+
+- [Lokaler PHP-Server](theorie/00_lokaler_php_server/index.html) – zu Beginn,
+  bevor die PHP-Grundlagen anfangen.
+- [Lokale Datenbank](theorie/00_lokale_db/) – vor dem Load-Block, sobald ihr
+  Daten speichert.
+
+Auf einen Webserver kommt euer Projekt erst am Schluss im Deployment-Teil.
+Dabei ändern sich vier Werte in `config.php` – sonst nichts.
+
 ## Kursmaterial
 
 | Bereich                               | Verwendung                                      |

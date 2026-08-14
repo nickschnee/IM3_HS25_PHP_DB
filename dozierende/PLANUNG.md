@@ -165,8 +165,8 @@ Ziel: Studierende können einfache PHP-Skripte lesen, ändern und schreiben.
 
 Inhalte:
 
-- Tooling und Server: PHP prüfen, Serverzugang einrichten, Projektordner und
-  minimale PHP-Testdatei anlegen
+- Tooling und Server: Editor einrichten, PHP prüfen, lokalen Server starten
+  und eine minimale PHP-Testdatei aufrufen
 - Was ist PHP, Server-Kontext, `<?php ?>`, `echo`
 - Variablen und Datentypen
 - Funktionen
@@ -322,7 +322,7 @@ weil man sie zum Laden braucht.
 
 Inhalte:
 
-- DB-Tooling: Zugang, `config.php` und Verbindung testen.
+- DB-Tooling: MAMP, `config.php` und Verbindung testen.
 - DB & SQL: Tabellen, Zeilen, Spalten, Datentypen, Primärschlüssel, Beziehungen.
 - Datenmodell als ERM Light planen.
 - PDO-Verbindung aufbauen.
@@ -526,11 +526,14 @@ brauchen Kickoff, Zugänge und Einrichtung den ganzen Termin.
 - Marktstand (Tag 10) als Abschlussformat ankündigen.
 - Gruppenbildung mit Aufteilung in Backend-/Frontend-Zweierteams.
 - Tooling und Server:
-  - prüfen, ob PHP lokal beziehungsweise in der vorgesehenen Umgebung läuft;
-  - Serverzugänge verteilen und testen;
-  - persönlichen Projektordner auf dem Server einrichten, minimales PHP-Setup;
-  - eine minimale PHP-Testdatei hochladen und im Browser aufrufen;
-  - typische Zugangs-, Pfad- und Rechteprobleme gemeinsam lösen.
+  - Editor, Terminal und Git einrichten;
+  - PHP lokal installieren und mit `php -v` prüfen;
+  - den lokalen Server mit `php -S localhost:8000` starten;
+  - eine minimale PHP-Testdatei im Browser aufrufen;
+  - typische Pfad- und Portprobleme gemeinsam lösen.
+
+  Der Kurs läuft auf den Rechnern der Studierenden. Ein Webhosting kommt erst
+  im Deployment-Teil an Tag 9 dazu.
 - Begleitprogramm:
   - Rollenmodell Backend-/Frontend-Zweierteam erklären;
   - Beispiele für Datenprojekte ansehen;
@@ -538,7 +541,8 @@ brauchen Kickoff, Zugänge und Einrichtung den ganzen Termin.
 
 Output:
 
-- Jede Person erreicht den Server und kann eine PHP-Testdatei aufrufen.
+- Jede Person hat einen laufenden lokalen PHP-Server und kann eine Testdatei
+  im Browser aufrufen.
 - Die Vierergruppen stehen und kennen den Projektablauf.
 
 Milestone: Gruppen gebildet.
@@ -600,7 +604,7 @@ Output:
 
 ### Tag 6 - Block D: Load
 
-- DB-Tooling: Zugang, `config.php` und Verbindung testen.
+- DB-Tooling: MAMP, `config.php` und Verbindung testen.
 - DB & SQL: Tabellen, Zeilen, Spalten, Schlüssel; Datenmodell als ERM Light.
 - PDO-Verbindung und `INSERT` mit Prepared Statements; einfache
   Fehlerbehandlung.
@@ -633,8 +637,12 @@ Output:
 
 - Ein erster Chart konsumiert die echten Daten aus dem Endpunkt.
 
-### Tag 9 - UX (flexibel platzierbar) und erste Integration
+### Tag 9 - Deployment, UX (flexibel platzierbar) und erste Integration
 
+- Deployment als eigener Tooling-Teil: Webhosting und Datenbank einrichten,
+  Dateien hochladen, `config.php` auf dem Server ausfüllen, ETL einmal laufen
+  lassen. Bis hierher lief alles lokal; inhaltlich ändern sich nur die vier
+  Werte in `config.php`.
 - UX-Block gemäss Miro-Board (Platzhalter, siehe Tag 8).
 - Projektwerkstatt: Backend und Frontend integrieren.
 - Story, Quellen und Limitationen prüfen.
@@ -642,8 +650,12 @@ Output:
 
 Output:
 
+- Das Projekt ist unter einer eigenen URL erreichbar.
 - Backend und Frontend funktionieren integriert mindestens mit Mock- oder
   echten Daten.
+
+Offen: Für diesen Teil gibt es noch kein Material. Ein Foliensatz
+`theorie/00_deployment/` analog zu den beiden Setup-Sätzen fehlt.
 
 Milestone: Erste Integration steht.
 
@@ -670,7 +682,7 @@ weiterarbeitet.
 
 ### M1 - Gruppen gebildet (Ende Tag 1)
 
-- Serverzugang und PHP-Test funktionieren.
+- Der lokale PHP-Server läuft und der PHP-Test funktioniert.
 - Vierergruppe steht.
 - Backend-/Frontend-Zweierteams sind festgelegt.
 

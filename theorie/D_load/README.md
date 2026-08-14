@@ -29,58 +29,41 @@ jedes Feld hat, hat die Tabelle schon entworfen.
 
 ## Tooling vor dem Input
 
-Der Block beginnt mit ungefähr 45 Minuten Einrichtung. Dafür gibt es bewusst
-keine eigenen Unterlagen – es wird gemeinsam durchgeklickt.
+Der Block beginnt mit ungefähr 45 Minuten Einrichtung. Die Datenbank läuft auf
+dem eigenen Rechner – wie PHP seit Block A. Die ausführliche Anleitung samt
+Agentenweg steht in [`theorie/00_lokale_db/`](../00_lokale_db/); hier nur die
+Schritte in Kurzform.
 
-### Standardweg: Hostpoint
-
-1. Im Hostpoint-Panel eine MySQL-Datenbank und einen Benutzer anlegen.
-2. Datenbankname, Benutzername und Passwort notieren; der Host ist `localhost`.
-3. phpMyAdmin aus dem Panel öffnen und die leere Datenbank ansehen.
+1. MAMP installieren und starten. MAMP liefert nur die Datenbank, nicht den
+   Webserver – PHP startet ihr weiterhin mit `php -S localhost:8000`.
+2. In MAMP den MySQL-Port ablesen, üblicherweise `8889`.
+3. phpMyAdmin über MAMP öffnen und eine leere Datenbank anlegen.
 4. Im Hauptordner des Kurses `config.template.php` zu `config.php` kopieren und
    die Werte eintragen. Diese Datei gibt es genau einmal für alle Übungen.
 5. Prüfen, dass `config.php` nicht im Git auftaucht – sie steht in `.gitignore`.
 6. Verbindung mit einer kleinen Testdatei prüfen.
 
-### Alternative für Schnelle: lokal mit MAMP
+| Wert | Lokal mit MAMP |
+| --- | --- |
+| Host | `127.0.0.1` |
+| Port | `8889` (Windows oft `3306`) |
+| Benutzer | `root` |
+| Passwort | `root` |
+| phpMyAdmin | über die MAMP-Startseite |
 
-Der Kurs läuft auf dem Server. Wer zusätzlich lokal arbeiten will, findet die
-ausführliche Anleitung in [`theorie/01_lokale_db/`](../01_lokale_db/) – dort
-auch der Weg, die Installation von einem Agenten erledigen zu lassen.
-
-MAMP wird nur für die Datenbank verwendet, nicht als Webserver. PHP startet ihr
-weiterhin wie bisher:
-
-```bash
-php -S localhost:8000
-```
-
-| Wert | Lokal mit MAMP | Auf Hostpoint |
-| --- | --- | --- |
-| Host | `127.0.0.1` | `localhost` |
-| Port | `8889` | Standard, entfällt |
-| Benutzer | `root` | aus dem Panel |
-| Passwort | `root` | aus dem Panel |
-| phpMyAdmin | MAMP-Startseite | Hostpoint-Panel |
-
-Lokal muss `127.0.0.1` stehen und nicht `localhost`: Bei `localhost` verbindet
+Es muss `127.0.0.1` heissen und nicht `localhost`: Bei `localhost` verbindet
 sich PHP über eine Socket-Datei statt über den Port und sucht sie unter
 `/tmp/mysql.sock`, wo MAMP keine anlegt. Die Meldung lautet dann
 `SQLSTATE[HY000] [2002] No such file or directory`, und der Port im DSN wird
-ignoriert.
-
-Der DSN unterscheidet sich dadurch nur in einer Kleinigkeit:
+ignoriert. Das ist der häufigste Fehler des Blocks.
 
 ```php
-// lokal ($host = '127.0.0.1')
 $dsn = "mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4";
-
-// auf dem Server ($host = 'localhost')
-$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
 ```
 
-Alles andere bleibt gleich. Genau dafür stehen die Zugangsdaten in einer eigenen
-Datei.
+Beim Deployment am Ende des Kurses ändern sich genau diese vier Werte, und der
+`port` fällt meist weg. Alles andere bleibt gleich – genau dafür stehen die
+Zugangsdaten in einer eigenen Datei.
 
 ## Was eine Datenbank ist
 
@@ -280,7 +263,7 @@ die Tabelle bleibt leer. Die drei häufigsten Meldungen:
 | Meldung | Ursache |
 | --- | --- |
 | `Unknown column` | Tippfehler im Spaltennamen |
-| `No such file or directory` | lokal steht `localhost` statt `127.0.0.1` im DSN |
+| `No such file or directory` | im DSN steht `localhost` statt `127.0.0.1` |
 | `Access denied` | falsche Zugangsdaten in `config.php` |
 | `Cannot add or update a child row` | Fremdschlüssel ohne passende Zeile |
 
@@ -413,6 +396,10 @@ npx decktape reveal theorie/D_load/index.html slides.pdf --size 1280x720
   offene Stelle: Aus dem `SELECT` mit Fremdschlüssel wird dort ein `JOIN`.
 - `cheatsheets/310_load.md` stammt aus dem letzten Durchlauf und passt noch
   nicht zu diesem Datenmodell.
+- Für den Deployment-Teil am Kursende gibt es noch kein Material. Ein
+  Foliensatz `theorie/00_deployment/` analog zu den beiden Setup-Sätzen fehlt;
+  Folie 8 verweist bereits darauf, dass der Umzug nur die Zugangsdaten
+  betrifft.
 - Für Gruppen mit Live-Sammlung steht das Beispiel mit `UNIQUE` und
   `INSERT IGNORE` inzwischen im optionalen Teil von
   [`code-alongs/D_load/13_sharkdaten_laden`](../../code-alongs/D_load/13_sharkdaten_laden/Ablauf/13_sharkdaten_laden_ablauf.md).

@@ -8,7 +8,7 @@
  *
  * Vorher:
  * - config.php im Hauptordner anlegen (aus config.template.php kopieren)
- *   und mit den Zugangsdaten aus dem Hostpoint-Panel ausfüllen;
+ *   und mit den Zugangsdaten aus MAMP ausfüllen;
  * - Tabelle aus schema.sql in phpMyAdmin anlegen.
  */
 

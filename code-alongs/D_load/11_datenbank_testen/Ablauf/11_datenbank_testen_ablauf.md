@@ -14,40 +14,36 @@ Wenn diese Seite Zeilen ausgibt, ist alles Nachfolgende reine Programmierung.
 
 ## Vorbereitung (10')
 
-Wir arbeiten auf dem Server. Datenbank und Benutzer stehen aus dem
-Tooling-Block davor bereits – hier geht es nur noch um diesen Ordner.
-Gemeinsam durchgehen, jede Person auf dem eigenen Zugang:
+Die Datenbank läuft auf dem eigenen Rechner. MAMP und die leere Datenbank stehen
+aus dem Tooling-Teil davor bereits – hier geht es nur noch um diesen Ordner.
+Gemeinsam durchgehen, jede Person auf dem eigenen Rechner:
 
-1. Zugangsdaten aus dem Hostpoint-Panel bereitlegen: Datenbankname, Benutzer,
-   Passwort.
+1. Prüfen, dass MAMP läuft und die Anzeige für MySQL grün ist.
 2. Im **Hauptordner** des Kurses `config.template.php` zu `config.php` kopieren:
    ```bash
    cp config.template.php config.php
    ```
    Diese Datei gibt es genau einmal für alle Code-Alongs und Übungen.
-3. Die drei Werte eintragen. `$host` bleibt `localhost`: Die Datenbank läuft auf
-   demselben Server wie die PHP-Dateien, «localhost» meint also den Server und
-   nicht den eigenen Laptop.
+3. Den Namen der Datenbank eintragen. Benutzer und Passwort sind lokal beide
+   `root`, `$host` ist `127.0.0.1`, und im DSN steht `port=8889` – so steht es
+   bereits in der Vorlage.
 4. Prüfen, dass `config.php` nicht im Git landet:
    ```bash
    git status
    ```
    Die Datei darf dort **nicht** auftauchen.
-5. Tabelle anlegen: phpMyAdmin aus dem Hostpoint-Panel öffnen und `schema.sql`
+5. Tabelle anlegen: phpMyAdmin über die MAMP-Startseite öffnen und `schema.sql`
    im Reiter «SQL» ausführen – oder dieselben Spalten im Reiter «Struktur»
    zusammenklicken.
-6. Den Ordner auf den Server laden, in den eigenen Projektordner.
+6. Im Ordner des Code-Alongs `php -S localhost:8000` starten.
 
-> **Für Schnelle:** Wer zusätzlich lokal arbeiten will, startet MAMP und nutzt
-> daraus nur MySQL. Benutzer und Passwort sind dort beide `root`, `$host` ist
-> `127.0.0.1` und im DSN steht zusätzlich `port=8889` (die auskommentierte Zeile
-> unten in `config.template.php`). PHP läuft weiterhin über
-> `php -S localhost:8000`. Für den Kurs ist das nicht nötig – der Server ist der
-> Standardweg.
+> **`127.0.0.1` und nicht `localhost`:** Bei `localhost` verbindet sich PHP über
+> eine Socket-Datei statt über den Port und meldet
+> `SQLSTATE[HY000] [2002] No such file or directory`. Das ist der häufigste
+> Fehler an dieser Stelle.
 >
-> Lokal `127.0.0.1` und nicht `localhost`: Bei `localhost` verbindet sich PHP
-> über eine Socket-Datei statt über den Port und meldet
-> `SQLSTATE[HY000] [2002] No such file or directory`.
+> **Zwei Ports, zwei Zwecke:** `8888` ist der Webserver von MAMP, den wir nicht
+> brauchen. `8889` ist die Datenbank und gehört in den DSN.
 
 ## Schritte im Code (15')
 
@@ -69,7 +65,7 @@ Gemeinsam durchgehen, jede Person auf dem eigenen Zugang:
 
 ## Kontrolle (5')
 
-- Die eigene Server-URL im Browser öffnen: Es erscheinen vier Zeilen mit Ort,
+- `http://localhost:8000` im Browser öffnen: Es erscheinen vier Zeilen mit Ort,
   Temperatur und Zeitpunkt.
 - Dieselbe Tabelle in phpMyAdmin öffnen: dort stehen dieselben vier Zeilen.
   Dieser Doppelblick ist der eigentliche Test – die Daten sind wirklich in der

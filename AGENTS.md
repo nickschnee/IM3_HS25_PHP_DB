@@ -108,8 +108,14 @@ eine Begleitspur (kein nummerierter Block).
   wenige vorbereitete Daten, kurze Anweisungen und ein sofort sichtbares
   Resultat.
 - Tag 1 nicht mit PHP-Syntax ueberladen. PHP wird dort nur im Rahmen des
-  Toolings geprueft und mit einer minimalen Testdatei auf dem Server
+  Toolings geprueft und mit einer minimalen Testdatei ueber den lokalen Server
   aufgerufen.
+- Die Arbeitsumgebung des Kurses ist der eigene Rechner: PHP ueber
+  `php -S localhost:8000` (eingerichtet in `theorie/00_lokaler_php_server/`)
+  und die Datenbank ueber MAMP (eingerichtet in `theorie/00_lokale_db/`).
+  Beide Foliensaetze sind Standard und nicht Zusatzmaterial. Ein Webhosting
+  kommt erst im Deployment-Teil am Kursende dazu. Neues Material deshalb
+  lokal-first formulieren; Hostpoint und Upload gehoeren nur ins Deployment.
 - Technische Konzepte frueh mit Daten und sichtbaren Ergebnissen verbinden.
 - Auf jeden Input soll zeitnah eine passende Uebung folgen.
 - Code-Alongs sind gefuehrte Unterrichtseinheiten; Uebungen muessen auch

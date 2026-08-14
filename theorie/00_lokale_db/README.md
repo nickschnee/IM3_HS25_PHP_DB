@@ -1,17 +1,20 @@
-# 01 Lokale Datenbank (optional)
+# 00 Lokale Datenbank
 
 > **Ziel:** Du kannst eine MySQL-Datenbank auf deinem eigenen Rechner betreiben
-> und mit phpMyAdmin bedienen – ohne für jeden Versuch auf den Server zu laden.
+> und mit phpMyAdmin bedienen.
 
-Dieser Foliensatz gehört zum Zusatzmaterial. Der Kurs läuft auf dem Server:
-Datenbank, phpMyAdmin und PHP sind dort eingerichtet, und dein Projekt muss am
-Ende dort funktionieren. Lokal zu arbeiten ist schneller, aber freiwillig.
+Dieses Setup gehört zum Kurs und ist keine Kür: Ab Block D speicherst du Daten,
+und dafür braucht es eine Datenbank. Sie läuft auf deinem Rechner – wie PHP seit
+Block A. Auf ein Webhosting kommt dein Projekt erst im Deployment-Teil am
+Schluss des Kurses.
 
-> **Wichtig:** Wenn dich das Einrichten länger als eine halbe Stunde aufhält,
-> überspring es und arbeite auf dem Server weiter. Du verpasst nichts.
+> **Zeit einplanen:** Rechne mit 45 Minuten. Kommst du nicht weiter, melde dich
+> sofort statt allein weiterzusuchen – ohne Datenbank geht es in diesem Block
+> nicht weiter.
 
-Passend dazu: [`00_lokaler_php_server`](../00_lokaler_php_server/) erklärt, wie
-du PHP lokal startest. Beides zusammen ergibt die vollständige lokale Umgebung.
+Der Vorgänger: [`00_lokaler_php_server`](../00_lokaler_php_server/) erklärt, wie
+du PHP lokal startest. Beides zusammen ist deine Arbeitsumgebung für den ganzen
+Kurs.
 
 ## Was am Ende stehen soll
 
@@ -48,7 +51,7 @@ Was du trotzdem selbst machst:
 - phpMyAdmin wirklich im Browser öffnen und nicht nur der Zusage glauben.
 - Die vier Werte notieren, statt sie später im Chatverlauf zu suchen.
 - Jeden Befehl kurz ansehen, bevor du ihn bestätigst.
-- Keine Zugangsdaten vom Kursserver in einen Chat geben.
+- Keine Zugangsdaten von einem Webhosting in einen Chat geben.
 
 ## Der Weg von Hand
 
@@ -102,18 +105,19 @@ heil ankommen.
 
 ### 5. `config.php` anpassen
 
-Zwischen Server und lokal unterscheidet sich genau eine Zeile:
+So sieht die Datei lokal aus:
 
 ```php
-// auf dem Server ($host = 'localhost')
-$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
-
 // lokal mit MAMP ($host = '127.0.0.1')
 $dsn = "mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4";
 ```
 
-Benutzername und Passwort sind lokal beide `root`. Der übrige Code bleibt
-unverändert. Auch die lokale `config.php` gehört nicht ins Repository.
+Benutzername und Passwort sind lokal beide `root`. Die `config.php` gehört nicht
+ins Repository.
+
+Beim Deployment ändert sich genau diese eine Zeile – dann ohne `port` und mit
+den Werten des Webhostings. Der übrige Code bleibt unverändert. Genau dafür
+stehen die Zugangsdaten in einer eigenen Datei.
 
 **Lokal `127.0.0.1` und nicht `localhost`.** Bei `localhost` verbindet sich PHP
 nicht über den Port, sondern über eine Socket-Datei, und sucht sie unter
@@ -129,8 +133,8 @@ php -S localhost:8000
 ```
 
 MAMP liefert die Datenbank, nicht den Webserver. Deine PHP-Dateien bleiben in
-deinem Projektordner und werden über `localhost:8000` aufgerufen. So ändert
-sich an deiner bisherigen Arbeitsweise nichts.
+deinem Projektordner und werden über `localhost:8000` aufgerufen – wie seit
+Block A. So ändert sich an deiner bisherigen Arbeitsweise nichts.
 
 ## Wenn es nicht läuft
 
@@ -148,8 +152,8 @@ neben das, was in phpMyAdmin steht, bevor du im PHP-Code suchst.
 
 ## Merksatz
 
-> Lokal ist schneller, der Server ist verbindlich. Dein Projekt muss am Ende
-> auf dem Server laufen – lade deinen Stand deshalb regelmässig hoch.
+> Du entwickelst lokal und deployst am Schluss. Was sich dabei ändert, sind vier
+> Werte in `config.php` – sonst nichts.
 
 ---
 
@@ -179,8 +183,8 @@ Tooling und kein Schritt der Kette. Er braucht auch kein eigenes `styles.css`.
 ### Nach Änderungen prüfen
 
 ```bash
-python3 theorie/_foliendesign/pruefe-folien.py theorie/01_lokale_db/index.html
-node ~/.claude/skills/revealjs-1.0.0/scripts/check-overflow.js theorie/01_lokale_db/index.html
+python3 theorie/_foliendesign/pruefe-folien.py theorie/00_lokale_db/index.html
+node ~/.claude/skills/revealjs-1.0.0/scripts/check-overflow.js theorie/00_lokale_db/index.html
 ```
 
 ### Offene Punkte

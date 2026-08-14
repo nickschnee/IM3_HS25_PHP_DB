@@ -71,15 +71,17 @@ um Tag 4–5). Siehe Abschnitt [Story-Spur](#story-spur-und-pascal-alisser).
 
 ## Tag 1 – Kickoff, Gruppenbildung, Tooling und Server
 
-**Ziel:** Alle verstehen das Kursprojekt, erreichen den Server und arbeiten in
-einer Vierergruppe mit klaren Zweierteams. Noch kein PHP-Grundlagenunterricht.
+**Ziel:** Alle verstehen das Kursprojekt, haben einen laufenden lokalen
+PHP-Server und arbeiten in einer Vierergruppe mit klaren Zweierteams. Noch kein
+PHP-Grundlagenunterricht.
 
 | Prio | Form | Inhalt | Richtwert | Material oder Ergebnis |
 | --- | --- | --- | ---: | --- |
 | Muss | Rahmen | Kursziel, ETL+U-Datenfluss und Marktstand zeigen | 30' | Fertiges Beispielprojekt oder Demo |
 | Muss | Rahmen | Vierergruppen bilden; Backend- und Frontend-Zweierteam festlegen | 45' | Gruppenliste |
-| Muss | Tooling | Zugänge verteilen, lokalen PHP-Check, Serverordner einrichten | 90' | Zugang pro Person |
-| Muss | `🧑‍🏫` | [00 Hallo PHP](../code-alongs/A_PHP_Basics/00_hallo_php) hochladen und im Browser öffnen | 30' | Ausgabe `Hallo PHP` |
+| Muss | Tooling | Editor, Terminal und Git einrichten | 30' | Arbeitsplatz steht |
+| Muss | Tooling | [00 Lokaler PHP-Server](../theorie/00_lokaler_php_server/index.html): PHP installieren, `php -S` starten | 60' | `php -v` und Testseite pro Person |
+| Muss | `🧑‍🏫` | [00 Hallo PHP](../code-alongs/A_PHP_Basics/00_hallo_php) lokal starten und im Browser öffnen | 30' | Ausgabe `Hallo PHP` |
 | Soll | `🔎` | Datenprojekte ansehen und Themenfelder sammeln | 45' | Themen-Post-its pro Gruppe |
 | Muss | `✅` | `Hallo PHP` und Gruppeneinteilung abnehmen | 15' | **M1: Gruppen gebildet** |
 
@@ -152,7 +154,7 @@ geschrieben.
 
 | Prio | Form | Inhalt | Richtwert | Ergebnis |
 | --- | --- | --- | ---: | --- |
-| Muss | Tooling | DB-Zugang, `config.php`, Verbindung testen | 45' | Verbindung pro Person |
+| Muss | Tooling | [00 Lokale Datenbank](../theorie/00_lokale_db/): MAMP, phpMyAdmin, `config.php`, Verbindung testen | 45' | Verbindung pro Person |
 | Muss | `📕` | Tabelle, Zeile, Spalte, Datentyp, Primärschlüssel, Beziehung | 40' | Begriffe am Beispiel |
 | Muss | `📝` | Daten als ERM Light planen | 35' | Kleine Tabelle |
 | Muss | `📕` + `🧑‍🏫` | PDO-Verbindung und `INSERT` mit Prepared Statements | 70' | Neue Zeilen in der DB |
@@ -168,10 +170,11 @@ und liefert sie gefiltert aus.
 | Prio | Form | Inhalt | Richtwert | Ergebnis |
 | --- | --- | --- | ---: | --- |
 | Muss | Repetition | Datenvertrag gegen Beispiel-JSON prüfen | 15' | Fehler erkennen |
-| Muss | `📕` + `🧑‍🏫` | `unload.php`: PDO `SELECT`, Struktur, Header, `json_encode` | 70' | Stabiler Endpunkt |
-| Muss | `🧑‍🏫` | Endpunkt mit `$_GET` filtern; leere Resultate sauber beantworten | 50' | Filterbare API-Antwort |
+| Muss | `📕` | [`SELECT`, `JOIN`, Datenvertrag und JSON-Antwort](../theorie/E_unload/) | 35' | Weg von der DB zum JSON verstanden |
+| Muss | `🧑‍🏫` | `unload.php` geführt aufbauen: lesen, normalisieren, Header setzen, `json_encode` | 35' | Stabiler JSON-Endpunkt |
+| Muss | `🧑‍🏫` | Optionalen Stadtfilter mit `$_GET` und Prepared Statement ergänzen; leere Liste und Fehler testen | 40' | Filterbare API-Antwort |
 | Muss | Projekt | Eigenen `unload.php`-Endpunkt bauen | 60' | Endpunkt der Gruppe |
-| Muss | `✅` | Endpunkt (mit und ohne Filter) zeigen | 15' | Tagesabnahme |
+| Muss | `✅` | Endpunkt ohne Filter, mit Treffer und ohne Treffer zeigen | 15' | Tagesabnahme |
 
 ## Tag 8 – Block F: Chart.js und UX-Slot
 
@@ -186,13 +189,20 @@ Der UX-Slot ist laut Miro-Board flexibel und kann auch früher stattfinden.
 | Soll | UX | UX-Input oder betreute Projektarbeit | 60' | Bessere Nutzung |
 | Soll | `✅` | Chart aus echten Daten zeigen | 15' | Tagesabnahme |
 
-## Tag 9 – Integration, Fallback und Feature-Freeze
+## Tag 9 – Deployment, Integration und Feature-Freeze
 
-**Ziel:** Am Ende des Tages steht die ausstellungsfähige Fassung.
+**Ziel:** Am Ende des Tages steht die ausstellungsfähige Fassung – und sie läuft
+zum ersten Mal nicht mehr nur lokal.
+
+Bis hierher haben alle auf dem eigenen Rechner gearbeitet: PHP über `php -S`,
+die Datenbank über MAMP. Das Deployment ist deshalb ein eigener Tooling-Teil und
+nicht ein Nebensatz. Der Kern ist eine einzige Erkenntnis: Es ändern sich vier
+Werte in `config.php`, sonst nichts.
 
 | Prio | Form | Inhalt | Richtwert | Ergebnis |
 | --- | --- | --- | ---: | --- |
-| Muss | Projekt | Backend und Frontend integrieren | 120' | Durchgehender Datenweg |
+| Muss | Tooling | Webhosting und Datenbank einrichten, Dateien hochladen, `config.php` auf dem Server ausfüllen, ETL einmal laufen lassen | 90' | Projekt unter eigener URL |
+| Muss | Projekt | Backend und Frontend integrieren | 90' | Durchgehender Datenweg |
 | Muss | Test | Ladefehler, leere Daten, Serverpfade und Browser testen | 60' | Fehlerliste abgearbeitet |
 | Muss | Test | Gespeicherten JSON-/CSV-/DB-Fallback aktiv testen | 45' | Offline-/Daten-Fallback |
 | Muss | Story | Titel, Kernaussage, Quelle und Limitationen prüfen | 45' | Verständliche Story |

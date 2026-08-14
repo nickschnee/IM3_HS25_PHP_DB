@@ -52,7 +52,8 @@ Schreibweise wie die Lösungen in `code-alongs/A_PHP_Basics/`.
   `cheatsheets/05_schleifen.md`
 - Praxis direkt danach: `code-alongs/A_PHP_Basics/`
 - Übungen: `uebungen/A_PHP_Basics/`
-- Lokaler Server (optional): `theorie/00_lokaler_php_server/`
+- Voraussetzung: `theorie/00_lokaler_php_server/` – der lokale PHP-Server ist
+  die Arbeitsumgebung des Kurses und wird vor diesem Block eingerichtet
 
 ## Design
 

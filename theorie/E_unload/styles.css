@@ -1,0 +1,271 @@
+/* Sonderregeln nur fuer den Foliensatz "Unload".
+ * Das gemeinsame Design steht in ../_foliendesign/fhgr-slides.css. */
+
+/* ETL-Streifen auf den Kapiteltrennern, passend zu Transform und Load. */
+.reveal .slides section.section-divider .etl-strip {
+  position: absolute;
+  top: 56px;
+  left: 72px;
+  right: 72px;
+  font-family: var(--mono-font);
+  font-size: 12pt;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.reveal .slides section.section-divider .etl-strip .is-here {
+  color: #ffffff;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+  padding-bottom: 3px;
+}
+
+.reveal .slides section.section-divider .etl-strip .sep {
+  padding: 0 8px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Gleich hohe Code-Bloecke fuer direkte Vergleiche. */
+.reveal .code-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: stretch;
+}
+
+.reveal .code-pair > div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.reveal .code-pair pre {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.reveal .code-pair pre code {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Definition auf der Begriffsfolie. */
+.reveal .definition-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--blue-bg);
+  border-left: var(--accent-border-width) solid var(--primary-color);
+  border-radius: 0 var(--box-radius) var(--box-radius) 0;
+  padding: 28px 30px;
+  box-sizing: border-box;
+}
+
+/* URL-Zeile als ruhiger Browser-/API-Baustein. */
+.reveal .request-line {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px 22px;
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: var(--box-radius);
+  color: var(--code-text);
+  font-family: var(--mono-font);
+  font-size: 18pt;
+}
+
+.reveal .request-line .method {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--primary-color);
+  color: #ffffff;
+  font-family: var(--body-font);
+  font-size: 11pt;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.reveal .request-line mark {
+  background: var(--orange-bg);
+  color: var(--code-text);
+  padding: 2px 4px;
+}
+
+.reveal .contract-table td,
+.reveal .contract-table th,
+.reveal .test-table td,
+.reveal .test-table th {
+  font-size: 12.5pt;
+}
+
+/* Datenbankform und JSON-Form als kleine Karten. */
+.reveal .shape-bridge {
+  display: grid;
+  grid-template-columns: 0.75fr auto 1.2fr auto 1.4fr;
+  gap: 16px;
+  align-items: stretch;
+  margin-top: 30px;
+}
+
+.reveal .shape-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 145px;
+  padding: 20px;
+  background: var(--box-bg);
+  border: 1px solid var(--box-border);
+  border-radius: var(--box-radius);
+  color: var(--text-color);
+  font-size: 13pt;
+  line-height: 1.7;
+  box-sizing: border-box;
+}
+
+.reveal .shape-card.is-result {
+  background: var(--blue-bg);
+  border-color: var(--blue-border);
+}
+
+.reveal .shape-plus {
+  align-self: center;
+  color: var(--muted-color);
+  font-size: 22pt;
+}
+
+/* Kleines JOIN-Diagramm aus echten Tabellenzeilen. */
+.reveal .join-demo {
+  display: grid;
+  grid-template-columns: 0.8fr 1fr 1.4fr;
+  gap: 26px;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.reveal .join-table {
+  display: grid;
+  grid-template-columns: 0.45fr 1fr;
+  border: 1px solid var(--box-border);
+  border-radius: var(--box-radius);
+  overflow: hidden;
+}
+
+.reveal .join-table.is-wide {
+  grid-template-columns: 0.4fr 0.65fr 1.2fr;
+}
+
+.reveal .join-table .code-label {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 10px 14px;
+  background: var(--box-bg);
+  border-bottom: 1px solid var(--box-border);
+}
+
+.reveal .join-table > div:not(.code-label) {
+  padding: 10px 14px;
+  border-bottom: 1px solid #f0f0ea;
+  font-size: 13pt;
+}
+
+.reveal .join-rule {
+  position: relative;
+  color: var(--primary-color);
+  font-size: 13pt;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.reveal .join-rule::before,
+.reveal .join-rule::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 22%;
+  border-top: 1px solid var(--secondary-color);
+}
+
+.reveal .join-rule::before { left: 0; }
+.reveal .join-rule::after { right: 0; }
+
+/* Vier Schritte des Endpunkts. */
+.reveal .endpoint-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 38px;
+}
+
+.reveal .endpoint-steps > div {
+  min-height: 175px;
+  padding: 22px 18px;
+  background: var(--box-bg);
+  border: 1px solid var(--box-border);
+  border-radius: var(--box-radius);
+  box-sizing: border-box;
+}
+
+.reveal .endpoint-steps strong,
+.reveal .endpoint-steps small {
+  display: block;
+}
+
+.reveal .endpoint-steps strong {
+  margin: 16px 0 10px;
+  color: var(--text-color);
+  font-size: 17pt;
+}
+
+.reveal .endpoint-steps small {
+  color: var(--muted-color);
+  font-size: 12pt;
+  line-height: 1.45;
+}
+
+.reveal .step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: #ffffff;
+  font-family: var(--mono-font);
+  font-size: 13pt;
+}
+
+/* HTTP-Antworten mit Status und Inhalt. */
+.reveal .response-card {
+  padding: 26px;
+  border: 1px solid var(--box-border);
+  border-radius: var(--box-radius);
+  background: var(--box-bg);
+  box-sizing: border-box;
+}
+
+.reveal .response-card.is-ok {
+  background: var(--green-bg);
+  border-color: var(--green-border);
+}
+
+.reveal .status-pill {
+  display: inline-block;
+  margin-bottom: 28px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--green);
+  color: #ffffff;
+  font-family: var(--mono-font);
+  font-size: 11pt;
+}
+
+.reveal .response-code {
+  margin-top: 18px;
+  color: var(--code-text);
+  font-family: var(--mono-font);
+  font-size: 34pt;
+}

@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IM3 – Unload</title>
+
+  <!-- Reveal.js core -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+
+  <!-- Font Awesome fuer Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- FHGR Foliendesign und Sonderregeln fuer diesen Foliensatz -->
+  <link rel="stylesheet" href="../_foliendesign/fhgr-slides.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ============ 1 Titel ============ -->
+      <section id="title" class="title-slide" data-state="is-title">
+        <h1>Unload</h1>
+        <div class="rule"></div>
+        <p>Von der Datenbank zum JSON-Endpunkt</p>
+        <p class="sub">nick.schneeberger@fhgr.ch</p>
+      </section>
+
+      <!-- ============ 2 Inhalt ============ -->
+      <section id="inhalt">
+        <h2>Inhalt</h2>
+        <div class="content">
+          <ul class="text-xl">
+            <li>Daten mit <code>SELECT</code> und <code>JOIN</code> lesen</li>
+            <li>Datenbankzeilen an den Datenvertrag anpassen</li>
+            <li>Eine gültige JSON-Antwort ausgeben</li>
+            <li>Den Endpunkt mit <code>$_GET</code> filtern</li>
+            <li>Leere Resultate und Fehler testen</li>
+          </ul>
+        </div>
+        <aside class="notes">Richtwert für den Theorie-Input in Block E: 35 Minuten.
+          Die Code-Etappen werden danach im geführten Aufbau von unload.php wiederholt.</aside>
+      </section>
+
+      <!-- ============ 3 ============ -->
+      <section id="wo-wir-stehen">
+        <h2>Wo wir stehen</h2>
+        <div class="content">
+          <div class="flow">
+            <div class="flow-step"><span class="flow-title">Extract</span><span class="flow-sub">Quellen lesen</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Transform</span><span class="flow-sub">Datenvertrag</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Load</span><span class="flow-sub">Daten speichern</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Datenbank</span><span class="flow-sub">258 Zeilen</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step is-active"><span class="flow-title">Unload</span><span class="flow-sub">JSON-Endpunkt</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Chart.js</span><span class="flow-sub">Story</span></div>
+          </div>
+          <div class="callout callout-blue mt-2">
+            <p>Die Daten liegen bereits richtig in der Datenbank.</p>
+            <p>Jetzt liefern wir genau die vereinbarte Form an das Frontend.</p>
+          </div>
+        </div>
+        <aside class="notes">Kurze Repetition: Die Klasse nennt zu jedem bisherigen Schritt ein Verb.
+          Unload ist die Brücke zwischen dem Backend-Team und dem Frontend-Team.</aside>
+      </section>
+
+      <!-- ============ 4 Trenner ============ -->
+      <section id="divider-lesen" class="section-divider" data-state="is-section-divider">
+        <div class="etl-strip"><span>Extract</span><span class="sep">→</span><span>Transform</span><span class="sep">→</span><span>Load</span><span class="sep">→</span><span>Datenbank</span><span class="sep">→</span><span class="is-here">Unload</span><span class="sep">→</span><span>Chart.js</span></div>
+        <h1>Aus der Datenbank lesen</h1>
+        <p>Aus zwei Tabellen wird eine Liste für das Frontend</p>
+      </section>
+
+      <!-- ============ 5 ============ -->
+      <section id="was-ist-unload">
+        <h2>Was bedeutet «Unload»?</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 40px; align-items: stretch;">
+            <div class="definition-card">
+              <span class="eyebrow">Unsere Kursbezeichnung</span>
+              <p class="text-2xl">Daten aus der Datenbank lesen und als JSON ausgeben.</p>
+            </div>
+            <div>
+              <ul class="list-tight">
+                <li>ETL endet normalerweise beim Laden</li>
+                <li>Unser Projekt braucht danach einen Weg zurück ins Frontend</li>
+                <li><code>unload.php</code> ist dieser Weg</li>
+                <li>Die Datei liefert Daten und kein HTML</li>
+              </ul>
+              <div class="callout callout-gray mt-1">
+                <p>«Unload» ist hier ein praktischer Kursbegriff und kein zusätzlicher Buchstabe in ETL.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">Den Begriff bewusst begrenzen, damit er später nicht als universeller
+          Fachbegriff ausgegeben wird.</aside>
+      </section>
+
+      <!-- ============ 6 ============ -->
+      <section id="request-response">
+        <h2>Ein Endpunkt beantwortet eine Anfrage</h2>
+        <div class="content">
+          <div class="request-line"><span class="method">GET</span><span>/unload.php?city=Bern</span></div>
+          <div class="flow mt-2">
+            <div class="flow-step"><span class="flow-title">Browser oder JavaScript</span><span class="flow-sub">ruft eine URL auf</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step is-active"><span class="flow-title">unload.php</span><span class="flow-sub">liest und formt Daten</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">JSON-Antwort</span><span class="flow-sub">gleicher Datenvertrag</span></div>
+          </div>
+          <p class="text-lg mt-2">Der Endpunkt ist eine normale PHP-Datei mit einer klar vereinbarten Antwort.</p>
+        </div>
+        <aside class="notes">GET bedeutet hier: Daten anfordern, ohne den gespeicherten Stand zu verändern.
+          Das Frontend ruft dieselbe URL später mit fetch auf.</aside>
+      </section>
+
+      <!-- ============ 7 ============ -->
+      <section id="vertrag-zuerst">
+        <h2>Der Datenvertrag kommt zuerst</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 36px; align-items: stretch;">
+            <pre class="code-sm"><code data-trim data-noescape class="language-json">
+[
+  {
+    "city": "Bern",
+    "year": 2023,
+    "measurement_days": 92,
+    "hot_days": 12,
+    "max_temperature_c": 36.3
+  }
+]
+            </code></pre>
+            <div>
+              <table class="contract-table">
+                <tr><th>Feld</th><th>Typ</th></tr>
+                <tr><td><code>city</code></td><td>String</td></tr>
+                <tr><td><code>year</code></td><td>Number</td></tr>
+                <tr><td><code>measurement_days</code></td><td>Number</td></tr>
+                <tr><td><code>hot_days</code></td><td>Number</td></tr>
+                <tr><td><code>max_temperature_c</code></td><td>Number oder <code>null</code></td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="callout callout-green mt-1">
+            <p>Der echte Endpunkt muss dieselben Feldnamen, Typen und dieselbe Listenform liefern wie das Mock-JSON.</p>
+          </div>
+        </div>
+        <aside class="notes">Think-Pair-Share: Zwei Personen vergleichen diese Struktur mit dem Transform
+          und suchen mögliche Abweichungen.</aside>
+      </section>
+
+      <!-- ============ 8 ============ -->
+      <section id="zwei-tabellen-eine-liste">
+        <h2>Zwei Tabellen werden eine flache Liste</h2>
+        <div class="content">
+          <div class="shape-bridge">
+            <div class="shape-card">
+              <span class="code-label">cities</span>
+              <div><code>id</code> · <code>name</code></div>
+            </div>
+            <div class="shape-plus">+</div>
+            <div class="shape-card">
+              <span class="code-label">heat_summers</span>
+              <div><code>city_id</code> · <code>year</code> · <code>hot_days</code> · …</div>
+            </div>
+            <div class="shape-plus">→</div>
+            <div class="shape-card is-result">
+              <span class="code-label">ein JSON-Datensatz</span>
+              <div><code>city</code> · <code>year</code> · <code>hot_days</code> · …</div>
+            </div>
+          </div>
+          <div class="callout callout-blue mt-2">
+            <p>Das Frontend braucht den Namen «Bern» und nicht den Fremdschlüssel <code>city_id = 1</code>.</p>
+          </div>
+        </div>
+        <aside class="notes">Die Datenbank ist für konsistente Speicherung optimiert, die JSON-Antwort für
+          einfache Nutzung im Frontend.</aside>
+      </section>
+
+      <!-- ============ 9 ============ -->
+      <section id="join-verbindet">
+        <h2><code>JOIN</code> verbindet passende Zeilen</h2>
+        <div class="content">
+          <div class="join-demo">
+            <div class="join-table">
+              <span class="code-label">cities</span>
+              <div><code>1</code></div><div>Bern</div>
+              <div><code>2</code></div><div>Chur</div>
+            </div>
+            <div class="join-rule"><span><code>cities.id</code><br>=<br><code>heat_summers.city_id</code></span></div>
+            <div class="join-table is-wide">
+              <span class="code-label">heat_summers</span>
+              <div><code>1</code></div><div>2023</div><div>12 Hitzetage</div>
+              <div><code>2</code></div><div>2023</div><div>28 Hitzetage</div>
+            </div>
+          </div>
+          <p class="text-lg mt-2"><code>JOIN</code> sucht zu jeder Sommerzeile die Stadt mit derselben Nummer.</p>
+        </div>
+        <aside class="notes">Die Klasse sagt das Resultat der ersten Zeile voraus: Bern, 2023,
+          12 Hitzetage.</aside>
+      </section>
+
+      <!-- ============ 10 ============ -->
+      <section id="select-join">
+        <h2>Nur die vereinbarten Felder lesen</h2>
+        <div class="content">
+          <pre class="code-sm"><code data-trim data-noescape class="language-sql">
+SELECT
+    c.name AS city,
+    hs.year,
+    hs.measurement_days,
+    hs.hot_days,
+    hs.max_temperature_c
+FROM heat_summers AS hs
+JOIN cities AS c ON c.id = hs.city_id
+ORDER BY hs.year, c.name
+          </code></pre>
+          <ul class="list-tight text-sm mt-1">
+            <li><code>AS city</code> gibt dem Feld direkt den vereinbarten JSON-Namen</li>
+            <li><code>JOIN</code> ergänzt den Stadtnamen aus der zweiten Tabelle</li>
+            <li><code>ORDER BY</code> macht die Reihenfolge verlässlich</li>
+            <li><code>SELECT *</code> bleibt weg, weil der Endpunkt nur vereinbarte Felder ausliefert</li>
+          </ul>
+        </div>
+        <aside class="notes">Die Reihenfolge ist Teil der Endpunkt-Entscheidung: zuerst Jahr, dann Stadt.
+          Bei 258 Zeilen brauchen wir noch keine Begrenzung.</aside>
+      </section>
+
+      <!-- ============ 11 ============ -->
+      <section id="pdo-liest">
+        <h2>PDO macht aus Zeilen ein PHP-Array</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 36px; align-items: stretch;">
+            <pre class="code-sm"><code data-trim data-noescape class="language-php">
+require __DIR__ . '/../../../config.php';
+
+$pdo = new PDO($dsn, $username, $password, $options);
+
+$statement = $pdo-&gt;prepare($sql);
+$statement-&gt;execute();
+
+$rows = $statement-&gt;fetchAll();
+            </code></pre>
+            <div class="box" style="display: flex; flex-direction: column; justify-content: center;">
+              <p class="text-lg"><code>$rows</code> ist eine Liste assoziativer Arrays.</p>
+              <p class="text-lg">Die Schlüssel kommen aus dem <code>SELECT</code>.</p>
+            </div>
+          </div>
+          <div class="callout callout-blue mt-1">
+            <p>Die Verbindung ist dieselbe wie beim Laden.</p>
+          </div>
+        </div>
+        <aside class="notes">Retrieval-Frage: Woher kommen DSN, Benutzername, Passwort und Optionen?
+          Antwort: aus derselben config.php wie im Load.</aside>
+      </section>
+
+      <!-- ============ 12 ============ -->
+      <section id="typen-pruefen">
+        <h2>Datenbanktyp ist nicht automatisch JSON-Typ</h2>
+        <div class="content">
+          <div class="code-pair">
+            <div>
+              <span class="code-label">mögliche PDO-Zeile</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-php">
+[
+    'city' =&gt; 'Bern',
+    'year' =&gt; 2023,
+    'hot_days' =&gt; 12,
+    'max_temperature_c' =&gt; '36.3',
+]
+              </code></pre>
+            </div>
+            <div>
+              <span class="code-label">ohne Kontrolle im JSON</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-json">
+{
+  "city": "Bern",
+  "year": 2023,
+  "hot_days": 12,
+  "max_temperature_c": "36.3"
+}
+              </code></pre>
+            </div>
+          </div>
+          <div class="callout callout-orange mt-1">
+            <p>Datenbanktreiber können Zahlen als Strings liefern.</p>
+            <p>Prüfe die Typen und verlasse dich nicht auf die Darstellung in phpMyAdmin.</p>
+          </div>
+        </div>
+        <aside class="notes">Die Anführungszeichen um 36.3 sind der sichtbare Fehler.
+          Chart.js wandelt manches still um, aber der Datenvertrag ist trotzdem gebrochen.</aside>
+      </section>
+
+      <!-- ============ 13 ============ -->
+      <section id="typen-normalisieren">
+        <h2>Eine Funktion hält den Vertrag ein</h2>
+        <div class="content">
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+function normalizeSummer(array $row): array
+{
+    return [
+        'city' =&gt; $row['city'],
+        'year' =&gt; (int) $row['year'],
+        'measurement_days' =&gt; (int) $row['measurement_days'],
+        'hot_days' =&gt; (int) $row['hot_days'],
+        'max_temperature_c' =&gt; $row['max_temperature_c'] === null
+            ? null
+            : (float) $row['max_temperature_c'],
+    ];
+}
+
+$data = array_map('normalizeSummer', $rows);
+          </code></pre>
+          <div class="callout callout-green mt-1">
+            <p>Der Datenvertrag entscheidet über Namen und Typen der Ausgabe.</p>
+          </div>
+        </div>
+        <aside class="notes">Die Funktion laut lesen lassen: Sie nimmt eine Datenbankzeile und gibt einen
+          Datensatz für das Frontend zurück. array_map ist aus den PHP Basics bekannt.</aside>
+      </section>
+
+      <!-- ============ 14 Trenner ============ -->
+      <section id="divider-json" class="section-divider" data-state="is-section-divider">
+        <div class="etl-strip"><span>Extract</span><span class="sep">→</span><span>Transform</span><span class="sep">→</span><span>Load</span><span class="sep">→</span><span>Datenbank</span><span class="sep">→</span><span class="is-here">Unload</span><span class="sep">→</span><span>Chart.js</span></div>
+        <h1>Als JSON antworten</h1>
+        <p>Der Browser bekommt Daten und sonst nichts</p>
+      </section>
+
+      <!-- ============ 15 ============ -->
+      <section id="json-header">
+        <h2>Die Antwort sagt, was sie enthält</h2>
+        <div class="content">
+          <pre class="code-lg"><code data-trim data-noescape class="language-php">
+header('Content-Type: application/json; charset=utf-8');
+          </code></pre>
+          <div class="flow mt-2">
+            <div class="flow-step"><span class="flow-title">Content-Type</span><span class="flow-sub">Format der Antwort</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step is-active"><span class="flow-title">application/json</span><span class="flow-sub">gültiges JSON</span></div>
+            <div class="flow-arrow">+</div>
+            <div class="flow-step"><span class="flow-title">charset=utf-8</span><span class="flow-sub">Zürich bleibt Zürich</span></div>
+          </div>
+          <div class="callout callout-orange mt-2">
+            <p>Der Header muss vor jeder Ausgabe stehen.</p>
+          </div>
+        </div>
+        <aside class="notes">Ein Leerzeichen oder eine Debug-Ausgabe vor header kann bereits die Meldung
+          «headers already sent» auslösen.</aside>
+      </section>
+
+      <!-- ============ 16 ============ -->
+      <section id="json-encode">
+        <h2><code>json_encode</code> macht aus dem Array JSON</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center;">
+            <div>
+              <span class="code-label">PHP-Array</span>
+              <div class="output">[
+  ['city' =&gt; 'Bern', 'year' =&gt; 2023]
+]</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div>
+              <span class="code-label">JSON-Text</span>
+              <div class="output">[
+  {"city":"Bern","year":2023}
+]</div>
+            </div>
+          </div>
+          <pre class="code-lg mt-2"><code data-trim data-noescape class="language-php">
+echo json_encode($data, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);
+          </code></pre>
+          <ul class="list-tight text-sm mt-1">
+            <li><code>JSON_THROW_ON_ERROR</code> macht Kodierungsfehler sichtbar</li>
+            <li><code>JSON_UNESCAPED_UNICODE</code> hält Umlaute lesbar</li>
+          </ul>
+        </div>
+        <aside class="notes">JSON ist Text mit strengen Regeln, kein PHP-Array.
+          Die Optionen sind bewusst in Grossbuchstaben, weil es Konstanten sind.</aside>
+      </section>
+
+      <!-- ============ 17 ============ -->
+      <section id="vier-bausteine">
+        <h2>Vier Bausteine ergeben den Endpunkt</h2>
+        <div class="content">
+          <div class="endpoint-steps">
+            <div><span class="step-number">1</span><strong>Vorbereiten</strong><small>Header und <code>config.php</code></small></div>
+            <div><span class="step-number">2</span><strong>Lesen</strong><small><code>SELECT</code>, <code>JOIN</code>, <code>fetchAll</code></small></div>
+            <div><span class="step-number">3</span><strong>Normalisieren</strong><small>Feldnamen und Typen prüfen</small></div>
+            <div><span class="step-number">4</span><strong>Antworten</strong><small><code>json_encode</code> und <code>echo</code></small></div>
+          </div>
+          <div class="callout callout-blue mt-2">
+            <p>Jeder Baustein löst genau eine Aufgabe und lässt sich einzeln testen.</p>
+          </div>
+        </div>
+        <aside class="notes">Dies ist die Übergabefolie zum Code-Along.
+          unload.php gemeinsam in genau dieser Reihenfolge aufbauen und nach jedem Schritt im Browser prüfen.</aside>
+      </section>
+
+      <!-- ============ 18 ============ -->
+      <section id="leere-liste">
+        <h2>Kein Treffer ist kein Fehler</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch;">
+            <div class="response-card is-ok">
+              <span class="status-pill">200 OK</span>
+              <span class="code-label">keine passenden Zeilen</span>
+              <div class="response-code">[]</div>
+            </div>
+            <div>
+              <ul class="list-tight">
+                <li><code>fetchAll()</code> liefert bei null Treffern eine leere Liste</li>
+                <li><code>array_map</code> lässt die leere Liste leer</li>
+                <li><code>json_encode</code> macht daraus <code>[]</code></li>
+                <li>Das Frontend kann dieselbe Listenlogik weiterverwenden</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-green mt-1">
+            <p>Für eine Listenabfrage ist <code>[]</code> die stabilste Antwort.</p>
+          </div>
+        </div>
+        <aside class="notes">Leere Liste und technischer Fehler unterscheiden.
+          Für einen einzelnen Datensatz wäre 404 denkbar, unser Endpunkt liefert aber immer eine Liste.</aside>
+      </section>
+
+      <!-- ============ 19 ============ -->
+      <section id="fehlerantwort">
+        <h2>Auch ein Fehler antwortet als JSON</h2>
+        <div class="content">
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+try {
+    // verbinden, lesen, normalisieren und ausgeben
+} catch (Throwable $error) {
+    http_response_code(500);
+    error_log($error-&gt;getMessage());
+
+    echo json_encode([
+        'error' =&gt; 'Daten konnten nicht geladen werden.',
+    ]);
+}
+          </code></pre>
+          <div class="callout callout-orange mt-1">
+            <p>Interne Datenbankmeldungen gehören ins Server-Log und nicht in die öffentliche Antwort.</p>
+          </div>
+        </div>
+        <aside class="notes">Im Unterricht absichtlich einen Tabellennamen falsch schreiben und die zwei
+          Orte des Fehlers zeigen: kurze JSON-Antwort im Browser, genauer Text im Log.</aside>
+      </section>
+
+      <!-- ============ 20 Split ============ -->
+      <section id="nur-json" class="split-slide">
+        <div class="split-half split-bad">
+          <h2>Kein gültiges JSON</h2>
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+var_dump($rows);
+echo '&lt;h1&gt;Fertig&lt;/h1&gt;';
+echo json_encode($data);
+          </code></pre>
+          <div class="output">array(258) { ... }
+&lt;h1&gt;Fertig&lt;/h1&gt;
+[{"city":"Bern",...}]</div>
+          <p class="text-sm">Debug-Text und HTML zerstören die Antwort.</p>
+        </div>
+        <div class="split-half split-good">
+          <h2>Eine reine Antwort</h2>
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+header('Content-Type: application/json; charset=utf-8');
+
+echo json_encode($data, JSON_THROW_ON_ERROR);
+          </code></pre>
+          <div class="output">[{"city":"Bern",...}]</div>
+          <p class="text-sm">Zum Debuggen das Server-Log nutzen.</p>
+        </div>
+        <aside class="notes">Code Prediction: Welche der beiden Antworten kann JSON.parse verarbeiten?
+          Danach die Trennlinie als Grenze zwischen Debug-Werkzeug und öffentlichem Endpunkt lesen.</aside>
+      </section>
+
+      <!-- ============ 21 Trenner ============ -->
+      <section id="divider-filter" class="section-divider" data-state="is-section-divider">
+        <div class="etl-strip"><span>Extract</span><span class="sep">→</span><span>Transform</span><span class="sep">→</span><span>Load</span><span class="sep">→</span><span>Datenbank</span><span class="sep">→</span><span class="is-here">Unload</span><span class="sep">→</span><span>Chart.js</span></div>
+        <h1>Den Endpunkt filtern</h1>
+        <p>Die URL stellt eine kleine Frage an die Daten</p>
+      </section>
+
+      <!-- ============ 22 ============ -->
+      <section id="get-parameter">
+        <h2><code>$_GET</code> liest Werte aus der URL</h2>
+        <div class="content">
+          <div class="request-line"><span class="method">GET</span><span>/unload.php?<mark>city=Bern</mark></span></div>
+          <div class="flow mt-2">
+            <div class="flow-step"><span class="flow-title">Name</span><span class="flow-sub"><code>city</code></span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Wert</span><span class="flow-sub"><code>Bern</code></span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step is-active"><span class="flow-title">PHP</span><span class="flow-sub"><code>$_GET['city']</code></span></div>
+          </div>
+          <pre class="code-lg mt-2"><code data-trim data-noescape class="language-php">
+$city = trim($_GET['city'] ?? '');
+          </code></pre>
+          <p class="text-sm text-muted mt-1"><code>?? ''</code> setzt einen leeren String, wenn der Parameter fehlt.</p>
+        </div>
+        <aside class="notes">Abgrenzung zu Extract: fetchJson sendet einen Request an eine fremde API.
+          $_GET liest einen Parameter, den unser eigener Endpunkt erhält.</aside>
+      </section>
+
+      <!-- ============ 23 ============ -->
+      <section id="optionaler-filter">
+        <h2>Der Filter ist optional</h2>
+        <div class="content">
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$sql = 'SELECT c.name AS city, hs.year, hs.measurement_days,
+               hs.hot_days, hs.max_temperature_c
+        FROM heat_summers AS hs
+        JOIN cities AS c ON c.id = hs.city_id';
+
+$params = [];
+
+if ($city !== '') {
+    $sql .= ' WHERE c.name = :city';
+    $params['city'] = $city;
+}
+
+$sql .= ' ORDER BY hs.year, c.name';
+          </code></pre>
+          <div class="callout callout-blue mt-1">
+            <p>Ohne <code>city</code> kommen alle Städte und mit <code>city</code> nur passende Zeilen.</p>
+          </div>
+        </div>
+        <aside class="notes">Den SQL-Text für beide Fälle laut zusammensetzen lassen.
+          Der Filter verändert die Auswahl, aber nie die Struktur der Antwort.</aside>
+      </section>
+
+      <!-- ============ 24 ============ -->
+      <section id="filter-ausfuehren">
+        <h2>Der Wert bleibt vom SQL getrennt</h2>
+        <div class="content">
+          <pre class="code-lg"><code data-trim data-noescape class="language-php">
+$statement = $pdo-&gt;prepare($sql);
+$statement-&gt;execute($params);
+
+$rows = $statement-&gt;fetchAll();
+          </code></pre>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: stretch;" class="mt-2">
+            <div class="box">
+              <span class="code-label">SQL-Bauplan</span>
+              <p><code>WHERE c.name = :city</code></p>
+            </div>
+            <div class="box">
+              <span class="code-label">Werte</span>
+              <p><code>['city' =&gt; 'Bern']</code></p>
+            </div>
+          </div>
+          <p class="text-sm text-muted mt-1">Ohne Filter ist <code>$params</code> einfach eine leere Liste.</p>
+        </div>
+        <aside class="notes">Das Muster ist dasselbe wie beim INSERT: prepare bekommt den Bauplan,
+          execute bekommt die Werte.</aside>
+      </section>
+
+      <!-- ============ 25 Split ============ -->
+      <section id="filter-sicher" class="split-slide">
+        <div class="split-half split-bad">
+          <h2>Wert im SQL</h2>
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$sql = "SELECT ...
+        WHERE c.name = '$city'";
+          </code></pre>
+          <p class="text-sm">Anführungszeichen im Wert verändern den SQL-Text.</p>
+          <p class="text-sm">Der Endpunkt wird fehleranfällig und angreifbar.</p>
+        </div>
+        <div class="split-half split-good">
+          <h2>Wert als Parameter</h2>
+          <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$sql = 'SELECT ...
+        WHERE c.name = :city';
+
+$statement-&gt;execute([
+    'city' =&gt; $city,
+]);
+          </code></pre>
+          <p class="text-sm">SQL und Wert bleiben getrennt.</p>
+          <p class="text-sm">Prepared Statements sind bei externen Werten Pflicht.</p>
+        </div>
+        <aside class="notes">Keine Angriffsdemo nötig.
+          Der Name O'Brien reicht als harmloses Beispiel dafür, dass direkt eingesetzte Werte schon fachlich brechen.</aside>
+      </section>
+
+      <!-- ============ 26 ============ -->
+      <section id="bewusste-begrenzung">
+        <h2>Ein Filter reicht für den Einstieg</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <h3>Heute</h3>
+              <ul class="list-tight text-sm">
+                <li>ein optionaler Stadtfilter</li>
+                <li>eine feste Sortierung</li>
+                <li>immer dieselbe JSON-Struktur</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Nur wenn das Projekt es braucht</h3>
+              <ul class="list-tight text-sm">
+                <li>Zeitraum mit <code>from</code> und <code>to</code></li>
+                <li>Begrenzung mit <code>limit</code></li>
+                <li>weitere fachliche Kategorien</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-orange mt-2">
+            <p>Jeder zusätzliche Parameter braucht eine klare Bedeutung, Validierung und eigene Tests.</p>
+          </div>
+        </div>
+        <aside class="notes">Die Gruppen sollen nicht vorsorglich eine allgemeine API bauen.
+          Ein zentraler Endpunkt und ein echter Filter genügen für den Kursumfang.</aside>
+      </section>
+
+      <!-- ============ 27 ============ -->
+      <section id="endpunkt-testen">
+        <h2>Vier Aufrufe zeigen, ob der Vertrag hält</h2>
+        <div class="content">
+          <table class="test-table">
+            <tr><th>Aufruf</th><th>Erwartung</th></tr>
+            <tr><td><code>/unload.php</code></td><td>258 sortierte Datensätze</td></tr>
+            <tr><td><code>/unload.php?city=Bern</code></td><td>86 Datensätze aus Bern</td></tr>
+            <tr><td><code>/unload.php?city=Zürich</code></td><td>86 Datensätze mit korrektem Umlaut</td></tr>
+            <tr><td><code>/unload.php?city=Atlantis</code></td><td>leere Liste <code>[]</code></td></tr>
+          </table>
+          <div class="callout callout-blue mt-2">
+            <p>Prüfe zusätzlich im Netzwerk-Tab den Statuscode und den <code>Content-Type</code>.</p>
+          </div>
+        </div>
+        <aside class="notes">Die Zahlen gelten für den Hitzesommer-Code-Along mit drei Städten und
+          86 vollständigen Sommern von 1940 bis 2025.</aside>
+      </section>
+
+      <!-- ============ 28 ============ -->
+      <section id="frontend-uebergabe">
+        <h2>Das Frontend ändert nur die URL</h2>
+        <div class="content">
+          <div class="code-pair">
+            <div>
+              <span class="code-label">während das Backend baut</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-javascript">
+fetch('data/heat-summers.json')
+  .then(response =&gt; response.json())
+  .then(data =&gt; drawChart(data));
+              </code></pre>
+            </div>
+            <div>
+              <span class="code-label">mit dem echten Endpunkt</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-javascript">
+fetch('/gruppe-3/unload.php?city=Bern')
+  .then(response =&gt; response.json())
+  .then(data =&gt; drawChart(data));
+              </code></pre>
+            </div>
+          </div>
+          <div class="callout callout-green mt-2">
+            <p>Wenn der Vertrag stimmt, bleibt die Verarbeitung im Frontend unverändert.</p>
+          </div>
+        </div>
+        <aside class="notes">Die beiden Zweierteams vergleichen jetzt Mock-Datei und echte Antwort.
+          Erst wenn beide gleich gebaut sind, wird die URL im Frontend gewechselt.</aside>
+      </section>
+
+      <!-- ============ 29 ============ -->
+      <section id="projekt-checkliste">
+        <h2>Übertragt das Muster auf euren Endpunkt</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <ul class="list-tight text-sm">
+              <li>Nur Felder aus dem Datenvertrag auswählen</li>
+              <li>Eine feste und sinnvolle Sortierung setzen</li>
+              <li>JSON-Typen ausdrücklich prüfen</li>
+              <li>Einen optionalen Filter als Prepared Statement bauen</li>
+            </ul>
+            <ul class="list-tight text-sm">
+              <li>Ohne Treffer eine leere Liste liefern</li>
+              <li>Fehler als JSON ohne interne Details beantworten</li>
+              <li>Keine HTML- oder Debug-Ausgabe mitsenden</li>
+              <li>Mock-JSON und echte Antwort im Team vergleichen</li>
+            </ul>
+          </div>
+          <div class="callout callout-blue mt-2">
+            <p>Fertig ist der Endpunkt, wenn das Frontend ohne Sonderlösung zwischen Mock und PHP wechseln kann.</p>
+          </div>
+        </div>
+        <aside class="notes">Tagesabnahme in Paaren: Eine Person aus dem Frontend-Team testet den Endpunkt
+          einer anderen Gruppe anhand dieser Liste.</aside>
+      </section>
+
+      <!-- ============ 30 Schluss ============ -->
+      <section id="schluss">
+        <h2>Zum Mitnehmen</h2>
+        <div class="content" style="justify-content: center;">
+          <p class="big-statement"><code>SELECT</code> liest die Daten.<br><code>json_encode</code> liefert den Vertrag.</p>
+          <p class="text-xl mt-2"><code>$_GET</code> macht den Endpunkt filterbar und Prepared Statements halten Werte vom SQL getrennt.</p>
+          <p class="mt-2"><span class="next-step">Nächster Schritt: Chart.js lädt den Endpunkt</span></p>
+        </div>
+        <aside class="notes">Exit Ticket: Welche drei Eigenschaften muss eine stabile JSON-Antwort haben?
+          Erwartet werden Vertrag, gültiges JSON und verlässliches Verhalten bei null Treffern oder Fehlern.</aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      width: 1280,
+      height: 720,
+      margin: 0,
+      controls: true,
+      progress: true,
+      slideNumber: 'c',
+      hash: true,
+      transition: 'slide',
+      center: false,
+      plugins: [ RevealHighlight, RevealNotes ]
+    });
+  </script>
+</body>
+</html>

@@ -33,30 +33,31 @@
         <div class="content">
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
             <div>
-              <p class="list-intro">Auf dem Server läuft alles, was ihr im Kurs braucht.</p>
+              <p class="list-intro">Ab jetzt braucht ihr eine Datenbank.</p>
               <ul class="list-tight text-sm">
-                <li>Datenbank, phpMyAdmin und PHP sind dort eingerichtet</li>
-                <li>Ihr ladet eure Dateien hoch und ruft sie im Browser auf</li>
-                <li>Das ist der Weg, den wir gemeinsam gehen</li>
+                <li>Sie läuft auf eurem Rechner, genau wie PHP bisher</li>
+                <li>MAMP bringt sie mit, dazu phpMyAdmin im Browser</li>
+                <li>Ihr könnt ausprobieren, ohne etwas kaputtzumachen</li>
               </ul>
             </div>
             <div>
-              <p class="list-intro">Lokal geht dasselbe schneller.</p>
+              <p class="list-intro">Am Schluss zieht alles auf einen Webserver um.</p>
               <ul class="list-tight text-sm">
-                <li>Speichern, neu laden, fertig – ohne Hochladen</li>
-                <li>Ihr könnt ausprobieren, ohne etwas kaputtzumachen</li>
-                <li>Ihr arbeitet auch ohne Internet weiter</li>
+                <li>Dort gibt es dieselbe Oberfläche mit anderen Zugangsdaten</li>
+                <li>Umziehen heisst: vier Werte in <code>config.php</code> ändern</li>
+                <li>Genau dafür stehen sie in einer eigenen Datei</li>
               </ul>
             </div>
           </div>
-          <div class="callout callout-orange">
-            <p>Das hier ist ein Zusatz und keine Voraussetzung.</p>
-            <p>Wenn es euch länger als eine halbe Stunde aufhält, arbeitet auf dem Server weiter.</p>
+          <div class="callout callout-blue">
+            <p>Ohne Datenbank geht es in diesem Block nicht weiter.</p>
+            <p>Plant die 45 Minuten ein, bevor ihr mit dem Laden anfangt.</p>
           </div>
         </div>
-        <aside class="notes">Der letzte Satz ist ernst gemeint und wird laut gesagt. Erfahrungsgemäss
-          verlieren ein bis zwei Personen sonst einen halben Tag mit Ports und Rechten, während der Rest
-          längst Daten lädt. Wer im Kurs zurückliegt, macht das hier nicht.</aside>
+        <aside class="notes">Das ist eine bewusste Änderung gegenüber früheren Durchläufen: Früher lief der
+          Kurs auf einem Webserver und lokal war der Zusatz. Jetzt ist es umgekehrt. Der Preis dafür ist
+          dieser Block hier – die Installation lässt sich nicht überspringen. Deshalb genug Zeit einrechnen
+          und Leute, die hängen, sofort zu zweit setzen statt sie allein weitersuchen zu lassen.</aside>
       </section>
 
       <!-- ============ 3 ============ -->
@@ -70,7 +71,7 @@
             <li>Eure <code>config.php</code> verbindet sich damit</li>
           </ul>
           <div class="callout callout-blue">
-            <p>Dieselben vier Angaben braucht ihr auch auf dem Server – nur mit anderen Werten.</p>
+            <p>Dieselben vier Angaben braucht ihr später beim Deployment – nur mit anderen Werten.</p>
           </div>
         </div>
         <aside class="notes">Diese vier Punkte sind die Abnahme. Wer sie zeigen kann, ist fertig – egal auf
@@ -147,7 +148,7 @@ Mein Betriebssystem ist macOS.</div>
             <li>Jeden Befehl kurz ansehen, bevor ihr ihn bestätigt</li>
           </ul>
           <div class="callout callout-orange">
-            <p>Zugangsdaten vom Kursserver haben in keinem Chat etwas zu suchen.</p>
+            <p>Zugangsdaten von einem Webhosting haben in keinem Chat etwas zu suchen.</p>
           </div>
           <p class="text-sm mt-1">Ein Agent, der nicht weiterkommt, erfindet manchmal einen Weg – dann lieber
             abbrechen und von Hand weitermachen.</p>
@@ -178,13 +179,13 @@ $dsn = "mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4";
               <ul class="list-tight text-sm">
                 <li>Hier kommen die vier Werte hinein, die ihr notiert habt</li>
                 <li>Weicht ein Wert bei euch ab, gilt eurer und nicht der hier</li>
-                <li>Neu gegenüber dem Server ist nur <code>port=8889</code></li>
+                <li>Der Port <code>8889</code> gehört zu MAMP und steht deshalb im DSN</li>
                 <li><code>127.0.0.1</code> statt <code>localhost</code>, sonst sucht PHP am falschen Ort</li>
               </ul>
             </div>
           </div>
           <div class="callout callout-orange">
-            <p>Auch die lokale <code>config.php</code> gehört nicht ins Repository.</p>
+            <p>Die <code>config.php</code> gehört nicht ins Repository.</p>
           </div>
         </div>
         <aside class="notes">Damit ist der Agentenweg zu Ende – wer hier ankommt, überspringt das nächste
@@ -266,7 +267,7 @@ $dsn = "mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4";
           <span class="code-label">oder direkt im Browser</span>
           <div class="output">http://localhost:8888/phpMyAdmin/</div>
           <div class="callout callout-blue">
-            <p>Das ist dieselbe Oberfläche wie auf dem Server, nur mit eurer lokalen Datenbank.</p>
+            <p>Dieselbe Oberfläche findet ihr später beim Webhosting wieder.</p>
           </div>
         </div>
         <aside class="notes">Achtung bei der Adresse: 8888 ist der Webserver von MAMP, 8889 die Datenbank.
@@ -315,13 +316,13 @@ $dsn = "mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4";
               <ul class="list-tight text-sm">
                 <li><code>$dbname</code> ist der Name, den ihr gerade angelegt habt</li>
                 <li>Benutzer und Passwort sind lokal beide <code>root</code></li>
-                <li>Neu gegenüber dem Server ist nur <code>port=8889</code></li>
+                <li>Der Port <code>8889</code> gehört zu MAMP und steht deshalb im DSN</li>
                 <li><code>127.0.0.1</code> statt <code>localhost</code>, sonst sucht PHP am falschen Ort</li>
               </ul>
             </div>
           </div>
           <div class="callout callout-orange">
-            <p>Auch die lokale <code>config.php</code> gehört nicht ins Repository.</p>
+            <p>Die <code>config.php</code> gehört nicht ins Repository.</p>
           </div>
         </div>
         <aside class="notes">Das ist genau die Datei, die sie im Code-Along vor sich haben – deshalb hier
@@ -367,8 +368,8 @@ php -S localhost:8000
             <tr><td>Seite lädt ewig</td><td>Ihr habt den Webserver-Port 8888 im DSN statt 8889</td></tr>
             <tr><td>phpMyAdmin nicht erreichbar</td><td>In MAMP wurde nicht auf Start geklickt</td></tr>
           </table>
-          <p class="text-sm mt-1">Bleibt es dabei, arbeitet auf dem Server weiter und fragt in der Pause
-            nach.</p>
+          <p class="text-sm mt-1">Bleibt es dabei, meldet euch sofort – ohne Datenbank geht es in diesem
+            Block nicht weiter.</p>
         </div>
         <aside class="notes">Diese fünf decken erfahrungsgemäss fast alles ab, und vier davon sind Ports oder
           Namen. Deshalb der Rat: zuerst die vier Werte nebeneinanderlegen und mit phpMyAdmin vergleichen,
