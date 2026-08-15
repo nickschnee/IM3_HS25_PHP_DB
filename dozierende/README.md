@@ -2,6 +2,33 @@
 
 Dieses Repository enthält alle Unterlagen für den Kurs IM3.
 
+## Material im Unterricht zeigen
+
+**Das Beispielprojekt läuft ohne Datenbank.** Fehlt die `config.php` oder läuft
+MAMP nicht, liefert `unload.php` kein brauchbares JSON – die Seite lädt dann
+`data/heat-summers.json` und schreibt es in den Statustext («aus gespeicherten
+Musterdaten – der Endpunkt antwortet nicht»). Alle 258 Sommer und alle drei
+Grafiken sind trotzdem da. Zum Zeigen genügt also:
+
+```bash
+cd beispielprojekt/hitzesommer
+php -S localhost:8000
+```
+
+Es braucht keine `config.php`, kein MAMP und keine gefüllten Tabellen. Wer die
+ganze Kette vorführen will, richtet die Datenbank nach
+`beispielprojekt/hitzesommer/README.md` ein.
+
+Für alles andere gilt, was auch im `README.md` für die Studierenden steht:
+
+- Alles mit PHP – Übungen, Code-Alongs, Beispielprojekt – über
+  `php -S localhost:8000`, nie über den Live Server. Den Studierenden ist ein
+  Server im Kursordner erklärt (Terminal → New Terminal, kein `cd`); die Übung
+  öffnen sie danach über ihren Pfad, etwa
+  `localhost:8000/uebungen/A_PHP_Basics/01_messwert/`.
+- Die Folien in `theorie/` sind reine HTML-Dateien: Live Server, PHP-Server
+  oder direkt über den Dateipfad, alle drei Wege funktionieren.
+
 ## Das Repository
 
 - `README.md` ist der Einstieg für die Studierenden.
