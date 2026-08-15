@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<!--
+  Diese Seite muss über den PHP-Server laufen:
+
+    php -S localhost:8000
+
+  Dann http://localhost:8000 öffnen. Der Live Server von VS Code (Port 5500)
+  führt kein PHP aus – er liefert den Quelltext von unload.php statt der Daten.
+
+  Per Doppelklick geöffnet (file://) bleibt die Seite komplett leer: Der
+  Browser lädt script.js dann gar nicht erst.
+-->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hai-Vorfälle – Ranglisten</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+  <script src="script.js" type="module"></script>
+</head>
+
+<body>
+  <header class="page-header">
+    <p class="kicker">Erfasste Vorfälle weltweit · Global Shark Attack File</p>
+    <h1>Was in den Hai-Statistiken wirklich gezählt wird</h1>
+    <p class="lead">
+      Zwei Ranglisten aus denselben Daten: die beteiligten Hai-Arten und die
+      Tätigkeiten der Menschen im Wasser.
+    </p>
+  </header>
+
+  <main>
+    <section class="controls" aria-label="Rangliste wählen">
+      <div class="control">
+        <label for="dimension">Rangliste</label>
+        <select id="dimension">
+          <option value="shark_category">Hai-Arten</option>
+          <option value="activity_group">Tätigkeiten im Wasser</option>
+        </select>
+        <p class="hint">fragt den Endpunkt neu an</p>
+      </div>
+    </section>
+
+    <p id="status" class="status" role="status"></p>
+
+    <section class="chart">
+      <h2 id="chart-title">Rangliste</h2>
+      <p class="chart-note" id="chart-note">
+        Sortiert nach der Zahl der erfassten Vorfälle.
+      </p>
+      <div class="chart-box">
+        <canvas id="rangliste"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p>
+      Quelle: Global Shark Attack File, aufbereitet in Code-Along 10 und
+      geladen in Code-Along 13.
+    </p>
+    <p>
+      Grenze der Aussage: Gezählt werden erfasste Vorfälle, nicht Gefahr.
+      Wer oft im Wasser ist, taucht häufiger in der Statistik auf.
+    </p>
+  </footer>
+</body>
+
+</html>

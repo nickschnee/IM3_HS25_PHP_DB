@@ -1,4 +1,4 @@
-# Ablauf `16_hitzesommer_visualisieren`
+# Ablauf `16_hitzesommer_liniendiagramm`
 
 > **Ziel:** Aus dem JSON-Endpunkt von gestern wird ein Liniendiagramm, das auf
 > die Stadtauswahl reagiert. Richtwert: 70 Minuten.
@@ -28,7 +28,7 @@ Im Ordner liegen bereit:
 | `data/heat-summers.json` | dieselben 258 Datensätze als Datei |
 
 ```bash
-cd code-alongs/F_visualisierung/16_hitzesommer_visualisieren
+cd code-alongs/F_visualisierung/16_hitzesommer_liniendiagramm
 php -S localhost:8000
 ```
 

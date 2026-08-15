@@ -1,0 +1,143 @@
+/* Gestaltung der Seite. Heute nicht das Thema – schon fertig, damit die Zeit
+   in die Daten und ins Diagramm geht. Farben und Schrift entsprechen den
+   Folien des Kurses. */
+
+:root {
+  --petrol: #4b93a4;
+  --petrol-hell: #b7cfd6;
+  --oliv: #8b8a6e;
+  --orange: #b5723a;
+  --text: #575757;
+  --muted: #9a9a92;
+  --box-bg: #f6f6f3;
+  --box-border: #e4e3da;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 40px 24px 64px;
+  max-width: 940px;
+  margin-inline: auto;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: #ffffff;
+  line-height: 1.5;
+}
+
+/* --- Kopf ---------------------------------------------------------------- */
+
+.kicker {
+  margin: 0 0 6px;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+h1 {
+  margin: 0 0 10px;
+  font-size: 2rem;
+  line-height: 1.2;
+  color: var(--oliv);
+}
+
+h2 {
+  margin: 0 0 4px;
+  font-size: 1.15rem;
+  color: var(--oliv);
+}
+
+.lead {
+  margin: 0;
+  max-width: 62ch;
+}
+
+/* --- Bedienelemente ------------------------------------------------------ */
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin: 32px 0 12px;
+  padding: 20px 24px;
+  background: var(--box-bg);
+  border: 1px solid var(--box-border);
+  border-radius: 4px;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.control label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--oliv);
+}
+
+.control select {
+  min-width: 230px;
+  padding: 6px 8px;
+  font: inherit;
+  color: inherit;
+  background: #ffffff;
+  border: 1px solid var(--box-border);
+  border-radius: 3px;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* --- Status und Diagramm ------------------------------------------------- */
+
+.status {
+  min-height: 1.4em;
+  margin: 0 0 20px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Ein Ladefehler ist keine Nebensache – er wird gelesen. */
+.status.is-error {
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.chart {
+  margin-bottom: 40px;
+}
+
+.chart-note {
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Chart.js braucht einen Behälter mit fester Höhe. Zehn liegende Balken
+   brauchen mehr Platz als eine Linie. */
+.chart-box {
+  position: relative;
+  height: 460px;
+}
+
+/* --- Fuss ---------------------------------------------------------------- */
+
+.page-footer {
+  padding-top: 20px;
+  border-top: 1px solid var(--box-border);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.page-footer p {
+  margin: 0 0 6px;
+}

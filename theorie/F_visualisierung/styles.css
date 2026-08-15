@@ -1,0 +1,181 @@
+/* Sonderregeln nur fuer den Foliensatz "Datengrafiken".
+ * Das gemeinsame Design steht in ../_foliendesign/fhgr-slides.css. */
+
+/* ETL-Streifen auf den Kapiteltrennern, gleich wie in Unload. */
+.reveal .slides section.section-divider .etl-strip {
+  position: absolute;
+  top: 56px;
+  left: 72px;
+  right: 72px;
+  font-family: var(--mono-font);
+  font-size: 12pt;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.reveal .slides section.section-divider .etl-strip .is-here {
+  color: #ffffff;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+  padding-bottom: 3px;
+}
+
+.reveal .slides section.section-divider .etl-strip .sep {
+  padding: 0 8px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Kapitelangabe ueber dem Titel eines Trenners. */
+.reveal .slides section.section-divider .chapter-step {
+  margin: 0 0 14px;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--mono-font);
+  font-size: 13pt;
+  letter-spacing: 0.04em;
+}
+
+/* Sagt oben rechts, womit auf dieser Folie gearbeitet wird. */
+.reveal .slides section > .slide-tag {
+  position: absolute;
+  top: 60px;
+  right: var(--slide-padding);
+  padding: 4px 12px;
+  border: 1px solid var(--box-border);
+  border-radius: 999px;
+  background: var(--box-bg);
+  color: var(--muted-color);
+  font-family: var(--mono-font);
+  font-size: 11pt;
+  letter-spacing: 0.04em;
+}
+
+/* Hinweisbox am unteren Folienrand. */
+.reveal .callout.is-bottom {
+  margin-top: auto;
+}
+
+.reveal .callout.is-bottom.has-footnote {
+  margin-bottom: 34px;
+}
+
+/* Sechs Absichten als Kartenraster. */
+.reveal .intent-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.reveal .intent-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 176px;
+  padding: 22px 20px 20px;
+  background: var(--box-bg);
+  border: 1px solid var(--box-border);
+  border-radius: var(--box-radius);
+  box-sizing: border-box;
+}
+
+.reveal .intent-card svg {
+  width: 40px;
+  height: 40px;
+}
+
+.reveal .intent-card strong {
+  color: var(--secondary-color);
+  font-size: 15pt;
+  font-weight: 600;
+}
+
+.reveal .intent-card small {
+  color: var(--muted-color);
+  font-size: 11.5pt;
+  line-height: 1.4;
+}
+
+/* Tabelle der Diagrammtypen. */
+.reveal .type-table th,
+.reveal .type-table td {
+  font-size: 13pt;
+}
+
+.reveal .type-table td code {
+  font-size: 12.5pt;
+}
+
+/* Der Weg von Datensaetzen zu zwei Listen. */
+.reveal .map-bridge {
+  display: grid;
+  grid-template-columns: 1.15fr auto 1fr;
+  gap: 24px;
+  align-items: center;
+  margin: auto 0;
+}
+
+.reveal .map-bridge pre {
+  margin: 0;
+  font-size: 13pt;
+}
+
+.reveal .map-arrow {
+  color: var(--primary-color);
+  font-size: 26pt;
+}
+
+.reveal .map-side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.reveal .map-side .code-label {
+  margin-bottom: 0;
+}
+
+/* Zwei Sorten Interaktion nebeneinander. */
+.reveal .interaction-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  padding: 24px;
+  border: 1px solid var(--box-border);
+  border-radius: var(--box-radius);
+  background: var(--box-bg);
+  box-sizing: border-box;
+}
+
+.reveal .interaction-card.is-server {
+  background: var(--blue-bg);
+  border-color: var(--blue-border);
+}
+
+.reveal .interaction-card .route {
+  color: var(--muted-color);
+  font-family: var(--mono-font);
+  font-size: 11.5pt;
+  line-height: 1.5;
+}
+
+/* Skizze einer Achse, die bei null beginnt, und einer gekappten. */
+.reveal .axis-demo {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 190px;
+  padding: 14px 16px 0;
+  border-left: 2px solid var(--box-border);
+  border-bottom: 2px solid var(--box-border);
+}
+
+.reveal .axis-demo span {
+  flex: 1;
+  background: var(--primary-color);
+  border-radius: 2px 2px 0 0;
+}
+
+.reveal .axis-demo.is-cut span {
+  background: var(--orange);
+}

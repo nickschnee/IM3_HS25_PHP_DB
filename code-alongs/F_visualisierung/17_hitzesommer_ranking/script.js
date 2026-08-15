@@ -22,7 +22,7 @@
  *
  * Die Seite muss über den PHP-Server laufen:
  *
- *   cd code-alongs/F_visualisierung/17_hitzesommer_rangliste
+ *   cd code-alongs/F_visualisierung/17_hitzesommer_ranking
  *   php -S localhost:8000
  *
  * In der Adressleiste muss 8000 stehen. Steht dort 5500, läuft die Seite über

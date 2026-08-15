@@ -21,7 +21,7 @@
  *
  * Die Seite muss über den PHP-Server laufen:
  *
- *   cd code-alongs/F_visualisierung/16_hitzesommer_visualisieren
+ *   cd code-alongs/F_visualisierung/16_hitzesommer_liniendiagramm
  *   php -S localhost:8000
  *
  * Dann http://localhost:8000 im Browser öffnen.

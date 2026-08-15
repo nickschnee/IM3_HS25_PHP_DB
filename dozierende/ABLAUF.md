@@ -184,9 +184,10 @@ Der UX-Slot ist laut Miro-Board flexibel und kann auch früher stattfinden.
 
 | Prio | Form | Inhalt | Richtwert | Ergebnis |
 | --- | --- | --- | ---: | --- |
-| Muss | `📕` | Diagrammtypen passend zur Aussage auswählen | 30' | Begründeter Diagrammtyp |
-| Muss | `🧑‍🏫` | [16 Hitzesommer visualisieren](../code-alongs/F_visualisierung/16_hitzesommer_visualisieren/): `fetch()` auf den Endpunkt, Datensätze zu `labels` und `datasets` umformen, Linie zeichnen, Stadtfilter über `?city=` | 70' | Sichtbarer Chart aus dem eigenen Endpunkt |
-| Soll | `🧑‍🏫` | [17 Hitzesommer-Rangliste](../code-alongs/F_visualisierung/17_hitzesommer_rangliste/): Balkendiagramm als zweiter Diagrammtyp, Zeitraum und Messwert ohne Serveraufruf | 60' | Interaktiver Chart |
+| Muss | `📕` | [Datengrafiken](../theorie/F_visualisierung/): Absicht vor Diagrammtyp, was Chart.js kann, `labels` und `datasets` | 30' | Begründeter Diagrammtyp |
+| Muss | `🧑‍🏫` | [16 Hitzesommer visualisieren](../code-alongs/F_visualisierung/16_hitzesommer_liniendiagramm/): `fetch()` auf den Endpunkt, Datensätze zu `labels` und `datasets` umformen, Linie zeichnen, Stadtfilter über `?city=` | 70' | Sichtbarer Chart aus dem eigenen Endpunkt |
+| Soll | `🧑‍🏫` | [17 Hitzesommer-Rangliste](../code-alongs/F_visualisierung/17_hitzesommer_ranking/): Balkendiagramm als zweiter Diagrammtyp, Zeitraum und Messwert ohne Serveraufruf | 60' | Interaktiver Chart |
+| Optional | `🧑‍🏫` | [18 Hai-Ranglisten zeichnen](../code-alongs/F_visualisierung/18_sharkdaten_balkendiagramm/): Daten ohne Zeitachse, liegende Balken, Fehlerantwort des Endpunkts anzeigen | 45' | Zweite Grafik an anderen Daten |
 | Soll | UX | UX-Input oder betreute Projektarbeit | 60' | Bessere Nutzung |
 | Soll | `✅` | Chart aus echten Daten zeigen | 15' | Tagesabnahme |
 

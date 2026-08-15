@@ -1,0 +1,19 @@
+[
+  {"dimension": "activity_group", "rank": 1, "category": "Surfing & board sports", "incidents": 1244},
+  {"dimension": "activity_group", "rank": 2, "category": "Swimming & wading", "incidents": 883},
+  {"dimension": "activity_group", "rank": 3, "category": "Diving & snorkeling", "incidents": 349},
+  {"dimension": "activity_group", "rank": 4, "category": "Spearfishing", "incidents": 322},
+  {"dimension": "activity_group", "rank": 5, "category": "Fishing", "incidents": 152},
+  {"dimension": "activity_group", "rank": 6, "category": "Paddling", "incidents": 33},
+  {"dimension": "activity_group", "rank": 7, "category": "Boating", "incidents": 10},
+  {"dimension": "shark_category", "rank": 1, "category": "White shark", "incidents": 426},
+  {"dimension": "shark_category", "rank": 2, "category": "Tiger shark", "incidents": 187},
+  {"dimension": "shark_category", "rank": 3, "category": "Bull / Zambesi shark", "incidents": 150},
+  {"dimension": "shark_category", "rank": 4, "category": "Blacktip shark", "incidents": 52},
+  {"dimension": "shark_category", "rank": 5, "category": "Bronze whaler / Copper shark", "incidents": 49},
+  {"dimension": "shark_category", "rank": 6, "category": "Sand tiger / Raggedtooth / Grey nurse shark", "incidents": 40},
+  {"dimension": "shark_category", "rank": 7, "category": "Wobbegong", "incidents": 31},
+  {"dimension": "shark_category", "rank": 8, "category": "Hammerhead", "incidents": 23},
+  {"dimension": "shark_category", "rank": 9, "category": "Mako shark", "incidents": 20},
+  {"dimension": "shark_category", "rank": 10, "category": "Blue shark", "incidents": 17}
+]

@@ -107,8 +107,9 @@ den Datensätzen ein Diagramm.
 
 | Nr | Code-Along | Worum es geht | Technik |
 | --- | --- | --- | --- |
-| 16 | [Hitzesommer visualisieren](F_visualisierung/16_hitzesommer_visualisieren/) | ein Liniendiagramm auf dem eigenen Endpunkt | `fetch()`, `labels`/`datasets`, Chart.js, `chart.update()` |
-| 17 | [Hitzesommer-Rangliste](F_visualisierung/17_hitzesommer_rangliste/) | ein zweites Diagramm und Interaktion ohne Server | Balkendiagramm, `sort`/`slice`, Zustand und `render()` |
+| 16 | [Hitzesommer visualisieren](F_visualisierung/16_hitzesommer_liniendiagramm/) | ein Liniendiagramm auf dem eigenen Endpunkt | `fetch()`, `labels`/`datasets`, Chart.js, `chart.update()` |
+| 17 | [Hitzesommer-Rangliste](F_visualisierung/17_hitzesommer_ranking/) | ein zweites Diagramm und Interaktion ohne Server | Balkendiagramm, `sort`/`slice`, Zustand und `render()` |
+| 18 | [Hai-Ranglisten zeichnen](F_visualisierung/18_sharkdaten_balkendiagramm/) | zwei Ranglisten ohne Zeitachse, mit gelesener Fehlerantwort | liegende Balken, Farbe als Aussage, Status 400 im Frontend |
 
 Nummer 16 bleibt bewusst schmal: ein Diagramm, ein Bedienelement. In vier
 Bausteinen – `Holen`, `Umformen`, `Zeichnen`, `Reagieren` – entsteht die Linie
@@ -127,6 +128,12 @@ Code-Along 14, damit Frontend und Endpunkt über dieselbe Adresse laufen.
 Gebaut wird nur `script.js`. Die Datei `data/heat-summers.json` enthält
 dieselben 258 Datensätze: Damit lässt sich das Frontend bauen, bevor das
 Backend fertig ist – und sie ist der Fallback für den Marktstand.
+
+Nummer 18 ist Zusatzmaterial und zeichnet die Shark-Ranglisten aus Code-Along
+15. Sie zeigt am zweiten Datensatz, dass der Diagrammtyp aus den Daten folgt:
+Hier gibt es keine Zeitachse, also ist eine Linie nicht nur unschön, sondern
+falsch. Ausserdem liest das Frontend hier zum ersten Mal die Fehlerantwort des
+Endpunkts – der Status 400 aus Block E bekommt endlich einen Adressaten.
 
 **Nicht mit Live Server öffnen.** Diese Seiten laden `unload.php`; ein
 statischer Server liefert dafür den PHP-Quelltext aus. Es gilt dieselbe Regel

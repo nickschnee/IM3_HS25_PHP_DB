@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IM3 – Datengrafiken</title>
+
+  <!-- Reveal.js core -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+
+  <!-- Font Awesome fuer Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- FHGR Foliendesign und Sonderregeln fuer diesen Foliensatz -->
+  <link rel="stylesheet" href="../_foliendesign/fhgr-slides.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ============ 1 Titel ============ -->
+      <section id="title" class="title-slide" data-state="is-title">
+        <h1>Datengrafiken</h1>
+        <div class="rule"></div>
+        <p>Vom JSON-Endpunkt zum Diagramm</p>
+        <p class="sub">nick.schneeberger@fhgr.ch</p>
+      </section>
+
+      <!-- ============ 2 Inhalt ============ -->
+      <section id="inhalt">
+        <h2>Inhalt</h2>
+        <div class="content">
+          <ul class="text-xl">
+            <li>Welches Diagramm zu welcher Aussage passt</li>
+            <li>Was Chart.js kann – und was nicht</li>
+            <li>Von Datensätzen zu <code>labels</code> und <code>datasets</code></li>
+            <li>Die Daten mit <code>fetch()</code> holen</li>
+            <li>Auf Bedienung reagieren</li>
+          </ul>
+        </div>
+        <aside class="notes">Richtwert für diesen Input: 30 Minuten.
+          Die fünf Punkte sind die Kapitel des Foliensatzes.
+          Danach folgt das Code-Along, in dem genau diese Reihenfolge nochmals durchlaufen wird.</aside>
+      </section>
+
+      <!-- ============ 3 Wo wir stehen ============ -->
+      <section id="wo-wir-stehen">
+        <h2>Wo wir stehen</h2>
+        <div class="content">
+          <div class="flow">
+            <div class="flow-step"><span class="flow-title">Extract</span><span class="flow-sub">Quellen lesen</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Transform</span><span class="flow-sub">Datenvertrag</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Load</span><span class="flow-sub">Daten speichern</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="flow-title">Unload</span><span class="flow-sub">JSON-Endpunkt</span></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step is-active"><span class="flow-title">Chart.js</span><span class="flow-sub">sichtbar machen</span></div>
+          </div>
+          <p class="text-lg mt-2">Die Daten sind gelesen, geputzt, gespeichert und werden ausgeliefert.</p>
+          <p class="text-lg">Jetzt sieht sie zum ersten Mal jemand, der euren Code nicht kennt.</p>
+          <div class="callout callout-blue is-bottom">
+            <p>Alles bisher war Vorbereitung für diesen Schritt.</p>
+          </div>
+        </div>
+        <aside class="notes">Kurz zurückblicken: Fünf Blöcke, und erst jetzt entsteht etwas, das man
+          jemandem zeigen kann. Das ist keine Kritik am Weg, sondern der Grund, warum die Vorarbeit
+          sauber sein musste.</aside>
+      </section>
+
+      <!-- ============ 4 Erst die Aussage ============ -->
+      <section id="erst-die-aussage">
+        <h2>Erst die Aussage, dann der Diagrammtyp</h2>
+        <div class="content">
+          <p class="text-xl">Ein Diagrammtyp ist eine Behauptung über die Daten.</p>
+          <p class="text-lg">Eine Linie behauptet, dass die Punkte zusammenhängen und aufeinander folgen.</p>
+          <p class="text-lg">Ein Balken behauptet, dass sich Längen sinnvoll vergleichen lassen.</p>
+          <p class="text-lg">Ein Kreis behauptet, dass die Teile zusammen ein Ganzes ergeben.</p>
+          <div class="callout callout-orange is-bottom has-footnote">
+            <p>Wer zuerst den Typ wählt, sucht danach Daten, die dazu passen.</p>
+          </div>
+        </div>
+        <div class="footnote">Phasenregel aus dem Data Story Deck, Phase 6 «Datengrafiken»</div>
+        <aside class="notes">Frage an die Klasse, bevor die Sätze eingeblendet werden: Was behauptet
+          eine Linie eigentlich? Antwort: dass zwischen zwei Punkten etwas passiert ist und dass die
+          Reihenfolge stimmt. Deshalb ist eine Linie über zehn Ländernamen falsch.
+          Hier auf das Kartenset verweisen, das im UX-Teil verwendet wird.</aside>
+      </section>
+
+      <!-- ============ 5 Kapiteltrenner ============ -->
+      <section id="divider-typen" class="section-divider" data-state="is-section-divider">
+        <div class="etl-strip"><span>Extract</span><span class="sep">→</span><span>Transform</span><span class="sep">→</span><span>Load</span><span class="sep">→</span><span>Datenbank</span><span class="sep">→</span><span>Unload</span><span class="sep">→</span><span class="is-here">Chart.js</span></div>
+        <p class="chapter-step">Kapitel 1</p>
+        <h1>Welches Diagramm?</h1>
+        <p>Sechs Absichten und die Typen, die dazu passen</p>
+      </section>
+
+      <!-- ============ 6 Sechs Absichten ============ -->
+      <section id="sechs-absichten">
+        <h2>Sechs Absichten, sechs Familien</h2>
+        <div class="content">
+          <div class="intent-grid">
+            <div class="intent-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4b93a4" stroke-width="1.4"><path d="M3 20h18"/><path d="M6 20v-6M10 20v-11M14 20v-8M18 20v-13"/></svg>
+              <strong>Verteilung</strong>
+              <small>Wo sammelt sich die Masse?</small>
+            </div>
+            <div class="intent-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4b93a4" stroke-width="1.4"><path d="M3 20h18M3 20V3"/><circle cx="8" cy="14" r="1.5"/><circle cx="13" cy="9" r="1.5"/><circle cx="17" cy="6" r="1.5"/></svg>
+              <strong>Zusammenhang</strong>
+              <small>Hängen zwei Grössen zusammen?</small>
+            </div>
+            <div class="intent-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4b93a4" stroke-width="1.4"><path d="M4 5h14M4 12h9M4 19h5"/></svg>
+              <strong>Vergleich</strong>
+              <small>Wer ist grösser, wer kleiner?</small>
+            </div>
+            <div class="intent-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4b93a4" stroke-width="1.4"><circle cx="12" cy="12" r="8"/><path d="M12 12V4a8 8 0 0 1 6.93 4z" fill="#4b93a4"/></svg>
+              <strong>Zusammensetzung</strong>
+              <small>Woraus besteht ein Ganzes?</small>
+            </div>
+            <div class="intent-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4b93a4" stroke-width="1.4"><path d="M3 20h18M3 20V3"/><path d="M5 16l4-4 3 3 6-8"/></svg>
+              <strong>Entwicklung</strong>
+              <small>Was verändert sich über die Zeit?</small>
+            </div>
+            <div class="intent-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4b93a4" stroke-width="1.4"><path d="M12 21s6-6.5 6-11a6 6 0 1 0-12 0c0 4.5 6 11 6 11z"/><circle cx="12" cy="10" r="2"/></svg>
+              <strong>Verortung</strong>
+              <small>Wo im Raum passiert es?</small>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Einteilung aus dem Data Story Deck, Phase 6 «Datengrafiken»</div>
+        <aside class="notes">Diese sechs Absichten stehen auf der Titelkarte von Phase 6 im Kartenset.
+          Frage an die Klasse: Welche Absicht hat eure Datenfrage? Die meisten Projekte landen bei
+          Vergleich oder Entwicklung.
+          Wer keine Absicht benennen kann, hat noch keine Datenfrage, sondern einen Datensatz.</aside>
+      </section>
+
+      <!-- ============ 7 Unsere zwei Fragen ============ -->
+      <section id="unsere-zwei">
+        <h2>Zwei Fragen an dieselben Daten</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <span class="code-label">Entwicklung</span>
+              <p class="text-lg">«Nimmt die Zahl der Hitzetage zu?»</p>
+              <p>Die Jahre folgen aufeinander, also verbindet die Linie sie zu Recht.</p>
+              <p><code>type: 'line'</code></p>
+            </div>
+            <div>
+              <span class="code-label">Vergleich</span>
+              <p class="text-lg">«Welches waren die heissesten Sommer?»</p>
+              <p>Eine Rangliste hat keine Reihenfolge in der Zeit, also Balken.</p>
+              <p><code>type: 'bar'</code></p>
+            </div>
+          </div>
+          <div class="callout callout-blue is-bottom">
+            <p>Dieselben 258 Datensätze, zwei Absichten, zwei Diagrammtypen.</p>
+          </div>
+        </div>
+        <aside class="notes">Gegenprobe laut durchspielen: Die zehn heissesten Sommer als Linie würde
+          behaupten, dass 2003 in 2015 übergeht. Das ist inhaltlich falsch, auch wenn es hübsch aussieht.
+          Genau diese zwei Diagramme entstehen in den beiden Code-Alongs.</aside>
+      </section>
+
+      <!-- ============ 8 Was Chart.js kann ============ -->
+      <section id="chartjs-kann">
+        <span class="slide-tag">Chart.js</span>
+        <h2>Diese Typen bringt Chart.js mit</h2>
+        <div class="content">
+          <table class="type-table">
+            <thead>
+              <tr><th>Absicht</th><th>Diagramm</th><th>Chart.js</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Vergleich</td><td>Bar Chart, liegend oder stehend</td><td><code>type: 'bar'</code></td></tr>
+              <tr><td>Entwicklung</td><td>Line Chart, mit oder ohne Fläche</td><td><code>type: 'line'</code></td></tr>
+              <tr><td>Zusammenhang</td><td>Scatterplot</td><td><code>type: 'scatter'</code></td></tr>
+              <tr><td>Zusammenhang</td><td>Bubble Chart</td><td><code>type: 'bubble'</code></td></tr>
+              <tr><td>Zusammensetzung</td><td>Pie Chart, Doughnut</td><td><code>type: 'pie'</code></td></tr>
+              <tr><td>Zusammensetzung</td><td>Stacked Bar Chart</td><td><code>stacked: true</code></td></tr>
+            </tbody>
+          </table>
+          <p class="text-sm text-muted mt-1">Dazu kommen <code>radar</code> und <code>polarArea</code>, die man selten braucht.</p>
+        </div>
+        <aside class="notes">Sechs Typen decken fast jedes Kursprojekt ab. Liegende Balken sind kein
+          eigener Typ, sondern eine Option: indexAxis 'y'. Dasselbe gilt für die Fläche unter einer
+          Linie (fill) und für gestapelte Balken (stacked).
+          Wer mehr will: Zwei Typen lassen sich in einem Diagramm mischen, etwa Balken plus Linie.</aside>
+      </section>
+
+      <!-- ============ 9 Was Chart.js nicht kann ============ -->
+      <section id="chartjs-kann-nicht">
+        <span class="slide-tag">Chart.js</span>
+        <h2>Und diese Typen nicht</h2>
+        <div class="content">
+          <table class="type-table">
+            <thead>
+              <tr><th>Diagramm</th><th>Warum nicht</th><th>Womit stattdessen</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Histogram</td><td>Chart.js bildet keine Klassen</td><td>Klassen selbst zählen, dann <code>bar</code></td></tr>
+              <tr><td>Boxplot</td><td>kein eingebauter Typ</td><td>Datawrapper oder Plugin</td></tr>
+              <tr><td>Dot Plot</td><td>kein eingebauter Typ</td><td>Datawrapper</td></tr>
+              <tr><td>Gantt Chart</td><td>nur über einen Umweg</td><td>Balken mit Start- und Endwert</td></tr>
+              <tr><td>Symbol Map</td><td>keine Karten</td><td>Datawrapper, Leaflet</td></tr>
+              <tr><td>Choropleth Map</td><td>keine Karten</td><td>Datawrapper, Leaflet</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout-orange is-bottom">
+            <p>Braucht eure Story eine Karte, ist Chart.js das falsche Werkzeug.</p>
+          </div>
+        </div>
+        <aside class="notes">Wichtig für die Projektberatung: Wer eine Karte will, muss das früh sagen –
+          das ist ein anderes Werkzeug und kostet Zeit. Der JSON-Endpunkt bleibt derselbe, nur das
+          Frontend wechselt.
+          Das Histogramm ist ein guter Hinweis darauf, dass Klassenbildung eine Transform-Aufgabe ist
+          und nicht Sache der Grafikbibliothek.</aside>
+      </section>
+
+      <!-- ============ 10 Drei Regeln ============ -->
+      <section id="drei-regeln">
+        <h2>Drei Regeln, die fast immer gelten</h2>
+        <div class="content">
+          <ul class="list-tight text-lg">
+            <li>Bei Balken beginnt die Achse bei null</li>
+            <li>Ranglisten werden nach Grösse sortiert, nicht alphabetisch</li>
+            <li>Ein Kreisdiagramm verträgt zwei oder drei Stücke, nicht sieben</li>
+          </ul>
+          <p class="mt-2">Jede Regel hat denselben Grund: Das Auge liest Längen und Flächen sofort, Zahlen erst danach.</p>
+          <div class="callout callout-blue is-bottom has-footnote">
+            <p>Wer gegen eine dieser Regeln verstösst, muss es begründen können.</p>
+          </div>
+        </div>
+        <div class="footnote">Aus den Karten «Bar Chart» und «Pie Chart», Data Story Deck</div>
+        <aside class="notes">Beispiel für eine erlaubte Ausnahme: Bei Temperaturen zwischen 26 und 36 Grad
+          ist eine Achse ab null unbrauchbar, weil alle Unterschiede verschwinden. Der Unterschied ist,
+          ob man eine Anzahl zeigt oder eine Messgrösse auf einer Skala.
+          Darauf kommt die Folie zur Achse am Schluss zurück.</aside>
+      </section>
+
+      <!-- ============ 11 Kapiteltrenner ============ -->
+      <section id="divider-umformen" class="section-divider" data-state="is-section-divider">
+        <div class="etl-strip"><span>Extract</span><span class="sep">→</span><span>Transform</span><span class="sep">→</span><span>Load</span><span class="sep">→</span><span>Datenbank</span><span class="sep">→</span><span>Unload</span><span class="sep">→</span><span class="is-here">Chart.js</span></div>
+        <p class="chapter-step">Kapitel 2</p>
+        <h1>Von den Daten zum Diagramm</h1>
+        <p>Der Bauplan und die eine wichtige Umformung</p>
+      </section>
+
+      <!-- ============ 12 Bauplan ============ -->
+      <section id="bauplan">
+        <span class="slide-tag">HTML + JS</span>
+        <h2>Ein Diagramm braucht drei Dinge</h2>
+        <div class="content">
+          <span class="code-label">im HTML: die Bibliothek und eine Zeichenfläche</span>
+          <pre class="code-sm"><code data-trim data-noescape class="language-html">
+&lt;script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"&gt;&lt;/script&gt;
+&lt;canvas id="verlauf"&gt;&lt;/canvas&gt;
+          </code></pre>
+          <span class="code-label mt-2">im JavaScript: der Auftrag an Chart.js</span>
+          <pre class="code-sm"><code data-trim data-noescape class="language-javascript">
+const chart = new Chart(document.querySelector('#verlauf'), {
+  type: 'line',                          // welcher Diagrammtyp
+  data: { labels: [], datasets: [] },    // was gezeigt wird
+  options: verlaufOptions,               // wie es aussieht
+});
+          </code></pre>
+        </div>
+        <aside class="notes">Drei Schlüssel, mehr ist es nicht: type, data, options.
+          options ist Fleissarbeit und steht im Code-Along fertig da – der Lernstoff steckt in data.
+          Die Version im CDN-Link ist bewusst festgeschrieben, damit sich das Diagramm nicht über Nacht
+          anders verhält.</aside>
+      </section>
+
+      <!-- ============ 13 labels und data ============ -->
+      <section id="labels-und-data">
+        <span class="slide-tag">JavaScript</span>
+        <h2>Chart.js will keine Datensätze</h2>
+        <div class="content">
+          <div class="map-bridge">
+            <div class="map-side">
+              <span class="code-label">was der Endpunkt liefert</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-json">
+[
+  {"city": "Bern", "year": 1940, "hot_days": 0},
+  {"city": "Bern", "year": 1941, "hot_days": 1},
+  {"city": "Bern", "year": 1942, "hot_days": 0}
+]
+              </code></pre>
+            </div>
+            <div class="map-arrow">→</div>
+            <div class="map-side">
+              <span class="code-label">was Chart.js will</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-javascript">
+labels: [1940, 1941, 1942]
+
+data:   [0, 1, 0]
+              </code></pre>
+            </div>
+          </div>
+          <div class="callout callout-orange is-bottom">
+            <p>Zwei Listen, gleich lang und in derselben Reihenfolge.</p>
+          </div>
+        </div>
+        <aside class="notes">Das ist die Kernfolie des ganzen Inputs. Wer diese Umformung versteht,
+          kann jedes Chart.js-Diagramm bauen; alles andere ist Nachschlagen.
+          Nachfrage an die Klasse: Was passiert, wenn die beiden Listen unterschiedlich lang sind?
+          Antwort: Chart.js zeichnet trotzdem, und die Werte stehen bei den falschen Jahren.</aside>
+      </section>
+
+      <!-- ============ 14 Eine Stadt, eine Linie ============ -->
+      <section id="eine-stadt-eine-linie">
+        <span class="slide-tag">JavaScript</span>
+        <h2>Eine Stadt wird eine Linie</h2>
+        <div class="content">
+          <pre class="code-sm"><code data-trim data-noescape class="language-javascript">
+function yearsOf(rows) {
+  return [...new Set(rows.map((row) => row.year))].sort((a, b) => a - b);
+}
+
+function datasetFor(rows, city) {
+  const cityRows = rows.filter((row) => row.city === city);
+
+  return {
+    label: city,
+    data: cityRows.map((row) => row.hot_days),
+    borderColor: CITY_COLORS[city],
+  };
+}
+          </code></pre>
+          <p class="mt-1">Ein <code>dataset</code> ist eine Linie: die Zahlen und ihr Aussehen.</p>
+        </div>
+        <aside class="notes">new Set wirft die dreifach vorkommenden Jahre weg, sort mit
+          Vergleichsfunktion bringt sie in die richtige Reihenfolge.
+          Die Frage, die man leicht überspringt: Warum passen die Werte zu den Jahren? Weil der
+          Endpunkt nach Jahr sortiert und jede Stadt jeden Sommer hat – geprüft haben wir das beim
+          Transformieren.</aside>
+      </section>
+
+      <!-- ============ 15 Rangliste ============ -->
+      <section id="rangliste">
+        <span class="slide-tag">JavaScript</span>
+        <h2>Eine Rangliste ist sortieren und abschneiden</h2>
+        <div class="content">
+          <pre class="code-sm"><code data-trim data-noescape class="language-javascript">
+function topSummers(rows, count = 10) {
+  return [...rows]
+    .sort((a, b) => b.hot_days - a.hot_days)
+    .slice(0, count);
+}
+          </code></pre>
+          <ul class="list-tight mt-2">
+            <li><code>[...rows]</code> macht eine Kopie, weil <code>sort()</code> die Liste verändert</li>
+            <li><code>b - a</code> sortiert absteigend, der grösste Wert steht oben</li>
+            <li><code>indexAxis: 'y'</code> legt die Balken hin, damit die Beschriftungen Platz haben</li>
+          </ul>
+        </div>
+        <aside class="notes">Wer die Kopie vergisst, sortiert die geladenen Daten dauerhaft um – und die
+          Linie im ersten Diagramm springt.
+          Im Code-Along wird aus hot_days später row[metric], damit derselbe Code beide Messwerte
+          bedient.</aside>
+      </section>
+
+      <!-- ============ 16 Kapiteltrenner ============ -->
+      <section id="divider-holen" class="section-divider" data-state="is-section-divider">
+        <div class="etl-strip"><span>Extract</span><span class="sep">→</span><span>Transform</span><span class="sep">→</span><span>Load</span><span class="sep">→</span><span>Datenbank</span><span class="sep">→</span><span>Unload</span><span class="sep">→</span><span class="is-here">Chart.js</span></div>
+        <p class="chapter-step">Kapitel 3</p>
+        <h1>Die Daten holen</h1>
+        <p>Der eigene Endpunkt, gelesen mit fetch()</p>
+      </section>
+
+      <!-- ============ 17 fetch ============ -->
+      <section id="fetch">
+        <span class="slide-tag">JavaScript</span>
+        <h2>Der Browser fragt euren eigenen Endpunkt</h2>
+        <div class="content">
+          <pre class="code-lg"><code data-trim data-noescape class="language-javascript">
+const response = await fetch('unload.php?city=Bern');
+const summers = await response.json();
+          </code></pre>
+          <p class="text-lg mt-2">Dieselben zwei Zeilen wie bei jeder fremden API im letzten Semester.</p>
+          <p class="text-lg">Neu ist nur, dass die API diesmal von euch stammt.</p>
+          <div class="callout callout-blue is-bottom">
+            <p>Der <code>$_GET</code>-Filter aus dem Endpunkt wird hier zum ersten Mal wirklich benutzt.</p>
+          </div>
+        </div>
+        <aside class="notes">await braucht type="module" im script-Tag – das steht im Cheatsheet aus IM2
+          und ist im Code-Along schon gesetzt.
+          Die Kette einmal laut durchgehen: Auswahl im Browser, ?city=Bern, WHERE im SQL, kleinere
+          JSON-Antwort, neues Diagramm. Vier Blöcke Arbeit in einem Klick.</aside>
+      </section>
+
+      <!-- ============ 18 Antwort prüfen ============ -->
+      <section id="antwort-pruefen">
+        <span class="slide-tag">JavaScript</span>
+        <h2>Nicht jede Antwort ist die erwartete</h2>
+        <div class="content">
+          <pre class="code-sm"><code data-trim data-noescape class="language-javascript">
+if (!response.ok) {
+  throw new Error(`Der Endpunkt antwortet mit Status ${response.status}.`);
+}
+
+const contentType = response.headers.get('content-type') ?? '';
+
+if (!contentType.includes('application/json')) {
+  throw new Error('Die Antwort ist kein JSON.');
+}
+          </code></pre>
+          <p class="mt-1"><code>fetch()</code> wirft bei Status 404 oder 500 keinen Fehler – es ist ja eine Antwort angekommen.</p>
+          <div class="callout callout-orange is-bottom">
+            <p>Läuft die Seite über den Live Server statt über <code>php -S</code>, kommt der PHP-Quelltext zurück.</p>
+          </div>
+        </div>
+        <aside class="notes">Hier lohnt sich die Demo: Seite einmal mit Live Server öffnen und die Meldung
+          «Unexpected token '&lt;'» zeigen. Der Content-Type-Header aus dem Endpunkt ist genau dafür da.
+          Merkregel für die Klasse: In der Adressleiste muss 8000 stehen, nicht 5500.</aside>
+      </section>
+
+      <!-- ============ 19 Übergabe ============ -->
+      <section id="uebergabe">
+        <span class="slide-tag">JavaScript</span>
+        <h2>Die Übergabe ist eine einzige Zeile</h2>
+        <div class="content">
+          <span class="code-label">beim Bauen</span>
+          <pre class="code-lg"><code data-trim data-noescape class="language-javascript">
+const DATEN_URL = MUSTERDATEN;   // data/heat-summers.json
+          </code></pre>
+          <span class="code-label mt-2">nach der Übergabe</span>
+          <pre class="code-lg"><code data-trim data-noescape class="language-javascript">
+const DATEN_URL = ENDPUNKT;      // unload.php
+          </code></pre>
+          <p class="text-lg mt-2">Das Frontend-Team baut mit einer Musterdatei, lange bevor das Backend fertig ist.</p>
+          <p class="text-lg">Am Schluss wechselt eine Zeile, und dem Diagramm sieht man nichts an.</p>
+          <div class="callout callout-green is-bottom">
+            <p>Das funktioniert nur, weil beide Seiten denselben Datenvertrag eingehalten haben.</p>
+          </div>
+        </div>
+        <aside class="notes">Wenn beim Umschalten etwas bricht, war der Vertrag nicht eingehalten – das ist
+          die eigentliche Abnahme zwischen den beiden Teams.
+          Zweiter Nutzen derselben Datei: Sie ist der Fallback für den Marktstand, wenn die Datenbank
+          streikt.</aside>
+      </section>
+
+      <!-- ============ 20 Kapiteltrenner ============ -->
+      <section id="divider-reagieren" class="section-divider" data-state="is-section-divider">
+        <div class="etl-strip"><span>Extract</span><span class="sep">→</span><span>Transform</span><span class="sep">→</span><span>Load</span><span class="sep">→</span><span>Datenbank</span><span class="sep">→</span><span>Unload</span><span class="sep">→</span><span class="is-here">Chart.js</span></div>
+        <p class="chapter-step">Kapitel 4</p>
+        <h1>Auf Bedienung reagieren</h1>
+        <p>Aktualisieren statt neu erzeugen</p>
+      </section>
+
+      <!-- ============ 21 Einmal erzeugen ============ -->
+      <section id="einmal-erzeugen">
+        <span class="slide-tag">Chart.js</span>
+        <h2>Einmal erzeugen, danach aktualisieren</h2>
+        <div class="content">
+          <pre class="code-sm"><code data-trim data-noescape class="language-javascript">
+const chart = new Chart(canvas, { type: 'line', data: leer, options });
+
+function render() {
+  chart.data.labels = yearsOf(summers);
+  chart.data.datasets = cityNamesOf(summers).map((city) => datasetFor(summers, city));
+  chart.update();
+}
+          </code></pre>
+          <div class="callout callout-orange mt-2">
+            <p>Ein zweites <code>new Chart()</code> auf demselben Canvas meldet «Canvas is already in use».</p>
+          </div>
+        </div>
+        <aside class="notes">Das ist der häufigste Anfängerfehler mit Chart.js. Wer das Diagramm bei jeder
+          Änderung neu erzeugt, verliert ausserdem die Animation und den Zustand der Legende.
+          update() zeichnet nur, was sich geändert hat.</aside>
+      </section>
+
+      <!-- ============ 22 Zwei Sorten Interaktion ============ -->
+      <section id="zwei-sorten">
+        <h2>Zwei Sorten Interaktion</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch;">
+            <div class="interaction-card is-server">
+              <strong class="text-lg">Der Server antwortet neu</strong>
+              <p>Die Stadtauswahl schickt eine neue Anfrage.</p>
+              <div class="route">change → fetch('unload.php?city=Bern')<br>→ SELECT → render()</div>
+            </div>
+            <div class="interaction-card">
+              <strong class="text-lg">Der Browser rechnet selbst</strong>
+              <p>Der Zeitraum-Schieber benutzt Daten, die schon da sind.</p>
+              <div class="route">input → fromYear ändern<br>→ render()</div>
+            </div>
+          </div>
+          <div class="callout callout-blue is-bottom">
+            <p>Der Server filtert, was viel ist – der Browser filtert, was schon da ist.</p>
+          </div>
+        </div>
+        <aside class="notes">Bei 258 Zeilen wären beide Wege richtig. Bei 200'000 Zeilen ginge nur noch der
+          Server, und bei einem Schieber, der bei jeder Bewegung feuert, nur noch der Browser.
+          Im Code-Along steht der Unterschied als Hinweis unter jedem Bedienelement, und im Netzwerk-Tab
+          wird er sichtbar.</aside>
+      </section>
+
+      <!-- ============ 23 Ein Zustand ============ -->
+      <section id="ein-zustand">
+        <span class="slide-tag">JavaScript</span>
+        <h2>Ein Zustand, eine Zeichenfunktion</h2>
+        <div class="content">
+          <pre class="code-sm"><code data-trim data-noescape class="language-javascript">
+let summers = [];          // was geladen ist
+let fromYear = 1940;       // welcher Ausschnitt
+let metric = 'hot_days';   // welcher Messwert
+          </code></pre>
+          <p class="mt-2">Jedes Bedienelement ändert genau eine dieser Variablen und ruft dann <code>render()</code> auf.</p>
+          <p>So steuern drei Bedienelemente zwei Diagramme, ohne dass der Code unübersichtlich wird.</p>
+          <div class="callout callout-green is-bottom">
+            <p><code>render()</code> ist die einzige Stelle, die ein Diagramm anfassen darf.</p>
+          </div>
+        </div>
+        <aside class="notes">Die Alternative wäre, in jedem Listener am Diagramm herumzubauen. Das
+          funktioniert bei einem Bedienelement und wird beim dritten unlesbar.
+          Wer diese Trennung einmal gesehen hat, erkennt sie in jedem Frontend-Framework wieder.</aside>
+      </section>
+
+      <!-- ============ 24 Achse ============ -->
+      <section id="achse" class="split-slide">
+        <div class="split-half split-good">
+          <h2>Hitzetage ab null</h2>
+          <div class="axis-demo">
+            <span style="height: 12%"></span>
+            <span style="height: 30%"></span>
+            <span style="height: 22%"></span>
+            <span style="height: 64%"></span>
+          </div>
+          <p class="text-sm mt-1">Bei einer Anzahl ist die Null der richtige Anfang.</p>
+          <p class="text-sm">Ohne sie wirkt jede kleine Schwankung wie ein Sprung.</p>
+        </div>
+        <div class="split-half split-bad">
+          <h2>Temperatur ab null</h2>
+          <div class="axis-demo is-cut">
+            <span style="height: 74%"></span>
+            <span style="height: 92%"></span>
+            <span style="height: 86%"></span>
+            <span style="height: 100%"></span>
+          </div>
+          <p class="text-sm mt-1">Dieselbe Regel macht Temperaturen unlesbar.</p>
+          <p class="text-sm">Zwischen 0 und 26 Grad passiert in diesen Daten nichts.</p>
+        </div>
+        <aside class="notes">Eine Zeile Code, eine journalistische Entscheidung:
+          beginAtZero = metric === 'hot_days'.
+          Faustregel für die Klasse: Zählt ihr etwas, beginnt die Achse bei null. Messt ihr etwas auf
+          einer Skala, darf sie das nicht.
+          Eine gekappte Achse ist nicht per se unehrlich – unehrlich wird sie, wenn man sie nicht
+          beschriftet.</aside>
+      </section>
+
+      <!-- ============ 25 Checkliste ============ -->
+      <section id="projekt-checkliste">
+        <h2>Übertragt das Muster auf eure Grafik</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <ul class="list-tight text-sm">
+              <li>Die Absicht der Grafik in einem Satz benennen</li>
+              <li>Zwei Diagrammtypen vergleichen, bevor ihr einen wählt</li>
+              <li>Prüfen, ob Chart.js diesen Typ überhaupt kann</li>
+              <li>Achsen beschriften und die Einheit dazuschreiben</li>
+            </ul>
+            <ul class="list-tight text-sm">
+              <li>Das Diagramm einmal erzeugen und danach aktualisieren</li>
+              <li>Ladefehler und leere Daten sichtbar melden</li>
+              <li>Quelle, Zeitraum und Grenze der Aussage danebenstellen</li>
+              <li>Chart.js für die Ausstellung lokal ablegen</li>
+            </ul>
+          </div>
+          <div class="callout callout-blue mt-2">
+            <p>Ein Diagramm, das seine Aussage ohne Klick zeigt, ist besser als eines, das sie versteckt.</p>
+          </div>
+        </div>
+        <aside class="notes">Tagesabnahme: Jede Gruppe zeigt ihr Diagramm und sagt in einem Satz, welche
+          Absicht es verfolgt und warum dieser Typ dazu passt.
+          Der letzte Punkt ist der, den alle vergessen: Am Marktstand ist das WLAN unzuverlässig, und
+          ohne Chart.js aus dem Netz bleibt die Seite leer.</aside>
+      </section>
+
+      <!-- ============ 26 Schluss ============ -->
+      <section id="schluss">
+        <h2>Was bleibt</h2>
+        <div class="content">
+          <p class="big-statement">Die Absicht wählt den Diagrammtyp.<br><code>labels</code> und <code>data</code> füllen ihn.</p>
+          <p class="text-xl mt-2"><code>render()</code> hält das Bild aktuell.</p>
+          <p class="mt-2"><span class="next-step">Nächster Schritt: eure eigenen Daten sichtbar machen</span></p>
+        </div>
+        <aside class="notes">Exit Ticket: Welche Absicht hat eure Grafik, und welchen Diagrammtyp braucht
+          sie dafür? Zwei Sätze pro Gruppe, mündlich.
+          Wer beides nicht sagen kann, arbeitet zuerst an der Datenfrage und nicht am Code.</aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      width: 1280,
+      height: 720,
+      margin: 0,
+      controls: true,
+      progress: true,
+      slideNumber: 'c',
+      hash: true,
+      transition: 'slide',
+      center: false,
+      plugins: [ RevealHighlight, RevealNotes ]
+    });
+  </script>
+</body>
+</html>

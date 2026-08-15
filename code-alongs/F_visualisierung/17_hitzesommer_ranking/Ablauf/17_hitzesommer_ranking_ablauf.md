@@ -1,4 +1,4 @@
-# Ablauf `17_hitzesommer_rangliste`
+# Ablauf `17_hitzesommer_ranking`
 
 > **Ziel:** Ein zweites Diagramm mit einem anderen Diagrammtyp, dazu zwei
 > Bedienelemente, die den Server nicht fragen. Richtwert: 60 Minuten.
@@ -11,7 +11,7 @@ Stadtauswahl. Wer 16 nicht fertig hat, startet trotzdem hier – der Code ist
 vollständig.
 
 ```bash
-cd code-alongs/F_visualisierung/17_hitzesommer_rangliste
+cd code-alongs/F_visualisierung/17_hitzesommer_ranking
 php -S localhost:8000
 ```
 
