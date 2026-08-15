@@ -59,8 +59,8 @@ ganz am Schluss, im Deployment-Teil.
 ### Kickoff & Setup
 
 1. `📕` Kickoff `45'`
-2. `🔎` Gruppen bilden `45'`
-3. `✅` M1: Gruppen gebildet
+2. `🔎` Gruppen bilden: Viererteam, davon je zwei für Backend und Frontend `45'`
+3. `✅` **M1: Gruppen gebildet**
 
 ### Block A – PHP Basics
 
@@ -75,7 +75,7 @@ ganz am Schluss, im Deployment-Teil.
 9. `🧑‍🏫` Code-Along: [05 Schleifen](code-alongs/A_PHP_Basics/05_schleifen) `25'`
 10. `💻` Digitale Übung: [06 Städtevergleich](uebungen/A_PHP_Basics/06_staedtevergleich) `45'`
 11. `🔎` Eigene Datenfrage formulieren `60'`
-12. `✅` M2: Datenfrage formuliert
+12. `✅` **M2: Datenfrage formuliert**
 
 #### Zusatzmaterial (Block A)
 
@@ -132,8 +132,22 @@ ganz am Schluss, im Deployment-Teil.
 1. `📕` [Theorie F: Datengrafiken](theorie/F_visualisierung/) `30'`
 2. `🧑‍🏫` Code-Along: [16 Hitzesommer visualisieren – Teil 1](code-alongs/F_visualisierung/16_hitzesommer_liniendiagramm/) `70'`
 3. `🧑‍🏫` Code-Along: [17 Hitzesommer visualisieren – Teil 2](code-alongs/F_visualisierung/17_hitzesommer_ranking/) `60'`
+4. `🔎` Diagrammtyp zur eigenen Kernaussage wählen und begründen `60'`
 
 #### Zusatzmaterial (Block F)
 
 - `🧑‍🏫` Code-Along: [18 Shark-Balkendiagramme](code-alongs/F_visualisierung/18_sharkdaten_balkendiagramm/) `45'`
 - `🧑‍🏫` Code-Along: [19 Shark-Karte mit Leaflet](code-alongs/F_visualisierung/19_sharkdaten_karte/) `45'`
+
+## Meilensteine
+
+Meilensteine sind keine Prüfungen, sondern kurze Abnahmen: Ihr zeigt ein
+kleines, konkretes Ergebnis, bevor es weitergeht. M1 bis M3 sind den Themenblöcken zugeordnet. M4, die Entwicklung eures eigenen Projekts läuft asynchron dazu. M5 ist die definitive Abgabe.
+
+|      | Meilenstein             | Was ihr zeigt                                                                                                                                                      |
+| ---- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `M1` | Gruppen gebildet        | Der lokale PHP-Server läuft, die Vierergruppe steht, Backend- und Frontend-Zweierteam sind festgelegt.                                                             |
+| `M2` | Datenfrage formuliert   | Eure Gruppe hat eine erste eigene Datenfrage in einem Satz.                                                                                                        |
+| `M3` | Datensatz gefunden      | Eine passende Datenquelle ist gefunden und enthält genug Daten – oder ihr zeigt, wie bis zum Marktstand genug Daten entstehen.                                     |
+| `M4` | Erste Integration steht | Extract, Transform, Load und Unload liefern Daten bis ins Frontend, die Grafik funktioniert und ein stabiler Datenstand als Fallback ist da.                       |
+| `M5` | Marktstand und Abgabe   | Das Projekt läuft auf dem Server, das README erklärt Setup und Endpunkte, die Datenquelle ist dokumentiert und ihr könnt ETL+U und eure Story-Entscheide erklären. |
