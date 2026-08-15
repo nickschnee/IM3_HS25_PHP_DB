@@ -134,6 +134,31 @@
   margin-bottom: 0;
 }
 
+/* Zwei Code-Boxen nebeneinander: Beschriftungen, Boxen und Hinweise liegen
+ * zeilenweise auf derselben Linie, die Boxen sind dadurch gleich hoch. */
+.reveal .code-pair {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  grid-template-rows: auto 1fr auto;
+  column-gap: 40px;
+  align-items: stretch;
+}
+
+.reveal .code-pair pre {
+  height: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.reveal .code-pair pre code {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.reveal .code-pair p {
+  margin: 10px 0 0;
+}
+
 /* Zwei Sorten Interaktion nebeneinander. */
 .reveal .interaction-card {
   display: flex;

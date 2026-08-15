@@ -264,7 +264,7 @@ const chart = new Chart(document.querySelector('#verlauf'), {
       <!-- ============ 12 labels und data ============ -->
       <section id="labels-und-data">
         <span class="slide-tag">JavaScript</span>
-        <h2>Chart.js will keine Datensätze</h2>
+        <h2>Chart.js braucht ein bestimmtes Datenformat</h2>
         <div class="content">
           <div class="map-bridge">
             <div class="map-side">
@@ -337,7 +337,7 @@ function datasetFor(rows, city) {
       <!-- ============ 15 fetch ============ -->
       <section id="fetch">
         <span class="slide-tag">JavaScript</span>
-        <h2>Der Browser fragt euren eigenen Endpunkt</h2>
+        <h2>Der Browser fragt euren eigenen Endpunkt ab</h2>
         <div class="content">
           <pre class="code-lg"><code data-trim data-noescape class="language-javascript">
 const response = await fetch('unload.php?city=Bern');
@@ -488,7 +488,7 @@ let metric = 'hot_days';   // welcher Messwert
       <section id="divider-karte" class="section-divider" data-state="is-section-divider">
         <div class="etl-strip"><span>Extract</span><span class="sep">→</span><span>Transform</span><span class="sep">→</span><span>Load</span><span class="sep">→</span><span>Datenbank</span><span class="sep">→</span><span>Unload</span><span class="sep">→</span><span class="is-here">Leaflet</span></div>
         <p class="chapter-step">Kapitel 5</p>
-        <h1>Wenn die Frage ein Wo ist</h1>
+        <h1>Karten mit Leaflet</h1>
         <p>Dieselbe Kette, eine andere Zeichenbibliothek</p>
         <aside class="notes">Richtwert: 8 Minuten für dieses Kapitel.
           Wichtig für die Rahmung: Alles aus den Kapiteln 2 bis 4 gilt weiter. Nur der letzte Schritt
@@ -500,7 +500,7 @@ let metric = 'hot_days';   // welcher Messwert
       <!-- ============ 23 Leaflet-Bauplan ============ -->
       <section id="leaflet-bauplan">
         <span class="slide-tag">HTML + JS</span>
-        <h2>Leaflet braucht auch nur drei Dinge</h2>
+        <h2>Leaflet braucht nur drei Dinge</h2>
         <div class="content">
           <span class="code-label">im HTML: zwei Dateien und ein Behälter mit Höhe</span>
           <pre class="code-sm"><code data-trim data-noescape class="language-html">
@@ -527,7 +527,53 @@ L.geoJSON(grenzen, { style: stilFuer }).addTo(karte);
           Die attribution ist keine Höflichkeit, sondern Bedingung der Kachel-Anbieter.</aside>
       </section>
 
-      <!-- ============ 24 Ein Land wird eine Flaeche ============ -->
+      <!-- ============ 24 GeoJSON ============ -->
+      <section id="geojson">
+        <h2>Die Umrisse der Länder sind GeoJSON</h2>
+        <div class="content">
+          <p class="list-intro">Leaflet kennt keine Länder, es liefert nur den Hintergrund.</p>
+          <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 36px; align-items: start;">
+            <div>
+              <span class="code-label">laender.geojson, ein Eintrag pro Land</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-json">
+{
+  "type": "Feature",
+  "properties": { "iso3": "AUS", "name": "Australia" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[145.4, -40.8], [146.8, -41.0], ...]]
+  }
+}
+              </code></pre>
+              <p class="text-sm mt-1"><code>geometry</code> ist der Umriss als Liste von Punkten, <code>properties</code> sind die Angaben zum Land.</p>
+            </div>
+            <div>
+              <span class="code-label">woher ihr die Datei bekommt</span>
+              <ul class="text-lg list-tight">
+                <li>Weltkarte: Natural Earth, gratis und frei nutzbar</li>
+                <li>Schweiz: swisstopo, Kantone und Gemeinden</li>
+                <li>Sonst: nach «&lt;Gebiet&gt; geojson» suchen</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-blue is-bottom has-footnote">
+            <p>Auch eine Kartendatei ist ein Datensatz, den ihr kürzen dürft.</p>
+          </div>
+        </div>
+        <div class="footnote">naturalearthdata.com, «Admin 0 – Countries» in 1:110m, Public Domain</div>
+        <aside class="notes">Die Frage zuerst stellen: Woher weiss der Browser eigentlich, wo Australien
+          aufhört? Antwort: gar nicht. Der Umriss muss als Datei mitkommen, so wie jede andere Zahl auch.
+          Die Koordinaten kurz zeigen und dann wieder zuklappen – niemand liest sie, und genau das ist die
+          Botschaft: Man arbeitet mit properties, nicht mit geometry.
+          Zur Auflösung: 1:110m ist die grobe Weltstufe und genügt für eine Übersichtskarte. 1:50m ist
+          genauer und dreimal so gross, was im Browser sofort spürbar wird.
+          Unsere Datei wurde von 168 Eigenschaften pro Land auf zwei gekürzt. Das ist derselbe Transform
+          wie beim eigenen Datensatz, nur an fremdem Material.
+          Für die Projekte: Wer Schweizer Gemeinden braucht, findet sie bei swisstopo und im Repo
+          swiss-maps auf GitHub.</aside>
+      </section>
+
+      <!-- ============ 25 Ein Land wird eine Flaeche ============ -->
       <section id="land-wird-flaeche">
         <span class="slide-tag">JavaScript</span>
         <h2>Verbunden wird über einen Schlüssel</h2>
@@ -561,8 +607,8 @@ L.geoJSON(grenzen, { style: stilFuer }).addTo(karte);
             <p>Zwei Dateien aus verschiedenen Quellen passen zusammen, weil beide denselben Ländercode kennen.</p>
           </div>
         </div>
-        <aside class="notes">Das ist die Kernfolie dieses Kapitels, das Gegenstück zu «Chart.js will keine
-          Datensätze».
+        <aside class="notes">Das ist die Kernfolie dieses Kapitels, das Gegenstück zu «Chart.js braucht ein
+          bestimmtes Datenformat».
           Bei Chart.js war die Verbindung die Reihenfolge zweier gleich langer Listen. Hier ist sie ein
           Schlüssel, der in beiden Dateien vorkommt.
           Rückblick auf den Transform: Genau deshalb wurde dort aus «USA» ein ISO-Code nachgeschlagen und
@@ -571,7 +617,46 @@ L.geoJSON(grenzen, { style: stilFuer }).addTo(karte);
           Kantonen das Kürzel.</aside>
       </section>
 
-      <!-- ============ 25 Klassen ============ -->
+      <!-- ============ 26 ISO-Codes ============ -->
+      <section id="iso-codes">
+        <span class="slide-tag">PHP</span>
+        <h2>Den Ländercode legt eine Tabelle fest</h2>
+        <div class="content">
+          <p class="list-intro">Im Rohdatensatz steht nur ein Name, und Namen sind Schreibweisen.</p>
+          <div class="code-pair">
+            <span class="code-label">laender_iso.json: Name → Code</span>
+            <span class="code-label">nachgeschlagen wird beim Transform</span>
+            <pre class="code-sm"><code data-trim data-noescape class="language-json">
+{
+  "USA": "USA",
+  "AUSTRALIA": "AUS",
+  "SOUTH AFRICA": "ZAF",
+  "PAPUA NEW GUINEA": "PNG"
+}
+            </code></pre>
+            <pre class="code-sm"><code data-trim data-noescape class="language-php">
+$value = strtoupper(trim($raw));
+
+return $isoByCountry[$value] ?? null;
+            </code></pre>
+            <p class="text-sm">Die Tabelle entsteht aus den häufigsten Rohwerten, nicht aus dem Gedächtnis.</p>
+            <p class="text-sm">Fehlt ein Name in der Tabelle, bleibt <code>null</code> stehen.</p>
+          </div>
+          <div class="callout callout-orange is-bottom">
+            <p>Ohne Ländercode findet das Land seine Fläche nicht und bleibt grau.</p>
+          </div>
+        </div>
+        <aside class="notes">Diese Folie beantwortet die Frage, die auf der vorigen entsteht: Woher kommt
+          der iso3 in unseren Daten? Nicht aus der Quelle – die kennt nur «AUSTRALIA» als Text.
+          Die Tabelle im Code-Along hat 50 Einträge und ist bewusst unvollständig. Sie entstand aus der
+          Liste der häufigsten Rohwerte, nicht aus dem Gedächtnis.
+          strtoupper und trim sind der Grund, warum «australia » und «AUSTRALIA» denselben Code finden.
+          Das ?? null ist die Haltung aus dem Transform: nicht raten, sondern zugeben, dass wir es nicht
+          wissen. Kanada steht nicht in der Tabelle und ist deshalb grau, obwohl es einen Vorfall gibt.
+          Für die Projekte: Kantone haben Kürzel, Gemeinden die BFS-Nummer, Länder den ISO-3-Code.</aside>
+      </section>
+
+      <!-- ============ 27 Klassen ============ -->
       <section id="klassen-entscheiden">
         <span class="slide-tag">Leaflet</span>
         <h2>Die Klassengrenzen sind eine Entscheidung</h2>
@@ -613,7 +698,7 @@ const KLASSEN = [
           begründete Wahl von Hand, aufgeschrieben in der Bildlegende.</aside>
       </section>
 
-      <!-- ============ 26 Was die Karte verschweigt ============ -->
+      <!-- ============ 28 Was die Karte verschweigt ============ -->
       <section id="karte-ehrlich">
         <h2>Eine Weltkarte sieht aus wie die Wahrheit</h2>
         <div class="content">
@@ -637,7 +722,7 @@ const KLASSEN = [
           hingeschrieben, damit er nicht irgendwann falsch ist.</aside>
       </section>
 
-      <!-- ============ 27 Checkliste ============ -->
+      <!-- ============ 29 Checkliste ============ -->
       <section id="projekt-checkliste">
         <h2>Übertragt das Gelernte auf eure Grafik</h2>
         <div class="content">
@@ -663,7 +748,7 @@ const KLASSEN = [
           Absicht es verfolgt und warum dieser Typ dazu passt.</aside>
       </section>
 
-      <!-- ============ 23 Schluss ============ -->
+      <!-- ============ 30 Schluss ============ -->
       <section id="schluss">
         <h2>Was bleibt</h2>
         <div class="content">

@@ -70,15 +70,6 @@ ganz am Schluss, im Deployment-Teil.
 3. `🧑‍🏫` Code-Along: [09 Hitzesommer transformieren](code-alongs/C_transform/09_hitzesommer_transformieren/) `60'`
 4. `🧑‍🏫` Code-Along: [10 Shark-Daten mit KI transformieren](code-alongs/C_transform/10_sharkdaten_transformieren/) `90'`
 
-#### Zusatzmaterial (Block C)
-
-Dreierserie mit Airbnb-Daten von [Inside Airbnb](https://insideairbnb.com/):
-vom rohen Datensatz über die eigene Datenfrage zum fertigen JSON.
-
-- `💻` [01 Airbnb-Daten holen & erkunden](uebungen/C_transform/01_airbnb_erkunden/)
-- `💻` [02 Datenfrage schärfen](uebungen/C_transform/02_datenfrage/)
-- `💻` [03 Airbnb-Daten transformieren](uebungen/C_transform/03_airbnb_transformieren/)
-
 ### Block D – Load
 
 1. `📕` [Theorie D: Load (bis Kapitel Datenmodell)](theorie/D_load/) `30'`
@@ -112,3 +103,12 @@ vom rohen Datensatz über die eigene Datenfrage zum fertigen JSON.
 
 - `🧑‍🏫` Code-Along: [18 Shark-Balkendiagramme](code-alongs/F_visualisierung/18_sharkdaten_balkendiagramm/) `45'`
 - `🧑‍🏫` Code-Along: [19 Shark-Karte mit Leaflet](code-alongs/F_visualisierung/19_sharkdaten_karte/) `45'`
+
+### Zusatzmaterial
+
+Dreierserie mit Airbnb-Daten von [Inside Airbnb](https://insideairbnb.com/):
+vom rohen Datensatz über die eigene Datenfrage zum fertigen JSON.
+
+- `💻` [01 Airbnb-Daten holen & erkunden](uebungen/C_transform/01_airbnb_erkunden/)
+- `💻` [02 Datenfrage schärfen](uebungen/C_transform/02_datenfrage/)
+- `💻` [03 Airbnb-Daten transformieren](uebungen/C_transform/03_airbnb_transformieren/)
