@@ -105,9 +105,9 @@ vom rohen Datensatz über die eigene Datenfrage zum fertigen JSON.
 ### Block F – Visualisierung
 
 1. `📕` [Theorie F: Datengrafiken](theorie/F_visualisierung/) `30'`
-2. `🧑‍🏫` Code-Along: [16 Hitzesommer visualisieren](code-alongs/F_visualisierung/16_hitzesommer_liniendiagramm/) `70'`
-3. `🧑‍🏫` Code-Along: [17 Hitzesommer-Rangliste](code-alongs/F_visualisierung/17_hitzesommer_ranking/) `60'`
+2. `🧑‍🏫` Code-Along: [16 Hitzesommer visualisieren – Teil 2](code-alongs/F_visualisierung/16_hitzesommer_liniendiagramm/) `70'`
+3. `🧑‍🏫` Code-Along: [17 Hitzesommer visualisieren – Teil 2](code-alongs/F_visualisierung/17_hitzesommer_ranking/) `60'`
 
 #### Zusatzmaterial (Block F)
 
-- `🧑‍🏫` Code-Along: [18 Hai-Ranglisten zeichnen](code-alongs/F_visualisierung/18_sharkdaten_balkendiagramm/) `45'`
+- `🧑‍🏫` Code-Along: [18 Shark-Balkendiagramme](code-alongs/F_visualisierung/18_sharkdaten_balkendiagramm/) `45'`

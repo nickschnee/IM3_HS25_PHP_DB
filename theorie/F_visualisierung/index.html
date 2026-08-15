@@ -95,7 +95,7 @@
         <div class="etl-strip"><span>Extract</span><span class="sep">→</span><span>Transform</span><span class="sep">→</span><span>Load</span><span class="sep">→</span><span>Datenbank</span><span class="sep">→</span><span>Unload</span><span class="sep">→</span><span class="is-here">Chart.js</span></div>
         <p class="chapter-step">Kapitel 1</p>
         <h1>Welches Diagramm?</h1>
-        <p>Sechs Absichten und die Typen, die dazu passen</p>
+        <p>Sechs Absichten und die Diagramme, die dazu passen</p>
       </section>
 
       <!-- ============ 6 Sechs Absichten ============ -->
@@ -224,28 +224,7 @@
           und nicht Sache der Grafikbibliothek.</aside>
       </section>
 
-      <!-- ============ 10 Drei Regeln ============ -->
-      <section id="drei-regeln">
-        <h2>Drei Regeln, die fast immer gelten</h2>
-        <div class="content">
-          <ul class="list-tight text-lg">
-            <li>Bei Balken beginnt die Achse bei null</li>
-            <li>Ranglisten werden nach Grösse sortiert, nicht alphabetisch</li>
-            <li>Ein Kreisdiagramm verträgt zwei oder drei Stücke, nicht sieben</li>
-          </ul>
-          <p class="mt-2">Jede Regel hat denselben Grund: Das Auge liest Längen und Flächen sofort, Zahlen erst danach.</p>
-          <div class="callout callout-blue is-bottom has-footnote">
-            <p>Wer gegen eine dieser Regeln verstösst, muss es begründen können.</p>
-          </div>
-        </div>
-        <div class="footnote">Aus den Karten «Bar Chart» und «Pie Chart», Data Story Deck</div>
-        <aside class="notes">Beispiel für eine erlaubte Ausnahme: Bei Temperaturen zwischen 26 und 36 Grad
-          ist eine Achse ab null unbrauchbar, weil alle Unterschiede verschwinden. Der Unterschied ist,
-          ob man eine Anzahl zeigt oder eine Messgrösse auf einer Skala.
-          Darauf kommt die Folie zur Achse am Schluss zurück.</aside>
-      </section>
-
-      <!-- ============ 11 Kapiteltrenner ============ -->
+      <!-- ============ 10 Kapiteltrenner ============ -->
       <section id="divider-umformen" class="section-divider" data-state="is-section-divider">
         <div class="etl-strip"><span>Extract</span><span class="sep">→</span><span>Transform</span><span class="sep">→</span><span>Load</span><span class="sep">→</span><span>Datenbank</span><span class="sep">→</span><span>Unload</span><span class="sep">→</span><span class="is-here">Chart.js</span></div>
         <p class="chapter-step">Kapitel 2</p>
@@ -253,7 +232,7 @@
         <p>Der Bauplan und die eine wichtige Umformung</p>
       </section>
 
-      <!-- ============ 12 Bauplan ============ -->
+      <!-- ============ 11 Bauplan ============ -->
       <section id="bauplan">
         <span class="slide-tag">HTML + JS</span>
         <h2>Ein Diagramm braucht drei Dinge</h2>
@@ -278,7 +257,7 @@ const chart = new Chart(document.querySelector('#verlauf'), {
           anders verhält.</aside>
       </section>
 
-      <!-- ============ 13 labels und data ============ -->
+      <!-- ============ 12 labels und data ============ -->
       <section id="labels-und-data">
         <span class="slide-tag">JavaScript</span>
         <h2>Chart.js will keine Datensätze</h2>
@@ -314,7 +293,7 @@ data:   [0, 1, 0]
           Antwort: Chart.js zeichnet trotzdem, und die Werte stehen bei den falschen Jahren.</aside>
       </section>
 
-      <!-- ============ 14 Eine Stadt, eine Linie ============ -->
+      <!-- ============ 13 Eine Stadt, eine Linie ============ -->
       <section id="eine-stadt-eine-linie">
         <span class="slide-tag">JavaScript</span>
         <h2>Eine Stadt wird eine Linie</h2>
@@ -343,31 +322,7 @@ function datasetFor(rows, city) {
           Transformieren.</aside>
       </section>
 
-      <!-- ============ 15 Rangliste ============ -->
-      <section id="rangliste">
-        <span class="slide-tag">JavaScript</span>
-        <h2>Eine Rangliste ist sortieren und abschneiden</h2>
-        <div class="content">
-          <pre class="code-sm"><code data-trim data-noescape class="language-javascript">
-function topSummers(rows, count = 10) {
-  return [...rows]
-    .sort((a, b) => b.hot_days - a.hot_days)
-    .slice(0, count);
-}
-          </code></pre>
-          <ul class="list-tight mt-2">
-            <li><code>[...rows]</code> macht eine Kopie, weil <code>sort()</code> die Liste verändert</li>
-            <li><code>b - a</code> sortiert absteigend, der grösste Wert steht oben</li>
-            <li><code>indexAxis: 'y'</code> legt die Balken hin, damit die Beschriftungen Platz haben</li>
-          </ul>
-        </div>
-        <aside class="notes">Wer die Kopie vergisst, sortiert die geladenen Daten dauerhaft um – und die
-          Linie im ersten Diagramm springt.
-          Im Code-Along wird aus hot_days später row[metric], damit derselbe Code beide Messwerte
-          bedient.</aside>
-      </section>
-
-      <!-- ============ 16 Kapiteltrenner ============ -->
+      <!-- ============ 14 Kapiteltrenner ============ -->
       <section id="divider-holen" class="section-divider" data-state="is-section-divider">
         <div class="etl-strip"><span>Extract</span><span class="sep">→</span><span>Transform</span><span class="sep">→</span><span>Load</span><span class="sep">→</span><span>Datenbank</span><span class="sep">→</span><span>Unload</span><span class="sep">→</span><span class="is-here">Chart.js</span></div>
         <p class="chapter-step">Kapitel 3</p>
@@ -375,7 +330,7 @@ function topSummers(rows, count = 10) {
         <p>Der eigene Endpunkt, gelesen mit fetch()</p>
       </section>
 
-      <!-- ============ 17 fetch ============ -->
+      <!-- ============ 15 fetch ============ -->
       <section id="fetch">
         <span class="slide-tag">JavaScript</span>
         <h2>Der Browser fragt euren eigenen Endpunkt</h2>
@@ -396,7 +351,7 @@ const summers = await response.json();
           JSON-Antwort, neues Diagramm. Vier Blöcke Arbeit in einem Klick.</aside>
       </section>
 
-      <!-- ============ 18 Antwort prüfen ============ -->
+      <!-- ============ 16 Antwort prüfen ============ -->
       <section id="antwort-pruefen">
         <span class="slide-tag">JavaScript</span>
         <h2>Nicht jede Antwort ist die erwartete</h2>
@@ -422,7 +377,7 @@ if (!contentType.includes('application/json')) {
           Merkregel für die Klasse: In der Adressleiste muss 8000 stehen, nicht 5500.</aside>
       </section>
 
-      <!-- ============ 19 Übergabe ============ -->
+      <!-- ============ 17 Übergabe ============ -->
       <section id="uebergabe">
         <span class="slide-tag">JavaScript</span>
         <h2>Die Übergabe ist eine einzige Zeile</h2>
@@ -447,7 +402,7 @@ const DATEN_URL = ENDPUNKT;      // unload.php
           streikt.</aside>
       </section>
 
-      <!-- ============ 20 Kapiteltrenner ============ -->
+      <!-- ============ 18 Kapiteltrenner ============ -->
       <section id="divider-reagieren" class="section-divider" data-state="is-section-divider">
         <div class="etl-strip"><span>Extract</span><span class="sep">→</span><span>Transform</span><span class="sep">→</span><span>Load</span><span class="sep">→</span><span>Datenbank</span><span class="sep">→</span><span>Unload</span><span class="sep">→</span><span class="is-here">Chart.js</span></div>
         <p class="chapter-step">Kapitel 4</p>
@@ -455,7 +410,7 @@ const DATEN_URL = ENDPUNKT;      // unload.php
         <p>Aktualisieren statt neu erzeugen</p>
       </section>
 
-      <!-- ============ 21 Einmal erzeugen ============ -->
+      <!-- ============ 19 Einmal erzeugen ============ -->
       <section id="einmal-erzeugen">
         <span class="slide-tag">Chart.js</span>
         <h2>Einmal erzeugen, danach aktualisieren</h2>
@@ -478,7 +433,7 @@ function render() {
           update() zeichnet nur, was sich geändert hat.</aside>
       </section>
 
-      <!-- ============ 22 Zwei Sorten Interaktion ============ -->
+      <!-- ============ 20 Zwei Sorten Interaktion ============ -->
       <section id="zwei-sorten">
         <h2>Zwei Sorten Interaktion</h2>
         <div class="content">
@@ -504,7 +459,7 @@ function render() {
           wird er sichtbar.</aside>
       </section>
 
-      <!-- ============ 23 Ein Zustand ============ -->
+      <!-- ============ 21 Ein Zustand ============ -->
       <section id="ein-zustand">
         <span class="slide-tag">JavaScript</span>
         <h2>Ein Zustand, eine Zeichenfunktion</h2>
@@ -525,41 +480,9 @@ let metric = 'hot_days';   // welcher Messwert
           Wer diese Trennung einmal gesehen hat, erkennt sie in jedem Frontend-Framework wieder.</aside>
       </section>
 
-      <!-- ============ 24 Achse ============ -->
-      <section id="achse" class="split-slide">
-        <div class="split-half split-good">
-          <h2>Hitzetage ab null</h2>
-          <div class="axis-demo">
-            <span style="height: 12%"></span>
-            <span style="height: 30%"></span>
-            <span style="height: 22%"></span>
-            <span style="height: 64%"></span>
-          </div>
-          <p class="text-sm mt-1">Bei einer Anzahl ist die Null der richtige Anfang.</p>
-          <p class="text-sm">Ohne sie wirkt jede kleine Schwankung wie ein Sprung.</p>
-        </div>
-        <div class="split-half split-bad">
-          <h2>Temperatur ab null</h2>
-          <div class="axis-demo is-cut">
-            <span style="height: 74%"></span>
-            <span style="height: 92%"></span>
-            <span style="height: 86%"></span>
-            <span style="height: 100%"></span>
-          </div>
-          <p class="text-sm mt-1">Dieselbe Regel macht Temperaturen unlesbar.</p>
-          <p class="text-sm">Zwischen 0 und 26 Grad passiert in diesen Daten nichts.</p>
-        </div>
-        <aside class="notes">Eine Zeile Code, eine journalistische Entscheidung:
-          beginAtZero = metric === 'hot_days'.
-          Faustregel für die Klasse: Zählt ihr etwas, beginnt die Achse bei null. Messt ihr etwas auf
-          einer Skala, darf sie das nicht.
-          Eine gekappte Achse ist nicht per se unehrlich – unehrlich wird sie, wenn man sie nicht
-          beschriftet.</aside>
-      </section>
-
-      <!-- ============ 25 Checkliste ============ -->
+      <!-- ============ 22 Checkliste ============ -->
       <section id="projekt-checkliste">
-        <h2>Übertragt das Muster auf eure Grafik</h2>
+        <h2>Übertragt das Gelernte auf eure Grafik</h2>
         <div class="content">
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
             <ul class="list-tight text-sm">
@@ -572,26 +495,23 @@ let metric = 'hot_days';   // welcher Messwert
               <li>Das Diagramm einmal erzeugen und danach aktualisieren</li>
               <li>Ladefehler und leere Daten sichtbar melden</li>
               <li>Quelle, Zeitraum und Grenze der Aussage danebenstellen</li>
-              <li>Chart.js für die Ausstellung lokal ablegen</li>
             </ul>
           </div>
-          <div class="callout callout-blue mt-2">
+          <div class="callout callout-blue is-bottom">
             <p>Ein Diagramm, das seine Aussage ohne Klick zeigt, ist besser als eines, das sie versteckt.</p>
           </div>
         </div>
         <aside class="notes">Tagesabnahme: Jede Gruppe zeigt ihr Diagramm und sagt in einem Satz, welche
-          Absicht es verfolgt und warum dieser Typ dazu passt.
-          Der letzte Punkt ist der, den alle vergessen: Am Marktstand ist das WLAN unzuverlässig, und
-          ohne Chart.js aus dem Netz bleibt die Seite leer.</aside>
+          Absicht es verfolgt und warum dieser Typ dazu passt.</aside>
       </section>
 
-      <!-- ============ 26 Schluss ============ -->
+      <!-- ============ 23 Schluss ============ -->
       <section id="schluss">
         <h2>Was bleibt</h2>
         <div class="content">
           <p class="big-statement">Die Absicht wählt den Diagrammtyp.<br><code>labels</code> und <code>data</code> füllen ihn.</p>
           <p class="text-xl mt-2"><code>render()</code> hält das Bild aktuell.</p>
-          <p class="mt-2"><span class="next-step">Nächster Schritt: eure eigenen Daten sichtbar machen</span></p>
+          <p class="mt-2"><span class="next-step">Nächster Schritt: im Code-Along selbst bauen</span></p>
         </div>
         <aside class="notes">Exit Ticket: Welche Absicht hat eure Grafik, und welchen Diagrammtyp braucht
           sie dafür? Zwei Sätze pro Gruppe, mündlich.

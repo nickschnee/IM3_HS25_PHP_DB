@@ -8,8 +8,7 @@ Nach diesem Input könnt ihr
 - einschätzen, welche Diagrammtypen Chart.js mitbringt und welche nicht;
 - Datensätze in `labels` und `datasets` umformen;
 - den eigenen JSON-Endpunkt mit `fetch()` laden und die Antwort prüfen;
-- ein Diagramm aktualisieren statt neu zu erzeugen;
-- begründen, wann eine Achse bei null beginnt und wann nicht.
+- ein Diagramm aktualisieren statt neu zu erzeugen.
 
 ## Der zentrale Gedanke
 
@@ -31,8 +30,7 @@ kommen drei Dinge:
 
 - die Phasenregel «Erst die Aussage, dann der Typ»;
 - die sechs Absichten Verteilung, Zusammenhang, Vergleich, Zusammensetzung,
-  Entwicklung und Verortung;
-- die Regeln zu Achse, Sortierung und Kreisdiagramm.
+  Entwicklung und Verortung.
 
 Der Foliensatz ergänzt das Kartenset um die technische Antwort: Welche dieser
 zwölf Kartentypen kann Chart.js überhaupt, und was nimmt man sonst? Die Karten
@@ -57,7 +55,7 @@ Code-Alongs.
 Auf den Folien steht kein vollständiges `options`-Objekt. Die Einstellungen sind
 Fleissarbeit, liegen in den Code-Alongs fertig vor und stehen in der
 Chart.js-Dokumentation. Der Input konzentriert sich auf die Entscheidungen:
-Diagrammtyp, Umformung, Aktualisierung und Achse.
+Diagrammtyp, Umformung und Aktualisierung.
 
 Karten sind ausdrücklich kein Thema. Wer eine Karte braucht, arbeitet nicht mit
 Chart.js – der JSON-Endpunkt bleibt derselbe, nur das Frontend wechselt.
@@ -70,11 +68,11 @@ gerade gearbeitet wird: `Chart.js`, `JavaScript` oder `HTML + JS`.
 | Folien | Inhalt |
 | --- | --- |
 | 1–4 | Titel, Inhalt, Position in der Kette, «Erst die Aussage» |
-| 5–10 | Kapitel 1: sechs Absichten, unsere zwei Fragen, was Chart.js kann und nicht kann, drei Regeln |
-| 11–15 | Kapitel 2: Bauplan, `labels` und `data`, ein Dataset pro Stadt, die Rangliste |
-| 16–19 | Kapitel 3: `fetch()`, die Antwort prüfen, die Übergabe vom Mock zum Endpunkt |
-| 20–23 | Kapitel 4: einmal erzeugen und aktualisieren, zwei Sorten Interaktion, ein Zustand |
-| 24–26 | Achse bei null, Projekt-Checkliste, Kernaussage |
+| 5–9 | Kapitel 1: sechs Absichten, unsere zwei Fragen, was Chart.js kann und nicht kann |
+| 10–13 | Kapitel 2: Bauplan, `labels` und `data`, ein Dataset pro Stadt |
+| 14–17 | Kapitel 3: `fetch()`, die Antwort prüfen, die Übergabe vom Mock zum Endpunkt |
+| 18–21 | Kapitel 4: einmal erzeugen und aktualisieren, zwei Sorten Interaktion, ein Zustand |
+| 22–23 | Projekt-Checkliste, Kernaussage |
 
 Richtwert für den Theorie-Input: 30 Minuten. Danach folgen die beiden
 Code-Alongs, die dieselbe Reihenfolge nochmals durchlaufen.
@@ -88,7 +86,6 @@ Code-Alongs, die dieselbe Reihenfolge nochmals durchlaufen.
 5. `fetch()` als bekanntes Werkzeug aus IM2 wiedererkennen lassen.
 6. Den Live-Server-Fehler einmal vorführen, bevor er im Code-Along auftritt.
 7. Den Unterschied zwischen Server- und Browser-Interaktion im Netzwerk-Tab zeigen.
-8. Die Achsenfrage als journalistische Entscheidung diskutieren.
 
 Die Folie «Chart.js will keine Datensätze» ist die Kernfolie. Sie kommt direkt
 nach dem Bauplan, und alles danach hängt daran.
