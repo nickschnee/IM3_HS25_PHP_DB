@@ -1,3 +1,5 @@
+**Dieses File ist für AI Agents geschrieben**
+
 # Didaktischer Werkzeugkasten für die Unterrichtsplanung
 
 Dieses Dokument sammelt die zentralen Begriffe und Methoden aus dem CAS
@@ -11,13 +13,13 @@ Lernens zusammenpassen.
 
 ## Begriffe auseinanderhalten
 
-| Begriff | Leitfrage | Beispiele |
-| --- | --- | --- |
-| Lernphase | Welche Funktion hat dieser Abschnitt im Lernprozess? | Vorwissen aktivieren, Informationen aufnehmen, üben, reflektieren |
-| Methode | Wie wird das Lernen angeregt? | Think-Pair-Share, Code-Along, Concept Map, Peer-Feedback |
-| Sozialform | Wer arbeitet mit wem? | Plenum, Einzelarbeit, Partnerarbeit, Projektgruppe |
-| Material oder Medium | Womit wird gearbeitet? | Folien, Whiteboard, Laptop, Startcode, Cheatsheet |
-| Classroom Assessment Technique | Wie wird während des Unterrichts sichtbar, was gelernt oder noch nicht verstanden wurde? | Exit Ticket, Muddiest Point, Code Prediction |
+| Begriff                        | Leitfrage                                                                                | Beispiele                                                         |
+| ------------------------------ | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Lernphase                      | Welche Funktion hat dieser Abschnitt im Lernprozess?                                     | Vorwissen aktivieren, Informationen aufnehmen, üben, reflektieren |
+| Methode                        | Wie wird das Lernen angeregt?                                                            | Think-Pair-Share, Code-Along, Concept Map, Peer-Feedback          |
+| Sozialform                     | Wer arbeitet mit wem?                                                                    | Plenum, Einzelarbeit, Partnerarbeit, Projektgruppe                |
+| Material oder Medium           | Womit wird gearbeitet?                                                                   | Folien, Whiteboard, Laptop, Startcode, Cheatsheet                 |
+| Classroom Assessment Technique | Wie wird während des Unterrichts sichtbar, was gelernt oder noch nicht verstanden wurde? | Exit Ticket, Muddiest Point, Code Prediction                      |
 
 `Plenum` und `Einzelarbeit` sind somit keine Methoden, sondern Sozialformen.
 In einem Ablaufplan können Methode und Sozialform gemeinsam genannt werden:
@@ -44,11 +46,11 @@ Handlung ausführen.
 
 Beispiel für Block A:
 
-| Lernziel | Lernaktivität | Beobachtbarer Nachweis |
-| --- | --- | --- |
-| Eine `foreach`-Schleife anwenden | Code-Along und eigene Übung | Das Skript gibt für jeden Datensatz eine Zeile aus. |
-| Einfache Fehler analysieren | Fehlerdiagnose und Testwerte | Die Student:innen benennen den Fehler und korrigieren den Code. |
-| Eine Datenfrage formulieren | Leitfragenbasierte Gruppenarbeit | Die Gruppe legt eine offene, mit Daten beantwortbare Frage vor. |
+| Lernziel                         | Lernaktivität                    | Beobachtbarer Nachweis                                          |
+| -------------------------------- | -------------------------------- | --------------------------------------------------------------- |
+| Eine `foreach`-Schleife anwenden | Code-Along und eigene Übung      | Das Skript gibt für jeden Datensatz eine Zeile aus.             |
+| Einfache Fehler analysieren      | Fehlerdiagnose und Testwerte     | Die Student:innen benennen den Fehler und korrigieren den Code. |
+| Eine Datenfrage formulieren      | Leitfragenbasierte Gruppenarbeit | Die Gruppe legt eine offene, mit Daten beantwortbare Frage vor. |
 
 ## Lernphasen nach MOMBI
 
@@ -57,14 +59,14 @@ Hanke. Es beschreibt sechs aufeinander bezogene Lernphasen. Die deutschen
 Bezeichnungen in der folgenden Tabelle sind eine praxisnahe Übertragung für
 die Unterrichtsplanung.
 
-| Phase | Funktion | Mögliche Lehraktivität | Beispiel für Block A |
-| --- | --- | --- | --- |
-| 1. Irritation oder Problemorientierung | Aufmerksamkeit und eine produktive Irritation erzeugen | überraschendes Beispiel, Konfliktfall, offene Frage | Zwei fast gleiche PHP-Beispiele liefern unterschiedliche Ausgaben. Warum? |
-| 2. Vorwissen aktivieren | Vorhandenes Wissen abrufen und anschlussfähig machen | Retrieval Practice, Think-Pair-Share, Kurzquiz | Bekannte JavaScript-Konzepte in einem PHP-Beispiel markieren. |
-| 3. Lernziele und Relevanz klären | Ziel, Nutzen und beruflichen Bezug sichtbar machen | Lernziele transparent machen, Projektbezug erklären | Zeigen, weshalb Backend- und Frontend-Team einfachen PHP-Code verstehen müssen. |
-| 4. Informationen aufnehmen | Neue Begriffe, Modelle oder Vorgehensweisen kennenlernen | Kurzinput, Beispiel, Demonstration | Unterschiede zwischen JavaScript- und PHP-Syntax zeigen. |
-| 5. Integrieren und verarbeiten | Neues Wissen mit Vorwissen verbinden und geführt anwenden | Code-Along, Vergleich, Verständnisfragen, Reflexionsimpulse | Variablen, Funktionen und Bedingungen gemeinsam in PHP umsetzen. |
-| 6. Vertiefen, üben und übertragen | Eine Handlung selbst ausführen und auf einen neuen Kontext übertragen | Anwendungsübung, Fallaufgabe, Projektarbeit | Den Städtevergleich selbstständig programmieren oder eine eigene Datenfrage formulieren. |
+| Phase                                  | Funktion                                                              | Mögliche Lehraktivität                                      | Beispiel für Block A                                                                     |
+| -------------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| 1. Irritation oder Problemorientierung | Aufmerksamkeit und eine produktive Irritation erzeugen                | überraschendes Beispiel, Konfliktfall, offene Frage         | Zwei fast gleiche PHP-Beispiele liefern unterschiedliche Ausgaben. Warum?                |
+| 2. Vorwissen aktivieren                | Vorhandenes Wissen abrufen und anschlussfähig machen                  | Retrieval Practice, Think-Pair-Share, Kurzquiz              | Bekannte JavaScript-Konzepte in einem PHP-Beispiel markieren.                            |
+| 3. Lernziele und Relevanz klären       | Ziel, Nutzen und beruflichen Bezug sichtbar machen                    | Lernziele transparent machen, Projektbezug erklären         | Zeigen, weshalb Backend- und Frontend-Team einfachen PHP-Code verstehen müssen.          |
+| 4. Informationen aufnehmen             | Neue Begriffe, Modelle oder Vorgehensweisen kennenlernen              | Kurzinput, Beispiel, Demonstration                          | Unterschiede zwischen JavaScript- und PHP-Syntax zeigen.                                 |
+| 5. Integrieren und verarbeiten         | Neues Wissen mit Vorwissen verbinden und geführt anwenden             | Code-Along, Vergleich, Verständnisfragen, Reflexionsimpulse | Variablen, Funktionen und Bedingungen gemeinsam in PHP umsetzen.                         |
+| 6. Vertiefen, üben und übertragen      | Eine Handlung selbst ausführen und auf einen neuen Kontext übertragen | Anwendungsübung, Fallaufgabe, Projektarbeit                 | Den Städtevergleich selbstständig programmieren oder eine eigene Datenfrage formulieren. |
 
 Eine kurze Reflexion oder Ergebnissicherung schliesst die Einheit ab. Sie kann
 Teil der Integration oder Vertiefung sein und beispielsweise mit einem Exit
@@ -213,26 +215,26 @@ Unterricht anzupassen.
 
 ### CATs aus den CAS-Unterlagen
 
-| CAT | Auftrag | Beispiel für IM3 | Mögliche Verwendung der Antworten |
-| --- | --- | --- | --- |
-| Exit Ticket | Am Ende eine kurze Frage beantworten | «Was gibt diese `foreach`-Schleife aus und weshalb?» | Einstieg oder Gruppierung in der nächsten Lektion anpassen |
-| Muddiest Point | Den unklarsten Aspekt notieren | «Welches PHP-Konzept ist noch am wenigsten klar?» | Häufigste Unklarheit zu Beginn der nächsten Lektion aufnehmen |
-| Approximate Analogies | Eine Beziehung nach dem Muster «A verhält sich zu B wie ...» vervollständigen | «Ein Parameter verhält sich zu einem Argument wie ...» | Fehlvorstellungen in Analogien erkennen und besprechen |
-| Start-Stop-Continue | Notieren, was beginnen, aufhören und weitergeführt werden sollte | Rückmeldung zu Input, Code-Along und Hilfsmaterial | Lernunterstützung und Ablauf anpassen |
-| Concept Map | Begriffe in qualitative Beziehungen setzen | Variablen, Funktionen, Arrays und Schleifen verbinden | Verständnis von Zusammenhängen statt isoliertem Faktenwissen prüfen |
+| CAT                   | Auftrag                                                                       | Beispiel für IM3                                       | Mögliche Verwendung der Antworten                                   |
+| --------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------- |
+| Exit Ticket           | Am Ende eine kurze Frage beantworten                                          | «Was gibt diese `foreach`-Schleife aus und weshalb?»   | Einstieg oder Gruppierung in der nächsten Lektion anpassen          |
+| Muddiest Point        | Den unklarsten Aspekt notieren                                                | «Welches PHP-Konzept ist noch am wenigsten klar?»      | Häufigste Unklarheit zu Beginn der nächsten Lektion aufnehmen       |
+| Approximate Analogies | Eine Beziehung nach dem Muster «A verhält sich zu B wie ...» vervollständigen | «Ein Parameter verhält sich zu einem Argument wie ...» | Fehlvorstellungen in Analogien erkennen und besprechen              |
+| Start-Stop-Continue   | Notieren, was beginnen, aufhören und weitergeführt werden sollte              | Rückmeldung zu Input, Code-Along und Hilfsmaterial     | Lernunterstützung und Ablauf anpassen                               |
+| Concept Map           | Begriffe in qualitative Beziehungen setzen                                    | Variablen, Funktionen, Arrays und Schleifen verbinden  | Verständnis von Zusammenhängen statt isoliertem Faktenwissen prüfen |
 
 ### Weitere einfache formative Lernchecks
 
 Diese Verfahren folgen demselben formativen Grundgedanken:
 
-| Verfahren | Beispiel |
-| --- | --- |
-| Minute Paper | «Was ist deine wichtigste Erkenntnis? Welche Frage bleibt offen?» |
-| Code Prediction | Ausgabe vorhersagen, begründen und anschliessend überprüfen |
-| Fehlerdiagnose | Einen Fehler markieren, seine Wirkung erklären und ihn korrigieren |
-| One-Sentence Summary | «Eine `foreach`-Schleife brauche ich, wenn ...» |
-| Unbenotetes Kurzquiz | Zwei bis drei Fragen zu Datentypen, Syntax oder Codeausgaben |
-| Selbsteinschätzung | Sicherheit zu einem Lernziel auf einer Skala einschätzen und kurz begründen |
+| Verfahren            | Beispiel                                                                    |
+| -------------------- | --------------------------------------------------------------------------- |
+| Minute Paper         | «Was ist deine wichtigste Erkenntnis? Welche Frage bleibt offen?»           |
+| Code Prediction      | Ausgabe vorhersagen, begründen und anschliessend überprüfen                 |
+| Fehlerdiagnose       | Einen Fehler markieren, seine Wirkung erklären und ihn korrigieren          |
+| One-Sentence Summary | «Eine `foreach`-Schleife brauche ich, wenn ...»                             |
+| Unbenotetes Kurzquiz | Zwei bis drei Fragen zu Datentypen, Syntax oder Codeausgaben                |
+| Selbsteinschätzung   | Sicherheit zu einem Lernziel auf einer Skala einschätzen und kurz begründen |
 
 Eine CAT ist nur nützlich, wenn ihre Ergebnisse Konsequenzen haben. In der
 Planung sollte deshalb kurz festgehalten werden, wie die Antworten ausgewertet
@@ -258,14 +260,14 @@ Formulierungen wie `kennen`, `wissen`, `lernen` oder bloss `verstehen` sind
 schwer beobachtbar. Besser sind Handlungen wie `erklären`, `anwenden`,
 `vergleichen`, `prüfen` oder `entwickeln`.
 
-| Bloom-Stufe | Bedeutung | Geeignete Verben | Beispiel für IM3 |
-| --- | --- | --- | --- |
-| 1. Erinnern | Bekanntes abrufen | aufzählen, benennen, identifizieren, wiedergeben | PHP-Datentypen benennen |
-| 2. Verstehen | Zusammenhänge mit eigenen Worten darstellen | erklären, beschreiben, unterscheiden, vergleichen, zusammenfassen | Unterschiede zwischen PHP und JavaScript erklären |
-| 3. Anwenden | Bekanntes Verfahren in einer Aufgabe einsetzen | anwenden, ausführen, implementieren, vervollständigen, berechnen | Eine vorbereitete Funktion vervollständigen und aufrufen |
-| 4. Analysieren | Bestandteile, Muster oder Ursachen untersuchen | analysieren, strukturieren, differenzieren, zuordnen, ableiten | Einen Fehler lokalisieren und seine Ursache erklären |
-| 5. Evaluieren | Ein Ergebnis anhand von Kriterien beurteilen | prüfen, beurteilen, bewerten, entscheiden, begründen | KI-generierten Code mit Testwerten prüfen und die Übernahme begründen |
-| 6. Erschaffen | Eine neue, zusammenhängende Lösung entwickeln | entwickeln, planen, erstellen, gestalten, kombinieren | Einen Städtevergleich aus mehreren Anforderungen erstellen |
+| Bloom-Stufe    | Bedeutung                                      | Geeignete Verben                                                  | Beispiel für IM3                                                      |
+| -------------- | ---------------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------- |
+| 1. Erinnern    | Bekanntes abrufen                              | aufzählen, benennen, identifizieren, wiedergeben                  | PHP-Datentypen benennen                                               |
+| 2. Verstehen   | Zusammenhänge mit eigenen Worten darstellen    | erklären, beschreiben, unterscheiden, vergleichen, zusammenfassen | Unterschiede zwischen PHP und JavaScript erklären                     |
+| 3. Anwenden    | Bekanntes Verfahren in einer Aufgabe einsetzen | anwenden, ausführen, implementieren, vervollständigen, berechnen  | Eine vorbereitete Funktion vervollständigen und aufrufen              |
+| 4. Analysieren | Bestandteile, Muster oder Ursachen untersuchen | analysieren, strukturieren, differenzieren, zuordnen, ableiten    | Einen Fehler lokalisieren und seine Ursache erklären                  |
+| 5. Evaluieren  | Ein Ergebnis anhand von Kriterien beurteilen   | prüfen, beurteilen, bewerten, entscheiden, begründen              | KI-generierten Code mit Testwerten prüfen und die Übernahme begründen |
+| 6. Erschaffen  | Eine neue, zusammenhängende Lösung entwickeln  | entwickeln, planen, erstellen, gestalten, kombinieren             | Einen Städtevergleich aus mehreren Anforderungen erstellen            |
 
 ### Lernziele überprüfen
 
@@ -281,9 +283,9 @@ Vor der Verwendung eines Lernziels prüfen:
 
 ## Vorlage für einen Ablaufplan
 
-| Zeit | Dauer | Lerninhalt und Lernphase | Methode und Sozialform | Lernziel | Material | Beobachtung oder Nachweis |
-| --- | ---: | --- | --- | --- | --- | --- |
-| 09.15 |  |  |  |  |  |  |
+| Zeit  | Dauer | Lerninhalt und Lernphase | Methode und Sozialform | Lernziel | Material | Beobachtung oder Nachweis |
+| ----- | ----: | ------------------------ | ---------------------- | -------- | -------- | ------------------------- |
+| 09.15 |       |                          |                        |          |          |                           |
 
 Die Spalte `Beobachtung oder Nachweis` ist in der HSLU-Mustervorlage nicht
 enthalten. Sie kann trotzdem beim Planen helfen und macht das Constructive

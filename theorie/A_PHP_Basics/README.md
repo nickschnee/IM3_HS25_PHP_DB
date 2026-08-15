@@ -48,8 +48,8 @@ Schreibweise wie die Lösungen in `code-alongs/A_PHP_Basics/`.
 
 ## Bezug zum übrigen Material
 
-- Vertiefung und Nachschlagen: `cheatsheets/00_was_ist_PHP.md` bis
-  `cheatsheets/05_schleifen.md`
+- Vertiefung und Nachschlagen: [`cheatsheets/A0_php_grundlagen.md`](../../cheatsheets/A0_php_grundlagen.md)
+  bis [`cheatsheets/A5_schleifen.md`](../../cheatsheets/A5_schleifen.md)
 - Praxis direkt danach: `code-alongs/A_PHP_Basics/`
 - Übungen: `uebungen/A_PHP_Basics/`
 - Voraussetzung: `theorie/00_lokaler_php_server/` – der lokale PHP-Server ist

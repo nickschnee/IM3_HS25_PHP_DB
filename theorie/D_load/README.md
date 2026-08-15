@@ -370,8 +370,8 @@ Code-Along zum ersten Mal auf.
   [`code-alongs/D_load/13_sharkdaten_laden`](../../code-alongs/D_load/13_sharkdaten_laden/)
   – dieselbe Kette am zweiten Datensatz, mit einer Tabelle statt zwei
 - Danach: `unload.php` in Block E baut auf denselben Tabellen auf
-- Nachschlagewerke: [`cheatsheets/10__pdo.md`](../../cheatsheets/10__pdo.md) und
-  [`cheatsheets/310_load.md`](../../cheatsheets/310_load.md)
+- Nachschlagewerke: [`cheatsheets/D1_datenmodell_sql.md`](../../cheatsheets/D1_datenmodell_sql.md)
+  und [`cheatsheets/D2_pdo_load.md`](../../cheatsheets/D2_pdo_load.md)
 - Vorlage für die Zugangsdaten:
   [`config.template.php`](../../config.template.php)
 
@@ -395,8 +395,6 @@ npx decktape reveal theorie/D_load/index.html slides.pdf --size 1280x720
 - `JOIN` kommt weder auf den Folien noch im Code-Along 12 vor. Die
   Kontrollabfrage dort fragt pro Stadt einzeln nach. Für Block E ist das die
   offene Stelle: Aus dem `SELECT` mit Fremdschlüssel wird dort ein `JOIN`.
-- `cheatsheets/310_load.md` stammt aus dem letzten Durchlauf und passt noch
-  nicht zu diesem Datenmodell.
 - Für den Deployment-Teil am Kursende gibt es noch kein Material. Ein
   Foliensatz `theorie/00_deployment/` analog zu den beiden Setup-Sätzen fehlt;
   Folie 8 verweist bereits darauf, dass der Umzug nur die Zugangsdaten

@@ -1,4 +1,7 @@
-# Cheatsheet: Transform
+# Transform – Rohdaten zur Datenfrage passend machen
+
+> Block C · Code-Alongs `09_hitzesommer_transformieren`,
+> `10_sharkdaten_transformieren`
 
 Transform bedeutet: Rohdaten so umformen, dass sie **zur Datenfrage** und zum
 **Datenvertrag** passen.
@@ -291,3 +294,9 @@ Der Load-Schritt verwendet daraus `$transformResult['data']`. `json_encode()`
 gehört im Kurs zum späteren Unload-Endpunkt. Für eine sichtbare Kontrollausgabe
 darf ein separates `index.php` das ganze Transform-Resultat temporär als JSON
 anzeigen.
+
+## Verwandte Cheatsheets
+
+- [B1 Extract](B1_extract.md) – woher die Rohdaten kommen
+- [A4 Arrays](A4_arrays.md) – `array_map`, `array_filter`, `usort`
+- [D1 Datenmodell und SQL](D1_datenmodell_sql.md) – die Zielstruktur wird zur Tabelle

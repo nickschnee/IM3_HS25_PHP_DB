@@ -9,16 +9,7 @@ JSON-Schnittstelle.
 ## Ablauf
 
 Der ganze Kursablauf nach Themen-Blöcken steht im
-[Ablauf für Studierende](ablauf_studierende.md).
-
-## Lernpfad
-
-1. PHP-Skripte lesen, ändern und schreiben.
-2. JSON, APIs und CSV-Dateien als PHP-Arrays einlesen.
-3. Eine Datenfrage in Transform-Regeln und einen Datenvertrag übersetzen.
-4. Transformierte Daten mit PDO in eine Datenbank laden.
-5. Daten aus der Datenbank als eigenen JSON-Endpunkt ausgeben.
-6. Daten mit Chart.js oder Leaflet sichtbar und als Story verständlich machen.
+[Ablauf für Studierende](ablauf.md).
 
 ## Wo ihr arbeitet
 

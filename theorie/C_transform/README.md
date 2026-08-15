@@ -244,7 +244,7 @@ Code-Along zum ersten Mal auf.
   und [`10_sharkdaten_transformieren`](../../code-alongs/C_transform/10_sharkdaten_transformieren/)
 - Übungen: [`uebungen/C_transform/`](../../uebungen/C_transform/) – Airbnb-Serie
   (erkunden, Datenfrage, transformieren)
-- Nachschlagewerk: [`cheatsheets/230_transform.md`](../../cheatsheets/230_transform.md)
+- Nachschlagewerk: [`cheatsheets/C1_transform.md`](../../cheatsheets/C1_transform.md)
 
 ### Nach Änderungen prüfen
 
