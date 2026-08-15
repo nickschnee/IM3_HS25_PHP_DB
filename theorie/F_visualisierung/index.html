@@ -38,6 +38,7 @@
             <li>Von Datensätzen zu <code>labels</code> und <code>datasets</code></li>
             <li>Die Daten mit <code>fetch()</code> holen</li>
             <li>Auf Bedienung reagieren</li>
+            <li>Karten mit Leaflet, wenn die Frage ein Wo ist</li>
           </ul>
         </div>
         <aside class="notes">Richtwert für diesen Input: 30 Minuten.
@@ -209,19 +210,22 @@
               <tr><td>Boxplot</td><td>kein eingebauter Typ</td><td>Datawrapper oder Plugin</td></tr>
               <tr><td>Dot Plot</td><td>kein eingebauter Typ</td><td>Datawrapper</td></tr>
               <tr><td>Gantt Chart</td><td>nur über einen Umweg</td><td>Balken mit Start- und Endwert</td></tr>
-              <tr><td>Symbol Map</td><td>keine Karten</td><td>Datawrapper, Leaflet</td></tr>
-              <tr><td>Choropleth Map</td><td>keine Karten</td><td>Datawrapper, Leaflet</td></tr>
+              <tr><td>Symbol Map</td><td>keine Karten</td><td>Leaflet</td></tr>
+              <tr><td>Choropleth Map</td><td>keine Karten</td><td>Leaflet</td></tr>
             </tbody>
           </table>
-          <div class="callout callout-orange is-bottom">
-            <p>Braucht eure Story eine Karte, ist Chart.js das falsche Werkzeug.</p>
+          <div class="callout callout-blue is-bottom">
+            <p>Braucht eure Story eine Karte, nehmt ihr Leaflet – dazu kommt Kapitel 5.</p>
           </div>
         </div>
         <aside class="notes">Wichtig für die Projektberatung: Wer eine Karte will, muss das früh sagen –
-          das ist ein anderes Werkzeug und kostet Zeit. Der JSON-Endpunkt bleibt derselbe, nur das
+          das ist eine zweite Bibliothek und kostet Zeit. Der JSON-Endpunkt bleibt derselbe, nur das
           Frontend wechselt.
+          Hier nur ankündigen und nicht schon erklären, sonst nimmt man Kapitel 5 vorweg.
+          Für Boxplot und Dot Plot bleibt Datawrapper die schnellste Antwort – die zeigt man dort her,
+          statt sie selbst zu bauen.
           Das Histogramm ist ein guter Hinweis darauf, dass Klassenbildung eine Transform-Aufgabe ist
-          und nicht Sache der Grafikbibliothek.</aside>
+          und nicht Sache der Grafikbibliothek. Genau diese Aufgabe kommt in Kapitel 5 wieder.</aside>
       </section>
 
       <!-- ============ 10 Kapiteltrenner ============ -->
@@ -480,7 +484,160 @@ let metric = 'hot_days';   // welcher Messwert
           Wer diese Trennung einmal gesehen hat, erkennt sie in jedem Frontend-Framework wieder.</aside>
       </section>
 
-      <!-- ============ 22 Checkliste ============ -->
+      <!-- ============ 22 Kapiteltrenner ============ -->
+      <section id="divider-karte" class="section-divider" data-state="is-section-divider">
+        <div class="etl-strip"><span>Extract</span><span class="sep">→</span><span>Transform</span><span class="sep">→</span><span>Load</span><span class="sep">→</span><span>Datenbank</span><span class="sep">→</span><span>Unload</span><span class="sep">→</span><span class="is-here">Leaflet</span></div>
+        <p class="chapter-step">Kapitel 5</p>
+        <h1>Wenn die Frage ein Wo ist</h1>
+        <p>Dieselbe Kette, eine andere Zeichenbibliothek</p>
+        <aside class="notes">Richtwert: 8 Minuten für dieses Kapitel.
+          Wichtig für die Rahmung: Alles aus den Kapiteln 2 bis 4 gilt weiter. Nur der letzte Schritt
+          wechselt das Werkzeug.
+          Wer die Klasse abholen will, blättert kurz zur Tabelle in Kapitel 1 zurück – dort stand Leaflet
+          schon als Antwort, jetzt lösen wir das Versprechen ein.</aside>
+      </section>
+
+      <!-- ============ 23 Leaflet-Bauplan ============ -->
+      <section id="leaflet-bauplan">
+        <span class="slide-tag">HTML + JS</span>
+        <h2>Leaflet braucht auch nur drei Dinge</h2>
+        <div class="content">
+          <span class="code-label">im HTML: zwei Dateien und ein Behälter mit Höhe</span>
+          <pre class="code-sm"><code data-trim data-noescape class="language-html">
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"&gt;&lt;/script&gt;
+&lt;div id="karte"&gt;&lt;/div&gt;      /* im CSS: height: 520px */
+          </code></pre>
+          <span class="code-label mt-2">im JavaScript: Ausschnitt, Hintergrund, Daten</span>
+          <pre class="code-sm"><code data-trim data-noescape class="language-javascript">
+const karte = L.map('karte').setView([20, 0], 2);
+L.tileLayer(kachelUrl, { attribution: quelle }).addTo(karte);
+L.geoJSON(grenzen, { style: stilFuer }).addTo(karte);
+          </code></pre>
+          <div class="callout callout-orange is-bottom">
+            <p>Ohne Höhe im CSS bleibt die Karte unsichtbar, und die Konsole meldet nichts.</p>
+          </div>
+        </div>
+        <aside class="notes">Die Parallele laut aussprechen: type, data, options hiess bei Chart.js
+          «welcher Typ, was, wie». Hier heisst es «welcher Ausschnitt, welcher Hintergrund, welche Daten».
+          Zwei Unterschiede betonen. Erstens braucht Leaflet auch ein Stylesheet – fehlt es, liegen alle
+          Kacheln übereinander in der Ecke, und das sieht nach einem Fehler im eigenen Code aus.
+          Zweitens der Behälter: canvas hat eine eigene Grösse, ein leeres div ist 0 Pixel hoch.
+          Der häufigste Leaflet-Fehler überhaupt, und er meldet sich nirgends.
+          Die attribution ist keine Höflichkeit, sondern Bedingung der Kachel-Anbieter.</aside>
+      </section>
+
+      <!-- ============ 24 Ein Land wird eine Flaeche ============ -->
+      <section id="land-wird-flaeche">
+        <span class="slide-tag">JavaScript</span>
+        <h2>Verbunden wird über einen Schlüssel</h2>
+        <div class="content">
+          <div class="map-bridge">
+            <div class="map-side">
+              <span class="code-label">was euer Endpunkt liefert</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-json">
+{
+  "country": "USA",
+  "iso3": "USA",
+  "incidents": 1486,
+  "top_species": "White shark"
+}
+              </code></pre>
+            </div>
+            <div class="map-arrow">→</div>
+            <div class="map-side">
+              <span class="code-label">was in der Kartendatei steht</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-json">
+{
+  "properties": {
+    "iso3": "USA",
+    "name": "United States of America"
+  }
+}
+              </code></pre>
+            </div>
+          </div>
+          <div class="callout callout-blue is-bottom">
+            <p>Zwei Dateien aus verschiedenen Quellen passen zusammen, weil beide denselben Ländercode kennen.</p>
+          </div>
+        </div>
+        <aside class="notes">Das ist die Kernfolie dieses Kapitels, das Gegenstück zu «Chart.js will keine
+          Datensätze».
+          Bei Chart.js war die Verbindung die Reihenfolge zweier gleich langer Listen. Hier ist sie ein
+          Schlüssel, der in beiden Dateien vorkommt.
+          Rückblick auf den Transform: Genau deshalb wurde dort aus «USA» ein ISO-Code nachgeschlagen und
+          nicht bloss der Name behalten. Namen sind Schreibweisen, Codes sind Schlüssel.
+          Frage an die Klasse: Was ist der Schlüssel in eurem Projekt? Bei Gemeinden die BFS-Nummer, bei
+          Kantonen das Kürzel.</aside>
+      </section>
+
+      <!-- ============ 25 Klassen ============ -->
+      <section id="klassen-entscheiden">
+        <span class="slide-tag">Leaflet</span>
+        <h2>Die Klassengrenzen sind eine Entscheidung</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <span class="code-label">die Daten</span>
+              <div class="output">USA           1486
+AUSTRALIA      540
+SOUTH AFRICA   322
+...
+über 60 Länder    1</div>
+              <p class="text-sm mt-1">Ein linearer Farbverlauf färbt nur die USA dunkel.</p>
+            </div>
+            <div>
+              <span class="code-label">darum Klassen</span>
+              <pre class="code-sm"><code data-trim data-noescape class="language-javascript">
+const KLASSEN = [
+  { ab: 500, farbe: '#2f6b7a' },
+  { ab: 100, farbe: '#4b93a4' },
+  { ab:  50, farbe: '#7db0bd' },
+  { ab:  20, farbe: '#a8c9d2' },
+  { ab:   5, farbe: '#cfe0e5' },
+  { ab:   1, farbe: '#eef4f6' },
+];
+              </code></pre>
+            </div>
+          </div>
+          <div class="callout callout-orange is-bottom">
+            <p>Wer die Grenzen verschiebt, ändert die Aussage der Karte, ohne eine Zahl anzufassen.</p>
+          </div>
+        </div>
+        <aside class="notes">Anknüpfen an die Histogramm-Zeile aus Kapitel 1: Klassen bilden ist Datenarbeit
+          und nicht Sache der Grafikbibliothek. Dort war es der Grund, warum Chart.js kein Histogramm kann –
+          hier ist es dieselbe Aufgabe noch einmal.
+          Eine Farbe in sechs Helligkeiten, nicht sechs verschiedene Farben: Dunkler heisst mehr, und das
+          versteht man ohne Legende.
+          Wer mehr will, nennt die Verfahren gleiche Breite, Quantile und Jenks. Für den Kurs genügt eine
+          begründete Wahl von Hand, aufgeschrieben in der Bildlegende.</aside>
+      </section>
+
+      <!-- ============ 26 Was die Karte verschweigt ============ -->
+      <section id="karte-ehrlich">
+        <h2>Eine Weltkarte sieht aus wie die Wahrheit</h2>
+        <div class="content">
+          <ul class="text-lg list-tight">
+            <li>Grau heisst «keine Zahl», nicht «nichts passiert»</li>
+            <li>Grosse Länder fallen auf, auch wenn dort wenig passiert</li>
+            <li>Kleine Inselstaaten verschwinden, obwohl sie zuoberst stehen</li>
+            <li>Wo niemand zählt, bleibt die Karte hell</li>
+          </ul>
+          <div class="callout callout-orange is-bottom">
+            <p>Was die Karte nicht zeigt, gehört als Satz unter die Karte.</p>
+          </div>
+        </div>
+        <aside class="notes">Der wichtigste Punkt des Kapitels, deshalb steht er am Schluss.
+          Konkret im Code-Along: Réunion hat 53 Vorfälle und in der Kartendatei gar keine Fläche. Die
+          Bahamas stehen auf Platz 6 und sind kaum zu sehen. Somalia ist hell, weil dort niemand zählt.
+          Der Grönland-Effekt gehört dazu: Die übliche Projektion macht Länder im Norden viel zu gross.
+          Frage in die Klasse: Welches Land fällt auf dieser Karte am meisten auf, und wie viele Vorfälle
+          hat es? Meist wird Russland oder Kanada genannt – beide praktisch ohne Vorfälle.
+          Hinweis auf die Lösung im Code-Along: Der Satz unter der Karte wird gerechnet und nicht
+          hingeschrieben, damit er nicht irgendwann falsch ist.</aside>
+      </section>
+
+      <!-- ============ 27 Checkliste ============ -->
       <section id="projekt-checkliste">
         <h2>Übertragt das Gelernte auf eure Grafik</h2>
         <div class="content">
@@ -495,6 +652,7 @@ let metric = 'hot_days';   // welcher Messwert
               <li>Das Diagramm einmal erzeugen und danach aktualisieren</li>
               <li>Ladefehler und leere Daten sichtbar melden</li>
               <li>Quelle, Zeitraum und Grenze der Aussage danebenstellen</li>
+              <li>Bei einer Karte dazuschreiben, was sie nicht zeigt</li>
             </ul>
           </div>
           <div class="callout callout-blue is-bottom">
@@ -511,6 +669,7 @@ let metric = 'hot_days';   // welcher Messwert
         <div class="content">
           <p class="big-statement">Die Absicht wählt den Diagrammtyp.<br><code>labels</code> und <code>data</code> füllen ihn.</p>
           <p class="text-xl mt-2"><code>render()</code> hält das Bild aktuell.</p>
+          <p class="text-lg mt-1">Die Bibliothek ist austauschbar, die Kette davor nicht.</p>
           <p class="mt-2"><span class="next-step">Nächster Schritt: im Code-Along selbst bauen</span></p>
         </div>
         <aside class="notes">Exit Ticket: Welche Absicht hat eure Grafik, und welchen Diagrammtyp braucht

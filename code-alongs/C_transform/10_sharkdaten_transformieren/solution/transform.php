@@ -32,16 +32,41 @@
  *     -> 3347 Vorfälle 1950–2018, Unprovoked
  *       -> zwei Zähl-Arrays: Art und Aktivität   ($speciesCounts, $activityCounts)
  *         -> 17 Ranking-Zeilen in einer Liste    ($rankingRows)
+ *       -> ein Zähl-Array pro Land               ($byCountry)
+ *         -> 121 Länderzeilen                    ($countryRows)
  *
  * Die 17 sind 10 Hai-Kategorien plus 7 Aktivitätsgruppen: Bei den Aktivitäten
  * gibt es gar keine zehn Gruppen, die Top-10 ist dort einfach die ganze Liste.
  *
- * Anders als in Code-Along 09 entstehen hier ZWEI Ergebnisse aus denselben
- * Daten. Sie stehen in einer flachen Liste und werden über das Feld `dimension`
- * auseinandergehalten – so kann das Frontend beide mit demselben Code zeichnen.
+ * Anders als in Code-Along 09 entstehen hier MEHRERE Ergebnisse aus denselben
+ * Daten. Die beiden Ranglisten stehen in einer flachen Liste und werden über
+ * das Feld `dimension` auseinandergehalten – so kann das Frontend beide mit
+ * demselben Code zeichnen.
+ *
+ * Die Länderzeilen haben eine andere Form und stehen deshalb daneben: Eine
+ * Rangliste hat einen Platz, ein Land hat einen Ländercode. Zwei Formen,
+ * zwei Listen – das ist ehrlicher, als beides in ein Schema zu pressen.
  */
 
 $rawAttacks = include __DIR__ . '/extract.php';
+
+/**
+ * Die Nachschlagetabelle: GSAF-Schreibweise -> ISO-3166-Ländercode.
+ *
+ * Warum überhaupt ein Code? Weil das Frontend die Länder mit einer Kartendatei
+ * verbinden muss, und die kennt keine Namen wie "USA" oder "SOUTH AFRICA",
+ * sondern Codes wie "USA" und "ZAF". Ein Name ist eine Schreibweise, ein Code
+ * ist ein Schlüssel.
+ *
+ * Die Tabelle hat 50 Einträge und ist bewusst unvollständig. Was nicht
+ * drinsteht, wird nicht geraten – dieselbe Haltung wie bei den Hai-Arten.
+ */
+$isoByCountry = json_decode(
+    file_get_contents(__DIR__ . '/../data/laender_iso.json'),
+    true,
+    512,
+    JSON_THROW_ON_ERROR
+);
 
 // Die Regeln aus der Planungsrunde. Sie stehen zuoberst und werden am Schluss
 // unter `rules` mit ausgegeben, damit die Auswahl im Resultat sichtbar bleibt.
@@ -218,6 +243,25 @@ function normalizeActivity(string $raw): ?string
 }
 
 /**
+ * TODO 2 (Teil 3): Rohen Ländernamen zu einem ISO-Code machen.
+ *
+ * Der Unterschied zu den beiden Funktionen darüber ist wichtig: Dort wird aus
+ * Freitext eine Kategorie, die WIR erfunden haben. Hier wird aus einem Namen
+ * ein Code, den es schon gibt. Wir ordnen nicht ein, wir schlagen nach.
+ *
+ * strtoupper vor dem Nachschlagen ist keine Kosmetik: Im Datensatz stehen
+ * "FIJI" (38-mal) und "Fiji" (2-mal). Ohne diese Zeile wären das zwei Länder.
+ */
+function countryIso(string $raw, array $isoByCountry): ?string
+{
+    $value = strtoupper(trim($raw));
+
+    // ?? null macht aus «Schlüssel gibt es nicht» ein sauberes null, statt
+    // eine Warnung zu erzeugen.
+    return $isoByCountry[$value] ?? null;
+}
+
+/**
  * TODO 3: einen Zähler in einem assoziativen Array um eins erhöhen.
  *
  * Das & vor $counts ist neu gegenüber Block A: Ohne & bekäme die Funktion eine
@@ -294,6 +338,60 @@ function makeRankingRows(
 }
 
 /**
+ * TODO 7: aus einem Zähl-Array den häufigsten Eintrag holen.
+ *
+ * makeRankingRows() liefert eine ganze Rangliste. Hier brauchen wir nur den
+ * ersten Platz – einmal für die Art, einmal für die Tätigkeit, und das pro Land.
+ *
+ * null bei einem leeren Array ist wieder eine Aussage: In diesem Land konnte
+ * keine einzige Art bestimmt werden. Das kommt oft vor und darf nicht als
+ * «keine Angabe» verschwinden.
+ */
+function topCategory(array $counts): ?string
+{
+    if ($counts === []) {
+        return null;
+    }
+
+    arsort($counts);
+
+    return (string) array_key_first($counts);
+}
+
+/**
+ * TODO 8: aus den Länder-Zählern die Ergebnisliste bauen.
+ *
+ * Anders als bei den Ranglisten wird hier NICHT auf Top-10 gekürzt. Die Karte
+ * färbt alle Länder ein, für die es Zahlen gibt – auch die mit einem einzigen
+ * Vorfall. Ein weisses Land auf der Karte heisst «keine Daten», und das soll
+ * es auch nur dann heissen.
+ */
+function makeCountryRows(array $byCountry, array $isoByCountry): array
+{
+    $rows = [];
+
+    foreach ($byCountry as $country => $counts) {
+        $rows[] = [
+            'country' => $country,
+            'iso3' => countryIso($country, $isoByCountry),
+            'incidents' => $counts['incidents'],
+            'top_species' => topCategory($counts['species']),
+            'top_activity' => topCategory($counts['activity']),
+        ];
+    }
+
+    // Dieselbe Sortierregel wie in makeRankingRows: erst die Anzahl, bei
+    // Gleichstand der Name. Ohne den zweiten Vergleich stünden die vielen
+    // Länder mit genau einem Vorfall bei jedem Durchlauf anders da.
+    usort($rows, function (array $a, array $b): int {
+        $byCount = $b['incidents'] <=> $a['incidents'];
+        return $byCount !== 0 ? $byCount : $a['country'] <=> $b['country'];
+    });
+
+    return $rows;
+}
+
+/**
  * TODO 6: die häufigsten Rohwerte finden, die keiner Kategorie zugeordnet
  * wurden.
  *
@@ -331,13 +429,30 @@ $audit = [
     'species_unclassified' => 0,
     'activity_classified' => 0,
     'activity_unclassified' => 0,
+    // Diese beiden heissen NICHT excluded_*: Ein Vorfall ohne Land zählt
+    // weiterhin in beiden Ranglisten mit. Er fehlt nur auf der Karte.
+    'incidents_without_country' => 0,
+    'incidents_with_iso' => 0,
 ];
 
-// Drei assoziative Arrays als Zähler: zweimal für das Ergebnis, einmal für die
+// Drei flache Zähl-Arrays wie bisher: zweimal für das Ergebnis, einmal für die
 // Qualitätskontrolle des Mappings.
 $speciesCounts = [];
 $activityCounts = [];
 $unmappedSpeciesCounts = [];
+
+// Und zwei neue. $byCountry ist verschachtelt: pro Land wieder drei Zähler.
+// So sieht das für ein Land aus, während die Schleife läuft:
+//
+//   $byCountry['BAHAMAS'] = [
+//       'incidents' => 78,
+//       'species'   => ['Bull / Zambesi shark' => 13, 'Tiger shark' => 9, ...],
+//       'activity'  => ['Spearfishing' => 37, 'Swimming & wading' => 12, ...],
+//   ];
+//
+// Aus diesen drei Zahlen wird später eine Zeile mit dem häufigsten Eintrag.
+$byCountry = [];
+$unmappedCountryCounts = [];
 
 // ---------------------------------------------------------------------------
 // TODO 1 bis 3: filtern, normalisieren, zählen
@@ -400,6 +515,44 @@ foreach ($rawAttacks as $attack) {
         $audit['activity_classified']++;
         incrementCount($activityCounts, $activity);
     }
+
+    // -----------------------------------------------------------------------
+    // TODO 7: dasselbe noch einmal, aber pro Land
+    // -----------------------------------------------------------------------
+    //
+    // Wichtig: Hier steht kein continue. Ein Vorfall ohne Land bleibt in den
+    // beiden Ranglisten oben – er fällt nur aus der Karte heraus. Wer hier
+    // filtert, ändert unbemerkt auch die Zahlen der Arten und Tätigkeiten.
+
+    $country = strtoupper(trim((string) ($attack['Country'] ?? '')));
+
+    if ($country === '') {
+        $audit['incidents_without_country']++;
+        continue;
+    }
+
+    // Beim ersten Vorfall eines Landes gibt es die drei Zähler noch nicht.
+    // ??= setzt den Wert nur dann, wenn er fehlt.
+    $byCountry[$country] ??= ['incidents' => 0, 'species' => [], 'activity' => []];
+    $byCountry[$country]['incidents']++;
+
+    // Art und Aktivität sind oben schon normalisiert – wir zählen dieselben
+    // Kategorien einfach ein zweites Mal, diesmal im Topf des Landes.
+    if ($species !== null) {
+        incrementCount($byCountry[$country]['species'], $species);
+    }
+
+    if ($activity !== null) {
+        incrementCount($byCountry[$country]['activity'], $activity);
+    }
+
+    // Zwei Zahlen für die Ehrlichkeit der Karte: Wie viele Vorfälle haben
+    // einen Ländercode – und welche Ländernamen fehlen in der Tabelle?
+    if (countryIso($country, $isoByCountry) === null) {
+        incrementCount($unmappedCountryCounts, $country);
+    } else {
+        $audit['incidents_with_iso']++;
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -414,6 +567,15 @@ $rankingRows = [
     ...makeRankingRows($speciesCounts, 'shark_category', $topN),
     ...makeRankingRows($activityCounts, 'activity_group', $topN),
 ];
+
+// ---------------------------------------------------------------------------
+// TODO 8: die Länderzeilen
+// ---------------------------------------------------------------------------
+//
+// Kein Spread und keine gemeinsame Liste: Diese Zeilen haben andere Felder als
+// eine Rangliste und bleiben deshalb für sich.
+
+$countryRows = makeCountryRows($byCountry, $isoByCountry);
 
 // ---------------------------------------------------------------------------
 // TODO 6: Abdeckung berechnen
@@ -437,7 +599,28 @@ $audit['most_frequent_unmapped_species'] = mostFrequentValues(
     $unmappedSpeciesCounts,
     10
 );
+
+// Dieselbe Rechnung für die Karte. Die Abdeckung liegt hier bei rund 95
+// Prozent und damit weit über der der Arten – trotzdem gehört sie ausgewiesen,
+// denn sie sagt, wie vollständig die Karte ist.
+$audit['countries_total'] = count($countryRows);
+$audit['countries_with_iso'] = count(
+    array_filter($countryRows, fn(array $row): bool => $row['iso3'] !== null)
+);
+$audit['iso_coverage_percent'] = $included === 0
+    ? 0.0
+    : round($audit['incidents_with_iso'] / $included * 100, 1);
+
+// Die wichtigste Kontrollliste dieses Schritts: Steht hier ein Land, das in
+// der Nachschlagetabelle fehlt, gehört es ergänzt. Steht hier etwas, das gar
+// kein Land ist, ist alles richtig gelaufen.
+$audit['most_frequent_unmapped_countries'] = mostFrequentValues(
+    $unmappedCountryCounts,
+    10
+);
+
 $audit['output_rows'] = count($rankingRows);
+$audit['output_country_rows'] = count($countryRows);
 
 // Der Datenvertrag dieses Schritts. Neben den Daten reisen drei Dinge mit:
 // die Fragen, die Regeln, nach denen gefiltert wurde, und `limits` – der Satz,
@@ -445,10 +628,13 @@ $audit['output_rows'] = count($rankingRows);
 // Diesen Satz später in der Story sichtbar lassen.
 return [
     'questions' => [
+        'In welchen Ländern wurden die meisten Vorfälle erfasst?',
         'Welche identifizierte Hai-Kategorie kommt am häufigsten vor?',
         'Bei welcher Aktivitätsgruppe wurden die meisten Vorfälle erfasst?',
     ],
-    'limits' => 'Häufigkeiten im GSAF-Datensatz; keine Aussage über Risiko oder Kausalität.',
+    'limits' => 'Häufigkeiten im GSAF-Datensatz; keine Aussage über Risiko oder Kausalität. '
+        . 'Länder mit langer Küste, vielen Badegästen und guter Erfassung stehen '
+        . 'weiter oben – das ist kein Mass für Gefahr.',
     'rules' => [
         'year_from' => $yearFrom,
         'year_to' => $yearTo,
@@ -456,5 +642,6 @@ return [
         'top_n' => $topN,
     ],
     'data' => $rankingRows,
+    'countries' => $countryRows,
     'audit' => $audit,
 ];

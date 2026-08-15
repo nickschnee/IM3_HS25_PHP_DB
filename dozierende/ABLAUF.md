@@ -142,7 +142,7 @@ PHP-Array) bleibt gleich.
 | Muss | Repetition | Rohdaten der drei Quellen vergleichen | 15' | Gemeinsame Felder erkennen |
 | Muss | `📕` | Datenfrage → Untersuchungseinheit → Regeln → Datenvertrag → Audit | 30' | [Theorie C](../theorie/C_transform/) |
 | Muss | `🧑‍🏫` | [09 Hitzesommer](../code-alongs/C_transform/09_hitzesommer_transformieren/): filtern, ableiten, aggregieren, Teiljahre erkennen | 45' | Stadt-Jahr-Datensätze plus Audit |
-| Muss | `🧑‍🏫` | [10 Shark-Daten](../code-alongs/C_transform/10_sharkdaten_transformieren/): komplexe Mappings mit KI-Spezifikation entwickeln und prüfen | 60' | Zwei Rankings plus Abdeckungs-Audit |
+| Muss | `🧑‍🏫` | [10 Shark-Daten](../code-alongs/C_transform/10_sharkdaten_transformieren/): komplexe Mappings mit KI-Spezifikation entwickeln und prüfen, Ländercodes nachschlagen | 60' | Zwei Rankings und eine Länderliste plus Abdeckungs-Audit |
 | Muss | Projekt | Eigene Transform-Regeln festlegen, mit KI implementieren und im Viererteam abnehmen; Vorlage: [`02_datenfrage/datenfrage.md`](../uebungen/C_transform/02_datenfrage/datenfrage.md) | 60' | `TRANSFORM.md`, Transform und Audit |
 | Kann | `💻` | Airbnb-Serie als Zusatzmaterial: [erkunden](../uebungen/C_transform/01_airbnb_erkunden/), [Datenfrage](../uebungen/C_transform/02_datenfrage/), [transformieren](../uebungen/C_transform/03_airbnb_transformieren/) | 135' | Übung an einem zweiten Datensatz |
 | Soll | `✅` | Rohdaten → saubere Struktur zeigen | 15' | Tagesabnahme |
@@ -174,7 +174,7 @@ und liefert sie gefiltert aus.
 | Muss | `🧑‍🏫` | [`unload.php` geführt aufbauen](../code-alongs/E_unload/14_hitzesommer_ausliefern/): verbinden, lesen, Typen festlegen, `json_encode` | 35' | Stabiler JSON-Endpunkt |
 | Muss | `🧑‍🏫` | Im selben Code-Along: Stadtfilter mit `$_GET` und Prepared Statement ergänzen, leere Liste und Fehler testen | 40' | Filterbare API-Antwort |
 | Muss | Projekt | Eigenen `unload.php`-Endpunkt bauen | 60' | Endpunkt der Gruppe |
-| Optional | `🧑‍🏫` | [15 Shark-Ranglisten ausliefern](../code-alongs/E_unload/15_sharkdaten_ausliefern/): Alias für ein reserviertes Wort, geprüfter Filter mit Status 400 | 45' | Zweiter Endpunkt an anderen Daten |
+| Optional | `🧑‍🏫` | [15 Shark-Daten ausliefern](../code-alongs/E_unload/15_sharkdaten_ausliefern/): Alias für ein reserviertes Wort, geprüfter Filter mit Status 400, zwei Datensätze über `?dataset=` | 45' | Zweiter Endpunkt an anderen Daten |
 | Muss | `✅` | Endpunkt ohne Filter, mit Treffer und ohne Treffer zeigen | 15' | Tagesabnahme |
 
 ## Tag 8 – Block F: Chart.js und UX-Slot
@@ -184,10 +184,11 @@ Der UX-Slot ist laut Miro-Board flexibel und kann auch früher stattfinden.
 
 | Prio | Form | Inhalt | Richtwert | Ergebnis |
 | --- | --- | --- | ---: | --- |
-| Muss | `📕` | [Datengrafiken](../theorie/F_visualisierung/): Absicht vor Diagrammtyp, was Chart.js kann, `labels` und `datasets` | 30' | Begründeter Diagrammtyp |
+| Muss | `📕` | [Datengrafiken](../theorie/F_visualisierung/): Absicht vor Diagrammtyp, was Chart.js kann, `labels` und `datasets`, Karten mit Leaflet | 40' | Begründeter Diagrammtyp |
 | Muss | `🧑‍🏫` | [16 Hitzesommer visualisieren](../code-alongs/F_visualisierung/16_hitzesommer_liniendiagramm/): `fetch()` auf den Endpunkt, Datensätze zu `labels` und `datasets` umformen, Linie zeichnen, Stadtfilter über `?city=` | 70' | Sichtbarer Chart aus dem eigenen Endpunkt |
 | Soll | `🧑‍🏫` | [17 Hitzesommer-Rangliste](../code-alongs/F_visualisierung/17_hitzesommer_ranking/): Balkendiagramm als zweiter Diagrammtyp, Zeitraum und Messwert ohne Serveraufruf | 60' | Interaktiver Chart |
 | Optional | `🧑‍🏫` | [18 Hai-Ranglisten zeichnen](../code-alongs/F_visualisierung/18_sharkdaten_balkendiagramm/): Daten ohne Zeitachse, liegende Balken, Fehlerantwort des Endpunkts anzeigen | 45' | Zweite Grafik an anderen Daten |
+| Optional | `🧑‍🏫` | [19 Hai-Vorfälle kartieren](../code-alongs/F_visualisierung/19_sharkdaten_karte/): Choroplethenkarte mit Leaflet, zwei Quellen gleichzeitig laden, Klassengrenzen setzen | 45' | Karte für Projekte mit räumlicher Frage |
 | Soll | UX | UX-Input oder betreute Projektarbeit | 60' | Bessere Nutzung |
 | Soll | `✅` | Chart aus echten Daten zeigen | 15' | Tagesabnahme |
 

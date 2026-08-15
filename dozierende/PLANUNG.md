@@ -292,9 +292,15 @@ Die beiden Kursbeispiele zeigen bewusst unterschiedliche Fälle:
    behalten, Hitzetag als Tagesmaximum ≥ 30 °C definieren, pro Stadt/Jahr
    aggregieren und unvollständige Sommer ausschliessen.
 2. **Shark Attacks:** Die Fragen auf erfasste Vorfälle begrenzen, Zeitraum und
-   Vorfalltyp festlegen, freie Art- und Aktivitätsangaben vorsichtig mappen und
-   die Klassifikationsabdeckung sichtbar machen. Die Resultate sind keine
-   Aussage über das Risiko einer Aktivität.
+   Vorfalltyp festlegen, freie Art- und Aktivitätsangaben vorsichtig mappen,
+   Ländernamen über eine Nachschlagetabelle auf ISO-Codes abbilden und die
+   Klassifikationsabdeckung sichtbar machen. Die Resultate sind keine Aussage
+   über das Risiko einer Aktivität oder eines Ortes.
+
+   Der Ländercode ist dabei mehr als ein weiteres Mapping: Er ist der
+   Schlüssel, mit dem sich die Zahlen in Block F mit einer Kartendatei
+   verbinden lassen. Wo ein offizieller Code existiert, wird nachgeschlagen und
+   nicht kategorisiert.
 
 Material:
 
@@ -407,6 +413,9 @@ Inhalte:
 - Daten für Labels und Datasets mappen
 - einfache Interaktion: Filter, Zeitraum, Kategorie
 - visuelle Lesbarkeit und journalistische Aussage
+- Leaflet als zweite Bibliothek, wenn die Datenfrage räumlich ist:
+  Choroplethenkarte, Verbindung über einen Ländercode, Klassengrenzen und die
+  Grenzen der Aussage einer Karte
 
 Material:
 

@@ -49,7 +49,7 @@ fachlichen Entscheidungen und die Kontrolle bleiben beim Team.
 | Nr | Code-Along | Datenfrage | Schwerpunkt |
 | --- | --- | --- | --- |
 | 9 | [Hitzesommer transformieren](C_transform/09_hitzesommer_transformieren/) | Hitzetage pro Stadt und Sommer | filtern, ableiten, aggregieren, vollständige Jahre prüfen |
-| 10 | [Shark-Daten transformieren](C_transform/10_sharkdaten_transformieren/) | Hai-Kategorien und Aktivitäten in erfassten Vorfällen | komplexe Mappings mit KI planen und auditieren |
+| 10 | [Shark-Daten transformieren](C_transform/10_sharkdaten_transformieren/) | Länder, Hai-Kategorien und Aktivitäten in erfassten Vorfällen | komplexe Mappings mit KI planen und auditieren, Codes nachschlagen |
 
 Beide Ordner enthalten Startcode, eine Lösung, den Unterrichtsablauf und die
 bereits bekannten Rohdaten aus Block B. Beim Shark-Beispiel liegt zusätzlich
@@ -64,7 +64,7 @@ dazu, weil man sie zum Laden braucht.
 | --- | --- | --- | --- |
 | 11 | [Datenbank testen](D_load/11_datenbank_testen/) | vier Messwerte schreiben und wieder lesen | `new PDO`, `prepare`/`execute`, `query` |
 | 12 | [Hitzesommer laden](D_load/12_hitzesommer_laden/) | 258 transformierte Zeilen in zwei Tabellen schreiben | Fremdschlüssel füllen, `DELETE` vor der Schleife |
-| 13 | [Shark-Ranglisten laden](D_load/13_sharkdaten_laden/) | 17 Ranking-Zeilen in eine Tabelle schreiben | reservierte Wörter, `UNIQUE` gegen Duplikate |
+| 13 | [Shark-Daten laden](D_load/13_sharkdaten_laden/) | 17 Ranking-Zeilen und 120 Länderzeilen in zwei Tabellen schreiben | reservierte Wörter, `UNIQUE` gegen Duplikate, `NULL` als Aussage |
 
 Der erste Schritt trennt bewusst die beiden Fehlerquellen: Wer dort Zeilen im
 Browser sieht, hat eine funktionierende Verbindung – alles Weitere ist dann
@@ -72,11 +72,13 @@ reine Programmierung. Der zweite Schritt bringt Extract und Transform fertig
 mit und baut nur noch `load.php`; damit ist die ETL-Kette zum ersten Mal
 durchgehend.
 
-Nummer 13 ist Zusatzmaterial und lädt die Shark-Ranglisten aus Block C. Sie
-zeigt am zweiten Datensatz, dass es kein Standardvorgehen gibt, sondern immer
-dieselben vier Fragen an die Daten: Hier genügt eine Tabelle, eine Spalte darf
-nicht heissen wie im Datenvertrag, und die Datenbank selbst verhindert
-Duplikate.
+Nummer 13 ist Zusatzmaterial und lädt die Shark-Daten aus Block C. Sie zeigt am
+zweiten Datensatz, dass es kein Standardvorgehen gibt, sondern immer dieselben
+Fragen an die Daten: Hier braucht es zwei Tabellen, aber aus einem anderen
+Grund als beim Hitzesommer – nicht gegen Wiederholung, sondern weil eine
+Rangliste und ein Land verschiedene Felder haben. Dazu kommt eine Spalte, die
+nicht heissen darf wie im Datenvertrag, und die Frage, was `NULL` eigentlich
+aussagt.
 
 ## Block E – Unload
 
@@ -86,7 +88,7 @@ als JSON-Endpunkt ausgeliefert. Geschrieben wird hier nichts mehr.
 | Nr | Code-Along | Worum es geht | Technik |
 | --- | --- | --- | --- |
 | 14 | [Hitzesommer ausliefern](E_unload/14_hitzesommer_ausliefern/) | aus zwei Tabellen eine flache JSON-Liste machen | `SELECT` mit `JOIN`, `fetchAll`, `json_encode`, `$_GET`-Filter |
-| 15 | [Shark-Ranglisten ausliefern](E_unload/15_sharkdaten_ausliefern/) | zwei Ranglisten aus einer Tabelle ausliefern | Alias für ein reserviertes Wort, geprüfter Filter mit Status 400 |
+| 15 | [Shark-Daten ausliefern](E_unload/15_sharkdaten_ausliefern/) | zwei Ranglisten und die Länderzeilen aus einem Endpunkt ausliefern | Alias für ein reserviertes Wort, geprüfter Filter mit Status 400, `?dataset=` |
 
 Der Endpunkt entsteht in vier Bausteinen – `Verbinden`, `Lesen`, `Antworten`,
 `Filtern` – und wird nach jedem Baustein im Browser geprüft. Vorausgesetzt sind
@@ -94,11 +96,13 @@ die Tabellen aus Code-Along 12; wer sie leer hat, ruft dort einmal `load.php`
 auf. Am Ende steht die Datei, die das Frontend-Team in Block F mit `fetch()`
 lädt.
 
-Nummer 15 ist Zusatzmaterial und liest die Shark-Ranglisten aus Code-Along 13.
+Nummer 15 ist Zusatzmaterial und liest die Shark-Daten aus Code-Along 13.
 Sie zeigt am zweiten Datensatz, dass der Bauplan derselbe bleibt und trotzdem
-zwei Entscheidungen neu getroffen werden: Die Spalte `rank_position` muss im
-`SELECT` zurück auf den Vertragsnamen übersetzt werden, und ein unbekannter
-Filterwert ist hier keine leere Liste, sondern eine falsch gestellte Frage.
+drei Entscheidungen neu getroffen werden: Die Spalte `rank_position` muss im
+`SELECT` zurück auf den Vertragsnamen übersetzt werden, ein unbekannter
+Filterwert ist hier keine leere Liste, sondern eine falsch gestellte Frage, und
+ein `?dataset=`-Parameter bedient zwei Datensätze aus einer Datei. Was `NULL`
+sein darf, wird dabei bewusst **nicht** umgewandelt.
 
 ## Block F – Visualisierung
 
@@ -110,6 +114,7 @@ den Datensätzen ein Diagramm.
 | 16 | [Hitzesommer visualisieren](F_visualisierung/16_hitzesommer_liniendiagramm/) | ein Liniendiagramm auf dem eigenen Endpunkt | `fetch()`, `labels`/`datasets`, Chart.js, `chart.update()` |
 | 17 | [Hitzesommer-Rangliste](F_visualisierung/17_hitzesommer_ranking/) | ein zweites Diagramm und Interaktion ohne Server | Balkendiagramm, `sort`/`slice`, Zustand und `render()` |
 | 18 | [Hai-Ranglisten zeichnen](F_visualisierung/18_sharkdaten_balkendiagramm/) | zwei Ranglisten ohne Zeitachse, mit gelesener Fehlerantwort | liegende Balken, Farbe als Aussage, Status 400 im Frontend |
+| 19 | [Hai-Vorfälle kartieren](F_visualisierung/19_sharkdaten_karte/) | dieselben Daten als Choroplethenkarte | Leaflet, zwei Quellen mit `Promise.all`, Klassengrenzen, GeoJSON |
 
 Nummer 16 bleibt bewusst schmal: ein Diagramm, ein Bedienelement. In vier
 Bausteinen – `Holen`, `Umformen`, `Zeichnen`, `Reagieren` – entsteht die Linie
@@ -134,6 +139,13 @@ Nummer 18 ist Zusatzmaterial und zeichnet die Shark-Ranglisten aus Code-Along
 Hier gibt es keine Zeitachse, also ist eine Linie nicht nur unschön, sondern
 falsch. Ausserdem liest das Frontend hier zum ersten Mal die Fehlerantwort des
 Endpunkts – der Status 400 aus Block E bekommt endlich einen Adressaten.
+
+Nummer 19 ist Zusatzmaterial und die einzige Karte im Kurs. Sie tauscht die
+Zeichenbibliothek aus – Leaflet statt Chart.js – und lässt alles andere
+unverändert: `fetch()`, die Prüfung der Antwort, der Datenvertrag und die eine
+Zeichenfunktion bleiben, wie sie waren. Genau das ist ihre Aussage. Neu sind
+zwei gleichzeitige Quellen, die Verbindung über einen Ländercode statt über die
+Reihenfolge einer Liste, und die Frage, was eine Karte alles nicht zeigt.
 
 **Nicht mit Live Server öffnen.** Diese Seiten laden `unload.php`; ein
 statischer Server liefert dafür den PHP-Quelltext aus. Es gilt dieselbe Regel

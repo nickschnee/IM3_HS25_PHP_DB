@@ -57,20 +57,32 @@ Diese Rohdaten sind viel unordentlicher. In `Species` stehen zum Beispiel
 Artname, Grösse und Unsicherheit im selben Textfeld. In `Activity` gibt es viele
 Schreibweisen für ähnliche Tätigkeiten.
 
-Die plakative Frage «Welcher Hai greift am häufigsten an?» behauptet mehr, als
-die Daten zeigen. Besser ist:
+Die plakative Frage «Wo ist es am gefährlichsten, und welcher Hai greift am
+häufigsten an?» behauptet mehr, als die Daten zeigen. Besser ist:
 
-> Welche identifizierte Hai-Kategorie kommt in bestätigten, unprovozierten
-> GSAF-Vorfällen von 1950 bis 2018 am häufigsten vor?
+> In welchen Ländern wurden in bestätigten, unprovozierten GSAF-Vorfällen von
+> 1950 bis 2018 die meisten Vorfälle erfasst?
 
-Und als zweite Frage:
+Und dazu zwei Anschlussfragen in derselben Auswahl:
 
-> Bei welcher vereinheitlichten Aktivitätsgruppe wurden in derselben Auswahl
-> die meisten Vorfälle erfasst?
+> Welche identifizierte Hai-Kategorie kommt am häufigsten vor?
+
+> Bei welcher vereinheitlichten Aktivitätsgruppe wurden die meisten Vorfälle
+> erfasst?
 
 Das Resultat ist eine **Häufigkeit in diesem Datensatz**. Es ist kein Risiko.
 Für ein Risiko bräuchten wir zusätzlich die Anzahl Personen pro Aktivität, Ort
 und Zeitraum – also die Exposition.
+
+Bei der Wo-Frage ist diese Lücke am leichtesten zu sehen und am gefährlichsten,
+sobald daraus eine Karte wird: Länder mit langer Küste, vielen Badegästen und
+funktionierender Erfassung stehen weiter oben. Somalia ist nicht sicher, dort
+zählt nur niemand.
+
+Die Ländernamen werden übrigens nicht in eigene Kategorien einsortiert, sondern
+in einer Nachschlagetabelle auf ISO-Codes abgebildet. Wo es einen offiziellen
+Code gibt, wird nachgeschlagen statt kategorisiert – erst dadurch lassen sich
+die Zahlen später mit einer Kartendatei verbinden.
 
 ## Vor dem Code: fünf Entscheidungen
 
@@ -85,7 +97,13 @@ Was bedeutet eine Zeile nach dem Transform?
 
 - Heat: eine Stadt in einem Sommer;
 - Shark-Ranking: eine Kategorie mit ihrer Anzahl Vorfälle;
+- Shark-Länder: ein Land mit seiner Anzahl Vorfälle;
 - anderes Projekt: vielleicht ein Messwert, ein Land oder eine Woche.
+
+Die Shark-Daten zeigen dabei etwas Wichtiges: Aus **einem** Transform dürfen
+zwei verschiedene Untersuchungseinheiten entstehen. Eine Rangliste und ein Land
+haben andere Felder und bleiben deshalb zwei Listen – nicht eine mit halb
+leeren Spalten.
 
 Beim Aggregieren verändert sich die Untersuchungseinheit. Danach kann man nicht
 mehr jede Detailfrage zu den ursprünglichen Einzelereignissen beantworten.

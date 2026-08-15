@@ -27,6 +27,8 @@ Prüft jede Frage:
 Frage 1:
 
 Frage 2:
+
+Frage 3:
 ```
 
 ## 2. Was das Ergebnis nicht sagt
@@ -71,6 +73,25 @@ Nicht zuordenbar, wenn:
 Reihenfolge beachten bei:
 ```
 
+### Sonderfall: nachschlagen statt einordnen
+
+Bei einer Spalte läuft es anders. Wo ein Wert einen offiziellen Code hat –
+ein Land, eine Währung, eine Gemeinde – erfindet ihr keine Kategorien, sondern
+benutzt eine **Nachschlagetabelle**.
+
+`data/laender_iso.json` ist so eine Tabelle. Schreibt in euren Auftrag, was
+damit geschehen soll:
+
+- Wie wird die Schreibweise vorher vereinheitlicht?
+- Was passiert mit einem Namen, der nicht in der Tabelle steht?
+- Woran merkt ihr, dass ein Eintrag fehlt?
+
+```text
+Nachschlagetabelle:
+Vereinheitlichung vorher:
+Nicht in der Tabelle:
+```
+
 ## 5. Felder, die ihr nicht braucht
 
 Nennt sie ausdrücklich. Sonst transformiert die KI Spalten, die in eurem
@@ -102,7 +123,8 @@ Denkt an:
 - wie viele pro Grund ausgeschlossen wurden;
 - wie viele übrig blieben;
 - wie viele Werte zugeordnet werden konnten und wie viele nicht;
-- welche nicht zugeordneten Rohwerte am häufigsten sind.
+- welche nicht zugeordneten Rohwerte am häufigsten sind;
+- welche Namen in der Nachschlagetabelle fehlen.
 
 ```text
 Audit-Zahlen:

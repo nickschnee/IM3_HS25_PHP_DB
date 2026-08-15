@@ -80,6 +80,15 @@ printTop(countValues($rawAttacks, 'Type'), 'Spalte "Type" – alle Werte', 50);
 printTop(countValues($rawAttacks, 'Species'), 'Spalte "Species" – die 40 häufigsten', 40);
 printTop(countValues($rawAttacks, 'Activity'), 'Spalte "Activity" – die 40 häufigsten', 40);
 
+// Die Ortsangabe. Anders als Species und Activity ist sie erstaunlich sauber –
+// aber eben nur erstaunlich sauber und nicht sauber. Achtet auf drei Sorten
+// von Einträgen:
+//
+// - Schreibweisen desselben Landes ("FIJI" und "Fiji");
+// - Namen, die gar kein Land sind ("NEW BRITAIN" ist eine Insel);
+// - Tippfehler, die wie ein Land aussehen.
+printTop(countValues($rawAttacks, 'Country'), 'Spalte "Country" – die 30 häufigsten', 30);
+
 // Wie verteilt sich der Datensatz über die Zeit? Das ist die Grundlage für die
 // Entscheidung, welchen Zeitraum ihr überhaupt betrachten könnt.
 //

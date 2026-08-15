@@ -7,7 +7,8 @@
  *   Datenbank -> UNLOAD -> JSON -> Chart.js
  *
  * Drei Unterschiede lohnen den zweiten Durchgang:
- * - Es gibt nur eine Tabelle, also keinen JOIN.
+ * - Zwei Tabellen, aber kein JOIN – der Endpunkt liefert entweder die eine
+ *   oder die andere.
  * - Eine Spalte heisst in der Tabelle anders als im Datenvertrag – diesmal
  *   müssen wir in die andere Richtung übersetzen als beim Laden.
  * - Der Filter kennt genau zwei gültige Werte. Ein dritter ist kein leeres
@@ -17,11 +18,22 @@
  * - config.php im Hauptordner ausgefüllt;
  * - Daten in der Datenbank (Code-Along 13, load.php einmal aufrufen).
  *
- * Das Ziel ist der Datenvertrag aus dem Transform:
+ * EIN Endpunkt, ZWEI Datensätze. Welcher gemeint ist, sagt ?dataset= :
+ *
+ *   unload.php                       die beiden Ranglisten (Voreinstellung)
+ *   unload.php?dimension=shark_category   nur eine davon
+ *   unload.php?dataset=countries     die Länderzeilen für die Karte
+ *
+ * Die zwei Datenverträge aus dem Transform:
  *
  *   [
  *     {"dimension": "shark_category", "rank": 1,
  *      "category": "White shark", "incidents": 426}
+ *   ]
+ *
+ *   [
+ *     {"country": "BAHAMAS", "iso3": "BHS", "incidents": 78,
+ *      "top_species": "Bull / Zambesi shark", "top_activity": "Spearfishing"}
  *   ]
  */
 
@@ -54,3 +66,17 @@
 // TODO 8: Einen unbekannten Wert abweisen, bevor die Abfrage überhaupt läuft.
 //         Frage an die Klasse: Warum ist ?dimension=fische etwas anderes als
 //         ?city=Atlantis beim Hitzesommer?
+
+// --- Baustein 5: Der zweite Datensatz ---------------------------------------
+
+// TODO 9: ?dataset= lesen. Erlaubt sind 'rankings' und 'countries', ohne
+//         Angabe gilt 'rankings'.
+//         Ein unbekannter Wert wird abgewiesen wie bei TODO 8 – es ist
+//         dieselbe Sorte Fehler.
+
+// TODO 10: Für 'countries' die zweite Abfrage schreiben und die zweite
+//          normalize-Funktion bauen: country, iso3, incidents, top_species,
+//          top_activity, sortiert nach Vorfällen.
+//          Achtung bei den Typen: incidents ist eine Zahl, aber iso3,
+//          top_species und top_activity dürfen null bleiben. Ein (string) auf
+//          null macht daraus einen leeren Text – und der ist nicht dasselbe.

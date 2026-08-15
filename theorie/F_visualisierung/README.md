@@ -8,7 +8,8 @@ Nach diesem Input könnt ihr
 - einschätzen, welche Diagrammtypen Chart.js mitbringt und welche nicht;
 - Datensätze in `labels` und `datasets` umformen;
 - den eigenen JSON-Endpunkt mit `fetch()` laden und die Antwort prüfen;
-- ein Diagramm aktualisieren statt neu zu erzeugen.
+- ein Diagramm aktualisieren statt neu zu erzeugen;
+- mit Leaflet eine Karte bauen und sagen, was sie nicht zeigt.
 
 ## Der zentrale Gedanke
 
@@ -38,7 +39,8 @@ bleiben die inhaltliche Referenz, die Folien sind die Umsetzung.
 
 ## Datensatz und Anschluss
 
-Der Foliensatz arbeitet mit denselben Hitzesommer-Daten wie die Blöcke davor:
+Die Kapitel 1 bis 4 arbeiten mit denselben Hitzesommer-Daten wie die Blöcke
+davor:
 
 - `code-alongs/D_load/12_hitzesommer_laden/` speichert 258 Zeilen;
 - `code-alongs/E_unload/14_hitzesommer_ausliefern/` liefert sie als JSON;
@@ -50,6 +52,13 @@ Der Foliensatz arbeitet mit denselben Hitzesommer-Daten wie die Blöcke davor:
 Die Feldnamen, Funktionsnamen und Farben auf den Folien entsprechen den beiden
 Code-Alongs.
 
+Kapitel 5 wechselt den Datensatz und zeigt die Shark-Daten, weil es zu
+`code-alongs/F_visualisierung/19_sharkdaten_karte/` hinführt. Das ist der
+einzige Bruch im Foliensatz und ein bewusster: Die Hitzesommer-Daten kennen nur
+drei Städte und ergeben keine sinnvolle Karte. Die Regel «ein Datensatz pro
+Foliensatz» dient dazu, dass Folien-Code und zugehöriges Code-Along
+übereinstimmen – und genau das tut Kapitel 5.
+
 ## Bewusste Begrenzung
 
 Auf den Folien steht kein vollständiges `options`-Objekt. Die Einstellungen sind
@@ -57,13 +66,18 @@ Fleissarbeit, liegen in den Code-Alongs fertig vor und stehen in der
 Chart.js-Dokumentation. Der Input konzentriert sich auf die Entscheidungen:
 Diagrammtyp, Umformung und Aktualisierung.
 
-Karten sind ausdrücklich kein Thema. Wer eine Karte braucht, arbeitet nicht mit
-Chart.js – der JSON-Endpunkt bleibt derselbe, nur das Frontend wechselt.
+Bei Leaflet gilt dasselbe, nur schärfer: Kapitel 5 zeigt genau die drei Zeilen,
+die eine Karte erzeugen, und keine einzige Option mehr. Nicht behandelt werden
+eigene Kachel-Server, das Erzeugen oder Vereinfachen von GeoJSON, Projektionen
+und Marker-Cluster. Die Kartendatei liegt fertig im Code-Along.
+
+Der Grund für die Auswahl: Kapitel 5 soll zeigen, dass die Kette davor
+unverändert bleibt. Alles, was nur Leaflet betrifft, lenkt davon ab.
 
 ## Aufbau des Foliensatzes
 
-Vier Kapitel, jedes mit eigenem Trenner. Code-Folien zeigen oben rechts, womit
-gerade gearbeitet wird: `Chart.js`, `JavaScript` oder `HTML + JS`.
+Fünf Kapitel, jedes mit eigenem Trenner. Code-Folien zeigen oben rechts, womit
+gerade gearbeitet wird: `Chart.js`, `Leaflet`, `JavaScript` oder `HTML + JS`.
 
 | Folien | Inhalt |
 | --- | --- |
@@ -72,10 +86,17 @@ gerade gearbeitet wird: `Chart.js`, `JavaScript` oder `HTML + JS`.
 | 10–13 | Kapitel 2: Bauplan, `labels` und `data`, ein Dataset pro Stadt |
 | 14–17 | Kapitel 3: `fetch()`, die Antwort prüfen, die Übergabe vom Mock zum Endpunkt |
 | 18–21 | Kapitel 4: einmal erzeugen und aktualisieren, zwei Sorten Interaktion, ein Zustand |
-| 22–23 | Projekt-Checkliste, Kernaussage |
+| 22–26 | Kapitel 5: Leaflet-Bauplan, Verbindung über den Ländercode, Klassengrenzen, was die Karte verschweigt |
+| 27–28 | Projekt-Checkliste, Kernaussage |
 
-Richtwert für den Theorie-Input: 30 Minuten. Danach folgen die beiden
-Code-Alongs, die dieselbe Reihenfolge nochmals durchlaufen.
+Kapitel 5 steht bewusst am Schluss und nicht bei Kapitel 1, wo Leaflet zum
+ersten Mal genannt wird. So gelten die Kapitel 2 bis 4 rückwirkend für beide
+Bibliotheken: `fetch()`, die Prüfung der Antwort, der Datenvertrag und die eine
+Zeichenfunktion bleiben unverändert. Genau das ist die Aussage des Kapitels –
+ausgetauscht wird nur das Werkzeug, das am Schluss malt.
+
+Richtwert für den Theorie-Input: 40 Minuten, davon 8 für Kapitel 5. Danach
+folgen die Code-Alongs, die dieselbe Reihenfolge nochmals durchlaufen.
 
 ## Didaktischer Ablauf
 
@@ -86,9 +107,15 @@ Code-Alongs, die dieselbe Reihenfolge nochmals durchlaufen.
 5. `fetch()` als bekanntes Werkzeug aus IM2 wiedererkennen lassen.
 6. Den Live-Server-Fehler einmal vorführen, bevor er im Code-Along auftritt.
 7. Den Unterschied zwischen Server- und Browser-Interaktion im Netzwerk-Tab zeigen.
+8. Bei Kapitel 5 zuerst fragen, was sich jetzt wohl alles ändert – und dann
+   zeigen, dass es nur der letzte Schritt ist.
 
 Die Folie «Chart.js will keine Datensätze» ist die Kernfolie. Sie kommt direkt
 nach dem Bauplan, und alles danach hängt daran.
+
+In Kapitel 5 ist «Verbunden wird über einen Schlüssel» das Gegenstück dazu:
+Bei Chart.js verbindet die Reihenfolge zweier gleich langer Listen, bei einer
+Karte ein Schlüssel, der in beiden Dateien vorkommt.
 
 ## Nach Änderungen prüfen
 

@@ -10,9 +10,15 @@
  *
  *   17 Ranking-Zeilen aus dem Transform   (aus transform.php)
  *     -> 17 Zeilen in shark_rankings      (prepare einmal, execute oft)
+ *   120 Länderzeilen aus dem Transform
+ *     -> 120 Zeilen in shark_countries    (dasselbe Muster, andere Tabelle)
  *
- * Kein Fremdschlüssel, keine zweite Tabelle: Bei 17 Zeilen und zwei
- * dimension-Werten wäre das mehr Aufwand als Nutzen.
+ * Zwei Tabellen, aber kein Fremdschlüssel: Die beiden Listen wissen nichts
+ * voneinander. Ein Fremdschlüssel würde eine Beziehung behaupten, die es nicht
+ * gibt – «Platz 3 der Hai-Arten» gehört zu keinem Land.
+ *
+ * Der ganze zweite Teil ist eine Wiederholung des ersten mit anderen Spalten.
+ * Genau das ist die Aussage: Load ist immer dieselbe Kette.
  */
 
 // ---------------------------------------------------------------------------
@@ -40,8 +46,10 @@ require __DIR__ . '/../../../../config.php';
 
 $result = include __DIR__ . '/../transform.php';
 $rows = $result['data'];
+$countryRows = $result['countries'];
 
-echo 'Der Transform liefert ' . count($rows) . " Zeilen.\n";
+echo 'Der Transform liefert ' . count($rows) . ' Ranking-Zeilen und '
+    . count($countryRows) . " Länderzeilen.\n";
 echo 'Wichtig für die Story: ' . $result['limits'] . "\n\n";
 
 // ---------------------------------------------------------------------------
@@ -68,7 +76,10 @@ try {
 // angenehmere Fehler von beiden – er meldet sich sofort.
 
 $deleted = $pdo->exec('DELETE FROM shark_rankings');
-echo $deleted . " alte Zeilen gelöscht.\n\n";
+echo $deleted . " alte Ranking-Zeilen gelöscht.\n";
+
+$deletedCountries = $pdo->exec('DELETE FROM shark_countries');
+echo $deletedCountries . " alte Länderzeilen gelöscht.\n\n";
 
 // ---------------------------------------------------------------------------
 // TODO 6: Alle Zeilen schreiben
@@ -96,10 +107,39 @@ foreach ($rows as $row) {
     ]);
 }
 
-echo count($rows) . " Zeilen geschrieben.\n\n";
+echo count($rows) . " Ranking-Zeilen geschrieben.\n";
 
 // ---------------------------------------------------------------------------
-// TODO 7: Kontrolle
+// TODO 7: Die Länderzeilen schreiben
+// ---------------------------------------------------------------------------
+//
+// Dasselbe Muster ein zweites Mal: einmal prepare(), dann execute() pro Zeile.
+// Neu ist nur, dass hier Werte ankommen dürfen, die null sind.
+//
+// PDO braucht dafür nichts Besonderes: Ein null im execute()-Array wird zu
+// einem echten SQL-NULL. Wer stattdessen einen leeren Text schickt, schreibt
+// '' in die Spalte – und '' ist nicht NULL. Die Datenbank kann die beiden
+// später nicht mehr auseinanderhalten, die Karte auch nicht.
+
+$insertCountry = $pdo->prepare(
+    'INSERT INTO shark_countries (country, iso3, incidents, top_species, top_activity)
+     VALUES (:country, :iso3, :incidents, :top_species, :top_activity)'
+);
+
+foreach ($countryRows as $row) {
+    $insertCountry->execute([
+        'country' => $row['country'],
+        'iso3' => $row['iso3'],
+        'incidents' => $row['incidents'],
+        'top_species' => $row['top_species'],
+        'top_activity' => $row['top_activity'],
+    ]);
+}
+
+echo count($countryRows) . " Länderzeilen geschrieben.\n\n";
+
+// ---------------------------------------------------------------------------
+// TODO 8: Kontrolle
 // ---------------------------------------------------------------------------
 //
 // Zählen allein genügt nicht – die Zahl wäre auch dann richtig, wenn in jeder
@@ -130,4 +170,33 @@ foreach (['shark_category', 'activity_group'] as $dimension) {
             . $entry['category'] . "\t"
             . $entry['incidents'] . " Vorfälle\n";
     }
+}
+
+// Dieselbe Kontrolle für die zweite Tabelle. Hier lohnt sich das Zurücklesen
+// besonders: Die drei Spalten, die null sein dürfen, sieht man erst jetzt.
+//
+// COALESCE ersetzt beim Lesen ein NULL durch einen Text. Das ist Kosmetik für
+// diese Ausgabe – in der Tabelle steht weiterhin NULL, und das JSON in Block E
+// bekommt weiterhin null.
+
+$total = $pdo->query('SELECT COUNT(*) FROM shark_countries')->fetchColumn();
+$withIso = $pdo->query('SELECT COUNT(*) FROM shark_countries WHERE iso3 IS NOT NULL')->fetchColumn();
+
+echo "\nIn shark_countries stehen jetzt {$total} Zeilen, davon {$withIso} mit Ländercode.\n";
+
+$topCountries = $pdo->query(
+    'SELECT country,
+            COALESCE(iso3, "–") AS iso3,
+            incidents,
+            COALESCE(top_species, "keine Art bestimmt") AS top_species,
+            COALESCE(top_activity, "keine Angabe") AS top_activity
+     FROM shark_countries
+     ORDER BY incidents DESC, country
+     LIMIT 3'
+);
+
+foreach ($topCountries->fetchAll() as $entry) {
+    echo '  ' . $entry['country'] . ' (' . $entry['iso3'] . ")\t"
+        . $entry['incidents'] . " Vorfälle\t"
+        . $entry['top_species'] . ' / ' . $entry['top_activity'] . "\n";
 }

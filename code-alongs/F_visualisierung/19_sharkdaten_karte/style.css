@@ -1,0 +1,209 @@
+/* Gestaltung der Seite. Heute nicht das Thema – schon fertig, damit die Zeit
+   in die Daten und in die Karte geht. Farben und Schrift entsprechen den
+   Folien des Kurses. */
+
+:root {
+  --petrol: #4b93a4;
+  --petrol-hell: #b7cfd6;
+  --oliv: #8b8a6e;
+  --orange: #b5723a;
+  --text: #575757;
+  --muted: #9a9a92;
+  --box-bg: #f6f6f3;
+  --box-border: #e4e3da;
+
+  /* Die sechs Klassen der Karte, von wenig nach viel. Es ist eine einzige
+     Farbe in sechs Helligkeiten – nicht sechs verschiedene Farben. Mehr
+     Vorfälle heisst dunkler, und das versteht man ohne Legende. */
+  --klasse-1: #eef4f6;
+  --klasse-2: #cfe0e5;
+  --klasse-3: #a8c9d2;
+  --klasse-4: #7db0bd;
+  --klasse-5: #4b93a4;
+  --klasse-6: #2f6b7a;
+
+  /* Grau heisst «keine Daten» und darf deshalb nach keiner der sechs
+     Klassen aussehen. */
+  --keine-daten: #ebebe7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 40px 24px 64px;
+  max-width: 940px;
+  margin-inline: auto;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: #ffffff;
+  line-height: 1.5;
+}
+
+/* --- Kopf ---------------------------------------------------------------- */
+
+.kicker {
+  margin: 0 0 6px;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+h1 {
+  margin: 0 0 10px;
+  font-size: 2rem;
+  line-height: 1.2;
+  color: var(--oliv);
+}
+
+h2 {
+  margin: 0 0 4px;
+  font-size: 1.15rem;
+  color: var(--oliv);
+}
+
+.lead {
+  margin: 0;
+  max-width: 62ch;
+}
+
+/* --- Status -------------------------------------------------------------- */
+
+.status {
+  min-height: 1.4em;
+  margin: 24px 0 12px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Ein Ladefehler ist keine Nebensache – er wird gelesen. */
+.status.is-error {
+  color: var(--orange);
+  font-weight: 700;
+}
+
+/* --- Karte --------------------------------------------------------------- */
+
+.karte-note {
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/*
+  DIE WICHTIGSTE REGEL IN DIESER DATEI
+  ------------------------------------
+  Leaflet zeichnet die Karte in dieses Element hinein und richtet sich dabei
+  nach dessen Grösse. Ein leeres <div> ist 0 Pixel hoch – die Karte wäre also
+  da, aber unsichtbar. Ohne diese Höhe bleibt die Seite weiss, und in der
+  Konsole steht kein einziger Fehler.
+
+  Das ist der mit Abstand häufigste Leaflet-Stolperstein.
+*/
+#karte {
+  height: 520px;
+  border: 1px solid var(--box-border);
+  border-radius: 4px;
+
+  /* Der Hintergrund ist sichtbar, solange die Kacheln noch laden. */
+  background: var(--box-bg);
+}
+
+/* Leaflet setzt seine eigene Schrift; wir holen unsere zurück. */
+.leaflet-container {
+  font-family: inherit;
+  font-size: 0.85rem;
+}
+
+/* --- Popup --------------------------------------------------------------- */
+
+.popup-land {
+  margin: 0 0 2px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--oliv);
+}
+
+.popup-zahl {
+  margin: 0 0 8px;
+}
+
+.popup-liste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85rem;
+}
+
+.popup-liste dt {
+  color: var(--muted);
+}
+
+.popup-liste dd {
+  margin: 0 0 4px;
+}
+
+/* Fehlt eine Angabe, steht das da – und sieht anders aus als eine Angabe. */
+.popup-liste .ist-unbekannt {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* --- Legende ------------------------------------------------------------- */
+
+.legende {
+  margin: 16px 0 40px;
+  padding: 16px 20px;
+  background: var(--box-bg);
+  border: 1px solid var(--box-border);
+  border-radius: 4px;
+}
+
+.legende h2 {
+  margin-bottom: 10px;
+}
+
+.legende-skala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8rem;
+}
+
+.legende-skala li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legende-farbe {
+  width: 18px;
+  height: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+}
+
+.legende-hinweis {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* --- Fuss ---------------------------------------------------------------- */
+
+.page-footer {
+  padding-top: 20px;
+  border-top: 1px solid var(--box-border);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.page-footer p {
+  margin: 0 0 6px;
+}

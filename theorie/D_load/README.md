@@ -387,7 +387,8 @@ npx decktape reveal theorie/D_load/index.html slides.pdf --size 1280x720
 
 - Die Papierübung zum Datenmodell ist noch nicht gebaut; Folie 16 verweist
   bereits darauf. Die Code-Alongs stehen: Verbindungstest (11), Laden der
-  Hitzesommer-Daten (12) und als Zusatzmaterial die Shark-Ranglisten (13).
+  Hitzesommer-Daten (12) und als Zusatzmaterial die Shark-Daten (13), die
+  zeigen, wann eine zweite Tabelle aus der Form der Daten folgt.
 - Reservierte Wörter (`rank`, `order`, `group`, `key`) kommen auf den Folien
   nicht vor. Sie treffen aber jedes Semester ein paar Projekte. Behandelt wird
   das nur im Zusatz-Code-Along 13; ein Satz auf Folie 20 wäre zu überlegen.

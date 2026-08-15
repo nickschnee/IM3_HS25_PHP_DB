@@ -73,14 +73,16 @@ Möglicher Datenvertrag:
 
 ## Beispiel Shark Attacks
 
-Die Frage «Welcher Hai greift am häufigsten an?» ist zu ungenau. Der Datensatz
-kennt weder alle Haiarten noch die Anzahl Menschen, die einer Aktivität
-nachgehen. Er kann deshalb **keine Gefahr oder Wahrscheinlichkeit** berechnen.
+Die Frage «Wo ist es am gefährlichsten, und welcher Hai greift am häufigsten
+an?» ist zu ungenau. Der Datensatz kennt weder alle Haiarten noch die Anzahl
+Menschen, die einer Aktivität nachgehen oder an einem Strand baden. Er kann
+deshalb **keine Gefahr oder Wahrscheinlichkeit** berechnen.
 
 Präzisere Fragen:
 
-- Welche identifizierte Hai-Kategorie kommt in den ausgewählten, bestätigten
-  Vorfällen am häufigsten vor?
+- In welchen Ländern wurden in den ausgewählten, bestätigten Vorfällen die
+  meisten Vorfälle erfasst?
+- Welche identifizierte Hai-Kategorie kommt darin am häufigsten vor?
 - Bei welcher vereinheitlichten Aktivitätsgruppe wurden die meisten dieser
   Vorfälle erfasst?
 
@@ -90,7 +92,29 @@ Typische Regeln:
 - leere und unklare Haiangaben nicht erfinden, sondern als `null` zählen;
 - Schreibvarianten über eine dokumentierte Mapping-Funktion vereinheitlichen;
 - Aktivitäten zu wenigen nachvollziehbaren Gruppen zusammenfassen;
+- Ländernamen nicht kategorisieren, sondern auf ISO-Codes nachschlagen;
 - zeigen, wie viele Datensätze durch Filter oder fehlende Angaben wegfallen.
+
+### Nachschlagen statt einordnen
+
+Bei Arten und Tätigkeiten erfindet ihr die Kategorien selbst. Bei Ländern,
+Währungen oder Gemeinden gibt es sie schon – dort wird nachgeschlagen:
+
+```php
+function countryIso(string $raw, array $isoByCountry): ?string
+{
+    // strtoupper zuerst: "FIJI" und "Fiji" sind dasselbe Land.
+    return $isoByCountry[strtoupper(trim($raw))] ?? null;
+}
+```
+
+Zwei Gründe dafür. Erstens ist ein Code eindeutig, ein Name nur eine
+Schreibweise. Zweitens braucht ihr den Code, sobald die Daten mit etwas anderem
+verbunden werden sollen – etwa mit einer Kartendatei.
+
+Was nicht in der Tabelle steht, wird `null` und landet im Audit. Dort findet
+ihr dann Fundstücke wie `COLUMBIA` (Tippfehler) oder `NEW BRITAIN` (kein Land,
+sondern eine Insel).
 
 ## `null` ist ehrlicher als eine erfundene Antwort
 

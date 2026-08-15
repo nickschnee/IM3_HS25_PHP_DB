@@ -14,8 +14,7 @@
  *   /unload.php?dimension=fische         Status 400 mit den gültigen Werten
  *   /unload.php?dataset=countries        120 Länderzeilen (für die Karte)
  *
- * Heute brauchen wir nur die Ranglisten. Der zweite Datensatz kommt in
- * Code-Along 19 zum Zug.
+ * Heute brauchen wir den zweiten Datensatz: ?dataset=countries.
  *
  * Voraussetzung: Die Tabellen shark_rankings und shark_countries sind gefüllt
  * (Code-Along 13, load.php einmal aufrufen).

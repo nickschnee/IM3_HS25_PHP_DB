@@ -1,0 +1,842 @@
+[
+    {
+        "country": "USA",
+        "iso3": "USA",
+        "incidents": 1486,
+        "top_species": "White shark",
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "AUSTRALIA",
+        "iso3": "AUS",
+        "incidents": 540,
+        "top_species": "White shark",
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "SOUTH AFRICA",
+        "iso3": "ZAF",
+        "incidents": 322,
+        "top_species": "White shark",
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "PAPUA NEW GUINEA",
+        "iso3": "PNG",
+        "incidents": 94,
+        "top_species": "Tiger shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "BRAZIL",
+        "iso3": "BRA",
+        "incidents": 88,
+        "top_species": "Tiger shark",
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "BAHAMAS",
+        "iso3": "BHS",
+        "incidents": 78,
+        "top_species": "Bull \/ Zambesi shark",
+        "top_activity": "Spearfishing"
+    },
+    {
+        "country": "REUNION",
+        "iso3": "REU",
+        "incidents": 53,
+        "top_species": "Bull \/ Zambesi shark",
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "MEXICO",
+        "iso3": "MEX",
+        "incidents": 47,
+        "top_species": "Tiger shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "NEW ZEALAND",
+        "iso3": "NZL",
+        "incidents": 47,
+        "top_species": "White shark",
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "NEW CALEDONIA",
+        "iso3": "NCL",
+        "incidents": 44,
+        "top_species": "Tiger shark",
+        "top_activity": "Spearfishing"
+    },
+    {
+        "country": "FIJI",
+        "iso3": "FJI",
+        "incidents": 40,
+        "top_species": "Tiger shark",
+        "top_activity": "Spearfishing"
+    },
+    {
+        "country": "MOZAMBIQUE",
+        "iso3": "MOZ",
+        "incidents": 34,
+        "top_species": "Bull \/ Zambesi shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "EGYPT",
+        "iso3": "EGY",
+        "incidents": 24,
+        "top_species": "Mako shark",
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "HONG KONG",
+        "iso3": "HKG",
+        "incidents": 22,
+        "top_species": "Tiger shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "JAPAN",
+        "iso3": "JPN",
+        "incidents": 20,
+        "top_species": "Blue shark",
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "FRENCH POLYNESIA",
+        "iso3": "PYF",
+        "incidents": 17,
+        "top_species": "Blacktip shark",
+        "top_activity": "Spearfishing"
+    },
+    {
+        "country": "ITALY",
+        "iso3": "ITA",
+        "incidents": 16,
+        "top_species": "White shark",
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "SPAIN",
+        "iso3": "ESP",
+        "incidents": 15,
+        "top_species": "Blue shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "PHILIPPINES",
+        "iso3": "PHL",
+        "incidents": 12,
+        "top_species": "White shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "SOLOMON ISLANDS",
+        "iso3": "SLB",
+        "incidents": 12,
+        "top_species": "Wobbegong",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "COSTA RICA",
+        "iso3": "CRI",
+        "incidents": 10,
+        "top_species": "Tiger shark",
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "IRAN",
+        "iso3": "IRN",
+        "incidents": 10,
+        "top_species": "Bull \/ Zambesi shark",
+        "top_activity": "Fishing"
+    },
+    {
+        "country": "PANAMA",
+        "iso3": "PAN",
+        "incidents": 10,
+        "top_species": "Lemon shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "VANUATU",
+        "iso3": "VUT",
+        "incidents": 10,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "CROATIA",
+        "iso3": "HRV",
+        "incidents": 9,
+        "top_species": "White shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "CUBA",
+        "iso3": "CUB",
+        "incidents": 9,
+        "top_species": "Bull \/ Zambesi shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "ECUADOR",
+        "iso3": "ECU",
+        "incidents": 9,
+        "top_species": null,
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "INDONESIA",
+        "iso3": "IDN",
+        "incidents": 9,
+        "top_species": "Bull \/ Zambesi shark",
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "TONGA",
+        "iso3": "TON",
+        "incidents": 9,
+        "top_species": "Tiger shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "VIETNAM",
+        "iso3": "VNM",
+        "incidents": 9,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "COLUMBIA",
+        "iso3": null,
+        "incidents": 8,
+        "top_species": null,
+        "top_activity": "Spearfishing"
+    },
+    {
+        "country": "MARSHALL ISLANDS",
+        "iso3": "MHL",
+        "incidents": 8,
+        "top_species": "Mako shark",
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "SOUTH KOREA",
+        "iso3": "KOR",
+        "incidents": 8,
+        "top_species": "White shark",
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "VENEZUELA",
+        "iso3": "VEN",
+        "incidents": 8,
+        "top_species": "Bull \/ Zambesi shark",
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "GREECE",
+        "iso3": "GRC",
+        "incidents": 7,
+        "top_species": "White shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "THAILAND",
+        "iso3": "THA",
+        "incidents": 7,
+        "top_species": "Bull \/ Zambesi shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "CHILE",
+        "iso3": "CHL",
+        "incidents": 6,
+        "top_species": "White shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "JAMAICA",
+        "iso3": "JAM",
+        "incidents": 6,
+        "top_species": "Tiger shark",
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "KENYA",
+        "iso3": "KEN",
+        "incidents": 6,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "NEW BRITAIN",
+        "iso3": null,
+        "incidents": 6,
+        "top_species": "Tiger shark",
+        "top_activity": "Spearfishing"
+    },
+    {
+        "country": "TAIWAN",
+        "iso3": "TWN",
+        "incidents": 6,
+        "top_species": "Mako shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "BERMUDA",
+        "iso3": "BMU",
+        "incidents": 5,
+        "top_species": "Blue shark",
+        "top_activity": "Spearfishing"
+    },
+    {
+        "country": "INDIA",
+        "iso3": "IND",
+        "incidents": 5,
+        "top_species": "Tiger shark",
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "MAURITIUS",
+        "iso3": "MUS",
+        "incidents": 5,
+        "top_species": "Bull \/ Zambesi shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "SENEGAL",
+        "iso3": "SEN",
+        "incidents": 5,
+        "top_species": "Lemon shark",
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "SEYCHELLES",
+        "iso3": "SYC",
+        "incidents": 5,
+        "top_species": "Bull \/ Zambesi shark",
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "SRI LANKA",
+        "iso3": "LKA",
+        "incidents": 5,
+        "top_species": "Blacktip shark",
+        "top_activity": "Spearfishing"
+    },
+    {
+        "country": "TANZANIA",
+        "iso3": "TZA",
+        "incidents": 5,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "DOMINICAN REPUBLIC",
+        "iso3": "DOM",
+        "incidents": 4,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "GRENADA",
+        "iso3": null,
+        "incidents": 4,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "IRAQ",
+        "iso3": null,
+        "incidents": 4,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "OKINAWA",
+        "iso3": null,
+        "incidents": 4,
+        "top_species": "White shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "PALAU",
+        "iso3": null,
+        "incidents": 4,
+        "top_species": "Tiger shark",
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "RUSSIA",
+        "iso3": "RUS",
+        "incidents": 4,
+        "top_species": "White shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "SOMALIA",
+        "iso3": null,
+        "incidents": 4,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "TURKS & CAICOS",
+        "iso3": null,
+        "incidents": 4,
+        "top_species": null,
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "AMERICAN SAMOA",
+        "iso3": null,
+        "incidents": 3,
+        "top_species": "Tiger shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "FRANCE",
+        "iso3": "FRA",
+        "incidents": 3,
+        "top_species": "White shark",
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "MADAGASCAR",
+        "iso3": null,
+        "incidents": 3,
+        "top_species": null,
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "MALAYSIA",
+        "iso3": "MYS",
+        "incidents": 3,
+        "top_species": "Blacktip shark",
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "MICRONESIA",
+        "iso3": null,
+        "incidents": 3,
+        "top_species": "Blacktip shark",
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "NEW GUINEA",
+        "iso3": null,
+        "incidents": 3,
+        "top_species": null,
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "SINGAPORE",
+        "iso3": null,
+        "incidents": 3,
+        "top_species": null,
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "TURKEY",
+        "iso3": null,
+        "incidents": 3,
+        "top_species": null,
+        "top_activity": "Spearfishing"
+    },
+    {
+        "country": "EL SALVADOR",
+        "iso3": null,
+        "incidents": 2,
+        "top_species": "White shark",
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "ENGLAND",
+        "iso3": null,
+        "incidents": 2,
+        "top_species": "Blue shark",
+        "top_activity": null
+    },
+    {
+        "country": "GUAM",
+        "iso3": null,
+        "incidents": 2,
+        "top_species": null,
+        "top_activity": "Spearfishing"
+    },
+    {
+        "country": "ISRAEL",
+        "iso3": null,
+        "incidents": 2,
+        "top_species": "Mako shark",
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "LIBERIA",
+        "iso3": null,
+        "incidents": 2,
+        "top_species": null,
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "MALTA",
+        "iso3": null,
+        "incidents": 2,
+        "top_species": "White shark",
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "MID ATLANTIC OCEAN",
+        "iso3": null,
+        "incidents": 2,
+        "top_species": null,
+        "top_activity": null
+    },
+    {
+        "country": "PACIFIC OCEAN",
+        "iso3": null,
+        "incidents": 2,
+        "top_species": null,
+        "top_activity": null
+    },
+    {
+        "country": "ST HELENA, BRITISH OVERSEAS TERRITORY",
+        "iso3": null,
+        "incidents": 2,
+        "top_species": null,
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "TUNISIA",
+        "iso3": null,
+        "incidents": 2,
+        "top_species": null,
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "YEMEN",
+        "iso3": null,
+        "incidents": 2,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "ADMIRALTY ISLANDS",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": null
+    },
+    {
+        "country": "ANDAMAN \/ NICOBAR ISLANDAS",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": "Blue shark",
+        "top_activity": null
+    },
+    {
+        "country": "ANGOLA",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": "White shark",
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "ARGENTINA",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": "White shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "ARUBA",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": null
+    },
+    {
+        "country": "BELIZE",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "BRITISH ISLES",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "BRITISH WEST INDIES",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": "Blacktip shark",
+        "top_activity": "Spearfishing"
+    },
+    {
+        "country": "CANADA",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "CHINA",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "DIEGO GARCIA",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "EGYPT \/ ISRAEL",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "FEDERATED STATES OF MICRONESIA",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": "Tiger shark",
+        "top_activity": "Spearfishing"
+    },
+    {
+        "country": "GABON",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "GRAND CAYMAN",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "GULF OF ADEN",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": null
+    },
+    {
+        "country": "JOHNSTON ISLAND",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "KIRIBATI",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Fishing"
+    },
+    {
+        "country": "MALDIVES",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": "Tiger shark",
+        "top_activity": "Fishing"
+    },
+    {
+        "country": "MARTINIQUE",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": null
+    },
+    {
+        "country": "MAYOTTE",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": "Tiger shark",
+        "top_activity": "Fishing"
+    },
+    {
+        "country": "MONTENEGRO",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": "White shark",
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "NETHERLANDS ANTILLES",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": "Bull \/ Zambesi shark",
+        "top_activity": null
+    },
+    {
+        "country": "NICARAGUA",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "NIGERIA",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "NORTH ATLANTIC OCEAN",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "NORTH PACIFIC OCEAN",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "NORTHERN ARABIAN SEA",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": null
+    },
+    {
+        "country": "PERSIAN GULF",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "PUERTO RICO",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Spearfishing"
+    },
+    {
+        "country": "RED SEA",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "SAMOA",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Fishing"
+    },
+    {
+        "country": "SAUDI ARABIA",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "SCOTLAND",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "SIERRA LEONE",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Fishing"
+    },
+    {
+        "country": "SOUTH ATLANTIC OCEAN",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": null
+    },
+    {
+        "country": "SOUTH CHINA SEA",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Diving & snorkeling"
+    },
+    {
+        "country": "SOUTH PACIFIC OCEAN",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "ST. MAARTIN",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "THE BALKANS",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    },
+    {
+        "country": "UNITED ARAB EMIRATES",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Spearfishing"
+    },
+    {
+        "country": "UNITED ARAB EMIRATES (UAE)",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "UNITED KINGDOM",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "URUGUAY",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": "Tiger shark",
+        "top_activity": "Surfing & board sports"
+    },
+    {
+        "country": "WESTERN SAMOA",
+        "iso3": null,
+        "incidents": 1,
+        "top_species": null,
+        "top_activity": "Swimming & wading"
+    }
+]

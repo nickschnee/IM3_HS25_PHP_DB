@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<!--
+  Diese Seite muss über den PHP-Server laufen:
+
+    php -S localhost:8000
+
+  Dann http://localhost:8000 öffnen. Der Live Server von VS Code (Port 5500)
+  führt kein PHP aus – er liefert den Quelltext von unload.php statt der Daten.
+
+  Per Doppelklick geöffnet (file://) bleibt die Seite komplett leer: Der
+  Browser lädt script.js dann gar nicht erst, und die Kartendatei dürfte er
+  auch nicht lesen.
+-->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hai-Vorfälle – Karte</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!--
+    Leaflet braucht ZWEI Dateien, Chart.js brauchte nur eine.
+
+    Das CSS ist keine Kosmetik: Es positioniert die Kartenkacheln, die
+    Bedienknöpfe und die Popups. Fehlt es, liegen alle Kacheln übereinander in
+    der linken oberen Ecke. Das sieht kaputt aus, ist aber kein Fehler im Code.
+
+    Die Version steht fest im Link – wie beim Chart.js-CDN, damit sich die
+    Karte nicht über Nacht anders verhält.
+  -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script src="script.js" type="module"></script>
+</head>
+
+<body>
+  <header class="page-header">
+    <p class="kicker">Erfasste Vorfälle weltweit · Global Shark Attack File</p>
+    <h1>Wo wurden die meisten Hai-Vorfälle erfasst?</h1>
+    <p class="lead">
+      Eine Choroplethenkarte aus denselben Daten wie die Balkendiagramme:
+      Je dunkler ein Land, desto mehr unprovozierte Vorfälle sind dort
+      zwischen 1950 und 2018 verzeichnet.
+    </p>
+  </header>
+
+  <main>
+    <p id="status" class="status" role="status"></p>
+
+    <section class="karte-abschnitt">
+      <h2 id="karte-titel">Erfasste Vorfälle nach Land</h2>
+      <p class="karte-note">
+        Auf ein Land klicken, um die häufigste Hai-Art und die häufigste
+        Tätigkeit zu sehen.
+      </p>
+
+      <!--
+        Der Behälter für die Karte. Er braucht eine Höhe im CSS, sonst bleibt
+        er 0 Pixel hoch und die Karte ist unsichtbar – siehe style.css.
+      -->
+      <div id="karte"></div>
+    </section>
+
+    <section class="legende">
+      <h2>Erfasste Vorfälle</h2>
+
+      <!-- Die Einträge entstehen in script.js aus derselben Liste, die auch
+           die Farben bestimmt. So können Legende und Karte nicht auseinander
+           laufen. -->
+      <ul class="legende-skala" id="legende-skala"></ul>
+
+      <p class="legende-hinweis" id="legende-hinweis"></p>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p>
+      Daten: Global Shark Attack File, aufbereitet in Code-Along 10 und
+      geladen in Code-Along 13.
+    </p>
+    <p>
+      Ländergrenzen: Natural Earth, 1:110m Admin 0 Countries (Public Domain),
+      auf Ländercode und Name reduziert.
+    </p>
+    <p>
+      Grenze der Aussage: Gezählt werden erfasste Vorfälle, nicht Gefahr.
+      Länder mit langer Küste, vielen Badegästen und guter Erfassung stehen
+      weiter oben – das macht sie nicht gefährlicher.
+    </p>
+  </footer>
+</body>
+
+</html>

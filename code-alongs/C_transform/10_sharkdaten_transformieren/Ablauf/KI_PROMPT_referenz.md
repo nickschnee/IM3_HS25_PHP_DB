@@ -16,14 +16,17 @@ Erstelle in PHP 8.2+ die Transformation eines bereits eingelesenen Arrays
 $rawAttacks. Verändere den Extract nicht.
 
 Datenfragen:
-1. Welche identifizierte Hai-Kategorie kommt in bestätigten, unprovozierten
-   Vorfällen von 1950 bis 2018 am häufigsten vor?
-2. Bei welcher vereinheitlichten Aktivitätsgruppe wurden in derselben Auswahl
+1. In welchen Ländern wurden in bestätigten, unprovozierten Vorfällen von
+   1950 bis 2018 die meisten Vorfälle erfasst?
+2. Welche identifizierte Hai-Kategorie kommt in derselben Auswahl am
+   häufigsten vor?
+3. Bei welcher vereinheitlichten Aktivitätsgruppe wurden in derselben Auswahl
    die meisten Vorfälle erfasst?
 
 Wichtige Einschränkung:
 Die Resultate sind Häufigkeiten in diesem Datensatz und keine Aussage über
-Risiko oder Kausalität.
+Risiko oder Kausalität. Länder mit langer Küste, vielen Badegästen und guter
+Erfassung stehen weiter oben, ohne deswegen gefährlicher zu sein.
 
 Filterregeln:
 - Year muss numerisch und zwischen 1950 und 2018 liegen.
@@ -55,12 +58,25 @@ Normalisierung Activity:
 - Beachte die Reihenfolge: "spearfishing" vor "fishing" und "surf fishing"
   als Fishing, nicht als Surfing.
 
-Nicht benötigte Felder:
-- Fatal (Y/N), Name, Injury und weitere Spalten werden für diese beiden Fragen
-  nicht transformiert. Keine Arbeit in Felder investieren, die der
-  Datenvertrag nicht braucht.
+Normalisierung Country:
+- Country wird nicht in eigene Kategorien eingeteilt, sondern in
+  data/laender_iso.json nachgeschlagen: Schreibweise -> ISO-3166-Code.
+- Vor dem Nachschlagen trim() und strtoupper(), damit "FIJI" und "Fiji"
+  dasselbe Land sind.
+- Was nicht in der Tabelle steht, bekommt iso3 = null. Der Ländername bleibt
+  trotzdem im Ergebnis und wird weiterhin gezählt.
+- Gib die zehn häufigsten Ländernamen ohne Eintrag im Audit aus.
+- Ein Vorfall ohne Land wird gezählt, aber nicht aus den beiden Ranglisten
+  entfernt.
 
-Zieldatenvertrag:
+Nicht benötigte Felder:
+- Fatal (Y/N), Name, Injury, Area, Location und weitere Spalten werden für
+  diese drei Fragen nicht transformiert. Keine Arbeit in Felder investieren,
+  die der Datenvertrag nicht braucht.
+
+Zieldatenvertrag, zwei Listen:
+
+data – die beiden Ranglisten:
 [
   {
     "dimension": "shark_category | activity_group",
@@ -70,8 +86,20 @@ Zieldatenvertrag:
   }
 ]
 
+countries – eine Zeile pro Land:
+[
+  {
+    "country": "string",
+    "iso3": "string | null",
+    "incidents": "int",
+    "top_species": "string | null",
+    "top_activity": "string | null"
+  }
+]
+
 Erzeuge pro Dimension ein absteigend sortiertes Top-10-Ranking. Bei Gleichstand
-alphabetisch sortieren.
+alphabetisch sortieren. Die Länderliste wird nach denselben Regeln sortiert,
+aber nicht gekürzt.
 
 Audit:
 - input_rows
@@ -83,6 +111,10 @@ Audit:
 - activity_classified und activity_unclassified
 - Abdeckung in Prozent für Species und Activity
 - zehn häufigste nicht zugeordnete Species-Werte
+- incidents_without_country und incidents_with_iso
+- countries_total und countries_with_iso
+- Abdeckung in Prozent für die Ländercodes
+- zehn häufigste Ländernamen ohne Eintrag in der Nachschlagetabelle
 
 Liste vor dem Code alle Annahmen oder mehrdeutigen Entscheidungen auf. Erfinde
 keine zusätzlichen Kategorien. Schreibe kleine Funktionen für Normalisierung,
