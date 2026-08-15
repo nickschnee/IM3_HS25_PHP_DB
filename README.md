@@ -6,6 +6,11 @@ und ETL+U den Datenweg. Zwei Personen entwickeln Story, Oberfläche und
 Visualisierung. Beide Zweierteams arbeiten gegen dieselbe vereinbarte
 JSON-Schnittstelle.
 
+## Ablauf
+
+Der ganze Kursablauf nach Themen-Blöcken steht im
+[Ablauf für Studierende](ablauf_studierende.md).
+
 ## Lernpfad
 
 1. PHP-Skripte lesen, ändern und schreiben.
@@ -13,12 +18,7 @@ JSON-Schnittstelle.
 3. Eine Datenfrage in Transform-Regeln und einen Datenvertrag übersetzen.
 4. Transformierte Daten mit PDO in eine Datenbank laden.
 5. Daten aus der Datenbank als eigenen JSON-Endpunkt ausgeben.
-6. Daten mit Chart.js sichtbar und als Story verständlich machen.
-
-## Ablauf
-
-Der ganze Kursablauf nach Tagen steht im
-[Ablauf für Studierende](ablauf_studierende.md).
+6. Daten mit Chart.js oder Leaflet sichtbar und als Story verständlich machen.
 
 ## Wo ihr arbeitet
 
@@ -31,7 +31,6 @@ beide sind Teil des Kurses:
   Daten speichert.
 
 Auf einen Webserver kommt euer Projekt erst am Schluss im Deployment-Teil.
-Dabei ändern sich vier Werte in `config.php` – sonst nichts.
 
 ## Kursmaterial
 
@@ -43,6 +42,3 @@ Dabei ändern sich vier Werte in `config.php` – sonst nichts.
 | [Stift und Papier](stift-und-papier/) | Datenfluss und Code zuerst ohne Computer planen |
 | [Cheatsheets](cheatsheets/)           | Kurze Syntax- und Themenreferenzen              |
 | [ETL-Boilerplate](etl-boilerplate/)   | Starterkit für das Gruppenprojekt               |
-
-Die vollständigen Projektunterlagen mit Rollen, Meilensteinen, Bewertung und
-Abgabe werden im Ordner `projekt/` ergänzt.

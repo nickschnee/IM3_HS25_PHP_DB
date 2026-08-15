@@ -1,4 +1,4 @@
-# Ablauf für Studierende
+# Ablauf IM3
 
 ## Tagesstruktur
 
@@ -103,12 +103,3 @@ ganz am Schluss, im Deployment-Teil.
 
 - `🧑‍🏫` Code-Along: [18 Shark-Balkendiagramme](code-alongs/F_visualisierung/18_sharkdaten_balkendiagramm/) `45'`
 - `🧑‍🏫` Code-Along: [19 Shark-Karte mit Leaflet](code-alongs/F_visualisierung/19_sharkdaten_karte/) `45'`
-
-### Zusatzmaterial
-
-Dreierserie mit Airbnb-Daten von [Inside Airbnb](https://insideairbnb.com/):
-vom rohen Datensatz über die eigene Datenfrage zum fertigen JSON.
-
-- `💻` [01 Airbnb-Daten holen & erkunden](uebungen/C_transform/01_airbnb_erkunden/)
-- `💻` [02 Datenfrage schärfen](uebungen/C_transform/02_datenfrage/)
-- `💻` [03 Airbnb-Daten transformieren](uebungen/C_transform/03_airbnb_transformieren/)
