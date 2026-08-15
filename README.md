@@ -8,6 +8,11 @@
 
 > Im 3. Semester der Interaktiven Medien lernt ihr, mit PHP echte Daten zu verarbeiten und in einer Data-Story datenjournalistisch aufzubereiten.
 
+#### Quicklinks
+
+- [Ablauf nach Themenblöcken](ablauf.md)
+- [Infos für Dozierende](dozierende/README.md)
+
 ## 1. Unterrichts-Stoff
 
 In diesem Kurs folgen wir dem Weg der Daten:
@@ -49,7 +54,7 @@ eigenen API-Endpunkt. Die Schnittstelle für das Frontend.
 Ihr stellt die Daten mit Chart.js als Grafik dar und erzählt damit eine
 Geschichte.
 
-Wie diese Blöcke im Detail aufgebaut sind, seht ihr im [Ablauf für Studierende](ablauf.md).
+Wie diese Blöcke im Detail aufgebaut sind, seht ihr im [Ablauf](ablauf.md).
 
 ## 2. Euer Projekt
 
