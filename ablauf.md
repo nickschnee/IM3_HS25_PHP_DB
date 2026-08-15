@@ -6,6 +6,40 @@
 2. **Projektspur:** Gelerntes auf die eigene Datenfrage übertragen.
 3. **Abschluss:** Ergebnis sichern, Meilenstein zeigen.
 
+## Inhaltliche Struktur
+
+Damit ihr euch auf die Technik konzentrieren könnt, wechseln wir nicht ständig
+das Thema. Wir arbeiten den ganzen Kurs über mit denselben wenigen Datensätzen.
+
+**Block A – die Aare.** Für die PHP-Grundlagen brauchen wir Zahlen, die man
+versteht, ohne sie zu erklären: die Wassertemperatur der Aare in Brienz, Thun
+und Bern. Diese Werte tippt ihr noch von Hand als PHP-Array ab. So dreht sich
+alles um Variablen, Funktionen, Bedingungen, Arrays und Schleifen – und nicht
+um die Datenbeschaffung.
+
+**Ab Block B – zwei Themen durch den ganzen ETL+U-Prozess.** Sobald wir Daten
+wirklich einlesen, begleiten uns zwei Datensätze bis zur fertigen Grafik:
+
+- 🌡️ **Hitzesommer** – die täglichen Höchsttemperaturen von Bern, Zürich und
+  Chur seit 1940, von der Open-Meteo-API. Das ist unser roter Faden: aufgeräumte
+  Zahlen, mit denen jeder Schritt sauber aufgeht.
+- 🦈 **Shark Attacks** – das Global Shark Attack File als CSV mit rund 25'000
+  Zeilen. Das ist unser Realitätscheck: echte Daten sind unordentlich, lückenhaft
+  und uneinheitlich geschrieben.
+
+Beide Datensätze durchlaufen dieselbe Kette. Pro Block ändert sich damit nur die
+Technik, nicht das Thema:
+
+Der Hitzesommer-Strang ist Pflichtprogramm und wird gemeinsam entwickelt. Der
+Shark-Strang zeigt dieselben Schritte an schwierigeren Daten; ein Teil davon
+steht als Zusatzmaterial zum Nachschauen bereit.
+
+Für die Sensorbox im Kursraum gilt dasselbe Prinzip: Sie ist einfach eine
+weitere Datenquelle, die wir wie eine API auslesen.
+
+**Euer Projekt** läuft parallel mit. Ihr sucht euer eigenes Thema und euren
+eigenen Datensatz und geht dieselbe Kette – nur eben mit euren Daten.
+
 ## Legende
 
 `📕` Theorie / Slides `🧑‍🏫` Code-Along `💻` Digitale Übung
