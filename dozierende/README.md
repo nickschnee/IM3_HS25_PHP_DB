@@ -7,7 +7,6 @@ Dieses Repository enthält alle Unterlagen für den Kurs IM3.
 - Folien Kickoff
 - Folien Deployment & Tooling (Code-Editor etc.)
 - Beispielprojekt mit Sensorbox (könnte man adden zu Hitzesommer & Hai), von A-Z durchspielen. Dazu bräuchte es noch Unterlagen zu CRON.
-- Repo in Orga verschieben
 
 ## 💻 Material im Unterricht zeigen
 
