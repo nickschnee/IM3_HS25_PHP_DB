@@ -1,7 +1,7 @@
 # 🐘 IM3: PHP, Datenbanken & Datenstory
 
 ![Static Badge](https://img.shields.io/badge/Sprache-PHP-%23777bb4)
-![Static Badge](https://img.shields.io/badge/Daten-MySQL-%2300758f)
+![Static Badge](https://img.shields.io/badge/DB-MySQL-%2300758f)
 ![Static Badge](https://img.shields.io/badge/Kurs-MMP_IM3-blue)
 ![Static Badge](https://img.shields.io/badge/Aktualisiert-15.08.2026-coral)
 ![Static Badge](https://img.shields.io/badge/Status-In_Review-orange)
@@ -111,7 +111,7 @@ Nur die Folien in [theorie](theorie/) sind reine HTML-Dateien. Dort ist alles
 erlaubt: der Live Server, derselbe PHP-Server oder ein Doppelklick auf die
 `index.html`.
 
-## 5. Material
+## 5. Methoden
 
 ### 5.1 📕 Theorie
 
@@ -158,8 +158,3 @@ oder die Schnittstelle. Das Material für diese analogen Übungen liegt im Ordne
 
 Ein fertiges kleines Projekt von der Datenquelle bis zur Story – zum Anschauen
 und zum Abschauen: [beispielprojekt](beispielprojekt/).
-
-# 6. TODOS
-
-- Folien Kickoff
-- Beispielprojekt mit Sensorbox (könnte man adden zu Hitzesommer & Hai), von A-Z durchspuelen. Dazu bräuchte es noch Unterlagen zu CRON.

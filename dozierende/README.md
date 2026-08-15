@@ -1,8 +1,14 @@
-# Hinweise für Dozierende
+# 🧑🏽‍🏫 Hinweise für Dozierende
 
 Dieses Repository enthält alle Unterlagen für den Kurs IM3.
 
-## Material im Unterricht zeigen
+## 📌 Offene Todos
+
+- Folien Kickoff
+- Folien Deployment & Tooling (Code-Editor etc.)
+- Beispielprojekt mit Sensorbox (könnte man adden zu Hitzesommer & Hai), von A-Z durchspielen. Dazu bräuchte es noch Unterlagen zu CRON.
+
+## 💻 Material im Unterricht zeigen
 
 **Das Beispielprojekt läuft ohne Datenbank.** Fehlt die `config.php` oder läuft
 MAMP nicht, liefert `unload.php` kein brauchbares JSON – die Seite lädt dann
@@ -29,7 +35,7 @@ Für alles andere gilt, was auch im `README.md` für die Studierenden steht:
 - Die Folien in `theorie/` sind reine HTML-Dateien: Live Server, PHP-Server
   oder direkt über den Dateipfad, alle drei Wege funktionieren.
 
-## Das Repository
+## 📦 Das Repository
 
 - `README.md` ist der Einstieg für die Studierenden.
 - `ablauf.md` zeigt den Kursablauf.
@@ -40,7 +46,7 @@ Für alles andere gilt, was auch im `README.md` für die Studierenden steht:
 - `cheatsheets/` enthält kurze Nachschlagewerke.
 - `dozierende/` enthält interne Unterlagen.
 
-## Folien mit AI bearbeiten
+## 🤖 Folien mit AI bearbeiten
 
 Die Folien sind mit reveal.js gebaut.
 
@@ -76,7 +82,7 @@ Ein einfacher Auftrag an die AI kann so aussehen:
 > Lies zuerst die Regeln für das Foliendesign.
 > Prüfe danach die Folien und kontrolliere sie als Screenshots.
 
-## Unterricht mit AI planen
+## 🗓️ Unterricht mit AI planen
 
 Im Ordner `dozierende/unterrichtsplanung/` stehen Hinweise zur Didaktik.
 
