@@ -66,7 +66,7 @@ ganz am Schluss, im Deployment-Teil.
 
 1. `🛠️` Tooling: Editor, Terminal und Git überprüfen `30'`
 2. `🛠️` Tooling: Lokaler Server [00 Lokaler PHP-Server](theorie/00_lokaler_php_server/index.html) `30'`
-3. '📝' Analoge Übung: Vorwissen aktivieren (aus IM2) (in progress)
+3. `📝` Analoge Übung: [00 Von JavaScript zu PHP](stift-und-papier/00_von_js_zu_php/) `35'`
 4. `🧑‍🏫` Code-Along: [00 Hallo PHP](code-alongs/A_PHP_Basics/00_hallo_php) `30'`
 5. `📕` Theorie A: [PHP Basics](theorie/A_PHP_Basics) `60'`
 6. `🧑‍🏫` Code-Along: [01 Variablen](code-alongs/A_PHP_Basics/01_variablen) `25'`
@@ -97,6 +97,8 @@ ganz am Schluss, im Deployment-Teil.
 7. `🧑‍🏫` Code-Along: [09 Sensor lesen](code-alongs/B_extract/09_sensor_lesen) _(Sensor-API)_ `30'`
 8. `🔎` Datenquellen recherchieren & prüfen `60'`
 9. `✅` **M3: Datensatz gefunden**
+10. `🛠️` Eigene Datenquelle mit PHP einlesen und Datenvertrag v0 vereinbaren
+11. `✅` **M4: Erster Extract & Datenvertrag stehen**
 
 ### Block C – Transform
 
@@ -104,6 +106,8 @@ ganz am Schluss, im Deployment-Teil.
 2. `📝` Analoge Übung: [02 Wetterdaten transformieren](stift-und-papier/02_transform_weather/) `30'`
 3. `🧑‍🏫` Code-Along: [09 Hitzesommer transformieren](code-alongs/C_transform/09_hitzesommer_transformieren/) `60'`
 4. `🧑‍🏫` Code-Along: [10 Shark-Daten mit KI transformieren](code-alongs/C_transform/10_sharkdaten_transformieren/) `90'`
+5. `🛠️` Eigene Rohdaten nach dem Datenvertrag säubern und umformen
+6. `✅` **M5: Transform funktioniert**
 
 ### Block D – Load
 
@@ -113,6 +117,8 @@ ganz am Schluss, im Deployment-Teil.
 4. `🛠️` Datenbank einrichten: [00 Lokale Datenbank](theorie/00_lokale_db/) `60'`
 5. `🧑‍🏫` Code-Along: [11 Datenbank testen](code-alongs/D_load/11_datenbank_testen/) `60'`
 6. `🧑‍🏫` Code-Along: [12 Hitzesommer laden](code-alongs/D_load/12_hitzesommer_laden/) `70'`
+7. `🛠️` Eigenes Datenmodell umsetzen und transformierte Daten laden
+8. `✅` **M6: Daten stehen in der Datenbank**
 
 #### Zusatzmaterial (Block D)
 
@@ -122,7 +128,9 @@ ganz am Schluss, im Deployment-Teil.
 
 1. `📕` [Theorie E: Unload](theorie/E_unload/) `30'`
 2. `🧑‍🏫` Code-Along: [14 Hitzesommer unloaden](code-alongs/E_unload/14_hitzesommer_ausliefern/) `60'`
-3. `🛠️` Tooling: Deployment `60'`
+3. `🛠️` Eigenen JSON-Endpunkt nach dem Datenvertrag bauen und prüfen
+4. `✅` **M7: JSON-Endpunkt funktioniert**
+5. `🛠️` Tooling: Deployment `60'`
 
 #### Zusatzmaterial (Block E)
 
@@ -134,21 +142,45 @@ ganz am Schluss, im Deployment-Teil.
 2. `🧑‍🏫` Code-Along: [16 Hitzesommer visualisieren – Teil 1](code-alongs/F_visualisierung/16_hitzesommer_liniendiagramm/) `70'`
 3. `🧑‍🏫` Code-Along: [17 Hitzesommer visualisieren – Teil 2](code-alongs/F_visualisierung/17_hitzesommer_ranking/) `60'`
 4. `🔎` Diagrammtyp zur eigenen Kernaussage wählen und begründen `60'`
+5. `🛠️` Frontend mit dem eigenen JSON-Endpunkt verbinden und erste Grafik bauen
+6. `✅` **M8: Erste Integration steht**
 
 #### Zusatzmaterial (Block F)
 
 - `🧑‍🏫` Code-Along: [18 Shark-Balkendiagramme](code-alongs/F_visualisierung/18_sharkdaten_balkendiagramm/) `45'`
 - `🧑‍🏫` Code-Along: [19 Shark-Karte mit Leaflet](code-alongs/F_visualisierung/19_sharkdaten_karte/) `45'`
 
+### Integration, Feature-Freeze & Marktstand
+
+1. `🛠️` Datenweg, Story, Oberfläche und Beschriftungen zusammenführen
+2. `🔎` Projekt einer anderen Gruppe zeigen und Kernaussage testen
+3. `🛠️` Fehler beheben, README ergänzen und stabilen Daten-Fallback prüfen
+4. `✅` **M9: Ausstellungsfähige Fassung steht**
+5. `🛠️` Marktstand aufbauen, Projekt vorführen und definitiv abgeben
+6. `✅` **M10: Marktstand & Abgabe**
+
 ## Meilensteine
 
 Meilensteine sind keine Prüfungen, sondern kurze Abnahmen: Ihr zeigt ein
-kleines, konkretes Ergebnis, bevor es weitergeht. M1 bis M3 sind den Themenblöcken zugeordnet. M4, die Entwicklung eures eigenen Projekts läuft asynchron dazu. M5 ist die definitive Abgabe.
+kleines, konkretes Ergebnis, bevor es weitergeht. Eine kurze Demonstration
+genügt. Die Meilensteine orientieren sich an den zehn Kurstagen; ihre genaue
+Platzierung kann sich im Unterricht verschieben.
 
-|      | Meilenstein             | Was ihr zeigt                                                                                                                                                      |
-| ---- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `M1` | Gruppen gebildet        | Der lokale PHP-Server läuft, die Vierergruppe steht, Backend- und Frontend-Zweierteam sind festgelegt.                                                             |
-| `M2` | Datenfrage formuliert   | Eure Gruppe hat eine erste eigene Datenfrage in einem Satz.                                                                                                        |
-| `M3` | Datensatz gefunden      | Eine passende Datenquelle ist gefunden und enthält genug Daten – oder ihr zeigt, wie bis zum Marktstand genug Daten entstehen.                                     |
-| `M4` | Erste Integration steht | Extract, Transform, Load und Unload liefern Daten bis ins Frontend, die Grafik funktioniert und ein stabiler Datenstand als Fallback ist da.                       |
-| `M5` | Marktstand und Abgabe   | Das Projekt läuft auf dem Server, das README erklärt Setup und Endpunkte, die Datenquelle ist dokumentiert und ihr könnt ETL+U und eure Story-Entscheide erklären. |
+Bei jeder Abnahme beantwortet das Team zusätzlich drei kurze Fragen:
+
+1. Was funktioniert bereits?
+2. Was haben wir dabei gelernt oder neu entschieden?
+3. Was ist unser nächster überprüfbarer Schritt?
+
+|       | Meilenstein                            | Was ihr zeigt                                                                                                                                                                           |
+| ----- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `M1`  | Gruppen gebildet                       | Der lokale PHP-Server läuft, die Vierergruppe steht, Backend- und Frontend-Zweierteam sind festgelegt.                                                                                  |
+| `M2`  | Datenfrage formuliert                  | Die Gruppe hat eine offene, mit Daten beantwortbare Frage mit Untersuchungseinheit und passendem Zeitraum formuliert.                                                                   |
+| `M3`  | Datensatz gefunden und geprüft         | Eine glaubwürdige Quelle, Beispieldaten, vorhandene Felder und Datenmenge passen zur Frage – oder der Plan für eine Live-Sammlung ist bis zum Marktstand realistisch.                   |
+| `M4`  | Erster Extract und Datenvertrag stehen | Ein PHP-Skript liest echte Daten als Array ein. Der Datenvertrag v0 zeigt Feldnamen, Datentypen und Beispielwerte für die spätere JSON-Ausgabe.                                         |
+| `M5`  | Transform funktioniert                 | Einige echte Rohdatensätze werden ins vereinbarte Format umgeformt. Der Umgang mit fehlenden, ungültigen oder uneinheitlichen Werten ist sichtbar entschieden.                          |
+| `M6`  | Daten stehen in der Datenbank          | Das kleine Datenmodell ist umgesetzt, transformierte Daten sind gespeichert und eine Abfrage zeigt die erwarteten Datensätze.                                                           |
+| `M7`  | JSON-Endpunkt funktioniert             | `unload.php` liest aus der Datenbank und liefert valides JSON nach dem Datenvertrag. Ein benötigter Filter funktioniert, falls das Projekt einen Filter braucht.                        |
+| `M8`  | Erste Integration steht                | Das Frontend lädt echte Daten vom eigenen Endpunkt statt aus den Mock-Daten und zeigt mindestens eine einfache, zur Datenfrage passende Grafik.                                         |
+| `M9`  | Ausstellungsfähige Fassung steht       | Story, Beschriftungen und Quellen sind verständlich, die Technik wurde getestet, das README erklärt den Betrieb und ein gespeicherter Datenstand funktioniert als Fallback.             |
+| `M10` | Marktstand und Abgabe                  | Das Projekt läuft am Marktstand und auf dem Server. Das Team kann die ETL+U-Kette, die Datenquelle, den Datenvertrag sowie die zentralen Story- und Visualisierungsentscheide erklären. |

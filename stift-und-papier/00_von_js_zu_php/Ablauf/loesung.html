@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Lösung – Von JavaScript zu PHP</title>
+<style>
+  /* ---------------------------------------------------------------------
+     LÖSUNGSBLATT – Von JavaScript zu PHP
+     Eine Seite A4 quer. Im Browser öffnen, Cmd+P, Hintergrundgrafiken AN.
+     Zum Projizieren im Share und als Handout danach.
+     Nicht vor der Arbeitsphase austeilen.
+     --------------------------------------------------------------------- */
+
+  :root {
+    --petrol: #4b93a4;
+    --petrol-dark: #35707f;
+    --petrol-bg: #eef5f7;
+    --oliv: #8b8a6e;
+    --text: #575757;
+    --muted: #9a9a92;
+    --line: #1a1a1a;
+    --box-bg: #f6f6f3;
+    --box-border: #e4e3da;
+    --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono: "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  @page { size: A4 landscape; margin: 10mm; }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 10mm;
+    background: #fff;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 10pt;
+    line-height: 1.4;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .blatt { width: 257mm; margin: 0 auto; }
+
+  @media print {
+    body { padding: 0; }
+    .blatt { width: auto; }
+    .seite + .seite { break-before: page; }
+  }
+
+  .seite + .seite { margin-top: 14mm; }
+
+  header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10mm;
+    border-bottom: 2px solid var(--petrol);
+    padding-bottom: 3mm;
+    margin-bottom: 4mm;
+  }
+
+  h1 {
+    margin: 0;
+    color: var(--oliv);
+    font-size: 15pt;
+    font-weight: 700;
+  }
+
+  .meta {
+    color: var(--muted);
+    font-size: 9pt;
+    white-space: nowrap;
+  }
+
+  h2 {
+    margin: 0 0 2mm;
+    font-size: 10pt;
+    font-weight: 700;
+    color: var(--oliv);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .frage {
+    border-left: 3px solid var(--petrol);
+    background: var(--petrol-bg);
+    padding: 2.5mm 4mm;
+    margin-bottom: 4mm;
+    color: var(--petrol-dark);
+    font-size: 10.5pt;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+  }
+
+  th, td {
+    border: 1.5px solid var(--line);
+    padding: 1.4mm 3mm;
+    text-align: left;
+    vertical-align: top;
+    color: #1a1a1a;
+  }
+
+  th { font-weight: 700; font-size: 9.5pt; }
+
+  pre {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 8pt;
+    line-height: 1.25;
+    color: #1a1a1a;
+    white-space: pre;
+  }
+
+  .c-nr { width: 7mm; text-align: center; padding-left: 1mm; padding-right: 1mm; }
+  .c-konzept { width: 30mm; font-weight: 700; font-size: 9pt; }
+  .c-merk { width: 72mm; font-size: 9pt; }
+
+  .nr {
+    display: inline-block;
+    width: 5mm;
+    height: 5mm;
+    border-radius: 50%;
+    background: var(--petrol);
+    color: #fff;
+    font-size: 8pt;
+    font-weight: 700;
+    text-align: center;
+    line-height: 5mm;
+  }
+
+  .gleich { color: var(--petrol-dark); font-weight: 700; }
+  .anders { color: #a05a2c; font-weight: 700; }
+
+  .spalten { display: flex; gap: 5mm; align-items: stretch; }
+
+  .box {
+    border: 1.5px solid var(--box-border);
+    background: var(--box-bg);
+    padding: 2.5mm 3.5mm;
+  }
+
+  .box p { margin: 0 0 1.5mm; }
+  .box p:last-child { margin-bottom: 0; }
+  .box ul { margin: 0; padding-left: 4.5mm; }
+  .box li { margin-bottom: 1.2mm; }
+
+  .warnung { background: #fff; border-left: 3px solid var(--oliv); }
+
+  code {
+    font-family: var(--mono);
+    font-size: 9pt;
+    color: #1a1a1a;
+  }
+
+  @media screen {
+    body { background: #eceae4; }
+    .blatt { background: #fff; padding: 12mm; box-shadow: 0 2px 12px rgba(0,0,0,0.12); }
+    .seite + .seite { border-top: 1px dashed #ccc; padding-top: 10mm; }
+  }
+</style>
+</head>
+<body>
+<div class="blatt">
+
+<!-- ================================ SEITE 1 ============================ -->
+<section class="seite">
+
+  <header>
+    <h1>Von JavaScript zu PHP – Lösung</h1>
+    <div class="meta">Die Übersetzungstabelle</div>
+  </header>
+
+  <div class="frage">
+    Ihr habt in IM2 programmieren gelernt, nicht JavaScript gelernt. Die
+    Konzepte bleiben, die Schreibweise ändert.
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="c-nr">#</th>
+        <th class="c-konzept">Konzept</th>
+        <th>JavaScript (IM2)</th>
+        <th>PHP (IM3)</th>
+        <th class="c-merk">Merksatz</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="c-nr"><span class="nr">1</span></td>
+        <td class="c-konzept">Variable</td>
+        <td><pre>let temperatureC = 19.4;</pre></td>
+        <td><pre>$temperatureC = 19.4;</pre></td>
+        <td class="c-merk"><span class="anders">≈</span> Kein <code>let</code>
+          und kein <code>const</code>, dafür ein <code>$</code> vor jedem
+          Namen – immer, auch später beim Benutzen.</td>
+      </tr>
+      <tr>
+        <td class="c-nr"><span class="nr">2</span></td>
+        <td class="c-konzept">Ausgabe</td>
+        <td><pre>console.log(satz);</pre></td>
+        <td><pre>echo $satz;</pre></td>
+        <td class="c-merk"><span class="anders">≈</span> <code>echo</code>
+          schreibt nicht in die Konsole, sondern in das, was der Server
+          zurückschickt. Es ist die Antwort selbst.</td>
+      </tr>
+      <tr>
+        <td class="c-nr"><span class="nr">2</span></td>
+        <td class="c-konzept">Variable im Text</td>
+        <td><pre>`Aare in ${location}`</pre></td>
+        <td><pre>"Aare in $location"</pre></td>
+        <td class="c-merk"><span class="anders">≈</span> Doppelte
+          Anführungszeichen sind PHPs Backticks. In einfachen
+          (<code>'…'</code>) passiert nichts.</td>
+      </tr>
+      <tr>
+        <td class="c-nr"><span class="nr">2</span></td>
+        <td class="c-konzept">Texte verbinden</td>
+        <td><pre>'Aare in ' + location</pre></td>
+        <td><pre>'Aare in ' . $location</pre></td>
+        <td class="c-merk"><span class="anders">≈</span> Punkt statt Plus. Das
+          <code>+</code> ist in PHP ausschliesslich Rechnen.</td>
+      </tr>
+      <tr>
+        <td class="c-nr"><span class="nr">3</span></td>
+        <td class="c-konzept">Bedingung</td>
+        <td><pre>if (t >= 18) { … }
+else if (…) { … }</pre></td>
+        <td><pre>if ($t >= 18) { … }
+elseif (…) { … }</pre></td>
+        <td class="c-merk"><span class="gleich">✓</span> Praktisch identisch.
+          <code>elseif</code> wird zusammengeschrieben, sonst ändert nichts.</td>
+      </tr>
+      <tr>
+        <td class="c-nr"><span class="nr">4</span></td>
+        <td class="c-konzept">Array</td>
+        <td><pre>const t = [18.9, 19.4];
+t[1]</pre></td>
+        <td><pre>$t = [18.9, 19.4];
+$t[1]</pre></td>
+        <td class="c-merk"><span class="gleich">✓</span> Eckige Klammern, Index
+          ab 0. Genau wie in IM2.</td>
+      </tr>
+      <tr>
+        <td class="c-nr"><span class="nr">4</span></td>
+        <td class="c-konzept">Daten mit Namen</td>
+        <td><pre>const s = { Bern: 19.4 };
+s.Bern</pre></td>
+        <td><pre>$s = ['Bern' => 19.4];
+$s['Bern']</pre></td>
+        <td class="c-merk"><span class="anders">≈</span> PHP kennt kein Objekt
+          mit Punkt. Es heisst assoziatives Array: eckige Klammern und
+          <code>=></code>.</td>
+      </tr>
+      <tr>
+        <td class="c-nr"><span class="nr">5</span></td>
+        <td class="c-konzept">Schleife</td>
+        <td><pre>t.forEach((wert) => {
+  console.log(wert);
+});</pre></td>
+        <td><pre>foreach ($t as $wert) {
+    echo $wert;
+}</pre></td>
+        <td class="c-merk"><span class="anders">≈</span> Gleiche Idee, kürzere
+          Schreibweise: keine Pfeilfunktion, kein Callback. Das
+          <code>as</code> vergibt den Namen für ein Element.</td>
+      </tr>
+      <tr>
+        <td class="c-nr"><span class="nr">6</span></td>
+        <td class="c-konzept">Funktion</td>
+        <td><pre>function f(ort, t) {
+  return `${ort}: ${t}`;
+}</pre></td>
+        <td><pre>function f($ort, $t) {
+    return "$ort: $t";
+}</pre></td>
+        <td class="c-merk"><span class="gleich">✓</span> Dasselbe Wort, dieselbe
+          Struktur, dasselbe <code>return</code>. Nur die
+          <code>$</code>-Zeichen kommen dazu.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="spalten" style="margin-top: 3mm;">
+    <div class="box" style="flex: 1;">
+      <h2>Kein einziges Konzept ist neu</h2>
+      <p>Drei Zeilen sind praktisch identisch, sechs nur anders geschrieben.
+        Neu zu lernen sind drei Schreibweisen: das <code>$</code>, der Punkt zum
+        Verbinden und <code>foreach</code>. Der Rest ist IM2 mit anderer
+        Kleidung.</p>
+    </div>
+    <div class="box warnung" style="flex: 1;">
+      <h2>Was wirklich neu ist – aber nicht heute</h2>
+      <p>PHP läuft auf dem Server, nicht im Browser. Es gibt kein
+        <code>document</code>, keine Events und kein <code>onclick</code>.
+        Genau deshalb steht am Ende JSON und nicht eine Webseite.</p>
+    </div>
+  </div>
+
+</section>
+
+</div>
+</body>
+</html>

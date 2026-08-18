@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Arbeitsblatt – Von JavaScript zu PHP</title>
+<style>
+  /* ---------------------------------------------------------------------
+     ARBEITSBLATT – Von JavaScript zu PHP
+     Zwei Blätter A4 quer, einseitig auf zwei separate Blätter drucken.
+     Ränder «Standard», Hintergrundgrafiken AN. Im Browser öffnen, Cmd+P.
+
+     Wichtig: Arbeitsblatt 2 wird erst ausgeteilt, wenn Teil 1 fertig ist.
+     --------------------------------------------------------------------- */
+
+  :root {
+    --petrol: #4b93a4;
+    --petrol-dark: #35707f;
+    --petrol-bg: #eef5f7;
+    --oliv: #8b8a6e;
+    --text: #575757;
+    --muted: #9a9a92;
+    --line: #1a1a1a;
+    --box-border: #e4e3da;
+    --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono: "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  @page {
+    size: A4 landscape;
+    margin: 10mm;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 10mm;
+    background: #fff;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 10pt;
+    line-height: 1.4;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .blatt { width: 257mm; margin: 0 auto; }
+
+  @media print {
+    body { padding: 0; }
+    .blatt { width: auto; }
+    .seite + .seite { break-before: page; }
+  }
+
+  .seite + .seite { margin-top: 14mm; }
+
+  /* --- Kopf ----------------------------------------------------------- */
+
+  header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10mm;
+    border-bottom: 2px solid var(--petrol);
+    padding-bottom: 3mm;
+    margin-bottom: 4mm;
+  }
+
+  h1 {
+    margin: 0;
+    color: var(--oliv);
+    font-size: 15pt;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  .meta {
+    color: var(--muted);
+    font-size: 9pt;
+    white-space: nowrap;
+  }
+
+  h2 {
+    margin: 0 0 2mm;
+    font-size: 10pt;
+    font-weight: 700;
+    color: var(--oliv);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* --- Auftrag -------------------------------------------------------- */
+
+  .auftrag {
+    display: flex;
+    gap: 8mm;
+    align-items: flex-start;
+    margin-bottom: 4mm;
+  }
+
+  .auftrag .frage {
+    flex: 1;
+    border-left: 3px solid var(--petrol);
+    background: var(--petrol-bg);
+    padding: 2.5mm 4mm;
+  }
+
+  .auftrag .frage p {
+    margin: 0;
+    color: var(--petrol-dark);
+    font-size: 10.5pt;
+  }
+
+  .auftrag .frage p + p { margin-top: 1mm; }
+  .auftrag .frage strong { font-weight: 700; }
+
+  /* --- Teil 1: Raster --------------------------------------------------- */
+
+  .raster {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5mm;
+  }
+
+  .feld {
+    border: 1.5px solid var(--line);
+    padding: 3mm 3.5mm 2.5mm;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .feld .kopf {
+    display: flex;
+    gap: 2.5mm;
+    align-items: flex-start;
+    margin-bottom: 2.5mm;
+    min-height: 13mm;
+  }
+
+  .nr {
+    flex: none;
+    width: 5.5mm;
+    height: 5.5mm;
+    border-radius: 50%;
+    background: var(--petrol);
+    color: #fff;
+    font-size: 8.5pt;
+    font-weight: 700;
+    text-align: center;
+    line-height: 5.5mm;
+  }
+
+  .feld .kopf p {
+    margin: 0;
+    font-size: 9.5pt;
+    color: #1a1a1a;
+  }
+
+  .linien { margin-top: auto; }
+
+  .linien div {
+    border-bottom: 1px solid #c8c8c0;
+    height: 9mm;
+  }
+
+  .unsicher {
+    margin-top: 2mm;
+    font-size: 8pt;
+    color: var(--muted);
+  }
+
+  .kasten {
+    display: inline-block;
+    width: 3mm;
+    height: 3mm;
+    border: 1px solid #aaa;
+    margin-right: 1.2mm;
+    vertical-align: -0.3mm;
+  }
+
+  /* --- Teil 2: Tabelle -------------------------------------------------- */
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+  }
+
+  th, td {
+    border: 1.5px solid var(--line);
+    padding: 4mm 3mm;
+    text-align: left;
+    vertical-align: top;
+    color: #1a1a1a;
+  }
+
+  th {
+    font-weight: 700;
+    font-size: 9.5pt;
+  }
+
+  pre {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 8.5pt;
+    line-height: 1.35;
+    color: #1a1a1a;
+    white-space: pre;
+  }
+
+  .c-nr { width: 7mm; text-align: center; padding-left: 1mm; padding-right: 1mm; }
+  .c-notiz { width: 78mm; }
+
+  @media screen {
+    body { background: #eceae4; }
+    .blatt {
+      background: #fff;
+      padding: 12mm;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    }
+    .seite + .seite { border-top: 1px dashed #ccc; padding-top: 10mm; }
+  }
+</style>
+</head>
+<body>
+<div class="blatt">
+
+<!-- ================================ SEITE 1 ============================ -->
+<section class="seite">
+
+  <header>
+    <h1>Von JavaScript zu PHP</h1>
+    <div class="meta">Arbeitsblatt 1 · Teil 1: aus dem Kopf</div>
+  </header>
+
+  <div class="auftrag">
+    <div class="frage">
+      <p><strong>Löse die 6 Aufgaben in JavaScript. So wie in IM2.</strong></p>
+      <p>Alleine, still, ohne Laptop, ohne Unterlagen, ohne KI.</p>
+    </div>
+  </div>
+
+  <div class="raster">
+
+    <div class="feld">
+      <div class="kopf">
+        <div class="nr">1</div>
+        <p>Speichere die Wassertemperatur <b>19.4</b> Grad in einer Variable.</p>
+      </div>
+      <div class="linien"><div></div><div></div><div></div><div></div></div>
+      <div class="unsicher"><span class="kasten"></span>bin unsicher</div>
+    </div>
+
+    <div class="feld">
+      <div class="kopf">
+        <div class="nr">2</div>
+        <p>Gib den Satz <b>Aare in Bern: 19.4 °C</b> in der Konsole aus. Ort und
+          Temperatur stehen in Variablen.</p>
+      </div>
+      <div class="linien"><div></div><div></div><div></div><div></div></div>
+      <div class="unsicher"><span class="kasten"></span>bin unsicher</div>
+    </div>
+
+    <div class="feld">
+      <div class="kopf">
+        <div class="nr">3</div>
+        <p>Prüfe, ob die Temperatur <b>18 °C oder mehr</b> beträgt. Wenn ja, gib
+          in der Konsole «angenehm» aus, sonst «frisch».</p>
+      </div>
+      <div class="linien"><div></div><div></div><div></div><div></div></div>
+      <div class="unsicher"><span class="kasten"></span>bin unsicher</div>
+    </div>
+
+    <div class="feld">
+      <div class="kopf">
+        <div class="nr">4</div>
+        <p>Speichere <b>18.9, 19.4, 20.1</b> in einem Array und gib den
+          <b>zweiten</b> Wert in der Konsole aus.</p>
+      </div>
+      <div class="linien"><div></div><div></div><div></div><div></div></div>
+      <div class="unsicher"><span class="kasten"></span>bin unsicher</div>
+    </div>
+
+    <div class="feld">
+      <div class="kopf">
+        <div class="nr">5</div>
+        <p>Gib <b>jeden</b> Wert dieses Arrays einzeln in der Konsole aus.</p>
+      </div>
+      <div class="linien"><div></div><div></div><div></div><div></div></div>
+      <div class="unsicher"><span class="kasten"></span>bin unsicher</div>
+    </div>
+
+    <div class="feld">
+      <div class="kopf">
+        <div class="nr">6</div>
+        <p>Schreibe eine <b>Funktion</b>, die aus Ort und Temperatur den Satz
+          von Aufgabe 2 <b>zurückgibt</b>. Ruf sie für Bern auf und gib das
+          Ergebnis in der Konsole aus.</p>
+      </div>
+      <div class="linien"><div></div><div></div><div></div><div></div></div>
+      <div class="unsicher"><span class="kasten"></span>bin unsicher</div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================================ SEITE 2 ============================ -->
+<section class="seite">
+
+  <header style="padding-bottom: 2mm; margin-bottom: 3mm;">
+    <h1>Von JavaScript zu PHP</h1>
+    <div class="meta">Arbeitsblatt 2 · Teil 2: dasselbe in PHP</div>
+  </header>
+
+  <div class="auftrag" style="margin-bottom: 3mm;">
+    <div class="frage">
+      <p><strong>Zu zweit:</strong> Dieselben Aufgaben in PHP. Mit
+        Arbeitsblatt 1 vergleichen und rechts notieren, was anders ist.</p>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="c-nr">#</th>
+        <th>PHP</th>
+        <th class="c-notiz">Was ist anders als in JavaScript?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="c-nr">1</td>
+        <td><pre>$temperatureC = 19.4;</pre></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="c-nr">2</td>
+        <td><pre>echo "Aare in $location: $temperatureC °C";</pre></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="c-nr">3</td>
+        <td><pre>if ($temperatureC >= 18) {
+    echo "angenehm";
+} else {
+    echo "frisch";
+}</pre></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="c-nr">4</td>
+        <td><pre>$temperatures = [18.9, 19.4, 20.1];
+echo $temperatures[1];</pre></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="c-nr">5</td>
+        <td><pre>foreach ($temperatures as $temperature) {
+    echo $temperature . " °C\n";
+}</pre></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="c-nr">6</td>
+        <td><pre>function formatMeasurement($location, $temperatureC)
+{
+    return "Aare in $location: $temperatureC °C";
+}
+echo formatMeasurement('Bern', 19.4);</pre></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</section>
+
+</div>
+</body>
+</html>
