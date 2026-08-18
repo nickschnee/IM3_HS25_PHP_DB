@@ -66,16 +66,17 @@ ganz am Schluss, im Deployment-Teil.
 
 1. `🛠️` Tooling: Editor, Terminal und Git überprüfen `30'`
 2. `🛠️` Tooling: Lokaler Server [00 Lokaler PHP-Server](theorie/00_lokaler_php_server/index.html) `30'`
-3. `🧑‍🏫` Code-Along: [00 Hallo PHP](code-alongs/A_PHP_Basics/00_hallo_php) `30'`
-4. `📕` Theorie A: [PHP Basics](theorie/A_PHP_Basics) `60'`
-5. `🧑‍🏫` Code-Along: [01 Variablen](code-alongs/A_PHP_Basics/01_variablen) `25'`
-6. `🧑‍🏫` Code-Along: [02 Funktionen](code-alongs/A_PHP_Basics/02_funktionen) `25'`
-7. `🧑‍🏫` Code-Along: [03 Bedingungen](code-alongs/A_PHP_Basics/03_bedingungen) `25'`
-8. `🧑‍🏫` Code-Along: [04 Arrays](code-alongs/A_PHP_Basics/04_arrays) `25'`
-9. `🧑‍🏫` Code-Along: [05 Schleifen](code-alongs/A_PHP_Basics/05_schleifen) `25'`
-10. `💻` Digitale Übung: [06 Städtevergleich](uebungen/A_PHP_Basics/06_staedtevergleich) `45'`
-11. `🔎` Eigene Datenfrage formulieren `60'`
-12. `✅` **M2: Datenfrage formuliert**
+3. '📝' Analoge Übung: Vorwissen aktivieren (aus IM2) (in progress)
+4. `🧑‍🏫` Code-Along: [00 Hallo PHP](code-alongs/A_PHP_Basics/00_hallo_php) `30'`
+5. `📕` Theorie A: [PHP Basics](theorie/A_PHP_Basics) `60'`
+6. `🧑‍🏫` Code-Along: [01 Variablen](code-alongs/A_PHP_Basics/01_variablen) `25'`
+7. `🧑‍🏫` Code-Along: [02 Funktionen](code-alongs/A_PHP_Basics/02_funktionen) `25'`
+8. `🧑‍🏫` Code-Along: [03 Bedingungen](code-alongs/A_PHP_Basics/03_bedingungen) `25'`
+9. `🧑‍🏫` Code-Along: [04 Arrays](code-alongs/A_PHP_Basics/04_arrays) `25'`
+10. `🧑‍🏫` Code-Along: [05 Schleifen](code-alongs/A_PHP_Basics/05_schleifen) `25'`
+11. `💻` Digitale Übung: [06 Städtevergleich](uebungen/A_PHP_Basics/06_staedtevergleich) `45'`
+12. `🔎` Eigene Datenfrage formulieren `60'`
+13. `✅` **M2: Datenfrage formuliert**
 
 #### Zusatzmaterial (Block A)
 
