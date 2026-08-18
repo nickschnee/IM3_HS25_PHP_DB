@@ -56,7 +56,7 @@ Ihr richtet beides zu Beginn des jeweiligen Blocks ein – den PHP-Server in
 Block A, die Datenbank in Block D. Auf einen Webserver kommt euer Projekt erst
 ganz am Schluss, im Deployment-Teil.
 
-### Kickoff & Setup
+### Kickoff
 
 1. `📕` Kickoff `45'`
 2. `🔎` Gruppen bilden: Viererteam, davon je zwei für Backend und Frontend `45'`
