@@ -5,7 +5,7 @@ Ein Ordner pro Posten. In jedem Ordner liegt dasselbe Set:
 | Datei | Wofür |
 | ----- | ----- |
 | `posten.html` | Das Blatt, das am Posten hängt: Nummer, Titel, Bild, QR-Code, Auftrag. |
-| `bild.png` | Screenshot oder Bild der Story, im Blatt eingebunden. Fehlt nur bei Posten 3, dort liegen die Karten selbst am Posten. |
+| `bild.png` oder anderes Bildformat | Screenshot oder Bild der Story, im Blatt eingebunden. |
 | `qr.svg` | QR-Code auf die Story, im Blatt eingebunden. |
 | `README.md` | Was am Posten steht und woher das Material stammt. |
 

@@ -2,9 +2,9 @@
 
 > Einstieg in den Kickoff, nach dem ersten Teil der
 > [Kickoff-Folien](../../../../theorie/00_kickoff/index.html). Die Klasse
-> läuft an sechs Posten vorbei und leitet daraus selbst ab, was eine
+> läuft an fünf Posten vorbei und leitet daraus selbst ab, was eine
 > Data-Story braucht. Botschaft am Schluss: Hinter jeder dieser Grafiken
-> steht eine Tabelle, die jemand über Zeit gefüllt hat.
+> steht eine Tabelle, ein Datensatz.
 
 **Dauer:** 40' · **Sozialform:** freier Postenlauf zu zweit → Plenum
 
@@ -16,22 +16,18 @@
 - **Plenum ohne Tische.** Stühle im Halbkreis zur Leinwand, die Tische an den
   Rand oder aus dem Raum. So ist die Fläche für den Postenlauf frei und die
   Auswertung braucht kein Umstellen.
-- Die Posten stehen rundherum an den Wänden, mit genug Abstand, damit zwei
-  Paare gleichzeitig davorstehen können.
-- Pro Posten eine Ablage für den Laptop: Stehtisch, Fensterbank oder ein
-  einzelner Tisch an der Wand.
-- Vor der Lektion einrichten, nicht während der Folien.
+- Die Posten stehen rundherum an den Wänden, mit genug Abstand, damit Gruppen gleichzeitig davorstehen können.
+- Vor der Lektion einrichten!
 
 ## Die Posten
 
-| #   | Posten                      | Was am Posten steht                              | Material                                                                    |
-| --- | --------------------------- | ------------------------------------------------ | --------------------------------------------------------------------------- |
-| 1   | Stromexporte der Schweiz    | Blatt, Laptop mit offener Seite                  | [`posten/01_stromexporte`](../posten/01_stromexporte)                       |
-| 2   | Wo die Parkbussen herkommen | Blatt, Laptop mit offener Karte                  | [`posten/02_parkbussen`](../posten/02_parkbussen)                           |
-| 3   | My Social Year 2024         | Blatt, **gedruckte Neujahrskarten zum Anfassen** | [`posten/03_my_social_year`](../posten/03_my_social_year)                   |
-| 4   | BahnMining                  | Blatt, Laptop mit Video, **zwei Kopfhörer**      | [`posten/04_bahnmining`](../posten/04_bahnmining)                           |
-| 5   | Ein Jahr, Stunde für Stunde | Blatt, Laptop oder Tablet                        | [`posten/05_jahr_in_stunden`](../posten/05_jahr_in_stunden)                 |
-| 6   | Tiere auf Weinetiketten     | Blatt, Laptop mit offener Seite                  | [`posten/06_tiere_auf_weinetiketten`](../posten/06_tiere_auf_weinetiketten) |
+| #   | Posten                      | Was am Posten steht                      | Material                                                        |
+| --- | --------------------------- | ---------------------------------------- | --------------------------------------------------------------- |
+| 1   | Wo die Parkbussen herkommen | Blatt, ausgedruckter WIRED-Artikel       | [`posten/01_parkbussen`](../posten/01_parkbussen)               |
+| 2   | My Social Year 2024         | Blatt, persönliche Jahreskarte           | [`posten/02_my_social_year`](../posten/02_my_social_year)       |
+| 3   | The Pour-igin of Species    | Blatt, Laptop mit offener Seite          | [`posten/03_pourigin_of_species`](../posten/03_pourigin_of_species) |
+| 4   | Der Spion in unseren Handys | Blatt, Laptop mit offener SRF-Recherche  | [`posten/04_handy_ortungsdaten`](../posten/04_handy_ortungsdaten) |
+| 5   | Stromexporte der Schweiz    | Blatt, Laptop mit offener Live-Seite     | [`posten/05_1kwh`](../posten/05_1kwh)                           |
 
 Jeder Posten-Ordner enthält das Blatt zum Ausdrucken (`posten.html`), das Bild,
 den QR-Code und die erwarteten Antworten. Details zum Drucken stehen in
@@ -39,11 +35,12 @@ den QR-Code und die erwarteten Antworten. Details zum Drucken stehen in
 
 ## Material
 
-- Sechs Postenblätter, je einmal ausgedruckt und aufgehängt.
-- Die Neujahrskarten von Posten 3.
+- Fünf Postenblätter, je einmal ausgedruckt und aufgehängt.
+- Die Seiten 1 bis 4 des WIRED-Artikels von Posten 1 ausgedruckt zum Lesen.
+- Die persönliche Jahreskarte von Posten 2.
 - [`arbeitsblatt.html`](../arbeitsblatt.html) im Browser öffnen, `Cmd+P`, A4
   quer, Hintergrundgrafiken an. Pro Studentin und Student ein Blatt.
-- Vier bis fünf Laptops, zwei Kopfhörer für Posten 4.
+- Drei Laptops oder Tablets für die Posten 3 bis 5.
 - Whiteboard mit vier vorbereiteten Spalten für die Auswertung.
 
 ## Verlauf
@@ -59,28 +56,27 @@ Wenn es an einem Posten staut: darauf hinweisen, dass die Reihenfolge egal ist.
 
 ## Erwartete Antworten
 
-| Posten                | Daten                                             | Quelle                                  | Zeitraum                              |
-| --------------------- | ------------------------------------------------- | --------------------------------------- | ------------------------------------- |
-| 1 Stromexporte        | Zeitpunkt, Nachbarland, Leistung in MW            | Swissgrid                               | laufend, alle zehn Sekunden           |
-| 2 Parkbussen          | Kontrolleur, Adresse, Zeitpunkt der letzten Busse | Ticketsystem der SFMTA, ausgelesen      | Momentaufnahme vom 25. September 2025 |
-| 3 My Social Year      | Datum, Person, Anlass                             | selbst geführt                          | ein Kalenderjahr, 2024                |
-| 4 BahnMining          | Zug, Halt, Sollzeit, Istzeit                      | Abfahrtstafeln der Deutschen Bahn       | ein Jahr, rund 25 Millionen Halte     |
-| 5 Ein Jahr in Stunden | Datum, Stunde, Kategorie                          | er selbst, von Hand in eine Tabelle     | jede Stunde des Jahres 2025           |
-| 6 Weinetiketten       | Wein, Preis, Bewertung, erkanntes Tier            | Vivino, Tiere per Bilderkennung ergänzt | einmalige Sammlung im März 2024       |
+| Posten             | Daten                                                | Quelle                                      | Zeitraum                              |
+| ------------------ | ---------------------------------------------------- | ------------------------------------------- | ------------------------------------- |
+| 1 Parkbussen       | Kontrolleur, Adresse, Zeit, Bussenart und Betrag      | Ticketsystem der SFMTA, ausgelesen          | wenige Stunden am 23. September 2025  |
+| 2 My Social Year   | Datum, Person, bewusste Begegnung ja/nein             | selbst geführt                              | ein Kalenderjahr, 2024                |
+| 3 Pour-igin        | Wein, Preis, Bewertung, Rebsorte, erkanntes Tier      | Vivino, Tiere per Bilderkennung ergänzt     | einmalige Sammlung im März 2024       |
+| 4 Handy-Ortung     | Geräte-Kennung, Koordinaten, Zeitstempel              | Apps und Datenhändler, von SRF gekauft      | rund eine Woche im März 2024          |
+| 5 Stromexporte     | Zeitpunkt, Nachbarland, Leistung in MW                | Swissgrid                                   | laufend, alle zehn Sekunden           |
 
 ## Worauf es ankommt
 
 - Die Zeitspalte wird fast immer vergessen. Genau daran zeigt sich, dass eine
   Data-Story eine Entwicklung braucht und nicht nur eine Zahl.
-- Die Posten sammeln unterschiedlich: laufend (1), einmalig abgegriffen (2, 6)
-  und über lange Zeit selbst geführt (4, 5). Dieser Unterschied ist der
+- Die Posten sammeln unterschiedlich: laufend (5), einmalig abgegriffen (1, 3,
+  4) und über lange Zeit selbst geführt (2). Dieser Unterschied ist der
   Aufhänger für das Kapitel zu den Datenquellen.
-- Posten 2 ist das Argument für einen eigenen Datenbestand: Die Seite lief nur
+- Posten 1 ist das Argument für einen eigenen Datenbestand: Die Seite lief nur
   vier Stunden, dann war die Quelle weg.
-- Posten 3, 5 und 6 wirken gegen die Sorge, ein Projekt müsse weltbewegend
-  sein. Eine Tabelle mit drei Spalten reicht.
-- Posten 3 ist der einzige analoge: keine Website, kein Bildschirm, nur
-  Karten auf dem Tisch. Das lohnt sich in der Auswertung zu benennen.
+- Posten 2 und 3 wirken gegen die Sorge, ein Projekt müsse weltbewegend sein.
+- Posten 4 zeigt, dass scheinbar anonyme Daten sehr konkrete Folgen für
+  Menschen haben können.
+- Posten 5 macht Live-Daten und den laufenden Datenfluss unmittelbar sichtbar.
 
 ## Vor jedem Durchlauf prüfen
 

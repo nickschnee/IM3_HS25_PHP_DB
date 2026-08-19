@@ -7,10 +7,11 @@ vorkommt oder der Gastreferent ein Beispiel selbst mitbringt.
 
 | Kürzel | Posten | Worum es geht | Warum im Speicher |
 | ------ | ------ | ------------- | ----------------- |
-| A | [Der Spion in unseren Handys](handy_ortungsdaten) | Gekaufte Standortdaten von 1,3 Millionen Schweizer Geräten | Pascal Albisser ist Mitautor und bringt es als Gastreferent evtl. selbst mit |
+| A | [BahnMining](bahnmining) | Ein Jahr lang gesammelte Halte der Deutschen Bahn | Das lange Video braucht einen Laptop und zwei Kopfhörer |
 | B | [Lager in Xinjiang](lager_in_xinjiang) | Satellitenbilder von 39 Anlagen, vermessen über zwei Jahre | schweres Thema, braucht Zeit und Einordnung |
 | C | [Karten nach dem Beben](karten_nach_dem_beben) | OpenStreetMap-Bearbeitungen nach dem Erdbeben 2023 | starke Alternative, wenn ein Posten ausfällt |
-| D | [5000 Speisekarten](5000_speisekarten) | 5000 Speisekarten von 1880 bis 1920 aus der NYPL | doppelt sich thematisch mit Posten 6 (The Pudding) |
+| D | [5000 Speisekarten](5000_speisekarten) | 5000 Speisekarten von 1880 bis 1920 aus der NYPL | doppelt sich thematisch mit Posten 3 (The Pudding) |
+| E | [Ein Jahr, Stunde für Stunde](jahr_in_stunden) | Jede Stunde eines Jahres von Hand kategorisiert | ähnelt dem persönlichen Tracking von «My Social Year» |
 
 ## Einen Posten einsetzen
 
