@@ -50,7 +50,7 @@ Nicht die Lösung vorlesen, sondern in dieser Reihenfolge fragen:
 
 1. «Was am Ergebnis sieht falsch aus?» – Beschreiben lassen, nicht erklären.
 2. «Ab welcher Stelle genau ist es fett?» – Die Grenze führt direkt zur Zeile.
-3. Erst dann `09_fehlerjagd_korrekt.html` daneben projizieren.
+3. Erst dann `fehlerjagd_korrekt.html` daneben projizieren.
 
 Der Übergang zum Abschluss:
 
