@@ -59,6 +59,8 @@ Schriftgrössen immer in `pt`.
 | `.code-label` | kleine Beschriftung über Code oder Ausgabe |
 | `split-slide` mit `.split-half.split-good/.split-bad` | Gegenüberstellung mit mittiger Trennlinie |
 | `.footnote` | Quellenangabe unten |
+| `figure` mit `figcaption`, `.figure-center` | Bild mit Bildlegende |
+| `.shot` | Rahmen um einen Screenshot |
 | `.text-sm` … `.text-4xl`, `.text-muted` | Schriftgrösse und Farbe anpassen |
 | `.big-statement` | Kernaussage auf der Schlussfolie |
 | `.next-step` | Pille „Nächster Schritt: …" |
@@ -78,6 +80,42 @@ Mitte getrennt.
 
 Die Klassen `.split-good` und `.split-bad` beschreiben die inhaltliche Rolle,
 erzeugen aber keine Hintergrundfarbe.
+
+## Bilder
+
+Bilder liegen im Ordner `bilder/` neben dem `index.html` des Foliensatzes und
+werden relativ eingebunden. Beispiel: `theorie/00_kickoff/bilder/`.
+
+Ein Bild steht immer in einem `figure` mit `figcaption`. Die Legende sagt, was
+zu sehen ist und woher es stammt:
+
+```html
+<section id="beispiel">
+  <h2>Titel der Folie</h2>
+  <div class="content">
+    <figure>
+      <img class="shot" src="bilder/beispiel.jpg" alt="Kurze Beschreibung">
+      <figcaption>Was zu sehen ist – und woher es stammt.</figcaption>
+    </figure>
+  </div>
+</section>
+```
+
+Das `figure` füllt den freien Platz unter dem Titel, das Bild wird auf diese
+Höhe gedeckelt und die Legende steht direkt darunter. Ein Bild kann deshalb
+nicht über die Folie hinauslaufen.
+
+- `class="shot"` für Screenshots: ein dünner Rahmen trennt weisse Bildränder
+  vom weissen Folienhintergrund. Diagramme und freigestellte Grafiken kommen
+  ohne aus.
+- `class="figure-center"` am `figure` zentriert Bild und Legende. Standard ist
+  linksbündig, auf der Fluchtlinie des Titels.
+- `alt` ist Pflicht und beschreibt den Inhalt, nicht die Datei.
+- Steht neben dem Bild noch Text, kommt beides in ein Grid; das `figure`
+  braucht dann eine Zelle mit `align-items: stretch`.
+
+Bilder vor dem Einchecken auf höchstens 1600px Breite bringen und als JPEG mit
+Qualität 85 speichern. Ein Foliensatz sollte insgesamt unter etwa 3 MB bleiben.
 
 ## Code auf Folien
 

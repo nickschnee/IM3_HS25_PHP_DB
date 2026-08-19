@@ -140,3 +140,25 @@ Ein kurzer Einleitungssatz vor einer Aufzählung erhält immer denselben Abstand
 zu den ersten Aufzählungspunkten.
 
 Dafür wird die Klasse `list-intro` verwendet.
+
+## 16. Bilder brauchen eine Legende
+
+Jedes Bild bekommt eine `figcaption`, die zwei Dinge sagt: was zu sehen ist und
+woher es stammt.
+
+Ohne diese Zeile muss die Lehrperson das Bild jedes Mal mündlich erklären, und
+im exportierten PDF steht es ohne Zusammenhang da.
+
+```html
+<figure>
+  <img class="shot" src="bilder/beispiel.jpg" alt="Kurze Beschreibung">
+  <figcaption>Abfahrten Bern – Zürich HB, aus der Fahrplan-API.</figcaption>
+</figure>
+```
+
+Ein Bild ist ausserdem kein Ersatz für den Folientitel. Auch eine reine
+Bildfolie bekommt eine `<h2>`, die sagt, worum es geht.
+
+Screenshots bekommen `class="shot"`, damit ihr weisser Rand nicht mit dem
+Folienhintergrund verschmilzt. Der Baustein steht in
+[README.md](README.md#bilder).

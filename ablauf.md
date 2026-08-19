@@ -58,9 +58,17 @@ ganz am Schluss, im Deployment-Teil.
 
 ### Kickoff
 
-1. `📕` Kickoff `45'`
-2. `🔎` Gruppen bilden: Viererteam, davon je zwei für Backend und Frontend `45'`
-3. `✅` **M1: Gruppen gebildet**
+1. `📕` Theorie: [Kickoff – Data-Story und ETL](theorie/00_kickoff/) `25'`
+2. `📝` Analoge Übung: [01 Data-Story-Galerie](uebungen/00_kickoff/01_data_story_galerie/) `40'`
+3. `📕` Theorie: [Kickoff – woher die Daten kommen](theorie/00_kickoff/) `25'`
+4. `📝` Analoge Übung: [02 Dataset-Blinddate](uebungen/00_kickoff/02_dataset_blinddate/) `30'`
+5. `💻` Digitale Übung: [03 Datenspur-Jagd](uebungen/00_kickoff/03_datenspur_jagd/) `25'`
+6. `🔎` [04 Themenbörse: Gruppen bilden und Rollen festlegen](uebungen/00_kickoff/04_themenboerse/) `45'`
+7. `✅` **M1: Gruppen gebildet**
+
+Der Foliensatz wird in zwei Portionen gehalten; die Galerie liegt dazwischen.
+Die Datenspur-Jagd ist der Zeitpuffer des Halbtags. Der lokale PHP-Server, der
+ebenfalls zu M1 gehört, wird im anschliessenden Tooling-Teil eingerichtet.
 
 ### Block A – PHP Basics
 

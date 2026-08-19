@@ -580,10 +580,61 @@
 .reveal table td code { font-size: 0.95em; }
 
 /* ===========================================
+   BILDER
+   =========================================== */
+
+.reveal img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Screenshot: duenner Rahmen, damit auch ein Bild mit weissem Rand
+ * als eigenes Element erkennbar bleibt. */
+.reveal .shot {
+  border: 1px solid var(--box-border);
+  border-radius: var(--box-radius);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Bild mit Bildlegende.
+ * Die Legende steht direkt unter dem Bild, nicht am Folienrand. Damit das
+ * Bild trotzdem nie ueber die Folie hinauswaechst, deckelt max-height es auf
+ * die Hoehe des figure abzueglich Legende und Abstand. Die Prozentangabe
+ * funktioniert nur, weil das figure ueber flex: 1 eine feste Hoehe bekommt. */
+.reveal figure {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  min-height: 0;
+}
+
+.reveal figure img {
+  min-height: 0;
+  max-height: calc(100% - 32px);
+  width: auto;
+  object-fit: contain;
+}
+
+.reveal figure.figure-center { align-items: center; }
+
+.reveal figcaption {
+  font-size: var(--footnote-size);
+  color: var(--muted-color);
+  line-height: 1.4;
+}
+
+/* Bildfolie: das figure bekommt den ganzen freien Platz unter dem Titel. */
+.reveal .slides section > .content > figure { flex: 1; }
+
+/* ===========================================
    MARKER / KLEINTEILE
    =========================================== */
 
 .eyebrow {
+  display: block;
   font-size: 11pt;
   letter-spacing: 0.14em;
   text-transform: uppercase;

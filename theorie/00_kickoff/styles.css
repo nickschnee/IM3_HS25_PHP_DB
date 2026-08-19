@@ -1,0 +1,13 @@
+/* Sonderregeln nur fuer den Foliensatz "Kickoff".
+ * Das gemeinsame Design steht in ../_foliendesign/fhgr-slides.css. */
+
+/* Zehn Meilensteine auf einer Folie: engere Zeilen, damit die Tabelle
+ * ohne Scrollen auf die Folie passt. */
+.reveal table.meilensteine td {
+  padding: 4px 12px 4px 0;
+  font-size: 13pt;
+}
+
+.reveal table.meilensteine th {
+  padding-bottom: 6px;
+}

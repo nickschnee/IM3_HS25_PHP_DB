@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IM3 – Kickoff</title>
+
+  <!-- Reveal.js core -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+
+  <!-- Font Awesome fuer Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- FHGR Foliendesign (gemeinsam fuer alle Foliensaetze) -->
+  <link rel="stylesheet" href="../_foliendesign/fhgr-slides.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- =========================================================
+           TITEL & UEBERBLICK
+           ========================================================= -->
+
+      <section id="title" class="title-slide" data-state="is-title">
+        <h1>Kickoff</h1>
+        <div class="rule"></div>
+        <p>Interaktive Medien 3</p>
+        <p class="sub">nick.schneeberger@fhgr.ch</p>
+        <aside class="notes">
+          Rund 25 Minuten bis zur Galerie-Uebung, danach nochmals rund 25 Minuten
+          fuer das Kapitel zu den Datenquellen. Kein PHP heute.
+        </aside>
+      </section>
+
+      <section id="inhalt">
+        <h2>Inhalt</h2>
+        <div class="content">
+          <ul class="text-xl">
+            <li>Was ihr am Ende gebaut habt</li>
+            <li>Wie die Daten dorthin kommen</li>
+            <li>Woher die Daten überhaupt kommen</li>
+            <li>Euer Projekt und eure Gruppe</li>
+          </ul>
+        </div>
+        <aside class="notes">
+          Die vier Punkte sind gleichzeitig die vier Kapitel dieses Foliensatzes.
+          Nach Kapitel eins folgt die Galerie-Uebung, nach Kapitel drei die
+          Datenspur-Jagd, am Schluss die Themenboerse.
+        </aside>
+      </section>
+
+      <!-- =========================================================
+           KAPITEL 1 – ZIEL: DATA-STORY
+           ========================================================= -->
+
+      <section id="divider-ziel" class="section-divider" data-state="is-section-divider">
+        <h1>Ziel: eine Data-Story</h1>
+        <p>Eine Geschichte, die ohne ihre Daten nicht erzählbar wäre.</p>
+      </section>
+
+      <section id="beispiel-1kwh">
+        <h2>Wie viel Strom exportiert die Schweiz gerade?</h2>
+        <div class="content">
+          <figure>
+            <img class="shot" src="bilder/data-story-1kwh.jpg"
+                 alt="Liniendiagramm der Schweizer Stromexporte nach Deutschland, Frankreich, Italien und Österreich">
+            <figcaption>1kwh.ch – die Zahlen kommen alle zehn Sekunden von Swissgrid und werden laufend gesammelt.</figcaption>
+          </figure>
+        </div>
+        <aside class="notes">
+          Eigenes Projekt. Kurz zeigen und offen fragen: Was seht ihr hier? Was
+          braucht es, damit diese Grafik existieren kann? Noch keine Antworten
+          geben – die Galerie-Uebung sammelt sie gleich selbst.
+        </aside>
+      </section>
+
+      <section id="beispiel-pudding">
+        <h2>Welches Tier auf dem Etikett bringt den besseren Wein?</h2>
+        <div class="content">
+          <figure>
+            <img class="shot" src="bilder/data-story-pudding-wine.jpg"
+                 alt="Streudiagramm von Preis und Bewertung für Weine mit Tieren auf dem Etikett">
+            <figcaption>pudding.cool – 1488 Weinetiketten aus der Vivino-App, nach Tiergruppe sortiert.</figcaption>
+          </figure>
+        </div>
+        <aside class="notes">
+          Fremdes Beispiel und Gegenstueck zu 1kwh.ch: alberne Frage, ernsthafte
+          Methode. Der Text scrollt ueber der Grafik mit und erklaert jeden
+          Schritt. Die Autor:innen legen ihre Methodik am Ende offen.
+        </aside>
+      </section>
+
+      <section id="uebung-galerie">
+        <span class="eyebrow">Übung</span>
+        <h2>Vier Data-Stories, drei Fragen</h2>
+        <div class="content">
+          <p class="list-intro">Ihr geht in Vierergruppen von Station zu Station und notiert pro Station:</p>
+          <ul class="text-lg">
+            <li>Welche Daten stecken dahinter?</li>
+            <li>Woher stammen sie?</li>
+            <li>Über welchen Zeitraum wurden sie gesammelt?</li>
+          </ul>
+          <div class="callout callout-gray" style="margin-top: auto;">
+            <p>Ihr braucht keine Technik zu erraten, nur die Daten.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          40 Minuten. Vier Stationen, pro Station rund 7 Minuten, danach 12
+          Minuten Auswertung im Plenum. Laufzettel und Stationskarten liegen in
+          uebungen/00_kickoff/01_data_story_galerie/. Die Auswertung ergibt von
+          selbst die naechste Folie.
+        </aside>
+      </section>
+
+      <section id="was-ist-data-story">
+        <h2>Was eine Data-Story ausmacht</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; align-items: stretch;">
+            <div class="box">
+              <h3>Daten</h3>
+              <p class="text-sm mb-0">Zahlen, die eine Frage wirklich beantworten können.</p>
+            </div>
+            <div class="box">
+              <h3>Zeit</h3>
+              <p class="text-sm mb-0">Ein Zeitraum, über den sich etwas verändert.</p>
+            </div>
+            <div class="box">
+              <h3>Darstellung</h3>
+              <p class="text-sm mb-0">Eine Grafik, in der man die Veränderung sieht.</p>
+            </div>
+            <div class="box">
+              <h3>Einbettung</h3>
+              <p class="text-sm mb-0">Text, der sagt, warum das jemanden angeht.</p>
+            </div>
+          </div>
+          <div class="callout callout-blue mt-2">
+            <p>Die ersten beiden Teile beschafft ihr, die letzten beiden gestaltet ihr.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          Diese vier Begriffe an der Wandtafel mit den Antworten aus der Galerie
+          abgleichen. Meist fehlt der Klasse der Punkt Zeit – genau der macht aus
+          einer Tabelle eine Geschichte.
+        </aside>
+      </section>
+
+      <section id="was-braucht-es">
+        <h2>Was ihr dafür bauen werdet</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <span class="eyebrow">Hinten</span>
+              <ul class="list-tight">
+                <li>Eine Datenquelle, die euch Zahlen liefert</li>
+                <li>Ein Skript, das diese Zahlen säubert</li>
+                <li>Eine Datenbank, die sie behält</li>
+                <li>Ein Endpunkt, der sie als JSON ausgibt</li>
+              </ul>
+            </div>
+            <div>
+              <span class="eyebrow">Vorne</span>
+              <ul class="list-tight">
+                <li>HTML, CSS und JavaScript wie in den bisherigen Kursen</li>
+                <li>Chart.js für die Grafik</li>
+                <li>Text, Titel und Quellenangaben</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-gray" style="margin-top: auto;">
+            <p>Neu ist für die meisten nur die linke Spalte.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          Beruhigend formulieren: Die rechte Spalte koennt ihr bereits. PHP und
+          Datenbank sind das Neue, und wir gehen sie in kleinen Schritten durch.
+        </aside>
+      </section>
+
+      <!-- =========================================================
+           KAPITEL 2 – DER WEG DAHIN
+           ========================================================= -->
+
+      <section id="divider-weg" class="section-divider" data-state="is-section-divider">
+        <h1>Von der Quelle<br>zur Grafik</h1>
+        <p>Vier Schritte, die im ganzen Kurs gleich bleiben.</p>
+      </section>
+
+      <section id="die-kette">
+        <h2>Die Kette, die uns durch den Kurs trägt</h2>
+        <div class="content">
+          <div class="flow">
+            <div class="flow-step">
+              <span class="flow-title">Extract</span>
+              <span class="flow-sub">Daten beschaffen</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <span class="flow-title">Transform</span>
+              <span class="flow-sub">Daten bereinigen</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <span class="flow-title">Load</span>
+              <span class="flow-sub">Daten speichern</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <span class="flow-title">Unload</span>
+              <span class="flow-sub">Daten ausgeben</span>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <span class="flow-title">Chart.js</span>
+              <span class="flow-sub">Daten zeigen</span>
+            </div>
+          </div>
+          <p class="mt-2">Jeder Schritt ist eine eigene PHP-Datei mit genau einer Aufgabe.</p>
+          <div class="callout callout-blue">
+            <p>Extract, Transform und Load heissen überall so und werden zu <strong>ETL</strong> abgekürzt.</p>
+            <p>Unload ist unser eigener Name für den Schritt danach.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          Diese Kette kommt in jedem weiteren Foliensatz als «Wo wir stehen»
+          wieder. Hier bewusst nur benennen, nicht erklaeren – jeder Schritt
+          bekommt spaeter seinen eigenen Tag.
+        </aside>
+      </section>
+
+      <section id="wer-macht-was">
+        <h2>Wer im Team was macht</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div class="box">
+              <h3>Backend zu zweit</h3>
+              <p class="text-sm">Ihr holt die Daten, säubert sie und speichert sie in der Datenbank.</p>
+              <p class="text-sm mb-0">Am Ende liefert ihr einen JSON-Endpunkt aus.</p>
+            </div>
+            <div class="box">
+              <h3>Frontend zu zweit</h3>
+              <p class="text-sm">Ihr baut die Story und die Grafik mit Chart.js.</p>
+              <p class="text-sm mb-0">Ihr startet mit erfundenen Daten und wechselt später auf den echten Endpunkt.</p>
+            </div>
+          </div>
+          <div class="callout callout-orange mt-2">
+            <p>Damit das zusammenpasst, einigt ihr euch früh auf die Feldnamen der JSON-Ausgabe.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          Diese Vereinbarung heisst im Kurs Datenvertrag. Hier nur ankuendigen;
+          festgehalten wird sie erst, wenn die ersten echten Daten da sind.
+          Wichtig: Beide Zweierteams bleiben fuer das Ganze verantwortlich.
+        </aside>
+      </section>
+
+      <section id="kursverlauf">
+        <h2>Wie der Kurs abläuft</h2>
+        <div class="content">
+          <table>
+            <tr><th style="width: 22%;"></th><th>Was ihr lernt</th></tr>
+            <tr><td>Zuerst</td><td>PHP so weit, dass ihr Daten verarbeiten könnt</td></tr>
+            <tr><td>Dann</td><td>Die vier Schritte der Kette, einer nach dem anderen</td></tr>
+            <tr><td>Dann</td><td>Grafik, Story und Gestaltung</td></tr>
+            <tr><td>Am Schluss</td><td>Zusammenbauen, testen und am Marktstand zeigen</td></tr>
+          </table>
+          <div class="callout callout-gray mt-2">
+            <p>Euer eigenes Projekt läuft vom ersten Tag an nebenher mit.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          Bewusst ohne Tagesangaben, damit sich der Plan im Unterricht noch
+          verschieben darf. Der genaue Ablauf steht in ablauf.md im Repo.
+        </aside>
+      </section>
+
+      <!-- =========================================================
+           KAPITEL 3 – WOHER KOMMEN DIE DATEN?
+           ========================================================= -->
+
+      <section id="divider-quellen" class="section-divider" data-state="is-section-divider">
+        <h1>Woher kommen<br>die Daten?</h1>
+        <p>Vier Wege, an Zahlen zu kommen – zwei davon braucht ihr wirklich.</p>
+      </section>
+
+      <section id="vier-quellenarten">
+        <h2>Vier Wege zu Daten</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; align-items: stretch;">
+            <div class="box">
+              <h3>Datensatz</h3>
+              <p class="text-sm mb-0">Eine fertige Datei, die jemand veröffentlicht hat.</p>
+            </div>
+            <div class="box">
+              <h3>API</h3>
+              <p class="text-sm mb-0">Eine Adresse, die auf Anfrage aktuelle Daten zurückgibt.</p>
+            </div>
+            <div class="box">
+              <h3>Reverse Engineering</h3>
+              <p class="text-sm mb-0">Die versteckte Datenquelle einer Website finden.</p>
+            </div>
+            <div class="box">
+              <h3>Webscraping</h3>
+              <p class="text-sm mb-0">Die Website selbst auslesen, weil es keine Datenquelle gibt.</p>
+            </div>
+          </div>
+          <div class="callout callout-blue mt-2">
+            <p>Für euer Projekt zählen vor allem die ersten beiden.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          Die Reihenfolge ist gleichzeitig eine Rangfolge: je weiter rechts,
+          desto mehr Aufwand und desto unsicherer die Quelle.
+        </aside>
+      </section>
+
+      <section id="datensatz-was">
+        <span class="eyebrow">Datensatz</span>
+        <h2>Eine Datei, die schon jemand gefüllt hat</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <p class="list-intro">So kommt ein Datensatz meistens daher:</p>
+              <ul class="list-tight">
+                <li>Als CSV, JSON oder Excel-Datei</li>
+                <li>Mit vielen Spalten, die ihr nicht alle braucht</li>
+                <li>Mit sehr vielen Zeilen</li>
+                <li>Über einen langen Zeitraum hinweg erhoben</li>
+              </ul>
+            </div>
+            <div>
+              <p class="list-intro">Und so verhält er sich:</p>
+              <ul class="list-tight">
+                <li>Er ändert sich nicht mehr</li>
+                <li>Er ist oft nicht aktuell</li>
+                <li>Er ist genau deshalb verlässlich</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-green" style="margin-top: auto;">
+            <p>Ein Datensatz ist für ein Kursprojekt fast immer die ruhigere Wahl.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          Hier gegen die verbreitete Erwartung arbeiten, ein Projekt brauche
+          Live-Daten. Ein historischer Datensatz ist am Marktstand nicht
+          langweilig, sondern schlicht da.
+        </aside>
+      </section>
+
+      <section id="datensatz-zeitreihe">
+        <span class="eyebrow">Datensatz</span>
+        <h2>Ein langer Zeitraum macht Muster sichtbar</h2>
+        <div class="content">
+          <figure class="figure-center">
+            <img src="bilder/datensatz-zeitreihe.jpg" style="width: 880px;"
+                 alt="Liniendiagramm der monatlichen Flugpassagierzahlen von 1949 bis 1960">
+            <figcaption>Fluggäste pro Monat, 1949 bis 1960 – ein Klassiker aus der Statistik.</figcaption>
+          </figure>
+        </div>
+        <aside class="notes">
+          Zwei Muster in einer Grafik: Die Zahl steigt ueber die Jahre, und
+          innerhalb jedes Jahres wiederholt sich derselbe Sommerausschlag.
+          Beides sieht man nur, weil die Reihe so lang ist.
+        </aside>
+      </section>
+
+      <section id="datensatz-nachrichten">
+        <span class="eyebrow">Datensatz</span>
+        <h2>Daten müssen nicht von einer Behörde kommen</h2>
+        <div class="content">
+          <figure>
+            <img class="shot" src="bilder/datensatz-nachrichten.jpg"
+                 alt="Farbige Striche zeigen für 22 Personen, an welchen Tagen eines Jahres Nachrichten ausgetauscht wurden">
+            <figcaption>Ein Jahr eigener Chatverläufe: eine Zeile pro Person, ein Strich pro Tag mit Nachricht.</figcaption>
+          </figure>
+        </div>
+        <aside class="notes">
+          Eigenes Beispiel und guter Ideengeber fuer die Themenboerse spaeter:
+          Auch selbst erhobene oder exportierte Daten sind ein Datensatz. Man
+          sieht Beziehungen anfangen und aufhoeren.
+        </aside>
+      </section>
+
+      <section id="datensatz-finden">
+        <span class="eyebrow">Datensatz</span>
+        <h2>Wo ihr Datensätze findet</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch;">
+            <div class="box">
+              <h3>opendata.swiss</h3>
+              <p class="text-sm mb-0">Offizielle Daten von Bund, Kantonen und Städten.</p>
+            </div>
+            <div class="box">
+              <h3>kaggle.com</h3>
+              <p class="text-sm mb-0">Weltweite Sammlung, oft kurios und selten geprüft.</p>
+            </div>
+            <div class="box">
+              <h3>Selbst erhoben</h3>
+              <p class="text-sm mb-0">Eine eigene Tabelle, ein Export, eine Zählung.</p>
+            </div>
+          </div>
+          <div class="callout callout-orange mt-2">
+            <p>Prüft immer, wer die Daten erhoben hat und wann zuletzt.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          Auf kaggle.com liegen viele Datensaetze ohne nachvollziehbare Herkunft.
+          Fuer eine journalistische Geschichte ist die Quellenangabe Pflicht.
+        </aside>
+      </section>
+
+      <section id="uebung-blinddate">
+        <span class="eyebrow">Übung</span>
+        <h2>Was kann dieser Datensatz – und was nicht?</h2>
+        <div class="content">
+          <p class="list-intro">Pro Steckbrief notiert ihr zwei Fragen:</p>
+          <ul class="text-lg">
+            <li>Eine Frage, die diese Daten beantworten können</li>
+            <li>Eine Frage, an der sie scheitern</li>
+          </ul>
+          <div class="callout callout-gray" style="margin-top: auto;">
+            <p>Danach wandert der Steckbrief zur nächsten Gruppe weiter.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          30 Minuten, Stift und Papier. Sechs Steckbriefe liegen in
+          uebungen/00_kickoff/02_dataset_blinddate/. Die zweite Frage ist die
+          wichtigere: Sie zeigt, dass eine Datenfrage von den vorhandenen
+          Spalten abhaengt.
+        </aside>
+      </section>
+
+      <section id="api-was">
+        <span class="eyebrow">API</span>
+        <h2>Eine Adresse, die Daten zurückgibt</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div>
+              <p class="list-intro">Was eine API ausmacht:</p>
+              <ul class="list-tight">
+                <li>Ihr ruft eine URL auf und bekommt Daten statt einer Webseite</li>
+                <li>Die Antwort ist strukturiert, meistens als JSON</li>
+                <li>Die Daten sind aktuell</li>
+              </ul>
+            </div>
+            <div>
+              <p class="list-intro">Womit ihr rechnen müsst:</p>
+              <ul class="list-tight">
+                <li>Es gibt immer eine Obergrenze an Abfragen</li>
+                <li>Manche Anbieter verlangen eine Kreditkarte</li>
+                <li>Die Dokumentation ist mal gut und mal grauenhaft</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-orange" style="margin-top: auto;">
+            <p>Eine API liefert meist nur den aktuellen Wert – die Geschichte entsteht erst, wenn ihr selbst sammelt.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          Genau das macht 1kwh.ch: Swissgrid gibt nur den Moment her, gesammelt
+          wird selbst. Wer eine API waehlt, muss frueh anfangen zu sammeln.
+        </aside>
+      </section>
+
+      <section id="api-beispiele">
+        <span class="eyebrow">API</span>
+        <h2>Ein paar APIs zum Anschauen</h2>
+        <div class="content">
+          <table>
+            <tr><th style="width: 34%;">Wo</th><th>Was es gibt</th><th style="width: 26%;">Kosten</th></tr>
+            <tr><td>transport.opendata.ch</td><td>Fahrplan und Abfahrten in der Schweiz</td><td>gratis</td></tr>
+            <tr><td>open-meteo.com</td><td>Wetter, auch rückwirkend bis 1940</td><td>gratis</td></tr>
+            <tr><td>openweathermap.org</td><td>Wetter weltweit</td><td>gratis mit Kreditkarte</td></tr>
+            <tr><td>freepublicapis.com</td><td>Sammlung getesteter offener APIs</td><td>gratis</td></tr>
+          </table>
+          <div class="callout callout-blue mt-2">
+            <p>Open-Meteo begleitet uns später durch den ganzen Kurs.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          Falls Zeit bleibt: transport.opendata.ch im Browser aufrufen und die
+          rohe JSON-Antwort zeigen. Das nimmt der API viel Mystik.
+        </aside>
+      </section>
+
+      <section id="api-portal">
+        <span class="eyebrow">API</span>
+        <h2>Ein Portal voller offener APIs</h2>
+        <div class="content">
+          <figure>
+            <img class="shot" src="bilder/api-portal.jpg"
+                 alt="Vier Kacheln mit offenen APIs, jeweils mit Beschreibung und Verfügbarkeitsanzeige">
+            <figcaption>freepublicapis.com – täglich getestet, mit Angabe zur Verfügbarkeit.</figcaption>
+          </figure>
+          <div class="callout callout-gray">
+            <p>Zum Stöbern gut, als Projektgrundlage oft zu dünn.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          Viele dieser APIs liefern Spielereien ohne Zeitachse. Fuer eine
+          Data-Story braucht es Daten, die sich ueber die Zeit veraendern.
+        </aside>
+      </section>
+
+      <section id="api-abfahrtsuhr">
+        <span class="eyebrow">API</span>
+        <h2>Aus einer Fahrplan-API wird eine Uhr</h2>
+        <div class="content">
+          <figure class="figure-center">
+            <img src="bilder/api-abfahrtsuhr.jpg"
+                 alt="Kreisförmige Uhr, deren Striche die Abfahrten von Bern nach Zürich HB über einen Tag zeigen">
+            <figcaption>Abfahrten Bern – Zürich HB, aus der Fahrplan-API auf ein Zifferblatt gelegt.</figcaption>
+          </figure>
+        </div>
+        <aside class="notes">
+          Eigenes Beispiel. Zeigt, dass die Darstellung nicht aus der API folgt:
+          Dieselben Abfahrtszeiten waeren auch eine langweilige Liste. Die
+          Gestaltungsentscheidung macht die Geschichte.
+        </aside>
+      </section>
+
+      <section id="reverse-engineering">
+        <span class="eyebrow">Reverse Engineering</span>
+        <h2>Die versteckte Datenquelle einer Website</h2>
+        <div class="content">
+          <p class="list-intro">Viele Websites laden ihre Inhalte selbst als JSON nach.</p>
+          <ul class="list-tight">
+            <li>Im Netzwerk-Tab des Browsers seht ihr jede dieser Anfragen</li>
+            <li>Findet ihr die richtige, habt ihr die Daten direkt</li>
+            <li>Grosse Anbieter sichern ihre internen Schnittstellen dagegen ab</li>
+          </ul>
+          <div class="callout callout-orange" style="margin-top: auto;">
+            <p>Diese Adressen sind nicht dokumentiert und können jederzeit verschwinden.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          Rechtlich und praktisch heikel: keine Zusicherung, keine Dokumentation,
+          keine Stabilitaet. Als Projektgrundlage nur mit gespeichertem Datenstand
+          als Rueckfallebene.
+        </aside>
+      </section>
+
+      <section id="reverse-engineering-beispiel">
+        <span class="eyebrow">Reverse Engineering</span>
+        <h2>Was ein Radiosender wirklich spielt</h2>
+        <div class="content">
+          <figure>
+            <img class="shot" src="bilder/reverse-engineering-srf1.jpg"
+                 alt="Tabelle der zuletzt gespielten Lieder auf Radio SRF1 mit Datum, Uhrzeit, Titel und Interpret">
+            <figcaption>Die Playlist-Seite von Radio SRF1 zeigt Titel, Zeitpunkt und Häufigkeit der letzten 30 Tage.</figcaption>
+          </figure>
+        </div>
+        <aside class="notes">
+          Gute Ideenquelle fuer Projekte: Wer laeuft wie oft, zu welcher
+          Tageszeit, in welchem Jahrzehnt erschienen. Aus so einer Tabelle wird
+          ueber Wochen gesammelt eine echte Geschichte.
+        </aside>
+      </section>
+
+      <section id="uebung-datenspur">
+        <span class="eyebrow">Übung</span>
+        <h2>Findet die Datenspur</h2>
+        <div class="content">
+          <p class="list-intro">Ihr öffnet zu zweit vorbereitete Websites und sucht im Netzwerk-Tab die Datenantwort.</p>
+          <ul class="text-lg">
+            <li>Notiert die Adresse, die die Daten liefert</li>
+            <li>Notiert ein Feld aus der Antwort</li>
+          </ul>
+          <div class="callout callout-gray" style="margin-top: auto;">
+            <p>Pro gefundene Quelle gibt es einen Punkt.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          25 Minuten. Jagdkarte in uebungen/00_kickoff/03_datenspur_jagd/. Die
+          Ziele vor dem Kurs selbst durchklicken – solche Adressen aendern sich
+          ohne Vorwarnung.
+        </aside>
+      </section>
+
+      <section id="webscraping">
+        <span class="eyebrow">Webscraping</span>
+        <h2>Wenn es gar keine Datenquelle gibt</h2>
+        <div class="content">
+          <p class="list-intro">Dann liest man die Website selbst aus und schneidet die Werte aus dem HTML.</p>
+          <ul class="list-tight">
+            <li>Mit cURL in PHP oder mit fetch in JavaScript</li>
+            <li>Bei Seiten, die sich erst im Browser aufbauen, mit Puppeteer oder Selenium</li>
+            <li>Bei grossen Anbietern scheitert es meist an einer Schutzschicht</li>
+          </ul>
+          <div class="callout callout-orange" style="margin-top: auto;">
+            <p>Ändert die Website ihr Layout, ist euer Skript kaputt.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          Hier kann der Hinweis auf Bahn-Mining von David Kriesel fallen: ein
+          Vortrag darueber, wie aus jahrelang gesammelten Fahrplandaten eine
+          Geschichte ueber Verspaetungen wird.
+        </aside>
+      </section>
+
+      <section id="webscraping-beispiel">
+        <span class="eyebrow">Webscraping</span>
+        <h2>Aus Inseraten wird eine Tabelle</h2>
+        <div class="content">
+          <figure>
+            <img class="shot" src="bilder/webscraping-homegate.jpg"
+                 alt="Datenbanktabelle mit Mietinseraten: Preis, Zimmerzahl, Fläche, Koordinaten und Beschreibung">
+            <figcaption>Wohnungsinserate, laufend eingesammelt und Zeile für Zeile gespeichert.</figcaption>
+          </figure>
+        </div>
+        <aside class="notes">
+          Eigenes Beispiel. Auffaellig sind die vielen NULL-Werte: Genau so sehen
+          echte Rohdaten aus, und genau darum braucht es spaeter den
+          Transform-Schritt.
+        </aside>
+      </section>
+
+      <section id="webscraping-meme">
+        <span class="eyebrow">Webscraping</span>
+        <h2>Wie das Internet darüber denkt</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 0.9fr; gap: 40px; align-items: stretch; flex: 1; min-height: 0;">
+            <div style="align-self: center;">
+              <p>Wer eine API benutzt, hält sich an Regeln, Kontingente und Nutzungsbedingungen.</p>
+              <p>Wer scrapt, hält sich an nichts – und fliegt dafür irgendwann raus.</p>
+              <p class="text-sm text-muted">Für euer Projekt gilt: nehmt die API, wenn es eine gibt.</p>
+            </div>
+            <figure class="figure-center">
+              <img src="bilder/webscraping-meme.jpg"
+                   alt="Meme, das einen regelkonformen API-Nutzer einem rücksichtslosen Scraper gegenüberstellt">
+              <figcaption>Internet-Meme, unbekannte Urheberschaft.</figcaption>
+            </figure>
+          </div>
+        </div>
+        <aside class="notes">
+          Bewusst als Auflockerung. Danach ernst werden: Scraping erzeugt Last
+          auf fremden Servern und ist je nach Nutzungsbedingungen nicht erlaubt.
+        </aside>
+      </section>
+
+      <section id="quellen-im-kurs">
+        <h2>Was davon ihr wirklich braucht</h2>
+        <div class="content">
+          <table>
+            <tr><th style="width: 34%;">Weg</th><th>Im Kurs</th></tr>
+            <tr><td>Datensatz als Datei</td><td>Ja, wir lesen JSON und CSV gemeinsam ein</td></tr>
+            <tr><td>Öffentliche API</td><td>Ja, wir holen Daten von Open-Meteo</td></tr>
+            <tr><td>Sensorbox im Raum</td><td>Ja, sie verhält sich wie eine API</td></tr>
+            <tr><td>Reverse Engineering</td><td>Nur zum Anschauen</td></tr>
+            <tr><td>Webscraping</td><td>Nur zum Anschauen</td></tr>
+          </table>
+          <div class="callout callout-green mt-2">
+            <p>Wählt eine einzige Quelle für euer Projekt.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          Klar sagen: Wer scrapen will, darf das privat weiterverfolgen, baut das
+          Projekt aber auf einer der ersten drei Zeilen auf. Zehn Tage sind kurz.
+        </aside>
+      </section>
+
+      <!-- =========================================================
+           KAPITEL 4 – EUER PROJEKT
+           ========================================================= -->
+
+      <section id="divider-projekt" class="section-divider" data-state="is-section-divider">
+        <h1>Euer Projekt</h1>
+        <p>Vier Personen, eine Frage, ein Datensatz, eine Grafik.</p>
+      </section>
+
+      <section id="projekt-in-einem-satz">
+        <h2>Der Auftrag in einem Satz</h2>
+        <div class="content" style="justify-content: center;">
+          <p class="big-statement">Ihr beantwortet eine Frage mit Daten, die ihr selbst beschafft, gespeichert und sichtbar gemacht habt.</p>
+        </div>
+        <aside class="notes">
+          Bewusst ohne Themenvorgabe. Das Thema entsteht gleich in der
+          Themenboerse. Die Frage selbst wird erst spaeter scharf formuliert.
+        </aside>
+      </section>
+
+      <section id="projekt-grenzen">
+        <h2>Woran ihr euch halten solltet</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px 40px; align-items: start;">
+            <div class="box">
+              <h3>Eine Datenquelle</h3>
+              <p class="text-sm mb-0">Nicht drei, auch wenn es verlockend klingt.</p>
+            </div>
+            <div class="box">
+              <h3>Ein kleines Datenmodell</h3>
+              <p class="text-sm mb-0">Eine oder zwei Tabellen reichen völlig.</p>
+            </div>
+            <div class="box">
+              <h3>Ein JSON-Endpunkt</h3>
+              <p class="text-sm mb-0">Er versorgt euer Frontend mit allem Nötigen.</p>
+            </div>
+            <div class="box">
+              <h3>Mindestens eine Grafik</h3>
+              <p class="text-sm mb-0">Sie muss eure Frage beantworten, nicht beeindrucken.</p>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">
+          Erfahrungsgemaess scheitern Projekte an zu grossen Plaenen, nie an zu
+          kleinen. Diese vier Grenzen sind eine Hilfe, keine Strafe.
+        </aside>
+      </section>
+
+      <section id="meilensteine">
+        <h2>Zehn kurze Abnahmen</h2>
+        <div class="content">
+          <table class="meilensteine">
+            <tr><th style="width: 12%;"></th><th>Ihr zeigt</th></tr>
+            <tr><td>M1</td><td>Die Gruppe steht und die Rollen sind verteilt</td></tr>
+            <tr><td>M2</td><td>Eure Datenfrage ist formuliert</td></tr>
+            <tr><td>M3</td><td>Der Datensatz ist gefunden und geprüft</td></tr>
+            <tr><td>M4</td><td>PHP liest eure echten Daten ein</td></tr>
+            <tr><td>M5</td><td>Die Daten sind gesäubert und einheitlich</td></tr>
+            <tr><td>M6</td><td>Die Daten stehen in der Datenbank</td></tr>
+            <tr><td>M7</td><td>Euer JSON-Endpunkt funktioniert</td></tr>
+            <tr><td>M8</td><td>Die erste echte Grafik steht</td></tr>
+            <tr><td>M9</td><td>Die Fassung ist ausstellungsfähig</td></tr>
+            <tr><td>M10</td><td>Marktstand und Abgabe</td></tr>
+          </table>
+        </div>
+        <aside class="notes">
+          Keine Pruefungen, sondern kurze Zeigemomente. Bei jeder Abnahme drei
+          Fragen: Was laeuft schon? Was habt ihr gelernt oder neu entschieden?
+          Was ist der naechste ueberpruefbare Schritt?
+        </aside>
+      </section>
+
+      <section id="uebung-themenboerse">
+        <span class="eyebrow">Übung</span>
+        <h2>Themenbörse: Gruppen finden</h2>
+        <div class="content">
+          <ol class="text-lg">
+            <li>Schätzt euch selbst kurz ein: Programmieren, Gestalten, Schreiben</li>
+            <li>Schreibt zwei Themen auf, die euch wirklich interessieren</li>
+            <li>Wir hängen alle Karten auf und sortieren sie gemeinsam</li>
+            <li>Ihr findet euch zu viert um ein Thema zusammen</li>
+            <li>Ihr verteilt im Team Backend und Frontend</li>
+          </ol>
+        </div>
+        <aside class="notes">
+          45 Minuten und Abschluss des Halbtags. Material in
+          uebungen/00_kickoff/04_themenboerse/. Die Selbsteinschaetzungen bleiben
+          bei mir – sie dienen nur dazu, keine Gruppe ohne Programmiersicherheit
+          zu lassen.
+        </aside>
+      </section>
+
+      <section id="schluss">
+        <h2>Zum Mitnehmen</h2>
+        <div class="content" style="justify-content: center;">
+          <p class="big-statement">Ohne Daten keine Data-Story – und Daten holt man sich, statt auf sie zu warten.</p>
+          <p class="mt-2"><span class="next-step">Nächster Schritt: PHP auf dem eigenen Rechner zum Laufen bringen</span></p>
+        </div>
+        <aside class="notes">
+          Uebergang zum Tooling-Teil des Tages: lokaler PHP-Server einrichten.
+          Meilenstein M1 wird am Ende des Tages abgenommen.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      width: 1280,
+      height: 720,
+      margin: 0,
+      controls: true,
+      progress: true,
+      slideNumber: 'c',
+      hash: true,
+      transition: 'slide',
+      center: false,
+      plugins: [ RevealHighlight, RevealNotes ]
+    });
+  </script>
+</body>
+</html>
