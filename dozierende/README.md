@@ -66,6 +66,8 @@ Für Claude Code gehst du so vor:
 3. Starte eine neue Claude-Code-Session, falls der Skill nicht sofort
    erscheint.
 
+Oder frag einfach Claude, den Skill selber zu installieren 😉
+
 Für Codex gehst du so vor:
 
 1. Entpacke die ZIP-Datei.
