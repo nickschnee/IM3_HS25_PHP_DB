@@ -55,10 +55,7 @@ Installiere zuerst den AI-Skill `Reveal.js` in deinem AI-Tool.
 Das Paket liegt hier:
 `dozierende/AI_skill_revealjs/revealjs-skill.zip`
 
-Die ZIP enthält nur den Skill selbst (`SKILL.md`, `references/`, `scripts/`),
-kein Plugin, keine Hooks und kein MCP-Server. Eine frühere Version dieses
-Pakets enthielt ein komplettes MCPmarket-Plugin samt API-Token – das wurde
-entfernt.
+Die ZIP enthält nur den Skill selbst (`SKILL.md`, `references/`, `scripts/`).
 
 Für Claude Code gehst du so vor:
 

@@ -5,7 +5,7 @@
 <title>Werkstatt 2 – CSS-Karten und Regel-Streifen zum Ausschneiden</title>
 <style>
   @page { size: A4 portrait; margin: 12mm; }
-  :root { --petrol: #4b93a4; --oliv: #8b8a6e; --wert: #b5723a; }
+  :root { --petrol: #14495a; --oliv: #4a4830; --wert: #713d12; }
   * { box-sizing: border-box; }
   body {
     margin: 0;
@@ -14,7 +14,7 @@
   }
   .kopf { margin-bottom: 6mm; }
   .kopf h1 { font-size: 15pt; color: var(--oliv); margin: 0 0 2mm; }
-  .kopf p { font-size: 9pt; color: #777; margin: 0; line-height: 1.5; }
+  .kopf p { font-size: 9pt; color: #555; margin: 0; line-height: 1.5; }
 
   h2.abschnitt {
     font-size: 9pt; text-transform: uppercase; letter-spacing: .1em;
@@ -30,7 +30,7 @@
     margin-bottom: 8mm;
   }
   .karte {
-    border: 1px dashed #bbb;
+    border: 1px dashed #999;
     border-radius: 2px;
     height: 20mm;
     padding: 2mm;
@@ -41,7 +41,7 @@
   }
   .karte .rolle {
     font-size: 6.5pt; text-transform: uppercase; letter-spacing: .1em;
-    color: #b0afa6; margin-bottom: 1mm;
+    color: #555; margin-bottom: 1mm;
   }
   .karte .wort {
     font-family: "SF Mono", Menlo, Consolas, monospace;
@@ -53,7 +53,7 @@
 
   /* Regel-Streifen */
   .streifen {
-    border: 1px dashed #bbb;
+    border: 1px dashed #999;
     border-radius: 2px;
     height: 26mm;
     padding: 0 5mm;
@@ -64,17 +64,17 @@
   }
   .zeichen {
     font-family: "SF Mono", Menlo, Consolas, monospace;
-    font-size: 16pt; color: #b9b8ae;
+    font-size: 16pt; color: #444;
   }
   .feld {
     width: 44mm; height: 20mm;
-    border: 1px dotted #d5d4cb; border-radius: 2px;
+    border: 1px dotted #aaa; border-radius: 2px;
     background: #fafaf8;
     display: flex; align-items: center; justify-content: center;
     font-size: 7pt; text-transform: uppercase; letter-spacing: .1em;
-    color: #c9c8bf;
+    color: #666;
   }
-  .fuss { margin-top: 5mm; font-size: 8pt; color: #999; }
+  .fuss { margin-top: 5mm; font-size: 8pt; color: #777; }
 </style>
 </head>
 <body>
